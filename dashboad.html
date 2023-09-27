@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
+
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+
+
+    <style type="text/css">
+        .welcome-section {
+            background-image: url('https://img.freepik.com/free-photo/portrait-smiling-man-sitting-cafe-bar-with-his-laptop-computer_342744-944.jpg?w=1060&t=st=1694226598~exp=1694227198~hmac=1d48fe8fe124568bfdd5c8adc049e1800ecf3af62e463931c39644d580dbd1c6');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 200px 0;
+
+        }
+
+        /* Personaliza el estilo de la página */
+        .divider:after,
+        .divider:before {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #eee;
+        }
+
+        .h-custom {
+            height: calc(100% - 73px);
+        }
+
+        @media (max-width: 450px) {
+            .h-custom {
+                height: 100%;
+            }
+        }
+
+        .frameblack {
+            background-color: rgba(10, 10, 10, 0.4);
+            padding: 4em;
+        }
+
+        /* Estilos para el pie de página */
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: black;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .black {
+            background-color: black;
+        }
+
+        .custom-card {
+            width: 18rem;
+            margin: 20px;
+        }
+    </style>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="#">Talento</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#misTrabajosModal">Mis
+                                trabajos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#misTrabajosModal2">Nuevo Candidato</a>
+                        </li>
+                          
+                        <button id="exportButton">Reporte Talento</button>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="welcome-section">
+        <div class="frameblack">
+
+            <div class="container">
+                <h1>Bienvenido a Recutamiento</h1>
+                <p>Vista del analista.</p>
+            </div>
+        </div>
+
+    </section>
+
+
+    </section>
+    <section>
+        <div
+            class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 black">
+            <!-- Derechos de autor -->
+            <div class="text-white mb-12 mb-md-0 text-center">
+                Derechos de autor © 2023. Todos los derechos reservados.
+            </div>
+
+
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Modal -->
+    <div class="modal fade" id="misTrabajosModal" tabindex="-1" aria-labelledby="misTrabajosModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="misTrabajosModalLabel">Mis Trabajos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Contenido del modal -->
+                    <p>Aquí se muestra la información o contenido relacionado con tus trabajos.</p>
+
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="card">
+                                <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                                <div class="card-body">
+                                    <h5 class="card-title">Trabajo 1</h5>
+                                    <p class="card-text">Analista Programador</p>
+                                    <p class="card-text">Soporte NOC</p>
+                                    <p class="card-text">Jefe de Pro</p>
+                                    <a href="#" class="btn btn-primary" href="#" data-bs-toggle="modal"
+                                        data-bs-target="#misTrabajosModal1">Visualizar</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm">
+                            <div class="card">
+                                <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                                <div class="card-body">
+                                    <h5 class="card-title">Trabajo 2</h5>
+                                    <p class="card-text">Team Manager</p>
+                                    <p class="card-text">Soporte NOC</p>
+                                    <p class="card-text">Jefe de Pro</p>
+                                    <a href="#" class="btn btn-primary" href="#" data-bs-toggle="modal"
+                                        data-bs-target="#misTrabajosModal1">Visualizar</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm">
+                            <div class="card">
+                                <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                                <div class="card-body">
+                                    <h5 class="card-title">Trabajo 3</h5>
+                                    <p class="card-text">Product Owner</p>
+                                    <p class="card-text">Soporte NOC</p>
+                                    <p class="card-text">Jefe de Pro</p>
+                                    <a href="#" class="btn btn-primary" href="#" data-bs-toggle="modal"
+                                        data-bs-target="#misTrabajosModal1">Visualizar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <!-- <button type="button" class="btn btn-primary">Guardar Cambios</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="misTrabajosModal1" tabindex="-1" aria-labelledby="misTrabajosModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="misTrabajosModalLabel">Mis Trabajos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Contenido del modal -->
+                    <p>Aquí se muestra la información o contenido relacionado con tus trabajos.</p>
+
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="card">
+                                <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                                <div class="card-body">
+                                    <form>
+                                        <div class="mb-3">
+                                            <label for="nombre" class="form-label">Status*</label>
+                                            <select class="form-select" id="Status">
+                                                <option value="alabama">Creado</option>
+                                                <option value="alaska">Rechazado</option>
+                                                <option value="arizona">Completado</option>
+                                                <!-- Agrega más opciones según tus necesidades -->
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">VMO*</label>
+                                            <input type="email" class="form-control" id="VMO" placeholder="VMO*">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">Solicitante</label>
+                                            <input type="email" class="form-control" id="Solicitante"
+                                                placeholder="Solicitante">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">Requerimiento</label>
+                                            <input type="email" class="form-control" id="Requerimiento"
+                                                placeholder="Requerimiento">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="adjuntarArchivo" class="form-label">Adjuntar Archivo</label>
+                                            <input type="file" class="form-control" id="adjuntarArchivo">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Enviar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+        <!-- Modal -->
+    <div class="modal fade" id="misTrabajosModal2" tabindex="-1" aria-labelledby="misTrabajosModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="misTrabajosModalLabel">Nuevo candidato</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Contenido del modal -->
+                    <p>Aquí se muestra la información o contenido relacionado con tus trabajos.</p>
+
+                    <div class="row">
+                        <div class="col-sm">
+                                <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                                <div class="card-body">
+                                    <form>
+                                       
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">VMO*</label>
+                                            <input type="email" class="form-control" id="VMO" placeholder="VMO*">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">Solicitante</label>
+                                            <input type="email" class="form-control" id="Solicitante"
+                                                placeholder="Solicitante">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="Requerimiento" class="form-label">Requerimiento</label>
+                                            <input type="Requerimiento" class="form-control" id="Requerimiento"
+                                                placeholder="Requerimiento">
+                                        </div>
+                                         <div class="mb-3">
+                                            <label for="Vinculado" class="form-label">Trabajo Vinculado</label>
+                                            <input type="Vinculado" class="form-control" id="Vinculado"
+                                                placeholder="Trabajo Vinculado">
+                                        </div>
+                                         <div class="mb-3">
+                                            <label for="paso" class="form-label">*Paso del trabajo vinculado</label>
+                                            <input type="email" class="form-control" id="paso"
+                                                placeholder="Paso del trabajo vinculado">
+                                        </div>
+                                         <div class="mb-3">
+                                            <label for="dni" class="form-label">DNI</label>
+                                            <input type="dni" class="form-control" id="dni"
+                                                placeholder="DNI">
+                                        </div>
+                                         <div class="mb-3">
+                                            <label for="Nombre" class="form-label">Nombre</label>
+                                            <input type="Nombre" class="form-control" id="Nombre"
+                                                placeholder="Nombre">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="Apellidos" class="form-label">Apellidos</label>
+                                            <input type="Apellidos" class="form-control" id="Apellidos"
+                                                placeholder="Apellidos">
+                                        </div>
+                                         <div class="mb-3">
+                                            <label for="adjuntarArchivo" class="form-label">Adjuntar Archivo</label>
+                                            <input type="file" class="form-control" id="adjuntarArchivo">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Enviar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // Función para exportar datos a Excel
+        function exportToExcel() {
+            // Crear una matriz de datos de ejemplo
+            const data = [
+                ['Perfil 1', 'Analista'],
+                ['Perfil 2', 'Product Owner'],
+                ['Perfil 3', 'Scrum Master'],
+                ['Pedro', 'Software Enginner']
+            ];
+
+            // Crear un objeto de libro de trabajo de Excel
+            const workbook = XLSX.utils.book_new();
+
+            // Crear una hoja de cálculo
+            const worksheet = XLSX.utils.aoa_to_sheet(data);
+
+            // Agregar la hoja de cálculo al libro de trabajo
+            XLSX.utils.book_append_sheet(workbook, worksheet, 'Datos');
+
+            // Convertir el libro de trabajo a una cadena de datos binarios
+            const excelData = XLSX.write(workbook, { bookType: 'xlsx', type: 'binary' });
+
+            // Crear un blob a partir de la cadena de datos binarios
+            const blob = new Blob([s2ab(excelData)], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+            // Crear un objeto de URL para el blob
+            const url = URL.createObjectURL(blob);
+
+            // Crear un enlace de descarga
+            const a = document.createElement('a');
+            a.href = url;
+            const timestamp = Date.now();
+            a.download = 'Reporte_GDH_'+timestamp+'.xlsx';
+            a.style.display = 'none';
+
+            // Agregar el enlace al cuerpo del documento y hacer clic en él
+            document.body.appendChild(a);
+            a.click();
+
+            // Limpiar el objeto de URL y eliminar el enlace
+            URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+        }
+
+        // Función para convertir una cadena en una matriz de bytes
+        function s2ab(s) {
+            const buf = new ArrayBuffer(s.length);
+            const view = new Uint8Array(buf);
+            for (let i = 0; i < s.length; i++) {
+                view[i] = s.charCodeAt(i) & 0xFF;
+            }
+            return buf;
+        }
+
+        // Agregar un controlador de eventos al botón de exportación
+        $('#exportButton').click(exportToExcel);
+    </script>
+</body>
+
+</html>
