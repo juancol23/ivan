@@ -135,50 +135,23 @@
                 </div>
                 <div class="modal-body">
                     <!-- Contenido del modal -->
-                    <p>Aquí se muestra la información o contenido relacionado con tus trabajos.</p>
+                    <p>Aquí se muestra la información o contenido relacionado con tus trabajos.111</p>
 
-                    <div class="row">
-                        <div class="col-sm">
+                    <div class="row text-center">
+                        <div class="col-sm-5 ">
                             <div class="card">
                                 <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
                                 <div class="card-body">
-                                    <h5 class="card-title">Trabajo 1</h5>
-                                    <p class="card-text">Analista Programador</p>
-                                    <p class="card-text">Soporte NOC</p>
-                                    <p class="card-text">Jefe de Pro</p>
+                                    <h5 class="card-title">Requerimiento</h5>
+                                    <p class="card-text">***</p>
+                                    <p class="card-text">Ingresa un nuevo requerimiento</p>
+                                    <p class="card-text">***</p>
                                     <a href="#" class="btn btn-primary" href="#" data-bs-toggle="modal"
-                                        data-bs-target="#misTrabajosModal1">Visualizar</a>
+                                        data-bs-target="#misTrabajosModal1">Nuevo requerimiento</a>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-sm">
-                            <div class="card">
-                                <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
-                                <div class="card-body">
-                                    <h5 class="card-title">Trabajo 2</h5>
-                                    <p class="card-text">Team Manager</p>
-                                    <p class="card-text">Soporte NOC</p>
-                                    <p class="card-text">Jefe de Pro</p>
-                                    <a href="#" class="btn btn-primary" href="#" data-bs-toggle="modal"
-                                        data-bs-target="#misTrabajosModal1">Visualizar</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm">
-                            <div class="card">
-                                <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
-                                <div class="card-body">
-                                    <h5 class="card-title">Trabajo 3</h5>
-                                    <p class="card-text">Product Owner</p>
-                                    <p class="card-text">Soporte NOC</p>
-                                    <p class="card-text">Jefe de Pro</p>
-                                    <a href="#" class="btn btn-primary" href="#" data-bs-toggle="modal"
-                                        data-bs-target="#misTrabajosModal1">Visualizar</a>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
 
@@ -204,43 +177,46 @@
                 </div>
                 <div class="modal-body">
                     <!-- Contenido del modal -->
-                    <p>Aquí se muestra la información o contenido relacionado con tus trabajos.</p>
+                    <p>Aquí se muestra la información o contenido relacionado con tus trabajos.22</p>
 
                     <div class="row">
                         <div class="col-sm">
                             <div class="card">
                                 <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
                                 <div class="card-body">
-                                    <form>
                                         <div class="mb-3">
                                             <label for="nombre" class="form-label">Status*</label>
-                                            <select class="form-select" id="Status">
-                                                <option value="alabama">Creado</option>
-                                                <option value="alaska">Rechazado</option>
-                                                <option value="arizona">Completado</option>
+                                            <select class="form-select" id="status">
+                                                <option value="creado">Creado</option>
+                                                <option value="rachazado">Rechazado</option>
+                                                <option value="completado">Completado</option>
                                                 <!-- Agrega más opciones según tus necesidades -->
                                             </select>
                                         </div>
                                         <div class="mb-3">
                                             <label for="email" class="form-label">VMO*</label>
-                                            <input type="email" class="form-control" id="VMO" placeholder="VMO*">
+                                            <input type="email" class="form-control" id="VMO" placeholder="VMO*" required>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="email" class="form-label">Solicitante</label>
-                                            <input type="email" class="form-control" id="Solicitante"
-                                                placeholder="Solicitante">
+                                            <label for="solicitante" class="form-label">Solicitante</label>
+                                            <input type="text" class="form-control" id="solicitante"
+                                                placeholder="Solicitante" required>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="email" class="form-label">Requerimiento</label>
-                                            <input type="email" class="form-control" id="Requerimiento"
-                                                placeholder="Requerimiento">
+                                            <label for="" class="form-label">Requerimiento</label>
+                                            <input type="email" class="form-control" id="requerimiento"
+                                                placeholder="Requerimiento"- required>
+                                        </div>
+                                         <div class="mb-3">
+                                            <label for="" class="form-label">Asignación</label>
+                                            <input type="email" class="form-control" id="asignación"
+                                                placeholder="Requerimiento"- required>
                                         </div>
                                         <div class="mb-3">
                                             <label for="adjuntarArchivo" class="form-label">Adjuntar Archivo</label>
-                                            <input type="file" class="form-control" id="adjuntarArchivo">
+                                            <input type="file" class="form-control" id="cv" required>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Enviar</button>
-                                    </form>
+                                        <button type="submit" class="btn btn-primary" onclick="crearRequerimiento()">Enviar</button>
                                 </div>
                             </div>
                         </div>
@@ -273,7 +249,7 @@
                         <div class="col-sm">
                                 <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
                                 <div class="card-body">
-                                    <form>
+                                    
                                        
                                         <div class="mb-3">
                                             <label for="email" class="form-label">VMO*</label>
@@ -318,8 +294,10 @@
                                             <label for="adjuntarArchivo" class="form-label">Adjuntar Archivo</label>
                                             <input type="file" class="form-control" id="adjuntarArchivo">
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Enviar</button>
-                                    </form>
+                                        <div onclick="crearRequerimiento();">Enviar</div>
+                                    <div id="miDiv" style="display: none;">
+                                        Contenido del Div
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -390,6 +368,56 @@
 
         // Agregar un controlador de eventos al botón de exportación
         $('#exportButton').click(exportToExcel);
+    </script>
+
+
+
+    <script type="text/javascript">
+
+
+        var mostrarBoton = document.getElementById('mostrarBoton');
+        var miDiv = document.getElementById('miDiv');
+
+        // Agregar un controlador de evento clic al botón
+        mostrarBoton.addEventListener('click', function() {
+            // Cambiar el estilo de display del div para mostrarlo
+            crearRequerimiento();
+        });
+
+
+        function crearRequerimiento(){
+
+            var miSelect = document.getElementById('status');
+            var vmo = document.getElementById('VMO');
+            var email = document.getElementById('email');
+            var obtenerValorBoton = document.getElementById('obtenerValorBoton');
+
+            // Crear un nuevo objeto JSON con los nuevos valores
+            var newData = {
+                status: miSelect.value,
+                VMO: vmo.value,
+                solicitante: solicitante.valye,
+                requerimiento: requerimiento.value,
+                cv: cv
+            };
+
+            // Convertir el nuevo objeto en una cadena JSON
+            var newJsonData = JSON.stringify(newData);
+
+            // Guardar los nuevos valores en localStorage, utilizando la misma clave ("miData" en este ejemplo)
+            localStorage.setItem("miData", newJsonData);
+          
+            // var storedData = localStorage.getItem("miData");
+            // var parsedData = JSON.parse(storedData);
+
+            // // Puedes acceder a los valores individuales de la siguiente manera:
+            // var status = parsedData.status;
+            // var VMO = parsedData.VMO;
+            // var solicitante = parsedData.solicitante;
+            // var requerimiento = parsedData.requerimiento;
+            // var cv = parsedData.cv;
+
+        }
     </script>
 </body>
 
