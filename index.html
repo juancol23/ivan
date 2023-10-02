@@ -213,7 +213,7 @@
                 // Verificar si el usuario existe
                 var usuarioEncontrado = usuarios.find(function (usuario) {
                     pass_=usuario.contraseña;
-                    email=usuario.email
+                    email_=email;
                     return usuario.email === email && usuario.contraseña === password;
                 });
 
