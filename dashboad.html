@@ -448,6 +448,8 @@
             var email = document.getElementById('email');
             var obtenerValorBoton = document.getElementById('obtenerValorBoton');
 
+            var dataList = JSON.parse(localStorage.getItem('miData')) || [];
+            console.log("dataList"+JSON.stringify(dataList))
             // Crear un nuevo objeto JSON con los nuevos valores
             var newData = {
                 status: miSelect.value,
@@ -457,8 +459,11 @@
                 cv: "azure.com/blob/cv.pdf"
             };
 
+
+              dataList.push(newData);
+     console.log("PUSH"+JSON.stringify(dataList))
             // Convertir el nuevo objeto en una cadena JSON
-            var newJsonData = JSON.stringify(newData);
+            var newJsonData = JSON.stringify(dataList);
 
             // Guardar los nuevos valores en localStorage, utilizando la misma clave ("miData" en este ejemplo)
             localStorage.setItem("miData", newJsonData);
@@ -493,11 +498,11 @@
             showLoadingAnimation();
 
             // Simula una tarea de carga, puedes reemplazar esto con tu propia lógica
-            setTimeout(function () {
-                hideLoadingAnimation();
-                 $('#misTrabajosModal1').modal('hide');
-                alert("Se cargó la data correctamente")
-            }, 3000); // Ejemplo: oculta la animación después de 3 segundos (simula la carga completa)
+            // setTimeout(function () {
+            //     hideLoadingAnimation();
+            //      $('#misTrabajosModal1').modal('hide');
+            //     alert("Se cargó la data correctamente")
+            // }, 3000); // Ejemplo: oculta la animación después de 3 segundos (simula la carga completa)
         });
     </script>  
 
