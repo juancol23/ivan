@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
+
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+
+
+  
+
+
+    <style type="text/css">
+        .welcome-section {
+            background-image: url('https://img.freepik.com/free-photo/portrait-smiling-man-sitting-cafe-bar-with-his-laptop-computer_342744-944.jpg?w=1060&t=st=1694226598~exp=1694227198~hmac=1d48fe8fe124568bfdd5c8adc049e1800ecf3af62e463931c39644d580dbd1c6');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 200px 0;
+
+        }
+
+        /* Personaliza el estilo de la página */
+        .divider:after,
+        .divider:before {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #eee;
+        }
+
+        .h-custom {
+            height: calc(100% - 73px);
+        }
+
+        @media (max-width: 450px) {
+            .h-custom {
+                height: 100%;
+            }
+        }
+
+        .frameblack {
+            background-color: rgba(10, 10, 10, 0.4);
+            padding: 4em;
+        }
+
+        /* Estilos para el pie de página */
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: black;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .black {
+            background-color: black;
+        }
+
+        .custom-card {
+            width: 18rem;
+            margin: 20px;
+        }
+    </style>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+     <style>
+        /* Estilos para el loader */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto;
+            display: none;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+
+                .loader {
+                     display: none;     
+                    border: 15px solid black;
+                    border-top: 5px solid black;
+                    border-radius: 50%;
+                    width: 150px;
+                    height: 150px;
+                    animation: spin 2s linear infinite;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    z-index: 11111;
+                }
+
+                .loader.visible {
+                    display: block;
+                }
+
+
+    </style>
+
+      <div class="loader " id="loader" ></div>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="#">Talento</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#misTrabajosModal">Mis
+                                trabajos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#misTrabajosModal2">Nuevo Candidato</a>
+                        </li>
+                          
+                        <button id="exportButton">Reporte Talento</button>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="welcome-section">
+        <div class="frameblack">
+
+            <div class="container">
+                <h1 id="textoPrincipal"></h1>
+                <p>Vista del analista.</p>
+            </div>
+        </div>
+
+    </section>
+
+
+    </section>
+    <section>
+        <div
+            class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 black">
+            <!-- Derechos de autor -->
+            <div class="text-white mb-12 mb-md-0 text-center">
+                Derechos de autor © 2023. Todos los derechos reservados.
+            </div>
+
+
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Modal -->
+    <div class="modal fade" id="misTrabajosModal" tabindex="-1" aria-labelledby="misTrabajosModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="misTrabajosModalLabel">Mis Trabajos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Contenido del modal -->
+                    <p>Aquí se muestra la información o contenido relacionado con tus trabajos.111</p>
+
+                    <div class="row text-center">
+                        <div class="col-sm-5 ">
+                            <div class="card">
+                                <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                                <div class="card-body">
+                                    <h5 class="card-title">Requerimiento</h5>
+                                    <p class="card-text">***</p>
+                                    <p class="card-text">Ingresa un nuevo requerimiento</p>
+                                    <p class="card-text">***</p>
+                                    <a href="#" class="btn btn-primary" href="#" data-bs-toggle="modal"
+                                        data-bs-target="#misTrabajosModal1">Nuevo requerimiento</a>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div id="solicitantesLesly"></div>
+
+
+
+                    </div>
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <!-- <button type="button" class="btn btn-primary">Guardar Cambios</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="misTrabajosModal1" tabindex="-1" aria-labelledby="misTrabajosModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="misTrabajosModalLabel">Mis Trabajos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Contenido del modal -->
+                    <p>Aquí se muestra la información o contenido relacionado con tus trabajos.22</p>
+
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="card">
+                                <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                                <div class="card-body">
+                                        <div class="mb-3">
+                                            <label for="nombre" class="form-label">Status*</label>
+                                            <select class="form-select" id="status">
+                                                <option value="creado">Creado</option>
+                                                <option value="rachazado">Rechazado</option>
+                                                <option value="completado">Completado</option>
+                                                <!-- Agrega más opciones según tus necesidades -->
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">VMO*</label>
+                                            <input type="email" class="form-control" id="VMO" placeholder="VMO*" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="solicitante" class="form-label">Solicitante</label>
+                                            <input type="text" class="form-control" id="solicitante"
+                                                placeholder="Solicitante" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">Requerimiento</label>
+                                            <input type="email" class="form-control" id="requerimiento"
+                                                placeholder="Requerimiento"- required>
+                                        </div>
+                                         <div class="mb-3">
+                                            <label for="" class="form-label">Asignación</label>
+                                       
+
+                                            <select class="form-select" id="asignacion">
+                                                <option value="Analista_Lesly">Analista 1</option>
+                                                <option value="Analista_Abel">Analista 2</option>
+                                                <!-- Agrega más opciones según tus necesidades -->
+                                            </select>
+
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="adjuntarArchivo" class="form-label">Adjuntar Archivo</label>
+                                            <input type="file" class="form-control" id="cv" required>
+                                        </div>
+                                        <button id="btnCargar" class="btn btn-primary" onclick="crearRequerimiento()">Enviar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+        <!-- Modal -->
+    <div class="modal fade" id="misTrabajosModal2" tabindex="-1" aria-labelledby="misTrabajosModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="misTrabajosModalLabel">Nuevo candidato</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Contenido del modal -->
+                    <p>Aquí se muestra la información o contenido relacionado con tus trabajos.</p>
+
+                    <div class="row">
+                        <div class="col-sm">
+                                <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                                <div class="card-body">
+                                    
+                                       
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">VMO*</label>
+                                            <input type="email" class="form-control" id="VMO" placeholder="VMO*">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">Solicitante</label>
+                                            <input type="email" class="form-control" id="Solicitante"
+                                                placeholder="Solicitante">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="Requerimiento" class="form-label">Requerimiento</label>
+                                            <input type="Requerimiento" class="form-control" id="Requerimiento"
+                                                placeholder="Requerimiento">
+                                        </div>
+                                         <div class="mb-3">
+                                            <label for="Vinculado" class="form-label">Trabajo Vinculado</label>
+                                            <input type="Vinculado" class="form-control" id="Vinculado"
+                                                placeholder="Trabajo Vinculado">
+                                        </div>
+                                         <div class="mb-3">
+                                            <label for="paso" class="form-label">*Paso del trabajo vinculado</label>
+                                            <input type="email" class="form-control" id="paso"
+                                                placeholder="Paso del trabajo vinculado">
+                                        </div>
+                                         <div class="mb-3">
+                                            <label for="dni" class="form-label">DNI</label>
+                                            <input type="dni" class="form-control" id="dni"
+                                                placeholder="DNI">
+                                        </div>
+                                         <div class="mb-3">
+                                            <label for="Nombre" class="form-label">Nombre</label>
+                                            <input type="Nombre" class="form-control" id="Nombre"
+                                                placeholder="Nombre">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="Apellidos" class="form-label">Apellidos</label>
+                                            <input type="Apellidos" class="form-control" id="Apellidos"
+                                                placeholder="Apellidos">
+                                        </div>
+                                         <div class="mb-3">
+                                            <label for="adjuntarArchivo" class="form-label">Adjuntar Archivo</label>
+                                            <input type="file" class="form-control" id="adjuntarArchivo">
+                                        </div>
+                                        <div onclick="crearRequerimiento();">Enviar</div>
+                                    <div id="miDiv" style="display: none;">
+                                        Contenido del Div
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // Función para exportar datos a Excel
+        function exportToExcel() {
+            // Crear una matriz de datos de ejemplo
+            const data = [
+                ['Perfil 1', 'Analista'],
+                ['Perfil 2', 'Product Owner'],
+                ['Perfil 3', 'Scrum Master'],
+                ['Pedro', 'Software Enginner']
+            ];
+
+            // Crear un objeto de libro de trabajo de Excel
+            const workbook = XLSX.utils.book_new();
+
+            // Crear una hoja de cálculo
+            const worksheet = XLSX.utils.aoa_to_sheet(data);
+
+            // Agregar la hoja de cálculo al libro de trabajo
+            XLSX.utils.book_append_sheet(workbook, worksheet, 'Datos');
+
+            // Convertir el libro de trabajo a una cadena de datos binarios
+            const excelData = XLSX.write(workbook, { bookType: 'xlsx', type: 'binary' });
+
+            // Crear un blob a partir de la cadena de datos binarios
+            const blob = new Blob([s2ab(excelData)], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+            // Crear un objeto de URL para el blob
+            const url = URL.createObjectURL(blob);
+
+            // Crear un enlace de descarga
+            const a = document.createElement('a');
+            a.href = url;
+            const timestamp = Date.now();
+            a.download = 'Reporte_GDH_'+timestamp+'.xlsx';
+            a.style.display = 'none';
+
+            // Agregar el enlace al cuerpo del documento y hacer clic en él
+            document.body.appendChild(a);
+            a.click();
+
+            // Limpiar el objeto de URL y eliminar el enlace
+            URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+        }
+
+        // Función para convertir una cadena en una matriz de bytes
+        function s2ab(s) {
+            const buf = new ArrayBuffer(s.length);
+            const view = new Uint8Array(buf);
+            for (let i = 0; i < s.length; i++) {
+                view[i] = s.charCodeAt(i) & 0xFF;
+            }
+            return buf;
+        }
+
+        // Agregar un controlador de eventos al botón de exportación
+        $('#exportButton').click(exportToExcel);
+    </script>
+
+
+
+    <script type="text/javascript">
+
+
+        var mostrarBoton = document.getElementById('mostrarBoton');
+        var miDiv = document.getElementById('miDiv');
+
+        // Agregar un controlador de evento clic al botón
+        mostrarBoton.addEventListener('click', function() {
+            // Cambiar el estilo de display del div para mostrarlo
+            crearRequerimiento();
+        });
+
+
+        function crearRequerimiento(){
+
+            var miSelect = document.getElementById('status');
+            var asignacion = document.getElementById('asignacion');
+
+            
+
+
+            var vmo = document.getElementById('VMO');
+            var email = document.getElementById('email');
+            var obtenerValorBoton = document.getElementById('obtenerValorBoton');
+
+            var dataList = JSON.parse(localStorage.getItem('miData')) || [];
+            console.log("dataList"+JSON.stringify(dataList))
+            // Crear un nuevo objeto JSON con los nuevos valores
+            var newData = {
+                status: miSelect.value,
+                VMO: vmo.value,
+                solicitante: asignacion.value,
+                requerimiento: requerimiento.value,
+                cv: "azure.com/blob/cv.pdf"
+            };
+
+
+              dataList.push(newData);
+     console.log("PUSH"+JSON.stringify(dataList))
+            // Convertir el nuevo objeto en una cadena JSON
+            var newJsonData = JSON.stringify(dataList);
+
+            // Guardar los nuevos valores en localStorage, utilizando la misma clave ("miData" en este ejemplo)
+            localStorage.setItem("miData", newJsonData);
+          
+            // var storedData = localStorage.getItem("miData");
+            // var parsedData = JSON.parse(storedData);
+
+            // // Puedes acceder a los valores individuales de la siguiente manera:
+            // var status = parsedData.status;
+            // var VMO = parsedData.VMO;
+            // var solicitante = parsedData.solicitante;
+            // var requerimiento = parsedData.requerimiento;
+            // var cv = parsedData.cv;
+
+        }
+    </script>
+
+
+    <script type="text/javascript">
+          // Función para mostrar la animación de carga
+        function showLoadingAnimation() {
+            $('#loader').addClass('visible');
+        }
+
+        // Función para ocultar la animación de carga
+        function hideLoadingAnimation() {
+            $('#loader').removeClass('visible');
+        }
+
+        // Agregar un controlador de eventos al botón de carga
+        $('#btnCargar').click(function () {
+            showLoadingAnimation();
+
+            Simula una tarea de carga, puedes reemplazar esto con tu propia lógica
+            setTimeout(function () {
+                hideLoadingAnimation();
+                 $('#misTrabajosModal1').modal('hide');
+                alert("Se cargó la data correctamente")
+            }, 2000); // Ejemplo: oculta la animación después de 3 segundos (simula la carga completa)
+        });
+    </script>  
+
+    <script type="text/javascript">
+    	        var miH1 = document.getElementById('textoPrincipal');
+
+    		var nombreUsuario = localStorage.getItem('nombreUsuario');
+    		var splitNombre = nombreUsuario.split('.');
+
+    	        miH1.textContent = 'Bienvenid@: '+ splitNombre[0];
+
+    </script>
+
+   <script type="text/javascript">
+		 // Recuperar la lista de objetos desde localStorage
+        var dataList = JSON.parse(localStorage.getItem('miData')) || [];
+
+        // Filtrar los objetos con "Analista_Lesly" como solicitante
+        var solicitantesLesly = dataList.filter(function(data) {
+            return data.asignacion === "lesly.huaman@runa-it.com";
+        });
+
+        // Crear una lista de solicitantes en formato HTML
+        var solicitantesHTML = "<ul>";
+        solicitantesLesly.forEach(function(data) {
+            solicitantesHTML += "<li>" + data.requerimiento + "</li>";
+        });
+        solicitantesHTML += "</ul>";
+
+        // Mostrar la lista de solicitantes en el div "solicitantesLesly"
+        document.getElementById('solicitantesLesly').innerHTML = solicitantesHTML;
+ 
+
+
+   </script>
+
+
+</body>
+
+</html>
