@@ -257,8 +257,8 @@
                                        
 
                                             <select class="form-select" id="asignacion">
-                                                <option value="Analista_Lesly">Analista 1</option>
-                                                <option value="Analista_Abel">Analista 2</option>
+                                                <option value="lesly.huaman@runa-it.com">Analista 1</option>
+                                                <option value="abel.pineda@runa-it.com">Analista 2</option>
                                                 <!-- Agrega más opciones según tus necesidades -->
                                             </select>
 
@@ -440,6 +440,7 @@
 
             var miSelect = document.getElementById('status');
             var asignacion = document.getElementById('asignacion');
+            var solicitante = document.getElementById('solicitante');
 
             
 
@@ -454,7 +455,8 @@
             var newData = {
                 status: miSelect.value,
                 VMO: vmo.value,
-                solicitante: asignacion.value,
+                solicitante: solicitante.value,
+                asignacion: asignacion.value,
                 requerimiento: requerimiento.value,
                 cv: "azure.com/blob/cv.pdf"
             };
