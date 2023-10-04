@@ -11,6 +11,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
 
 
+  
+
+
     <style type="text/css">
         .welcome-section {
             background-image: url('https://img.freepik.com/free-photo/portrait-smiling-man-sitting-cafe-bar-with-his-laptop-computer_342744-944.jpg?w=1060&t=st=1694226598~exp=1694227198~hmac=1d48fe8fe124568bfdd5c8adc049e1800ecf3af62e463931c39644d580dbd1c6');
@@ -71,6 +74,48 @@
 </head>
 
 <body>
+
+     <style>
+        /* Estilos para el loader */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto;
+            display: none;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+
+                .loader {
+                     display: none;     
+                    border: 15px solid black;
+                    border-top: 5px solid black;
+                    border-radius: 50%;
+                    width: 150px;
+                    height: 150px;
+                    animation: spin 2s linear infinite;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    z-index: 11111;
+                }
+
+                .loader.visible {
+                    display: block;
+                }
+
+
+    </style>
+
+      <div class="loader " id="loader" ></div>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
@@ -209,14 +254,20 @@
                                         </div>
                                          <div class="mb-3">
                                             <label for="" class="form-label">Asignación</label>
-                                            <input type="email" class="form-control" id="asignación"
-                                                placeholder="Requerimiento"- required>
+                                       
+
+                                            <select class="form-select" id="asignacion">
+                                                <option value="Analista_Lesly">Analista 1</option>
+                                                <option value="Analista_Abel">Analista 2</option>
+                                                <!-- Agrega más opciones según tus necesidades -->
+                                            </select>
+
                                         </div>
                                         <div class="mb-3">
                                             <label for="adjuntarArchivo" class="form-label">Adjuntar Archivo</label>
                                             <input type="file" class="form-control" id="cv" required>
                                         </div>
-                                        <button type="submit" class="btn btn-primary" onclick="crearRequerimiento()">Enviar</button>
+                                        <button id="btnCargar" class="btn btn-primary" onclick="crearRequerimiento()">Enviar</button>
                                 </div>
                             </div>
                         </div>
@@ -388,6 +439,11 @@
         function crearRequerimiento(){
 
             var miSelect = document.getElementById('status');
+            var asignacion = document.getElementById('asignacion');
+
+            
+
+
             var vmo = document.getElementById('VMO');
             var email = document.getElementById('email');
             var obtenerValorBoton = document.getElementById('obtenerValorBoton');
@@ -396,9 +452,9 @@
             var newData = {
                 status: miSelect.value,
                 VMO: vmo.value,
-                solicitante: solicitante.valye,
+                solicitante: asignacion.value,
                 requerimiento: requerimiento.value,
-                cv: cv
+                cv: "azure.com/blob/cv.pdf"
             };
 
             // Convertir el nuevo objeto en una cadena JSON
@@ -419,6 +475,33 @@
 
         }
     </script>
+
+
+    <script type="text/javascript">
+          // Función para mostrar la animación de carga
+        function showLoadingAnimation() {
+            $('#loader').addClass('visible');
+        }
+
+        // Función para ocultar la animación de carga
+        function hideLoadingAnimation() {
+            $('#loader').removeClass('visible');
+        }
+
+        // Agregar un controlador de eventos al botón de carga
+        $('#btnCargar').click(function () {
+            showLoadingAnimation();
+
+            // Simula una tarea de carga, puedes reemplazar esto con tu propia lógica
+            setTimeout(function () {
+                hideLoadingAnimation();
+                 $('#misTrabajosModal1').modal('hide');
+                alert("Se cargó la data correctamente")
+            }, 3000); // Ejemplo: oculta la animación después de 3 segundos (simula la carga completa)
+        });
+    </script>  
+
+
 </body>
 
 </html>
