@@ -183,7 +183,7 @@
                     <p>Aquí se muestra la información o contenido relacionado con tus trabajos.111</p>
 
                     <div class="row text-center">
-                        <div class="col-sm-5 ">
+                        <!-- <div class="col-sm-5 ">
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">Requerimiento</h5>
@@ -195,7 +195,7 @@
                                 </div>
 
                             </div>
-                        </div>
+                        </div> -->
 
                         <div id="solicitantesLesly"></div>
 
@@ -233,45 +233,22 @@
                             <div class="card">
                                 <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
                                 <div class="card-body">
-                                        <div class="mb-3">
-                                            <label for="nombre" class="form-label">Status*</label>
-                                            <select class="form-select" id="status">
-                                                <option value="creado">Creado</option>
-                                                <option value="rachazado">Rechazado</option>
-                                                <option value="completado">Completado</option>
-                                                <!-- Agrega más opciones según tus necesidades -->
-                                            </select>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="email" class="form-label">VMO*</label>
-                                            <input type="email" class="form-control" id="VMO" placeholder="VMO*" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="solicitante" class="form-label">Solicitante</label>
-                                            <input type="text" class="form-control" id="solicitante"
-                                                placeholder="Solicitante" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="" class="form-label">Requerimiento</label>
-                                            <input type="email" class="form-control" id="requerimiento"
-                                                placeholder="Requerimiento"- required>
-                                        </div>
-                                         <div class="mb-3">
-                                            <label for="" class="form-label">Asignación</label>
                                        
-
-                                            <select class="form-select" id="asignacion">
-                                                <option value="Analista_Lesly">Analista 1</option>
-                                                <option value="Analista_Abel">Analista 2</option>
-                                                <!-- Agrega más opciones según tus necesidades -->
-                                            </select>
-
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">DNI</label>
+                                            <input type="email" class="form-control" id="dni" placeholder="dni*" required>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="adjuntarArchivo" class="form-label">Adjuntar Archivo</label>
-                                            <input type="file" class="form-control" id="cv" required>
+                                            <label for="solicitante" class="form-label">Telefono</label>
+                                            <input type="text" class="form-control" id="telefono"
+                                                placeholder="telefono" required>
                                         </div>
-                                        <button id="btnCargar" class="btn btn-primary" onclick="crearRequerimiento()">Enviar</button>
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">Nombre</label>
+                                            <input type="email" class="form-control" id="Nombre"
+                                                placeholder="Nombre"- required>
+                                        </div>
+                                        <button id="btnCargar" class="btn btn-primary" onclick="guardar()">Enviar</button>
                                 </div>
                             </div>
                         </div>
@@ -456,6 +433,7 @@
             console.log("dataList"+JSON.stringify(dataList))
             // Crear un nuevo objeto JSON con los nuevos valores
             var newData = {
+            	id:generarID();
                 status: miSelect.value,
                 VMO: vmo.value,
                 solicitante: asignacion.value,
@@ -482,7 +460,18 @@
             // var requerimiento = parsedData.requerimiento;
             // var cv = parsedData.cv;
 
+
+
         }
+
+        function generarID() {
+		    // Generar un número aleatorio de 7 dígitos
+		    const min = 1000000; // 7 dígitos
+		    const max = 9999999; // 7 dígitos
+		    const id = Math.floor(Math.random() * (max - min + 1)) + min;
+		    
+		    return id.toString(); // Convertir el número en una cadena de texto
+		}
     </script>
 
 
@@ -530,23 +519,58 @@
         });
 
 
- 			
-
-
         // Crear una lista de solicitantes en formato HTML
         var solicitantesHTML = "";
         solicitantesLesly.forEach(function(data) {
-					            solicitantesHTML += " <div class='col-sm-5'><div class='card'><div class='card-body'><h5 class='card-text'><div class='card-body'><div class='card'>" + data.requerimiento + "</h5> <a href='#' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#misTrabajosModal1'>Completar</a></div></div></div></div></div></div>";
-
+ 
+		solicitantesHTML += " <div class='col-sm-5'><div class='card'><div class='card-body'><h5 class='card-text'><div class='card-body'><div class='card'>" + data.requerimiento + "</h5> <button id='miBoton' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#misTrabajosModal1' data-valor= " + data.id + " onClick='obtenerValor("+data.id+")'>Completar </button></div></div></div></div></div></div>";
+	 
         });
 
-       
-       
 
         // Mostrar la lista de solicitantes en el div "solicitantesLesly"
         document.getElementById('solicitantesLesly').innerHTML = solicitantesHTML;
  
 
+         function obtenerValor(parametro) {
+			var miBoton = document.getElementById('miBoton');
+			// Obtener el valor personalizado del botón
+			var valorPersonalizado = miBoton.getAttribute('data-valor');
+			localStorage.setItem("id", parametro);
+
+
+         } 
+   var idddd = localStorage.getItem('id');
+   console.log(idddd)
+
+          // Función para editar el campo "requerimiento" por ID
+        function guardar() {
+            var nuevoRequerimiento = prompt("Ingrese : nuevoRequerimiento");
+         
+
+    	    var dataList = JSON.parse(localStorage.getItem('miData')) || [];
+
+		alert("Objeto actualizado:"+idddd);
+            // Buscar el objeto con el ID proporcionado
+            var objeto = dataList.find(function (item) {
+                console.log(" item.id" + item.id)
+                console.log(" item.id" + idddd)
+                return item.id === idddd;
+
+            });
+
+            if (objeto) {
+                // Actualizar el campo "requerimiento" del objeto
+                objeto.dni = nuevoRequerimiento;
+
+                console.log("Objeto actualizado:", objeto);
+ 				localStorage.setItem("miData", JSON.stringify(dataList));
+                // Aquí puedes guardar la lista actualizada en localStorage si lo deseas
+                // localStorage.setItem("dataList", JSON.stringify(dataList));
+            } else {
+                console.log("No se encontró ningún objeto con el ID proporcionado.");
+            }
+        }
 
    </script>
 
