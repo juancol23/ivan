@@ -185,7 +185,6 @@
                     <div class="row text-center">
                         <div class="col-sm-5 ">
                             <div class="card">
-                                <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
                                 <div class="card-body">
                                     <h5 class="card-title">Requerimiento</h5>
                                     <p class="card-text">***</p>
@@ -530,12 +529,19 @@
             return data.asignacion === "lesly.huaman@runa-it.com";
         });
 
+
+ 			
+
+
         // Crear una lista de solicitantes en formato HTML
-        var solicitantesHTML = "<ul>";
+        var solicitantesHTML = "";
         solicitantesLesly.forEach(function(data) {
-            solicitantesHTML += "<li>" + data.requerimiento + "</li>";
+					            solicitantesHTML += " <div class='col-sm-5'><div class='card'><div class='card-body'><h5 class='card-text'><div class='card-body'><div class='card'>" + data.requerimiento + "</h5> <a href='#' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#misTrabajosModal1'>Completar</a></div></div></div></div></div></div>";
+
         });
-        solicitantesHTML += "</ul>";
+
+       
+       
 
         // Mostrar la lista de solicitantes en el div "solicitantesLesly"
         document.getElementById('solicitantesLesly').innerHTML = solicitantesHTML;
@@ -544,6 +550,21 @@
 
    </script>
 
+
+	<div class="col-sm-5 ">
+                            <div class="card">
+                                <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                                <div class="card-body">
+                                    <h5 class="card-title">Requerimiento</h5>
+                                    <p class="card-text">***</p>
+                                    <p class="card-text">Ingresa un nuevo requerimiento</p>
+                                    <p class="card-text">***</p>
+                                    <a href="#" class="btn btn-primary" href="#" data-bs-toggle="modal"
+                                        data-bs-target="#misTrabajosModal1">Nuevo requerimiento</a>
+                                </div>
+
+                            </div>
+                        </div>
 
 </body>
 
