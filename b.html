@@ -286,6 +286,78 @@
                                             <input type="email" class="form-control" id="correo_"
                                                 placeholder="correo"- required>
                                         </div>
+                                         <div class="form-group">
+                <label for="trabajoVinculado_">Trabajo Vinculado</label>
+                <input type="text" class="form-control" id="trabajoVinculado_" required>
+            </div>
+            <div class="form-group">
+                <label for="pasoTrabajoVinculado_">Paso Trabajo Vinculado</label>
+                <input type="text" class="form-control" id="pasoTrabajoVinculado_" required>
+            </div>
+            <div class="form-group">
+                <label for="fuente_">Fuente</label>
+                <input type="text" class="form-control" id="fuente_" required>
+            </div>
+            <div class="form-group">
+                <label for="fechaNacimiento_">Fecha de Nacimiento</label>
+                <input type="date" class="form-control" id="fechaNacimiento_" required>
+            </div>
+            <div class="form-group">
+                <label for="todosTelefonos_">Todos los Teléfonos</label>
+                <input type="text" class="form-control" id="todosTelefonos_" required>
+            </div>
+            <div class="form-group">
+                <label for="puesto_">Puesto</label>
+                <input type="text" class="form-control" id="puesto_" required>
+            </div>
+            <div class="form-group">
+                <label for="empleador_">Empleador</label>
+                <input type="text" class="form-control" id="empleador_" required>
+            </div>
+            <div class="form-group">
+                <label for="institucion_">Institución</label>
+                <input type="text" class="form-control" id="institucion_" required>
+            </div>
+            <div class="form-group">
+                <label for="carreras_">Carreras</label>
+                <input type="text" class="form-control" id="carreras_" required>
+            </div>
+            <div class="form-group">
+                <label for="grados_">Grados</label>
+                <input type="text" class="form-control" id="grados_" required>
+            </div>
+            <div class="form-group">
+                <label for="salario_">Salario</label>
+                <input type="text" class="form-control" id="salario_" required>
+            </div>
+            <div class="form-group">
+                <label for="espectativa_">Expectativa</label>
+                <input type="text" class="form-control" id="espectativa_" required>
+            </div>
+            <div class="form-group">
+                <label for="beneficio_">Beneficio</label>
+                <input type="text" class="form-control" id="beneficio_" required>
+            </div>
+            <div class="form-group">
+                <label for="puestoHits_">Puesto Hits</label>
+                <input type="text" class="form-control" id="puestoHits_" required>
+            </div>
+            <div class="form-group">
+                <label for="pregunta1_">Pregunta 1</label>
+                <input type="text" class="form-control" id="pregunta1_" required>
+            </div>
+            <div class="form-group">
+                <label for="pregunta2_">Pregunta 2</label>
+                <input type="text" class="form-control" id="pregunta2_" required>
+            </div>
+            <div class="form-group">
+                <label for="pregunta3_">Pregunta 3</label>
+                <input type="text" class="form-control" id="pregunta3_" required>
+            </div>
+            <div class="form-group">
+                <label for="pregunta4_">Pregunta 4</label>
+                <input type="text" class="form-control" id="pregunta4_" required>
+            </div>
                                         <button id="btnCargar" class="btn btn-primary" onclick="guardar()">Enviar</button>
                                 </div>
                             </div>
@@ -416,7 +488,7 @@
             // [{"id":"7022442","status":"creado","VMO":"IBK","solicitante":"YACO","asignacion":"lesly.huaman@runa-it.com","requerimiento":"PO","cv":"azure.com/blob/cv.pdf","dni":"710203123"},{"id":"8940986","status":"creado","VMO":"IBK","solicitante":"SOCRATES","asignacion":"lesly.huaman@runa-it.com","requerimiento":"PRACTICANTE","cv":"azure.com/blob/cv.pdf","nombre":"MELENDI","dni":"70192337","telefono":"987617898789","correo":"vaoi@dasd.com","estadorequerimiento":"123123"},{"id":"2135434","status":"creado","VMO":"IBK","solicitante":"MOISES","asignacion":"abel.pineda@runa-it.com","requerimiento":"PRACTICANTE NIVEL II","cv":"azure.com/blob/cv.pdf"},]
 
             const data = listaAnidada;
-                // console.log("YACO 2: "+ data)
+                console.log("YACO 2: "+ data)
             // Perfil 1,Analista,Perfil 2,Product Owner,Perfil 3,Scrum Master,Pedro,Software Enginner
 
             // Crear un objeto de libro de trabajo de Excel
@@ -613,11 +685,31 @@
         function guardar() {
             // var nuevoRequerimiento = prompt("Ingrese : nuevoRequerimiento");
          
-var nombre_ = document.getElementById('nombre_');
-var dni_ = document.getElementById('dni_');
-var telefono_ = document.getElementById('telefono_');
-var correo_ = document.getElementById('correo_');
-var asignacion_ = document.getElementById('asignacion_');
+        var nombre_ = document.getElementById('nombre_');
+            var dni_ = document.getElementById('dni_');
+            var telefono_ = document.getElementById('telefono_');
+            var correo_ = document.getElementById('correo_');
+            var asignacion_ = document.getElementById('asignacion_');
+
+            var trabajoVinculado_ = document.getElementById('trabajoVinculado_');
+            var pasoTrabajoVinculado_ = document.getElementById('pasoTrabajoVinculado_');
+            var fuente_ = document.getElementById('fuente_');
+            var fechaNacimiento_ = document.getElementById('fechaNacimiento_');
+            var todosTelefonos_ = document.getElementById('todosTelefonos_');
+            var puesto_ = document.getElementById('puesto_');
+            var empleador_ = document.getElementById('empleador_');
+            var institucion_ = document.getElementById('institucion_');
+            var carreras_ = document.getElementById('carreras_');
+            var grados_ = document.getElementById('grados_');
+            var salario_ = document.getElementById('salario_');
+            var espectativa_ = document.getElementById('espectativa_');
+            var beneficio_ = document.getElementById('beneficio_');
+            var puestoHits_ = document.getElementById('puestoHits_');
+            var pregunta1_ = document.getElementById('pregunta1_');
+            var pregunta2_ = document.getElementById('pregunta2_');
+            var pregunta3_ = document.getElementById('pregunta3_');
+        var pregunta4_ = document.getElementById('pregunta4_');
+
 
     	    var dataList = JSON.parse(localStorage.getItem('miData')) || [];
 
@@ -633,10 +725,32 @@ var asignacion_ = document.getElementById('asignacion_');
 
             if (objeto) {
                 // Actualizar el campo "requerimiento" del objeto
-                objeto.nombre = nombre_.value;
-                objeto.dni = dni_.value;
                 objeto.telefono = telefono_.value;
                 objeto.correo = correo_.value;
+                objeto.dni = dni_.value;
+                objeto.nombre = nombre_.value;
+
+                objeto.trabajoVinculado = trabajoVinculado_.value;
+                objeto.pasoTrabajoVinculado = pasoTrabajoVinculado_.value;
+                objeto.fuente = fuente_.value;
+                objeto.fechaNacimiento = fechaNacimiento_.value;
+                objeto.todosTelefonos = todosTelefonos_.value;
+                objeto.puesto = puesto_.value;
+                objeto.empleador_ = empleador_.value;
+                objeto.institucion_ = institucion_.value;
+                objeto.carreras = carreras_.value;
+                objeto.grados = grados_.value;
+                objeto.salario = salario_.value;
+                objeto.espectativa = espectativa_.value;
+                objeto.beneficio = beneficio_.value;
+                objeto.puestoHits = puestoHits_.value;
+                objeto.pregunta1 = pregunta1_.value;
+                objeto.pregunta2 = pregunta2_.value;
+                objeto.pregunta3 = pregunta3_.value;
+                objeto.pregunta4 = pregunta4_.value;
+
+                objeto.correo = fuente_.value;
+
                 // objeto.estadorequerimiento = nuevoRequerimiento;
 
                 console.log("Objeto actualizado:", objeto);
