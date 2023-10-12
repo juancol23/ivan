@@ -241,40 +241,66 @@
                                             <label for="email" class="form-label">DNI</label>
                                             <input type="email" class="form-control" id="dni_" placeholder="dni*" required>
                                         </div>
-                                        <select id="estado" class="form-select">
-    <optgroup label="Categorías">
-        <option value="creacion_requerimiento">Creación del requerimiento</option>
-        <option value="candidato_identificado">Candidato identificado</option>
-        <option value="en_prescreening">En Prescreening</option>
-        <option value="no_contactado_no_contesta">✖ No contactado - No contesta</option>
-        <option value="no_apto_cv_experiencia">✖ No apto CV - Experiencia</option>
-        <option value="no_apto_cv_auditoria">✖ No apto CV - Auditoría</option>
-        <option value="no_apto_cv_expectativa_salarial">✖ No apto CV - Expectativa salarial</option>
-        <option value="no_apto_cv_requisito_perfil">✖ No Apto CV - Requisito del perfil</option>
-        <option value="no_apto_prescreening_black_list">✖ No Apto Prescreening - Black List</option>
-        <option value="no_apto_prescreening_offlimits">✖ No Apto Prescreening - Offlimits</option>
-        <option value="no_apto_prescreening_expectativas_altas">✖ No Apto Prescreening - Expectativas altas</option>
-        <option value="no_apto_prescreening_estudios">✖ No Apto Prescreening - Estudios</option>
-        <option value="no_apto_prescreening_comunicacion_no_efectiva">✖ No Apto Prescreening - Comunicación no efectiva</option>
-        <option value="desistio_proceso_prescreening">✖ Desistió del proceso en Prescreening</option>
-        <option value="apto_en_prescreening">✓ Apto en prescreening</option>
-        <option value="en_revision_cv">En revisión de CV</option>
-        <option value="multitest_recomendado">✓ Multitest - Recomendado</option>
-        <option value="no_apto_multitest">✖ No apto en Multitest</option>
-        <option value="apto_en_antecedentes">✓ Apto en Antecedentes</option>
-        <option value="no_apto_antecedentes">✖ No apto en Antecedentes</option>
-        <option value="apto_todas_las_pruebas">✓ ✓ ✓ Apto en todas las pruebas</option>
-        <option value="apto_presentar_cliente">✓ Apto para presentar al Cliente</option>
-        <option value="no_apto_entrevista_tecnica">✖ No apto en Entrevista con cliente - Ent. Técnica</option>
-        <option value="no_fit_hitss">✖ No apto en Entrevista con cliente - No fit HITSS</option>
-        <option value="desistio_proceso_entrevista">✖ Desistió del proceso luego Ent. →</option>
-        <option value="backup">╩ Backup</option>
-        <option value="seleccionado">✌️ Seleccionado</option>
-        <option value="carta_oferta">✓ Carta Oferta</option>
-        <option value="desistio_proceso_carta_oferta">✖ Desistió del proceso luego Carta Oferta →</option>
-        <option value="firma_contrato">✓ Firma de contrato</option>
-    </optgroup>
-</select>
+                                        <select id="select_1" class="form-select">
+                                            <optgroup label="Categorias">
+                                                <option value="creacion_requerimiento">Creación del requerimiento</option>
+                                                <option value="candidato_identificado">Candidato identificado</option>
+                                                <option value="en_prescreening">En Prescreening</option>
+                                                <option value="no_contactado_no_contesta">✖ No contactado - No contesta</option>
+                                                <option value="no_apto_cv_experiencia">✖ No apto CV - Experiencia</option>
+                                                <option value="no_apto_cv_auditoria">✖ No apto CV - Auditoría</option>
+                                                <option value="no_apto_cv_expectativa_salarial">✖ No apto CV - Expectativa salarial</option>
+                                                <option value="no_apto_cv_requisito_perfil">✖ No Apto CV - Requisito del perfil</option>
+                                                <option value="no_apto_prescreening_black_list">✖ No Apto Prescreening - Black List</option>
+                                                <option value="no_apto_prescreening_offlimits">✖ No Apto Prescreening - Offlimits</option>
+                                                <option value="no_apto_prescreening_expectativas_altas">✖ No Apto Prescreening - Expectativas altas</option>
+                                                <option value="no_apto_prescreening_estudios">✖ No Apto Prescreening - Estudios</option>
+                                                <option value="no_apto_prescreening_comunicacion_no_efectiva">✖ No Apto Prescreening - Comunicación no efectiva</option>
+                                                <option value="desistio_proceso_prescreening">✖ Desistió del proceso en Prescreening</option>
+                                                <option value="apto_en_prescreening">✓ Apto en prescreening</option>
+                                                <option value="en_revision_cv">En revisión de CV</option>
+                                                <option value="multitest_recomendado">✓ Multitest - Recomendado</option>
+                                                <option value="no_apto_multitest">✖ No apto en Multitest</option>
+                                                <option value="apto_en_antecedentes">✓ Apto en Antecedentes</option>
+                                                <option value="no_apto_antecedentes">✖ No apto en Antecedentes</option>
+                                                <option value="apto_todas_las_pruebas">✓ ✓ ✓ Apto en todas las pruebas</option>
+                                                <option value="apto_presentar_cliente">✓ Apto para presentar al Cliente</option>
+                                                <option value="no_apto_entrevista_tecnica">✖ No apto en Entrevista con cliente - Ent. Técnica</option>
+                                                <option value="no_fit_hitss">✖ No apto en Entrevista con cliente - No fit HITSS</option>
+                                                <option value="desistio_proceso_entrevista">✖ Desistió del proceso luego Ent. →</option>
+                                                <option value="backup">╩ Backup</option>
+                                                <option value="seleccionado">✌️ Seleccionado</option>
+                                                <option value="carta_oferta">✓ Carta Oferta</option>
+                                                <option value="desistio_proceso_carta_oferta">✖ Desistió del proceso luego Carta Oferta →</option>
+                                                <option value="firma_contrato">✓ Firma de contrato</option>
+                                            </optgroup>
+                                        </select>
+
+                                        <select id="select_2" class="form-select">
+                                                <option value="inmediata">Inmediata</option>
+                                                <option value="7_dias">7 días</option>
+                                                <option value="15_dias">15 días</option>
+                                                <option value="30_dias">30 días</option>
+                                                
+                                        </select>
+                                         <select id="select_3" class="form-select">
+                                                <option value="-">Antecedentes</option>
+                                                <option value="no_registra">No registra</option>
+                                                <option value="registra">Registra</option>
+                                                
+                                        </select>
+                                        <select id="select_4" class="form-select">
+                                                <option value="-">¿Trabajó en Hitss?</option>
+                                                <option value="no">No</option>
+                                                <option value="si">Sí</option>
+                                                
+                                        </select>
+                                        <select id="select_5" class="form-select">
+                                                <option value="-">Familiares en Hits</option>
+                                                <option value="No">No</option>
+                                                <option value="si">Sí</option>
+                                                
+                                        </select>
                                         <div class="mb-3">
                                             <label for="solicitante" class="form-label">Telefono</label>
                                             <input type="text" class="form-control" id="telefono_"
@@ -709,7 +735,9 @@
             var pregunta2_ = document.getElementById('pregunta2_');
             var pregunta3_ = document.getElementById('pregunta3_');
         var pregunta4_ = document.getElementById('pregunta4_');
-
+    
+          var select_1 = document.getElementById('select_1');
+          var select_2 = document.getElementById('select_2');
 
     	    var dataList = JSON.parse(localStorage.getItem('miData')) || [];
 
@@ -730,6 +758,11 @@
                 objeto.dni = dni_.value;
                 objeto.nombre = nombre_.value;
 
+                objeto.trabajo = select_1.value;
+                objeto.disponibilidad = select_2.value;
+                objeto.antecedentes = select_3.value;
+                objeto.trabajoHits = select_4.value;
+                objeto.familiaresHits = select_5.value;
                 objeto.trabajoVinculado = trabajoVinculado_.value;
                 objeto.pasoTrabajoVinculado = pasoTrabajoVinculado_.value;
                 objeto.fuente = fuente_.value;
