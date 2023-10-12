@@ -657,7 +657,7 @@
             setTimeout(function () {
                 hideLoadingAnimation();
                  $('#misTrabajosModal1').modal('hide');
-                alert("Se cargó la data correctamente")
+                // alert("Se cargó la data correctamente")
             }, 2000); // Ejemplo: oculta la animación después de 3 segundos (simula la carga completa)
         });
     </script>  
@@ -742,7 +742,7 @@
     	    var dataList = JSON.parse(localStorage.getItem('miData')) || [];
 
  
-		alert("Objeto actualizado:"+idddd);
+		// alert("Objeto actualizado:"+idddd);
             // Buscar el objeto con el ID proporcionado
             var objeto = dataList.find(function (item) {
                 console.log(" item.id" + item.id)
@@ -793,25 +793,14 @@
             } else {
                 console.log("No se encontró ningún objeto con el ID proporcionado.");
             }
+
+               $('#misTrabajosModal1').modal('hide');
         }
+
 
    </script>
 
 
-	<div class="col-sm-5 ">
-                            <div class="card">
-                                <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
-                                <div class="card-body">
-                                    <h5 class="card-title">Requerimiento</h5>
-                                    <p class="card-text">***</p>
-                                    <p class="card-text">Ingresa un nuevo requerimiento</p>
-                                    <p class="card-text">***</p>
-                                    <a href="#" class="btn btn-primary" href="#" data-bs-toggle="modal"
-                                        data-bs-target="#misTrabajosModal1">Nuevo requerimiento</a>
-                                </div>
-
-                            </div>
-                        </div>
 
 </body>
 
