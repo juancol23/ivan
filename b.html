@@ -386,10 +386,11 @@
 
         function convertirAListaAnidada(dataList) {
           var listaAnidada = [];
+            var nombreUsuario = localStorage.getItem('nombreUsuario');
 
           dataList.forEach(function (item) {
             var arreglo = Object.values(item);
-            if(item.asignacion == "lesly.huaman@runa-it.com"){
+            if(item.asignacion == nombreUsuario){
                  listaAnidada.push(arreglo);
 
                  console.log("filtrado"+arreglo)
@@ -576,10 +577,11 @@
    <script type="text/javascript">
 		 // Recuperar la lista de objetos desde localStorage
         var dataList = JSON.parse(localStorage.getItem('miData')) || [];
+     var nombreUsuario = localStorage.getItem('nombreUsuario');
 
         // Filtrar los objetos con "Analista_Lesly" como solicitante
         var solicitantesLesly = dataList.filter(function(data) {
-            return data.asignacion === "lesly.huaman@runa-it.com";
+            return data.asignacion === nombreUsuario;
         });
 
 
