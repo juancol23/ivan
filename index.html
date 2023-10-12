@@ -206,7 +206,8 @@
                 // Definir los usuarios y sus perfiles
                 var usuarios = [
                     { email: 'ivan.quiroz@runa-it.com', perfil: 'admin', contraseña: '123456' },
-                    { email: 'lesly.huaman@runa-it.com', perfil: 'analista', contraseña: '123456' }
+                    { email: 'lesly.huaman@runa-it.com', perfil: 'analista', contraseña: '123456' },
+                    { email: 'abel.pineda@runa-it.com', perfil: 'analista', contraseña: '123456' }
                 ];
                 var pass_="";
                 var email_="";
@@ -229,6 +230,7 @@
                     } else if (usuarioEncontrado.perfil === 'analista') {
                         window.location.href = 'b.html';
                     }
+
                 } else {
                     alert('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
                 }
