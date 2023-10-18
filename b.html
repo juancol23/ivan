@@ -798,7 +798,24 @@
                             const nombreUsuario = localStorage.getItem('nombreUsuario');
 
                              const nuevaTabla = document.getElementById('nuevaTabla').querySelector('tbody');
+// Agregar un controlador de eventos a las celdas para habilitar la edición al hacer doble clic
+nuevaTabla.addEventListener('dblclick', function (event) {
+  const target = event.target;
 
+  if (target.tagName === 'TD') {
+    target.setAttribute('contenteditable', 'true');
+  }
+});
+
+// También puedes agregar un controlador de eventos para deshabilitar la edición al hacer clic fuera de la celda
+document.addEventListener('click', function (event) {
+  const target = event.target;
+
+  if (target.tagName !== 'TD') {
+    const editableCells = nuevaTabla.querySelectorAll('td[contenteditable="true"]');
+    editableCells.forEach(cell => cell.setAttribute('contenteditable', 'false'));
+  }
+});
 
                               data.forEach(item => {
                                 if (item.asignacion === nombreUsuario) {
@@ -1136,18 +1153,18 @@
 
                     <div id="nuevaTablaContainer">
                       <table id="nuevaTabla" class="table table-bordered table-responsive-md table-striped text-center">
-                        <thead>
-                          <tr>
-                            <th class="text-center">Solicitante</th>
-                            <th class="text-center">Asignación</th>
-                            <th class="text-center">Requerimiento</th>
-                            <th class="text-center">VMO</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <!-- Aquí se agregarán las filas -->
-                        </tbody>
-                      </table>
+                      <thead>
+                        <tr>
+                          <th class="text-center">Solicitante</th>
+                          <th class="text-center">Asignación</th>
+                          <th class="text-center">Requerimiento</th>
+                          <th class="text-center">VMO</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!-- Aquí se agregarán las filas -->
+                      </tbody>
+                    </table>
                     </div>
 
                   </div>
