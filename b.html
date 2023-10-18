@@ -682,6 +682,9 @@
 
     </script>
 
+
+
+
    <script type="text/javascript">
          // Recuperar la lista de objetos desde localStorage
         // var dataList = JSON.parse(localStorage.getItem('miData')) || [];
@@ -759,6 +762,63 @@
                     var trabajoVinculado_ = document.getElementById('trabajoVinculado_');
                     trabajoVinculado_.value = data.requerimiento;
                     solicitante_.value = data.solicitante;
+ 
+
+                  })
+                  .catch(error => {
+                    console.error('Error:', error);
+                  });
+                 
+
+            } 
+
+
+            function editarValor(parametro) {
+
+                var miBoton2 = document.getElementById('miBoton2');
+                // Obtener el valor personalizado del botón
+                var valorPersonalizado = miBoton2.getAttribute('data-valor');
+                localStorage.setItem("id", parametro);
+
+               fetch(`https://runnnnnnn.azurewebsites.net/requerimiento`)
+                  .then(response => {
+                    if (response.ok) {
+                      return response.json();
+                    }
+                    throw new Error('Error al obtener la lista de requerimientos.');
+                  })
+                  .then(data => {
+                    // En lugar de utilizar los datos del 'localStorage', utilizamos los datos recibidos.
+                    var dataList = data;
+
+
+                      if (Array.isArray(data)) {
+                          data.forEach(item => {
+                             // const nuevaTabla = document.getElementById('nuevaTabla').querySelector('tbody');
+                            const nombreUsuario = localStorage.getItem('nombreUsuario');
+
+                             const nuevaTabla = document.getElementById('nuevaTabla').querySelector('tbody');
+
+
+                              data.forEach(item => {
+                                if (item.asignacion === nombreUsuario) {
+                                  const row = nuevaTabla.insertRow();
+                                  const cell1 = row.insertCell(0);
+                                  const cell2 = row.insertCell(1);
+                                  const cell3 = row.insertCell(2);
+                                  const cell4 = row.insertCell(3);
+
+                                  cell1.textContent = item.solicitante;
+                                  cell2.textContent = item.asignacion;
+                                  cell3.textContent = item.requerimiento;
+                                  cell4.textContent = item.vmo;
+                                }
+                              });
+                        });
+                        } else {
+                          console.error('Los datos recibidos no son una matriz.');
+                        }
+                   
 
 
                   })
@@ -768,6 +828,10 @@
                  
 
             } 
+
+
+
+
 
 
            var idddd = localStorage.getItem('id');
@@ -949,10 +1013,10 @@
                                     <!-- Editable table -->
                 <div class="card">
                   <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
-                    Editable table
+                    Editar datos masivos
                   </h3>
                   <div class="card-body">
-                    <div id="table" class="table-editable">
+                    <!-- <div id="table" class="table-editable">
                       <span class="table-add float-right mb-3 mr-2"
                         ><a href="#!" class="text-success"
                           ><i class="fas fa-plus fa-2x" aria-hidden="true"></i></a
@@ -994,7 +1058,6 @@
                               >
                             </td>
                           </tr>
-                          <!-- This is our clonable table line -->
                           <tr>
                             <td class="pt-3-half" contenteditable="true">Guerra Cortez</td>
                             <td class="pt-3-half" contenteditable="true">45</td>
@@ -1019,7 +1082,6 @@
                               >
                             </td>
                           </tr>
-                          <!-- This is our clonable table line -->
                           <tr>
                             <td class="pt-3-half" contenteditable="true">Guadalupe House</td>
                             <td class="pt-3-half" contenteditable="true">26</td>
@@ -1044,7 +1106,6 @@
                               >
                             </td>
                           </tr>
-                          <!-- This is our clonable table line -->
                           <tr class="hide">
                             <td class="pt-3-half" contenteditable="true">Elisa Gallagher</td>
                             <td class="pt-3-half" contenteditable="true">31</td>
@@ -1071,9 +1132,31 @@
                           </tr>
                         </tbody>
                       </table>
+                    </div> -->
+
+                    <div id="nuevaTablaContainer">
+                      <table id="nuevaTabla" class="table table-bordered table-responsive-md table-striped text-center">
+                        <thead>
+                          <tr>
+                            <th class="text-center">Solicitante</th>
+                            <th class="text-center">Asignación</th>
+                            <th class="text-center">Requerimiento</th>
+                            <th class="text-center">VMO</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <!-- Aquí se agregarán las filas -->
+                        </tbody>
+                      </table>
                     </div>
+
                   </div>
                 </div>
+
+
+
+                
+
 <!-- Editable table -->
                                     
                                 </div>
