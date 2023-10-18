@@ -674,8 +674,24 @@
 
    <script type="text/javascript">
 		 // Recuperar la lista de objetos desde localStorage
-        var dataList = JSON.parse(localStorage.getItem('miData')) || [];
-     var nombreUsuario = localStorage.getItem('nombreUsuario');
+        // var dataList = JSON.parse(localStorage.getItem('miData')) || [];
+        var dataList =  [];
+
+        var url = 'http://localhost:8080/requerimiento';
+
+
+        fetch(url)
+          .then(response => {
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Error al obtener la lista de requerimientos.');
+          })
+          .then(data => {
+            // En lugar de utilizar los datos del 'localStorage', utilizamos los datos recibidos.
+            var dataList = data;
+
+            var nombreUsuario = localStorage.getItem('nombreUsuario');
 
         // Filtrar los objetos con "Analista_Lesly" como solicitante
         var solicitantesLesly = dataList.filter(function(data) {
@@ -687,8 +703,8 @@
         var solicitantesHTML = "";
         solicitantesLesly.forEach(function(data) {
  
-		solicitantesHTML += " <div class='col-sm-5'><div class='card'><div class='card-body'><h5 class='card-text'><div class='card-body'><div class='card'>" + data.requerimiento + "</h5> <button id='miBoton' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#misTrabajosModal1' data-valor= " + data.id + " onClick='obtenerValor("+data.id+")'>Completar </button></div></div></div></div></div></div>";
-	 
+        solicitantesHTML += " <div class='col-sm-5'><div class='card'><div class='card-body'><h5 class='card-text'><div class='card-body'><div class='card'>" + data.requerimiento + "</h5> <button id='miBoton' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#misTrabajosModal1' data-valor= " + data.id + " onClick='obtenerValor("+data.id+")'>Completar </button></div></div></div></div></div></div>";
+     
         });
 
 
@@ -697,10 +713,10 @@
  
 
          function obtenerValor(parametro) {
-			var miBoton = document.getElementById('miBoton');
-			// Obtener el valor personalizado del botón
-			var valorPersonalizado = miBoton.getAttribute('data-valor');
-			localStorage.setItem("id", parametro);
+            var miBoton = document.getElementById('miBoton');
+            // Obtener el valor personalizado del botón
+            var valorPersonalizado = miBoton.getAttribute('data-valor');
+            localStorage.setItem("id", parametro);
 
 
          } 
@@ -739,10 +755,10 @@
           var select_1 = document.getElementById('select_1');
           var select_2 = document.getElementById('select_2');
 
-    	    var dataList = JSON.parse(localStorage.getItem('miData')) || [];
+            var dataList = JSON.parse(localStorage.getItem('miData')) || [];
 
  
-		// alert("Objeto actualizado:"+idddd);
+        // alert("Objeto actualizado:"+idddd);
             // Buscar el objeto con el ID proporcionado
             var objeto = dataList.find(function (item) {
                 console.log(" item.id" + item.id)
@@ -787,7 +803,7 @@
                 // objeto.estadorequerimiento = nuevoRequerimiento;
 
                 console.log("Objeto actualizado:", objeto);
- 				localStorage.setItem("miData", JSON.stringify(dataList));
+                localStorage.setItem("miData", JSON.stringify(dataList));
                 // Aquí puedes guardar la lista actualizada en localStorage si lo deseas
                 // localStorage.setItem("dataList", JSON.stringify(dataList));
             } else {
@@ -797,6 +813,15 @@
                $('#misTrabajosModal1').modal('hide');
         }
 
+
+            console.log('Lista de requerimientos:', dataList);
+            // Realiza las operaciones necesarias con la lista de requerimientos recibida.
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+
+     
 
    </script>
 
