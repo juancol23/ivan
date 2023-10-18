@@ -449,6 +449,13 @@
             var email = document.getElementById('email');
             var obtenerValorBoton = document.getElementById('obtenerValorBoton');
 
+            
+            var url = 'http://localhost:8080/requerimiento';
+
+
+            
+
+
             var dataList = JSON.parse(localStorage.getItem('miData')) || [];
             console.log("dataList"+JSON.stringify(dataList))
             // Crear un nuevo objeto JSON con los nuevos valores
@@ -463,12 +470,33 @@
 
 
               dataList.push(newData);
-     console.log("PUSH"+JSON.stringify(dataList))
+             console.log("PUSH"+JSON.stringify(dataList))
             // Convertir el nuevo objeto en una cadena JSON
             var newJsonData = JSON.stringify(dataList);
 
             // Guardar los nuevos valores en localStorage, utilizando la misma clave ("miData" en este ejemplo)
             localStorage.setItem("miData", newJsonData);
+
+            fetch(url, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json' // Especifica el tipo de contenido JSON.
+              },
+              body: JSON.stringify(newData) // Convierte los datos a JSON y los envía en el cuerpo de la solicitud.
+            })
+              .then(response => {
+                if (response.ok) {
+                  return response.json();
+                }
+                throw new Error('Error al guardar el requerimiento.');
+              })
+              .then(data => {
+                console.log('Requerimiento guardado correctamente:', data);
+                // Realiza las operaciones necesarias después de guardar el requerimiento.
+              })
+              .catch(error => {
+                console.error('Error:', error);
+              });
           
             // var storedData = localStorage.getItem("miData");
             // var parsedData = JSON.parse(storedData);
@@ -499,7 +527,7 @@
         $('#btnCargar').click(function () {
             showLoadingAnimation();
 
-            Simula una tarea de carga, puedes reemplazar esto con tu propia lógica
+            // Simula una tarea de carga, puedes reemplazar esto con tu propia lógica
             setTimeout(function () {
                 hideLoadingAnimation();
                  $('#misTrabajosModal1').modal('hide');
