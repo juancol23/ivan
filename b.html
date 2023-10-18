@@ -319,6 +319,10 @@
                                                 placeholder="correo"- required>
                                         </div>
                                          <div class="form-group">
+                <label for="solicitante_">Solicitante</label>
+                <input type="text" class="form-control" id="solicitante_" required>
+            </div>
+            <div class="form-group">
                 <label for="trabajoVinculado_">Trabajo Vinculado</label>
                 <input type="text" class="form-control" id="trabajoVinculado_" required>
             </div>
@@ -726,10 +730,43 @@
 
 
             function obtenerValor(parametro) {
+
                 var miBoton = document.getElementById('miBoton');
                 // Obtener el valor personalizado del botón
                 var valorPersonalizado = miBoton.getAttribute('data-valor');
                 localStorage.setItem("id", parametro);
+
+               fetch(`https://runnnnnnn.azurewebsites.net/requerimiento/${idddd}`)
+                  .then(response => {
+                    if (response.ok) {
+                      return response.json();
+                    }
+                    throw new Error('Error al obtener la lista de requerimientos.');
+                  })
+                  .then(data => {
+                    // En lugar de utilizar los datos del 'localStorage', utilizamos los datos recibidos.
+                    var dataList = data;
+
+                    var dni = data.dni
+                    // alert("data: " + JSON.stringify(data));
+
+                    // var asd = JSON.stringify(data);
+                    console.log(dataList)
+                    console.log(data.dni)
+                    console.log(dataList.dni)
+                    // alert("asd.trabajoVinculado: " + asd.trabajoVinculado)
+                    var solicitante_ = document.getElementById('solicitante_');
+                    var trabajoVinculado_ = document.getElementById('trabajoVinculado_');
+                    trabajoVinculado_.value = data.requerimiento;
+                    solicitante_.value = data.solicitante;
+
+
+                  })
+                  .catch(error => {
+                    console.error('Error:', error);
+                  });
+                 
+
             } 
 
 
@@ -739,6 +776,7 @@
                 // var nuevoRequerimiento = prompt("Ingrese : nuevoRequerimiento");
              console.log("guardar")
                 var nombre_ = document.getElementById('nombre_');
+                var solicitante_ = document.getElementById('solicitante_');
                 var dni_ = document.getElementById('dni_');
                 var telefono_ = document.getElementById('telefono_');
                 var correo_ = document.getElementById('correo_');
