@@ -136,6 +136,7 @@
                         </li>
                           
                         <button id="exportButton">Reporte Talento</button>
+                        <button id="cerrar_sesion">Cerrar Sesión</button>
                     </ul>
                 </div>
             </div>
@@ -454,9 +455,9 @@
 
 
             
+            var dataList = [];
 
 
-            var dataList = JSON.parse(localStorage.getItem('miData')) || [];
             console.log("dataList"+JSON.stringify(dataList))
             // Crear un nuevo objeto JSON con los nuevos valores
             var newData = {
@@ -534,7 +535,26 @@
                 alert("Se cargó la data correctamente")
             }, 2000); // Ejemplo: oculta la animación después de 3 segundos (simula la carga completa)
         });
+
+
+        
+
+        const botonRedireccionar = document.getElementById('cerrar_sesion');
+
+        botonRedireccionar.addEventListener('click', function() {
+          // Aquí especifica la URL de la página a la que deseas redirigir
+          const nuevaPaginaURL = 'https://semilleros-ccb45.web.app/index.html';
+
+          // Redirigir a la nueva página
+          window.location.href = nuevaPaginaURL;
+        });
+
+
+
     </script>  
+
+
+
 
 
 </body>
