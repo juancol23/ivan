@@ -138,7 +138,7 @@
                                 trabajos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#misTrabajosModal2">Nuevo Candidato</a>
+                            <a class="nav-link" id="nuevo_candidato" href="#" data-bs-toggle="modal" data-bs-target="#misTrabajosModal2">Nuevo Candidato</a>
                         </li>
                           
                         <button id="exportButton">Reporte Talento</button>
@@ -433,10 +433,9 @@
                                             <label for="email" class="form-label">VMO*</label>
                                             <input type="email" class="form-control" id="VMO" placeholder="VMO*">
                                         </div>
-                                        <div class="mb-3">
-                                            <label for="email" class="form-label">Solicitante</label>
-                                            <input type="email" class="form-control" id="Solicitante"
-                                                placeholder="Solicitante">
+                                       <div class="mb-3">
+                                        <label for="rol" class="form-label">Requerimiento</label>
+                                       <select class="form-select" id="Rol"></select>
                                         </div>
                                         <div class="mb-3">
                                             <label for="Requerimiento" class="form-label">Requerimiento</label>
@@ -793,8 +792,8 @@
                     var dataList = data;
 
                 // 1. Definir una lista para almacenar los cambios
-                const cambiosPendientes = [];
-
+                  const cambiosPendientes = [];
+ 
 
                       if (Array.isArray(data)) {
                           data.forEach(item => {
@@ -1296,6 +1295,66 @@
             $EXPORT.text(JSON.stringify(data));
         });
 </script> -->
+
+
+
+    <script>
+     
+        window.addEventListener("DOMContentLoaded", listarrrrr);
+
+          function listarrrrr() {
+
+               fetch(`https://runnnnnnn.azurewebsites.net/requerimiento`)
+                  .then(response => {
+                    if (response.ok) {
+                      return response.json();
+                    }
+                    throw new Error('Error al obtener la lista de requerimientos.');
+                  })
+                  .then(data => {
+                    // En lugar de utilizar los datos del 'localStorage', utilizamos los datos recibidos.
+                    var roles = [];
+
+                // 1. Definir una lista para almacenar los cambios
+
+                    //   if (Array.isArray(data)) {
+                         
+                    // } else {
+                    //   console.error('Los datos recibidos no son una matriz.');
+                    // }
+
+                     data.forEach(item => {
+
+                             if (item.asignacion === nombreUsuario ) {
+                                 roles.push(item.requerimiento+"");
+                                }
+                            
+                        });
+                         var select = document.getElementById("Rol");
+
+                          for (var i = 0; i < roles.length; i++) {
+                                var option = document.createElement("option");
+                                option.value = roles[i];
+                                option.text = roles[i];
+                                select.appendChild(option);
+                            }
+                            console.log("roles: "+roles)
+               
+
+                       
+
+                  })
+                  .catch(error => {
+                    console.error('Error:', error);
+                  });
+                 
+                // Si deseas establecerlo en "po" en su lugar, puedes usar:
+                // select.val("po");
+
+          }
+    </script>
+
+
 
 </body>
 
