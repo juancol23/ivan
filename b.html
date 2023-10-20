@@ -758,10 +758,63 @@
                     console.log(dataList.dni)
                     // alert("asd.trabajoVinculado: " + asd.trabajoVinculado)
                     var solicitante_ = document.getElementById('solicitante_');
-                    var trabajoVinculado_ = document.getElementById('trabajoVinculado_');
+
+                     var trabajoVinculado_ = document.getElementById('trabajoVinculado_');
+                    var pasoTrabajoVinculado_ = document.getElementById('pasoTrabajoVinculado_');
+                    var fuente_ = document.getElementById('fuente_');
+                    var fechaNacimiento_ = document.getElementById('fechaNacimiento_');
+                    var todosTelefonos_ = document.getElementById('todosTelefonos_');
+                    var puesto_ = document.getElementById('puesto_');
+                    var empleador_ = document.getElementById('empleador_');
+                    var institucion_ = document.getElementById('institucion_');
+                    var carreras_ = document.getElementById('carreras_');
+                    var grados_ = document.getElementById('grados_');
+                    var salario_ = document.getElementById('salario_');
+                    var espectativa_ = document.getElementById('espectativa_');
+                    var beneficio_ = document.getElementById('beneficio_');
+                    var puestoHits_ = document.getElementById('puestoHits_');
+                    var pregunta1_ = document.getElementById('pregunta1_');
+                    var pregunta2_ = document.getElementById('pregunta2_');
+                    var pregunta3_ = document.getElementById('pregunta3_');
+                    var pregunta4_ = document.getElementById('pregunta4_');
+
+                    var nombre_ = document.getElementById('nombre_');
+                    var solicitante_ = document.getElementById('solicitante_');
+                    var dni_ = document.getElementById('dni_');
+                    var telefono_ = document.getElementById('telefono_');
+                    var correo_ = document.getElementById('correo_');
+                    var asignacion_ = document.getElementById('asignacion_');
+
                     trabajoVinculado_.value = data.requerimiento;
                     solicitante_.value = data.solicitante;
- 
+                    trabajoVinculado_.value = data.trabajoVinculado;
+                    pasoTrabajoVinculado_.value = data.pasoTrabajoVinculado;
+                    fuente_.value = data.fuente;
+                    fechaNacimiento_.value = data.fechaNacimiento;
+                    todosTelefonos_.value = data.todosTelefonos;
+                    puesto_.value = data.puesto;
+                    empleador_.value = data.empleador;
+                    institucion_.value = data.institucion;
+                    carreras_.value = data.carreras;
+                    grados_.value = data.grados;
+                    salario_.value = data.salario;
+                    espectativa_.value = data.espectativa;
+                    beneficio_.value = data.beneficio;
+                    puestoHits_.value = data.puestoHits;
+                    pregunta1_.value = data.pregunta1;
+                    pregunta2_.value = data.pregunta2;
+                    pregunta3_.value = data.pregunta3;
+                    pregunta4_.value = data.pregunta4;
+
+                    nombre_.value = data.nombre;
+                    solicitante_.value = data.solicitante;
+                    dni_.value = data.dni;
+                    telefono_.value = data.telefono;
+                    correo_.value = data.correo;
+                    // asignacion_.value = data.asignacion;
+                     
+                     console.log("data.dni"+data.dni)
+                     console.log("data.telefono"+data.telefono)
 
                   })
                   .catch(error => {
