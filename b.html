@@ -780,6 +780,7 @@
                 var valorPersonalizado = miBoton2.getAttribute('data-valor');
                 localStorage.setItem("id", parametro);
 
+               
                fetch(`https://runnnnnnn.azurewebsites.net/requerimiento`)
                   .then(response => {
                     if (response.ok) {
@@ -790,6 +791,9 @@
                   .then(data => {
                     // En lugar de utilizar los datos del 'localStorage', utilizamos los datos recibidos.
                     var dataList = data;
+
+ // 1. Definir una lista para almacenar los cambios
+                const cambiosPendientes = [];
 
 
                       if (Array.isArray(data)) {
@@ -807,6 +811,10 @@
                                     target.setAttribute('contenteditable', 'true');
                                   }
                                 });
+
+                                const cambiosPendientes = [];
+
+                                
 
                                 // También puedes agregar un controlador de eventos para deshabilitar la edición al hacer clic fuera de la celda
                                 document.addEventListener('click', function (event) {
@@ -970,8 +978,8 @@
 
                     console.log("Objeto actualizado:", objeto);
 
-                    //https://runnnnnnn.azurewebsites.net
-                    fetch(`http://localhost:8080/requerimiento/${idddd}`, {
+                    //
+                    fetch(`https://runnnnnnn.azurewebsites.net/requerimiento/${idddd}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json'
