@@ -1185,17 +1185,19 @@
                       <table id="nuevaTabla" class="table table-bordered table-responsive-md table-striped text-center">
                       <thead>
                         <tr>
-                          <th class="text-center">Solicitante</th>
-                          <th class="text-center">Asignación</th>
-                          <th class="text-center">Requerimiento</th>
+                          <th class="text-center">solicitante</th>
+                          <th class="text-center">asignacion</th>
+                          <th class="text-center">requerimiento</th>
                           <th class="text-center">VMO</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <!-- Aquí se agregarán las filas -->
+                        <!-- Aquí se agregarán las filas automaticamente por el js  -->
                       </tbody>
                     </table>
                     </div>
+
+                    <button id="guardarCambios" class="btn btn-primary">Actualizar masivamente</button>
 
                   </div>
                 </div>
@@ -1354,6 +1356,83 @@
           }
     </script>
 
+
+    <script type="text/javascript">
+         // Array para almacenar los objetos con los datos
+        var datos = [];
+
+        // Función para guardar los cambios en el array
+        function guardarCambios() {
+            var filas = document.querySelectorAll('#nuevaTabla tbody tr');
+            datos = [];
+
+            filas.forEach(function (fila) {
+                var cells = fila.querySelectorAll('td');
+                var objeto = {
+                    id: datos.length + 1,
+                    solicitante: cells[0].textContent,
+                    asignacion: cells[1].textContent,
+                    requerimiento: cells[2].textContent,
+                    VMO: cells[3].textContent,
+                };
+                datos.push(objeto);
+            });
+
+          fetch("https://runnnnnnn.azurewebsites.net/requerimientos", {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(datos)
+                    })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                        console.log(datos)
+                    } else {
+                        throw new Error('Error en la solicitud PUT');
+                        console.log(datos)
+
+                    }
+                })
+                .then(data => {
+                    console.log('Solicitud PUT exitosa', datos);
+                })
+                .catch(error => {
+                        console.log(datos)
+                    
+                    console.error('Error:', error);
+                    console.log('Error completo:', error.message);
+                }) 
+
+
+
+
+
+
+            console.log(JSON.stringify(datos));  
+            console.log(datos);  
+        
+        }
+
+         // Agrega un evento 'input' a cada campo de entrada para detectar cambios
+        var camposEntrada = document.querySelectorAll('#nuevaTabla tbody td');
+        camposEntrada.forEach(function (campo) {
+            campo.addEventListener('input', function () {
+                guardarCambios();
+            });
+        });
+
+        // Agrega un evento al botón "Guardar Cambios" para guardar los cambios
+        document.getElementById('guardarCambios').addEventListener('click', function () {
+            guardarCambios();
+
+       });
+
+
+
+
+    </script>
 
 
 </body>
