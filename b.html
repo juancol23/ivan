@@ -792,7 +792,7 @@
                     // En lugar de utilizar los datos del 'localStorage', utilizamos los datos recibidos.
                     var dataList = data;
 
- // 1. Definir una lista para almacenar los cambios
+                // 1. Definir una lista para almacenar los cambios
                 const cambiosPendientes = [];
 
 
@@ -904,8 +904,8 @@
 
                 // });
 
-                var objeto = {
-                    dni: "valdemar",
+                    var objeto = {
+                    dni: "",
                     status:"",
                     solicitante:"",
                     asignacion:"",
@@ -941,7 +941,19 @@
                     vmo:""
                 };
 
-                if (true) {
+                 fetch(`https://runnnnnnn.azurewebsites.net/requerimiento/${idddd}`)
+                  .then(response => {
+                    if (response.ok) {
+                      return response.json();
+                    }
+                    throw new Error('Error al obtener la lista de requerimientos.');
+                  })
+                  .then(data => {
+                    // En lugar de utilizar los datos del 'localStorage', utilizamos los datos recibidos.
+                
+                    objeto = data;
+                    
+                    if (true) {
                     // Actualizar el campo "requerimiento" del objeto
                     objeto.telefono = telefono_.value;
                     objeto.correo = correo_.value;
@@ -1007,6 +1019,16 @@
                 } else {
                     console.log("No se encontró ningún objeto con el ID proporcionado.");
                 }
+ 
+
+                  })
+                  .catch(error => {
+                    console.error('Error:', error);
+                  });
+
+               
+
+            
 
                    $('#misTrabajosModal1').modal('hide');
                 }
