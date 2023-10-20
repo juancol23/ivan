@@ -832,11 +832,13 @@
                                   const cell2 = row.insertCell(1);
                                   const cell3 = row.insertCell(2);
                                   const cell4 = row.insertCell(3);
+                                  const cell5 = row.insertCell(4);
 
                                   cell1.textContent = item.solicitante;
                                   cell2.textContent = item.asignacion;
                                   cell3.textContent = item.requerimiento;
                                   cell4.textContent = item.vmo;
+                                  cell5.textContent = item.id;
                                 }
                               });
                         });
@@ -1189,6 +1191,7 @@
                           <th class="text-center">asignacion</th>
                           <th class="text-center">requerimiento</th>
                           <th class="text-center">VMO</th>
+                          <th class="text-center">ID</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -1369,11 +1372,11 @@
             filas.forEach(function (fila) {
                 var cells = fila.querySelectorAll('td');
                 var objeto = {
-                    id: datos.length + 1,
+                    id: cells[4].textContent,
                     solicitante: cells[0].textContent,
                     asignacion: cells[1].textContent,
                     requerimiento: cells[2].textContent,
-                    VMO: cells[3].textContent,
+                    vmo: cells[3].textContent,
                 };
                 datos.push(objeto);
             });
