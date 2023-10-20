@@ -738,7 +738,7 @@
                 var valorPersonalizado = miBoton.getAttribute('data-valor');
                 localStorage.setItem("id", parametro);
 
-               fetch(`https://runnnnnnn.azurewebsites.net/requerimiento/${idddd}`)
+               fetch(`https://runnnnnnn.azurewebsites.net/requerimiento/${parametro}`)
                   .then(response => {
                     if (response.ok) {
                       return response.json();
