@@ -142,6 +142,7 @@
                         </li>
                           
                         <button id="exportButton">Reporte Talento</button>
+                          <button id="cerrar_sesion">Cerrar Sesión</button>
                     </ul>
                 </div>
             </div>
@@ -1557,6 +1558,16 @@
 
        });
 
+
+        const botonRedireccionar = document.getElementById('cerrar_sesion');
+
+        botonRedireccionar.addEventListener('click', function() {
+          // Aquí especifica la URL de la página a la que deseas redirigir
+          const nuevaPaginaURL = 'https://semilleros-ccb45.web.app/index.html';
+
+          // Redirigir a la nueva página
+          window.location.href = nuevaPaginaURL;
+        });
 
 
 
