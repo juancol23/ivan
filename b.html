@@ -14,6 +14,45 @@
   <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
 
+ <style>
+        /* Estilos para el loader */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto;
+            display: none;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+
+                .loader {
+                     display: none;     
+                    border: 15px solid black;
+                    border-top: 5px solid black;
+                    border-radius: 50%;
+                    width: 150px;
+                    height: 150px;
+                    animation: spin 2s linear infinite;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    z-index: 11111;
+                }
+
+                .loader.visible {
+                    display: block;
+                }
+
+
+    </style>
 
   
 
@@ -1058,6 +1097,7 @@
            var idddd = localStorage.getItem('id');
            console.log(idddd)
            function guardar() {
+               showLoadingAnimation();
                 // var nuevoRequerimiento = prompt("Ingrese : nuevoRequerimiento");
              console.log("guardar")
                 var nombre_ = document.getElementById('nombre_');
@@ -1267,14 +1307,17 @@
                     pregunta4_.value = ""
 
                     objeto.correo = fuente_.value;
+                       hideLoadingAnimation();
                         } else {
                             alert('Error al actualizar el requerimiento. Verifica los datos e intenta nuevamente.');
+                               hideLoadingAnimation();
                         }
 
                       console.log('Lista de requerimientosssssss:', response);
 
                     })
                     .catch(error => {
+                           hideLoadingAnimation();
                         console.error('Hubo un error en la solicitud:', error);
                     });
 
@@ -1365,14 +1408,17 @@
                                 pregunta4_.value = ""
 
                                 objeto.correo = fuente_.value;
+                                   hideLoadingAnimation();
                         } else {
                             alert('Error al actualizar el requerimiento. Verifica los datos e intenta nuevamente.');
+                            hideLoadingAnimation();
                         }
 
                       console.log('Lista de requerimientosssssss:', response);
 
                     })
                     .catch(error => {
+                           hideLoadingAnimation();
                         console.error('Hubo un error en la solicitud:', error);
                     });
 
@@ -1627,6 +1673,7 @@
 
         // Función para guardar los cambios en el array
         function guardarCambios() {
+            showLoadingAnimation();
             var filas = document.querySelectorAll('#nuevaTabla tbody tr');
             datos = [];
 
@@ -1664,6 +1711,7 @@
                     })
                     .then(data => {
                         console.log('Solicitud PUT exitosa', datos);
+                        hideLoadingAnimation();
                     })
                     .catch(error => {
                         console.error('Error:', error);
@@ -1701,10 +1749,19 @@
           window.location.href = nuevaPaginaURL;
         });
 
+        function showLoadingAnimation() {
+            $('#loader').addClass('visible');
+        }
 
+        // Función para ocultar la animación de carga
+        function hideLoadingAnimation() {
+            $('#loader').removeClass('visible');
+        }
 
     </script>
 
+
+       <div class="loader " id="loader" ></div>
 
 </body>
 
