@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
 
      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.1/xlsx.full.min.js"></script>
 
 
   
@@ -586,56 +586,108 @@
 
 
         // Función para exportar datos a Excel
-        function exportToExcel() {
-            // Crear una matriz de datos de ejemplo
+        // function exportToExcel() {
+        //     // Crear una matriz de datos de ejemplo
 
-            // const dataa = JSON.parse(localStorage.getItem('miData')
+        //     // const dataa = JSON.parse(localStorage.getItem('miData')
 
-             var dataList = JSON.parse(localStorage.getItem('miData')) || [];
-            // console.log("YACO 1"+JSON.stringify(dataList))
 
-            var listaAnidada = convertirAListaAnidada(dataList);
-            // console.log("listaAnidada: "+listaAnidada);
-            // [{"id":"7022442","status":"creado","VMO":"IBK","solicitante":"YACO","asignacion":"lesly.huaman@runa-it.com","requerimiento":"PO","cv":"azure.com/blob/cv.pdf","dni":"710203123"},{"id":"8940986","status":"creado","VMO":"IBK","solicitante":"SOCRATES","asignacion":"lesly.huaman@runa-it.com","requerimiento":"PRACTICANTE","cv":"azure.com/blob/cv.pdf","nombre":"MELENDI","dni":"70192337","telefono":"987617898789","correo":"vaoi@dasd.com","estadorequerimiento":"123123"},{"id":"2135434","status":"creado","VMO":"IBK","solicitante":"MOISES","asignacion":"abel.pineda@runa-it.com","requerimiento":"PRACTICANTE NIVEL II","cv":"azure.com/blob/cv.pdf"},]
+        //      var dataList = JSON.parse(localStorage.getItem('miData')) || [];
+        //     // console.log("YACO 1"+JSON.stringify(dataList))
 
-            const data = listaAnidada;
-                console.log("YACO 2: "+ data)
-            // Perfil 1,Analista,Perfil 2,Product Owner,Perfil 3,Scrum Master,Pedro,Software Enginner
+        //     var listaAnidada = convertirAListaAnidada(dataList);
+        //     // console.log("listaAnidada: "+listaAnidada);
+        //     // [{"id":"7022442","status":"creado","VMO":"IBK","solicitante":"YACO","asignacion":"lesly.huaman@runa-it.com","requerimiento":"PO","cv":"azure.com/blob/cv.pdf","dni":"710203123"},{"id":"8940986","status":"creado","VMO":"IBK","solicitante":"SOCRATES","asignacion":"lesly.huaman@runa-it.com","requerimiento":"PRACTICANTE","cv":"azure.com/blob/cv.pdf","nombre":"MELENDI","dni":"70192337","telefono":"987617898789","correo":"vaoi@dasd.com","estadorequerimiento":"123123"},{"id":"2135434","status":"creado","VMO":"IBK","solicitante":"MOISES","asignacion":"abel.pineda@runa-it.com","requerimiento":"PRACTICANTE NIVEL II","cv":"azure.com/blob/cv.pdf"},]
 
-            // Crear un objeto de libro de trabajo de Excel
+        //     const data = listaAnidada;
+        //         console.log("YACO 2: "+ data)
+        //     // Perfil 1,Analista,Perfil 2,Product Owner,Perfil 3,Scrum Master,Pedro,Software Enginner
+
+        //     // Crear un objeto de libro de trabajo de Excel
+        //     const workbook = XLSX.utils.book_new();
+
+        //     // Crear una hoja de cálculo
+        //     const worksheet = XLSX.utils.aoa_to_sheet(data);
+
+        //     // Agregar la hoja de cálculo al libro de trabajo
+        //     XLSX.utils.book_append_sheet(workbook, worksheet, 'Datos');
+
+        //     // Convertir el libro de trabajo a una cadena de datos binarios
+        //     const excelData = XLSX.write(workbook, { bookType: 'xlsx', type: 'binary' });
+
+        //     // Crear un blob a partir de la cadena de datos binarios
+        //     const blob = new Blob([s2ab(excelData)], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+        //     // Crear un objeto de URL para el blob
+        //     const url = URL.createObjectURL(blob);
+
+        //     // Crear un enlace de descarga
+        //     const a = document.createElement('a');
+        //     a.href = url;
+        //     const timestamp = Date.now();
+        //     a.download = 'Reporte_GDH_'+timestamp+'.xlsx';
+        //     a.style.display = 'none';
+
+        //     // Agregar el enlace al cuerpo del documento y hacer clic en él
+        //     document.body.appendChild(a);
+        //     a.click();
+
+        //     // Limpiar el objeto de URL y eliminar el enlace
+        //     URL.revokeObjectURL(url);
+        //     document.body.removeChild(a);
+        // }
+
+         function exportarAExcel(data) {
+               const worksheet = XLSX.utils.json_to_sheet(data);
             const workbook = XLSX.utils.book_new();
-
-            // Crear una hoja de cálculo
-            const worksheet = XLSX.utils.aoa_to_sheet(data);
-
-            // Agregar la hoja de cálculo al libro de trabajo
             XLSX.utils.book_append_sheet(workbook, worksheet, 'Datos');
-
-            // Convertir el libro de trabajo a una cadena de datos binarios
-            const excelData = XLSX.write(workbook, { bookType: 'xlsx', type: 'binary' });
-
-            // Crear un blob a partir de la cadena de datos binarios
-            const blob = new Blob([s2ab(excelData)], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-
-            // Crear un objeto de URL para el blob
-            const url = URL.createObjectURL(blob);
+            
+            // Convertir el libro a un archivo Excel en formato base64
+            const excelData = XLSX.write(workbook, { bookType: 'xlsx', type: 'base64' });
 
             // Crear un enlace de descarga
+            const blob = base64ToBlob(excelData, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+            const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            const timestamp = Date.now();
-            a.download = 'Reporte_GDH_'+timestamp+'.xlsx';
-            a.style.display = 'none';
-
-            // Agregar el enlace al cuerpo del documento y hacer clic en él
+            a.download = 'datos.xlsx';
+            
+            // Agregar el enlace al documento y simular un clic para iniciar la descarga
             document.body.appendChild(a);
             a.click();
-
-            // Limpiar el objeto de URL y eliminar el enlace
-            URL.revokeObjectURL(url);
+            
+            // Eliminar el enlace del documento
             document.body.removeChild(a);
         }
 
+        // Función para convertir una cadena base64 a Blob
+        function base64ToBlob(base64, mimeType) {
+            const byteCharacters = atob(base64);
+            const byteNumbers = new Array(byteCharacters.length);
+
+            for (let i = 0; i < byteCharacters.length; i++) {
+                byteNumbers[i] = byteCharacters.charCodeAt(i);
+            }
+
+            const byteArray = new Uint8Array(byteNumbers);
+            return new Blob([byteArray], { type: mimeType });
+        }
+ 
+        function exportToExcel(){
+               fetch('http://localhost:8080/requerimiento')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('exportButton').addEventListener('click', () => {
+                        exportarAExcel(data);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error al obtener datos del servicio:', error);
+                });
+        }
+        exportToExcel();
+
+ 
         // Función para convertir una cadena en una matriz de bytes
         function s2ab(s) {
             const buf = new ArrayBuffer(s.length);
