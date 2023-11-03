@@ -1215,11 +1215,12 @@
 
 
                        
+            var nombreUsuario = localStorage.getItem('nombreUsuario');
 
                         const file = fileInput.files[0];
                         if (file) {
                           // Crea una referencia al archivo en Firebase Storage
-                          const storageRef = storage.ref('carpeta_subida/' + file.name); // Cambia 'carpeta_subida' a la carpeta deseada
+                          const storageRef = storage.ref(nombreUsuario+"/"+ file.name); // Cambia 'carpeta_subida' a la carpeta deseada
 
                           // Sube el archivo
                           storageRef.put(file).then((snapshot) => {
