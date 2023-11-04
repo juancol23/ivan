@@ -913,9 +913,14 @@
 
                 // Crear una lista de solicitantes en formato HTML
                 var solicitantesHTML = "";
+                var uniqueRequerimientos = new Set();
                 solicitantesLesly.forEach(function (data) {
 
-                    solicitantesHTML += " <div class='col-sm-5'><div class='card'><div class='card-body'><h5 class='card-text'><div class='card-body'><div class='card'>" + data.requerimiento + "</h5> <button id='miBoton' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#misTrabajosModal1' data-valor= " + data.id + " onClick='obtenerValor(" + data.id + ")' >Completar </button>   <button id='miBoton2' class='btn btn-dark' data-bs-toggle='modal' data-bs-target='#misTrabajosModal6' data-valor= " + data.id + " onClick='editarValor(" + data.id + ")' >Editar </button> </div></div></div></div></div></div>";
+                     if (!uniqueRequerimientos.has(data.requerimiento)) {
+        uniqueRequerimientos.add(data.requerimiento);
+        solicitantesHTML += "<div class='col-sm-5'><div class='card'><div class='card-body'><h5 class='card-text'><div class='card-body'><div class='card'>" + data.requerimiento + "</h5> <button id='miBoton' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#misTrabajosModal1' data-valor= " + data.id + " onClick='obtenerValor(" + data.id + ")' >Completar </button>   <button id='miBoton2' class='btn btn-dark' data-bs-toggle='modal' data-bs-target='#misTrabajosModal6' data-valor= " + data.id + " onClick='editarValor(" + data.id + ")' >Editar </button> </div></div></div></div></div></div>";
+    }
+                    // solicitantesHTML += " <div class='col-sm-5'><div class='card'><div class='card-body'><h5 class='card-text'><div class='card-body'><div class='card'>" + data.requerimiento + "</h5> <button id='miBoton' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#misTrabajosModal1' data-valor= " + data.id + " onClick='obtenerValor(" + data.id + ")' >Completar </button>   <button id='miBoton2' class='btn btn-dark' data-bs-toggle='modal' data-bs-target='#misTrabajosModal6' data-valor= " + data.id + " onClick='editarValor(" + data.id + ")' >Editar </button> </div></div></div></div></div></div>";
 
                 });
 
@@ -1229,7 +1234,6 @@
 
                     //objeto = data;
                     // oka = data.solicitante;
-                    alert("data.solicitante"+ data.solicitante)
                     if (true) {
 
 
@@ -1355,6 +1359,7 @@
 
                                                 objeto.correo = fuente_.value;
                                                 hideLoadingAnimation();
+                                                location.reload();
                                             } else {
                                                 alert('Error al actualizar el requerimiento. Verifica los datos e intenta nuevamente.');
                                                 hideLoadingAnimation();
