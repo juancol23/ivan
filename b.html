@@ -943,7 +943,7 @@
             var valorPersonalizado = miBoton.getAttribute('data-valor');
             localStorage.setItem("id", parametro);
 
-            fetch(`https://runnnnnnn.azurewebsites.net/requerimiento${parametro}`)
+            fetch(`https://runnnnnnn.azurewebsites.net/requerimiento/${parametro}`)
                 .then(response => {
                     if (response.ok) {
                         return response.json();
@@ -989,10 +989,11 @@
                     var telefono_ = document.getElementById('telefono_');
                     var correo_ = document.getElementById('correo_');
                     var asignacion_ = document.getElementById('asignacion_');
-
+                 solicitante_.value = data.solicitante;
+                    // trabajoVinculado_.value = data.requerimiento;
                     /* NO COMPLETAR
                      trabajoVinculado_.value = data.requerimiento;
-                     solicitante_.value = data.solicitante;
+                    
                      trabajoVinculado_.value = data.trabajoVinculado;
                      // pasoTrabajoVinculado_.value = data.pasoTrabajoVinculado;
                      fuente_.value = data.fuente;
@@ -1277,6 +1278,9 @@
 
                                     // Actualizar el campo "requerimiento" del objeto
                                     objeto.solicitante = data.solicitante+"";
+
+                             
+
                                     objeto.requerimiento = data.requerimiento+"";
 
                                     objeto.telefono = telefono_.value;
