@@ -689,6 +689,7 @@
 
     <script>
 
+showLoadingAnimation();
 
         function convertirAListaAnidada(dataList) {
             var listaAnidada = [];
@@ -1771,7 +1772,6 @@
                         if (contentType && contentType.includes('application/json')) {
                             return response.json();
                         } else {
-
                             console.error('La respuesta no es JSON válido' + response.json());
                         }
                     } else {
@@ -1780,6 +1780,7 @@
                 })
                 .then(data => {
                     console.log('Solicitud PUT exitosa', datos);
+                    alert("Los datos fueron actualizados correctamente")
                     hideLoadingAnimation();
 
                 })
