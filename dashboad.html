@@ -276,6 +276,10 @@
                                             <label for="email" class="form-label">VMO*</label>
                                             <input type="email" class="form-control" id="VMO" placeholder="VMO*" required>
                                         </div>
+                                         <div class="mb-3">
+                                            <label for="email" class="form-label">Nombre del puesto*</label>
+                                            <input type="text" class="form-control" id="nombre_puesto" placeholder="Nombre del puesto*" required>
+                                        </div>
                                         <div class="mb-3">
                                             <label for="solicitante" class="form-label">Solicitante</label>
                                             <input type="text" class="form-control" id="solicitante"
@@ -483,6 +487,8 @@
 
 
             var vmo = document.getElementById('VMO');
+            var nombre_puesto = document.getElementById('nombre_puesto');
+
             var email = document.getElementById('email');
             var obtenerValorBoton = document.getElementById('obtenerValorBoton');
 
@@ -502,7 +508,8 @@
                 solicitante: solicitante.value,
                 asignacion: asignacion.value,
                 requerimiento: requerimiento.value,
-                cv: "azure.com/blob/cv.pdf"
+                cv: "azure.com/blob/cv.pdf",
+                nombre_puesto: nombre_puesto
             };
 
 
