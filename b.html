@@ -58,6 +58,17 @@
         }
     </style>
 
+<style type="text/css">
+    #tablaContenedor {
+      width: 5000px !important; /* Asegura que el contenedor ocupe todo el ancho disponible */
+      overflow-x: auto !important; /* Habilita la barra de desplazamiento horizontal cuando sea necesario */
+    }
+
+    #nuevaTabla {
+      /* Aquí puedes definir estilos para tu tabla si lo deseas */
+    }
+
+</style>
 
 
 
@@ -918,7 +929,7 @@
 
                      if (!uniqueRequerimientos.has(data.requerimiento)) {
         uniqueRequerimientos.add(data.requerimiento);
-        solicitantesHTML += "<div class='col-sm-5'><div class='card'><div class='card-body'><h5 class='card-text'><div class='card-body'><div class='card'>" + data.requerimiento + "</h5> <button id='miBoton' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#misTrabajosModal1' data-valor= " + data.id + " onClick='obtenerValor(" + data.id + ")' >Completar </button>   <button id='miBoton2' class='btn btn-dark' data-bs-toggle='modal' data-bs-target='#misTrabajosModal6' data-valor= " + data.id + " onClick='editarValor(" + data.id + ")' >Editar </button> </div></div></div></div></div></div>";
+        solicitantesHTML += "<div class='col-sm-5'><div class='card'><div class='card-body'><h5 class='card-text'><div class='card-body'><div class='card'>" + data.requerimiento + "</h5> <button id='miBoton' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#misTrabajosModal1' data-valor= " + data.id + " onClick='obtenerValor(" + data.id + ")' >Completar </button>   <button id='miBoton2' class='btn btn-dark'   data-valor= " + data.id + " onClick='editarValor(" + data.id + ")' >Editar </button> </div></div></div></div></div></div>";
     }
                     // solicitantesHTML += " <div class='col-sm-5'><div class='card'><div class='card-body'><h5 class='card-text'><div class='card-body'><div class='card'>" + data.requerimiento + "</h5> <button id='miBoton' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#misTrabajosModal1' data-valor= " + data.id + " onClick='obtenerValor(" + data.id + ")' >Completar </button>   <button id='miBoton2' class='btn btn-dark' data-bs-toggle='modal' data-bs-target='#misTrabajosModal6' data-valor= " + data.id + " onClick='editarValor(" + data.id + ")' >Editar </button> </div></div></div></div></div></div>";
 
@@ -1037,97 +1048,12 @@
 
         function editarValor(parametro) {
 
-            var miBoton2 = document.getElementById('miBoton2');
-            // Obtener el valor personalizado del botón
-            var valorPersonalizado = miBoton2.getAttribute('data-valor');
             localStorage.setItem("id", parametro);
 
+           const nuevaPaginaURL = 'https://semilleros-ccb45.web.app/wi.html';
 
-            fetch(`https://runnnnnnn.azurewebsites.net/requerimiento`)
-                .then(response => {
-                    if (response.ok) {
-                        return response.json();
-                    }
-                    throw new Error('Error al obtener la lista de requerimientos.');
-                })
-                .then(data => {
-                    // En lugar de utilizar los datos del 'localStorage', utilizamos los datos recibidos.
-                    var dataList = data;
-
-                    // 1. Definir una lista para almacenar los cambios
-                    const cambiosPendientes = [];
-
-
-                    if (Array.isArray(data)) {
-                        data.forEach(item => {
-                            // const nuevaTabla = document.getElementById('nuevaTabla').querySelector('tbody');
-                            const nombreUsuario = localStorage.getItem('nombreUsuario');
-
-                            const nuevaTabla = document.getElementById('nuevaTabla').querySelector('tbody');
-                            nuevaTabla.innerHTML = '';
-                            // Agregar un controlador de eventos a las celdas para habilitar la edición al hacer doble clic
-                            nuevaTabla.addEventListener('dblclick', function (event) {
-                                const target = event.target;
-
-                                if (target.tagName === 'TD') {
-                                    target.setAttribute('contenteditable', 'true');
-                                }
-                            });
-
-                            const cambiosPendientes = [];
-
-
-
-                            // También puedes agregar un controlador de eventos para deshabilitar la edición al hacer clic fuera de la celda
-                            document.addEventListener('click', function (event) {
-                                const target = event.target;
-
-                                if (target.tagName !== 'TD') {
-                                    const editableCells = nuevaTabla.querySelectorAll('td[contenteditable="true"]');
-                                    editableCells.forEach(cell => cell.setAttribute('contenteditable', 'false'));
-                                }
-                            });
-
-                            data.forEach(item => {
-                                if (item.asignacion === nombreUsuario) {
-                                    const row = nuevaTabla.insertRow();
-                                    const cell1 = row.insertCell(0);
-                                    const cell2 = row.insertCell(1);
-                                    const cell3 = row.insertCell(2);
-                                    const cell4 = row.insertCell(3);
-                                    const cell5 = row.insertCell(4);
-
-                                    const cell6 = row.insertCell(5);
-                                    const cell7 = row.insertCell(6);
-                                    const cell8 = row.insertCell(7);
-                                    const cell9 = row.insertCell(8);
-
-
-                                    cell1.textContent = item.solicitante;
-                                    cell2.textContent = item.asignacion;
-                                    cell3.textContent = item.requerimiento;
-                                    cell4.textContent = item.vmo;
-                                    cell5.textContent = item.id;
-
-                                    cell6.textContent = item.telefono;
-                                    cell7.textContent = item.dni;
-                                    cell8.textContent = item.nombre;
-                                    cell9.textContent = item.fuente;
-
-                                }
-                            });
-                        });
-                    } else {
-                        console.error('Los datos recibidos no son una matriz.');
-                    }
-
-
-
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-
+            // Redirigir a la nueva página
+            window.location.href = nuevaPaginaURL;
 
         }
 
@@ -1418,7 +1344,28 @@
 
     </script>
 
+<!-- <style type="text/css">
+    #nuevaTablaContainer tbody{
+  color:#00467f;
+  font-weight:500;
+  position:absolute;
+  overflow-y: auto;
+  overflow-x: scroll;
+  height:300px;
+  width:1001px;
+}
+   thead{
+  color:#00467f;
+  font-weight:500;
+  position:absolute;
+  overflow-y: auto;
+  overflow-x: scroll;
+  height:300px;
+  width:1001px;
+}
 
+
+</style> -->
 
 
     <!-- Modal -->
@@ -1461,6 +1408,10 @@
                                                         <th class="text-center">dni</th>
                                                         <th class="text-center">nombre</th>
                                                         <th class="text-center">fuente</th>
+
+                                                    
+
+
 
                                                     </tr>
                                                 </thead>
@@ -1656,9 +1607,11 @@
                     vmo: cells[3].textContent,
 
                     telefono: cells[5].textContent,
-                    dni: cells[6].textContent,
-                    nombre: cells[7].textContent,
-                    fuente: cells[8].textContent,
+                    telefono: cells[6].textContent,
+                    telefono: cells[7].textContent,
+                    telefono: cells[8].textContent,
+
+                
                 };
                 datos.push(objeto);
             });
