@@ -19,7 +19,7 @@
      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
 
- 
+
 
 
     <style type="text/css">
@@ -205,9 +205,29 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-4 ">
+                         <div class="col-sm-4 ">
                             <div class="card">
-                                <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                               
+                                <div class="card-body">
+                                    <h5 class="card-title">REQUERIMIENTOS</h5>
+                                    <p class="card-text">***</p>
+                                    <label for="filtro">Selecciona una opción:</label>
+<select id="filtro">
+    <option value="listarTodo">Listar Todo</option>
+    <!-- Aquí se cargarán dinámicamente las opciones de asignación -->
+</select>
+
+<div id="resultados">
+    <!-- Aquí se mostrarán los resultados -->
+</div>
+                                    <p class="card-text">***</p>
+                                   <div id="contenedor-botones"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-sm-4 ">
+                            <div class="card">
+                               
                                 <div class="card-body">
                                     <h5 class="card-title">HITSS</h5>
                                     <p class="card-text">***</p>
@@ -217,10 +237,10 @@
                                         data-bs-target="#misTrabajosModal1">Nuevo requerimiento</a>
                                 </div>
                             </div>
-                        </div>
-                         <div class="col-sm-4 ">
+                        </div> -->
+                        <!--  <div class="col-sm-4 ">
                             <div class="card">
-                                <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                                 
                                 <div class="card-body">
                                     <h5 class="card-title">CASTILLO DE CHANCAY</h5>
                                     <p class="card-text">***</p>
@@ -230,7 +250,7 @@
                                         data-bs-target="#misTrabajosModal1">Nuevo requerimiento</a>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
 
 
@@ -667,7 +687,109 @@
     </script>  
 
 
+<script type="text/javascript">
+    // URL del servicio
+    var url = 'https://runnnnnnn.azurewebsites.net/requerimiento';
+    // Función para cargar los requerimientos desde el servicio
+    function cargarRequerimientos() {
+        // Realizar la petición al servicio utilizando fetch
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                // Llamar a la función para crear los botones
+                crearBotones(data);
+            })
+            .catch(error => console.error('Error al obtener requerimientos:', error));
+    }
 
+    // Función para crear los botones
+    function crearBotones(requerimientos) {
+        // Obtener el contenedor de botones
+        var contenedorBotones = document.getElementById('contenedor-botones');
+
+        // Limpiar el contenedor antes de agregar nuevos botones
+        contenedorBotones.innerHTML = '';
+
+        // Iterar sobre los requerimientos y crear los botones dinámicamente
+        requerimientos.forEach(function(requerimiento) {
+            // Crear un enlace (botón) por cada requerimiento
+            var enlace = document.createElement('a');
+            enlace.href = '#';
+            enlace.className = 'btn btn-primary';
+            enlace.textContent = 'Aquí el requerimiento ' + requerimiento.id;
+
+            // Agregar un salto de línea entre los botones (opcional)
+            contenedorBotones.appendChild(enlace);
+            contenedorBotones.appendChild(document.createElement('br'));
+        });
+
+    document.addEventListener('DOMContentLoaded', cargarRequerimientos);
+
+
+</script>
+
+<script>
+    // Cuando la página se carga, obtén las asignaciones y llénalas en el select
+    document.addEventListener('DOMContentLoaded', function () {
+        cargarAsignaciones();
+    });
+
+    // Función para cargar las asignaciones en el select
+    function cargarAsignaciones() {
+        // Aquí debes realizar la llamada al servicio para obtener la lista de asignaciones
+        // y llenarlas dinámicamente en el select con id "filtro"
+        // Puedes usar fetch para realizar la llamada al servicio
+        // Ejemplo (reemplaza la URL con la correcta):
+        fetch('https://runnnnnnn.azurewebsites.net/requerimiento')
+            .then(response => response.json())
+            .then(data => {
+                // Extraer las asignaciones únicas de los datos
+                const asignacionesUnicas = [...new Set(data.map(requerimiento => requerimiento.asignacion))];
+
+                // Llenar el select con las opciones de asignaciones
+                asignacionesUnicas.forEach(asignacion => {
+                    document.getElementById('filtro').options.add(new Option(asignacion, asignacion));
+                });
+            })
+            .catch(error => {
+                console.error('Error al obtener las asignaciones:', error);
+            });
+    }
+
+    // Cuando se selecciona una opción en el select, realizar la consulta correspondiente
+    document.getElementById('filtro').addEventListener('change', function () {
+        var opcionSeleccionada = this.value;
+
+        // Aquí debes realizar la llamada al servicio con la opción seleccionada
+        // y mostrar los resultados en el div con id "resultados"
+        // Ejemplo (reemplaza la URL con la correcta):
+        fetch('https://runnnnnnn.azurewebsites.net/requerimiento')
+            .then(response => response.json())
+            .then(data => {
+                // Filtrar los requerimientos según la opción seleccionada
+                const requerimientosFiltrados = opcionSeleccionada === 'listarTodo'
+                    ? data
+                    : data.filter(requerimiento => requerimiento.asignacion === opcionSeleccionada);
+
+                // Mostrar los resultados en el div con id "resultados"
+                mostrarResultados(requerimientosFiltrados);
+            })
+            .catch(error => {
+                console.error('Error al obtener los requerimientos:', error);
+            });
+    });
+
+    // Función para mostrar los resultados en el div con id "resultados"
+    function mostrarResultados(resultados) {
+        // Limpia el contenido actual del div
+        document.getElementById('resultados').innerHTML = '';
+
+        // Recorre los resultados y muéstralos en el div
+        resultados.forEach(requerimiento => {
+            document.getElementById('resultados').innerHTML += `<p>${requerimiento.asignacion}: ${requerimiento.requerimiento}</p>`;
+        });
+    }
+</script>
 
 
 </body>
