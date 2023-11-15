@@ -786,7 +786,9 @@
 
         // Recorre los resultados y muéstralos en el div
         resultados.forEach(requerimiento => {
-            document.getElementById('resultados').innerHTML += `<p>${requerimiento.asignacion}: ${requerimiento.requerimiento}</p>`;
+            document.getElementById('resultados').innerHTML += `<a class="btn btn-primary" href="#">${requerimiento.requerimiento}</a> <p></p> `;
+
+ 
         });
     }
 </script>
