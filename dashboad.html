@@ -212,7 +212,8 @@
                                     <h5 class="card-title">REQUERIMIENTOS</h5>
                                     <p class="card-text">***</p>
                                     <label for="filtro">Selecciona una opción:</label>
-                                    <select id="filtro">
+                                    <select id="filtro" class="form-select">
+
                                         <option value="listarTodo">Listar Todo</option>
                                         <!-- Aquí se cargarán dinámicamente las opciones de asignación -->
                                     </select>
@@ -220,8 +221,8 @@
                                     <div id="resultados">
                                         <!-- Aquí se mostrarán los resultados -->
                                     </div>
-                                    <button id="exportButton">Generar reportes</button> -->
-                                    <p class="card-text">***</p>
+                                    <br>
+                                    <button id="exportButton" class="btn btn-dark">Generar reportes</button> 
                                    <div id="contenedor-botones"></div>
                                 </div>
                             </div>
@@ -297,6 +298,7 @@
                                             <label for="email" class="form-label">VMO*</label>
                                             <input type="email" class="form-control" id="VMO" placeholder="VMO*" required>
                                         </div>
+                                     
                                          <div class="mb-3">
                                             <label for="email" class="form-label">Nombre del puesto*</label>
                                             <input type="text" class="form-control" id="nombre_puesto" placeholder="Nombre del puesto*" required>
@@ -422,65 +424,7 @@
         </div>
     </div>
 
-
-    <script>
-        // Función para exportar datos a Excel
-        function exportToExcel() {
-            // Crear una matriz de datos de ejemplo
-            const data = [
-                ['Perfil 1', 'Analista'],
-                ['Perfil 2', 'Product Owner'],
-                ['Perfil 3', 'Scrum Master'],
-                ['Pedro', 'Software Enginner']
-            ];
-
-            // Crear un objeto de libro de trabajo de Excel
-            const workbook = XLSX.utils.book_new();
-
-            // Crear una hoja de cálculo
-            const worksheet = XLSX.utils.aoa_to_sheet(data);
-
-            // Agregar la hoja de cálculo al libro de trabajo
-            XLSX.utils.book_append_sheet(workbook, worksheet, 'Datos');
-
-            // Convertir el libro de trabajo a una cadena de datos binarios
-            const excelData = XLSX.write(workbook, { bookType: 'xlsx', type: 'binary' });
-
-            // Crear un blob a partir de la cadena de datos binarios
-            const blob = new Blob([s2ab(excelData)], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-
-            // Crear un objeto de URL para el blob
-            const url = URL.createObjectURL(blob);
-
-            // Crear un enlace de descarga
-            const a = document.createElement('a');
-            a.href = url;
-            const timestamp = Date.now();
-            a.download = 'Reporte_GDH_'+timestamp+'.xlsx';
-            a.style.display = 'none';
-
-            // Agregar el enlace al cuerpo del documento y hacer clic en él
-            document.body.appendChild(a);
-            a.click();
-
-            // Limpiar el objeto de URL y eliminar el enlace
-            URL.revokeObjectURL(url);
-            document.body.removeChild(a);
-        }
-
-        // Función para convertir una cadena en una matriz de bytes
-        function s2ab(s) {
-            const buf = new ArrayBuffer(s.length);
-            const view = new Uint8Array(buf);
-            for (let i = 0; i < s.length; i++) {
-                view[i] = s.charCodeAt(i) & 0xFF;
-            }
-            return buf;
-        }
-
-        // Agregar un controlador de eventos al botón de exportación
-        $('#exportButton').click(exportToExcel);
-    </script>
+ 
 
 
 
@@ -756,10 +700,12 @@
                 console.error('Error al obtener las asignaciones:', error);
             });
     }
+                        
 
     // Cuando se selecciona una opción en el select, realizar la consulta correspondiente
     document.getElementById('filtro').addEventListener('change', function () {
         var opcionSeleccionada = this.value;
+        localStorage.setItem('opcionSeleccionada', opcionSeleccionada);
 
         // Aquí debes realizar la llamada al servicio con la opción seleccionada
         // y mostrar los resultados en el div con id "resultados"
@@ -787,13 +733,72 @@
 
         // Recorre los resultados y muéstralos en el div
         resultados.forEach(requerimiento => {
-            document.getElementById('resultados').innerHTML += `<a class="btn btn-primary" href="#">${requerimiento.requerimiento}</a> <p></p> `;
+            document.getElementById('resultados').innerHTML += `<br><a class="btn btn-dark" href="#">${requerimiento.requerimiento}</a> <p></p> `;
 
  
         });
     }
 </script>
 
+
+<script type="text/javascript">
+ 
+ // Cuando la página se carga, obtén los datos y agrega el evento de clic al botón de exportar
+ document.addEventListener('DOMContentLoaded', function () {
+     fetch('https://runnnnnnn.azurewebsites.net/requerimiento')
+         .then(response => response.json())
+         .then(data => {
+             document.getElementById('exportButton').addEventListener('click', () => {
+                 exportarAExcel(data);
+             });
+         })
+         .catch(error => {
+             console.error('Error al obtener datos del servicio:', error);
+         });
+
+     // Función para convertir una cadena base64 a Blob
+     function base64ToBlob(base64, mimeType) {
+         const byteCharacters = atob(base64);
+         const byteNumbers = new Array(byteCharacters.length);
+
+         for (let i = 0; i < byteCharacters.length; i++) {
+             byteNumbers[i] = byteCharacters.charCodeAt(i);
+         }
+
+         const byteArray = new Uint8Array(byteNumbers);
+         return new Blob([byteArray], { type: mimeType });
+     }
+
+     function exportarAExcel(data) {
+         var nombreUsuario = localStorage.getItem('opcionSeleccionada');
+
+         const filteredData = data.filter(item => item.asignacion === nombreUsuario);
+
+         const worksheet = XLSX.utils.json_to_sheet(filteredData);
+         const workbook = XLSX.utils.book_new();
+         XLSX.utils.book_append_sheet(workbook, worksheet, 'Datos');
+
+         // Convertir el libro a un archivo Excel en formato base64
+         const excelData = XLSX.write(workbook, { bookType: 'xlsx', type: 'base64' });
+
+         // Crear un enlace de descarga
+         const blob = base64ToBlob(excelData, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+         const url = URL.createObjectURL(blob);
+         const a = document.createElement('a');
+         a.href = url;
+         a.download = 'datos.xlsx';
+
+         // Agregar el enlace al documento y simular un clic para iniciar la descarga
+         document.body.appendChild(a);
+         a.click();
+
+         // Eliminar el enlace del documento
+         document.body.removeChild(a);
+     }
+ });
+      
+
+</script>
 
 </body>
 
