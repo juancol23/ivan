@@ -716,7 +716,7 @@ function editarValor(parametro) {
                                     target.setAttribute('contenteditable', 'true');
                                 }
                             });
-   const cambiosPendientes = [];
+             const cambiosPendientes = [];
 
           // También puedes agregar un controlador de eventos para deshabilitar la edición al hacer clic fuera de la celda
                             document.addEventListener('click', function (event) {
@@ -727,7 +727,7 @@ function editarValor(parametro) {
                                     editableCells.forEach(cell => cell.setAttribute('contenteditable', 'false'));
                                 }
                             });
-                            
+
 
                 data.forEach(item => {
                     if (item.asignacion === nombreUsuario) {
@@ -782,13 +782,33 @@ function editarValor(parametro) {
                         cell10.textContent = item.correo;
                         // Cambiar el campo "trabajo" a un select
                         const selectTrabajo = document.createElement('select');
-                        selectTrabajo.innerHTML = '<option value="opcion1">Opción 1</option><option value="opcion2">Opción 2</option>';
+                        selectTrabajo.innerHTML = '<option selected >'+item.trabajo+'</option><option value="opcion2">Opción 2</option>';
                         selectTrabajo.value = item.trabajo;
                         cell11.appendChild(selectTrabajo);
 
-                        cell12.textContent = item.disponibilidad;
-                        cell13.textContent = item.antecedentes;
-                        cell14.textContent = item.trabajoHits;
+                        // Cambiar el campo "trabajo" a un select
+                        const selectDisponibilidad = document.createElement('select');
+                        selectDisponibilidad.innerHTML = '<option  selected>'+item.disponibilidad+'</option><option value="opcion2">Opción 2</option>';
+                        selectDisponibilidad.value = item.disponibilidad;
+                        cell12.appendChild(selectDisponibilidad);
+
+                        // Cambiar el campo "trabajo" a un select
+                        const antecedentesDisponibilidad = document.createElement('select');
+                        antecedentesDisponibilidad.innerHTML = '<option  selected>'+item.antecedentes+'</option><option value="opcion2">Opción 2</option>';
+                        antecedentesDisponibilidad.value = item.antecedentes;
+                        cell13.appendChild(antecedentesDisponibilidad);
+
+
+                        // cell12.textContent = item.disponibilidad;
+                        // cell13.textContent = item.antecedentes;
+
+                         // Cambiar el campo "trabajo" a un select
+                        const trabajoHitsDisponibilidad = document.createElement('select');
+                        trabajoHitsDisponibilidad.innerHTML = '<option >Disponibilidad</option><option  selected>'+item.trabajoHits+'</option>';
+                        trabajoHitsDisponibilidad.value = item.trabajoHits;
+                        cell14.appendChild(trabajoHitsDisponibilidad);
+
+                        // cell14.textContent = item.trabajoHits;
                         cell15.textContent = item.familiaresHits;
                         cell16.textContent = item.trabajoVinculado;
                         cell17.textContent = item.pasoTrabajoVinculado;
