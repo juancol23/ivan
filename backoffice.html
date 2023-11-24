@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
+
+ 
+
+ <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-storage.js"></script>
+<!-- ... otros scripts de Firebase si es necesario -->
+
+
+
+
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+
+
+
+
+    <style type="text/css">
+        .welcome-section {
+            background-image: url('https://www.becas-santander.com/content/dam/becasmicrosites/blog/que-es-el-backoffice.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 200px 0;
+
+        }
+
+        /* Personaliza el estilo de la página */
+        .divider:after,
+        .divider:before {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #eee;
+        }
+
+        .h-custom {
+            height: calc(100% - 73px);
+        }
+
+        @media (max-width: 450px) {
+            .h-custom {
+                height: 100%;
+            }
+        }
+
+        .frameblack {
+            background-color: rgba(10, 10, 10, 0.4);
+            padding: 4em;
+        }
+
+        /* Estilos para el pie de página */
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: black;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .black {
+            background-color: black;
+        }
+
+        .custom-card {
+            width: 18rem;
+            margin: 20px;
+        }
+    </style>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+     <style>
+        /* Estilos para el loader */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto;
+            display: none;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+
+                .loader {
+                     display: none;     
+                    border: 15px solid black;
+                    border-top: 5px solid black;
+                    border-radius: 50%;
+                    width: 150px;
+                    height: 150px;
+                    animation: spin 2s linear infinite;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    z-index: 11111;
+                }
+
+                .loader.visible {
+                    display: block;
+                }
+
+
+    </style>
+
+      <div class="loader " id="loader" ></div>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="#">Talento</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#misTrabajosModal">Mis
+                                trabajos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#misTrabajosModal2">Nuevo Candidato</a>
+                        </li>
+                          
+                        <!-- <button id="exportButton">Reporte Talento</button> -->
+                        <button id="cerrar_sesion">Cerrar Sesión</button>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="welcome-section">
+        <div class="frameblack">
+
+            <div class="container">
+                <h1>Bienvenido BACKOFFICE</h1>
+                <p>Vista del superior.</p>
+            </div>
+        </div>
+
+    </section>
+
+
+    </section>
+    <section>
+        <div
+            class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 black">
+            <!-- Derechos de autor -->
+            <div class="text-white mb-12 mb-md-0 text-center">
+                Derechos de autor © 2023. Todos los derechos reservados.
+            </div>
+
+
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Modal -->
+    <div class="modal fade" id="misTrabajosModal" tabindex="-1" aria-labelledby="misTrabajosModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="misTrabajosModalLabel">Mis Trabajos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Contenido del modal -->
+                    <p>Aquí se muestra la información o contenido relacionado con tus trabajos.111</p>
+
+                    <div class="row text-center">
+                        <div class="col-sm-4 ">
+                            <div class="card">
+                                <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                                <div class="card-body">
+                                    <h5 class="card-title">Requerimiento</h5>
+                                    <p class="card-text">***</p>
+                                    <p class="card-text">Ingresa un nuevo requerimiento</p>
+                                    <p class="card-text">***</p>
+                                    <a href="#" class="btn btn-primary" href="#" data-bs-toggle="modal"
+                                        data-bs-target="#misTrabajosModal1">Nuevo requerimiento</a>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="col-sm-4 ">
+                            <div class="card">
+                               
+                                <div class="card-body">
+                                    <h5 class="card-title">REQUERIMIENTOS</h5>
+                                    <p class="card-text">***</p>
+                                    <label for="filtro">Selecciona una opción:</label>
+                                    <select id="filtro" class="form-select">
+
+                                        <option value="listarTodo">Listar Todo</option>
+                                        <!-- Aquí se cargarán dinámicamente las opciones de asignación -->
+                                    </select>
+
+                                    <div id="resultados">
+                                        <!-- Aquí se mostrarán los resultados -->
+                                    </div>
+                                    <br>
+                                    <button id="exportButton" class="btn btn-dark">Generar reportes</button> 
+                                   <div id="contenedor-botones"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-sm-4 ">
+                            <div class="card">
+                               
+                                <div class="card-body">
+                                    <h5 class="card-title">HITSS</h5>
+                                    <p class="card-text">***</p>
+                                    <p class="card-text">Ingresa un nuevo requerimiento</p>
+                                    <p class="card-text">***</p>
+                                    <a href="#" class="btn btn-primary" href="#" data-bs-toggle="modal"
+                                        data-bs-target="#misTrabajosModal1">Nuevo requerimiento</a>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!--  <div class="col-sm-4 ">
+                            <div class="card">
+                                 
+                                <div class="card-body">
+                                    <h5 class="card-title">CASTILLO DE CHANCAY</h5>
+                                    <p class="card-text">***</p>
+                                    <p class="card-text">Ingresa un nuevo requerimiento</p>
+                                    <p class="card-text">***</p>
+                                    <a href="#" class="btn btn-primary" href="#" data-bs-toggle="modal"
+                                        data-bs-target="#misTrabajosModal1">Nuevo requerimiento</a>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <!-- <button type="button" class="btn btn-primary">Guardar Cambios</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="misTrabajosModal1" tabindex="-1" aria-labelledby="misTrabajosModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="misTrabajosModalLabel">Mis Trabajos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Contenido del modal -->
+                    <p>Aquí se muestra la información o contenido relacionado con tus trabajos.22</p>
+
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="card">
+                                <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                                <div class="card-body">
+                                        <div class="mb-3">
+                                            <label for="nombre" class="form-label">Status*</label>
+                                            <select class="form-select" id="status" disabled>
+                                                <option value="creado">Creado</option>
+                                                <option value="rachazado">Rechazado</option>
+                                                <option value="completado">Completado</option>
+                                                <!-- Agrega más opciones según tus necesidades -->
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">VMO*</label>
+                                            <input type="email" class="form-control" id="VMO" placeholder="VMO*" required>
+                                        </div>
+                                     
+                                         <div class="mb-3">
+                                            <label for="email" class="form-label">Nombre del puesto*</label>
+                                            <input type="text" class="form-control" id="nombre_puesto" placeholder="Nombre del puesto*" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="solicitante" class="form-label">Solicitante</label>
+                                            <input type="text" class="form-control" id="solicitante"
+                                                placeholder="Solicitante" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">Requerimiento</label>
+                                            <input type="email" class="form-control" id="requerimiento"
+                                                placeholder="Requerimiento"- required>
+                                        </div>
+                                         <div class="mb-3">
+                                            <label for="" class="form-label">Asignación</label>
+                                       
+
+                                            <select class="form-select" id="asignacion">
+                                                <!-- <option value="lesly.huaman@runa-it.com">Analista 1</option>
+                                                <option value="abel.pineda@runa-it.com">Analista 2</option>
+                                                --> <!-- Agrega más opciones según tus necesidades -->
+                                            </select>
+
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="adjuntarArchivo" class="form-label">Adjuntar Archivo</label>
+                                            <input type="file" class="form-control" id="cv" required>
+                                          <!-- <input type="file" id="file-cv"  accept="*/*"> -->
+
+                                        </div>
+                                        <button id="btnCargar" class="btn btn-primary" onclick="crearRequerimiento()">Enviar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+        <!-- Modal -->
+    <div class="modal fade" id="misTrabajosModal2" tabindex="-1" aria-labelledby="misTrabajosModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="misTrabajosModalLabel">Nuevo candidato</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Contenido del modal -->
+                    <p>Aquí se muestra la información o contenido relacionado con tus trabajos.</p>
+
+                    <div class="row">
+                        <div class="col-sm">
+                                <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                                <div class="card-body">
+                                    
+                                       
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">VMO*</label>
+                                            <input type="email" class="form-control" id="VMO" placeholder="VMO*">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">Solicitante</label>
+                                            <input type="email" class="form-control" id="Solicitante"
+                                                placeholder="Solicitante">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="Requerimiento" class="form-label">Requerimiento</label>
+                                            <input type="Requerimiento" class="form-control" id="Requerimiento"
+                                                placeholder="Requerimiento">
+                                        </div>
+                                         <div class="mb-3">
+                                            <label for="Vinculado" class="form-label">Trabajo Vinculado</label>
+                                            <input type="Vinculado" class="form-control" id="Vinculado"
+                                                placeholder="Trabajo Vinculado">
+                                        </div>
+                                         <div class="mb-3">
+                                            <label for="paso" class="form-label">*Paso del trabajo vinculado</label>
+                                            <input type="email" class="form-control" id="paso"
+                                                placeholder="Paso del trabajo vinculado">
+                                        </div>
+                                         <div class="mb-3">
+                                            <label for="dni" class="form-label">DNI</label>
+                                            <input type="dni" class="form-control" id="dni"
+                                                placeholder="DNI">
+                                        </div>
+                                         <div class="mb-3">
+                                            <label for="Nombre" class="form-label">Nombre</label>
+                                            <input type="Nombre" class="form-control" id="Nombre"
+                                                placeholder="Nombre">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="Apellidos" class="form-label">Apellidos</label>
+                                            <input type="Apellidos" class="form-control" id="Apellidos"
+                                                placeholder="Apellidos">
+                                        </div>
+                                         <div class="mb-3">
+                                            <label for="adjuntarArchivo" class="form-label">Adjuntar Archivo</label>
+                                            <input type="file" class="form-control" id="adjuntarArchivo">
+                                        </div>
+                                        <div onclick="crearRequerimiento();">Enviar</div>
+                                    <div id="miDiv" style="display: none;">
+                                        Contenido del Div
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+ 
+
+
+
+
+    <script type="text/javascript">
+
+
+        var mostrarBoton = document.getElementById('mostrarBoton');
+        var miDiv = document.getElementById('miDiv');
+
+        // Agregar un controlador de evento clic al botón
+        mostrarBoton.addEventListener('click', function() {
+            // Cambiar el estilo de display del div para mostrarlo
+            crearRequerimiento();
+        });
+
+
+        function crearRequerimiento(){
+
+            var miSelect = document.getElementById('status');
+            var asignacion = document.getElementById('asignacion');
+            var solicitante = document.getElementById('solicitante');
+
+            
+
+
+            var vmo = document.getElementById('VMO');
+            var nombre_puesto = document.getElementById('nombre_puesto');
+
+            var email = document.getElementById('email');
+            var obtenerValorBoton = document.getElementById('obtenerValorBoton');
+
+            
+            var url = 'https://runnnnnnn.azurewebsites.net/requerimiento';
+
+
+            
+            var dataList = [];
+
+
+            console.log("dataList"+JSON.stringify(dataList))
+            // Crear un nuevo objeto JSON con los nuevos valores
+            var newData = {
+                status: miSelect.value,
+                VMO: vmo.value,
+                solicitante: solicitante.value,
+                asignacion: asignacion.value,
+                requerimiento: requerimiento.value,
+                cv: "azure.com/blob/cv.pdf",
+                nombre_puesto: nombre_puesto.value
+            };
+
+
+              dataList.push(newData);
+             console.log("PUSH"+JSON.stringify(dataList))
+            // Convertir el nuevo objeto en una cadena JSON
+            var newJsonData = JSON.stringify(dataList);
+
+            // Guardar los nuevos valores en localStorage, utilizando la misma clave ("miData" en este ejemplo)
+            localStorage.setItem("miData", newJsonData);
+
+            fetch(url, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json' // Especifica el tipo de contenido JSON.
+              },
+              body: JSON.stringify(newData) // Convierte los datos a JSON y los envía en el cuerpo de la solicitud.
+            })
+              .then(response => {
+                if (response.ok) {
+                  return response.json();
+                }
+                throw new Error('Error al guardar el requerimiento.');
+              })
+              .then(data => {
+                console.log('Requerimiento guardado correctamente:', data);
+                // Realiza las operaciones necesarias después de guardar el requerimiento.
+              })
+              .catch(error => {
+                console.error('Error:', error);
+              });
+          
+            // var storedData = localStorage.getItem("miData");
+            // var parsedData = JSON.parse(storedData);
+
+            // // Puedes acceder a los valores individuales de la siguiente manera:
+            // var status = parsedData.status;
+            // var VMO = parsedData.VMO;
+            // var solicitante = parsedData.solicitante;
+            // var requerimiento = parsedData.requerimiento;
+            // var cv = parsedData.cv;
+
+
+                const firebaseConfig = {
+                  apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
+                  authDomain: "semilleros-ccb45.firebaseapp.com",
+                  projectId: "semilleros-ccb45",
+                  storageBucket: "semilleros-ccb45.appspot.com",
+                  messagingSenderId: "543478666358",
+                  appId: "1:543478666358:web:dc0e8cff35c982faab3b57",
+                  measurementId: "G-WK87KGXSWK"
+                };
+
+                firebase.initializeApp(firebaseConfig);
+ 
+
+                const storage = firebase.storage(); // Obtén una referencia al servicio de Firebase Storage
+                const storageRef = storage.ref(); // Obtén una referencia al root del Storage
+
+                const fileInput = document.getElementById('cv');
+                const file = fileInput.files[0];
+
+                if (file) {
+                  const metadata = {
+                    contentType: file.type
+                  };
+
+                  // Genera un nombre único para el archivo, por ejemplo, usando un timestamp
+                  const timestamp = new Date().getTime();
+                  const fileName = `cv_${timestamp}_${file.name}`;
+
+                  // Sube el archivo al Firebase Storage
+                  const uploadTask = storageRef.child(fileName).put(file, metadata);
+
+                  uploadTask.on(
+                    'state_changed',
+                    (snapshot) => {
+                      // Se puede agregar una función de progreso aquí si es necesario
+                    },
+                    (error) => {
+                      console.error('Error al cargar el archivo:', error);
+                    },
+                    () => {
+                      // El archivo se ha cargado exitosamente, aquí puedes realizar acciones adicionales si es necesario
+                      console.log('Archivo cargado exitosamente.');
+                    }
+                  );
+                } else {
+                  console.log('No se ha seleccionado ningún archivo.');
+                }
+
+
+        }
+    </script>
+
+
+    <script type="text/javascript">
+          // Función para mostrar la animación de carga
+        function showLoadingAnimation() {
+            $('#loader').addClass('visible');
+        }
+
+        // Función para ocultar la animación de carga
+        function hideLoadingAnimation() {
+            $('#loader').removeClass('visible');
+        }
+
+        // Agregar un controlador de eventos al botón de carga
+        $('#btnCargar').click(function () {
+            showLoadingAnimation();
+
+            // Simula una tarea de carga, puedes reemplazar esto con tu propia lógica
+            setTimeout(function () {
+                hideLoadingAnimation();
+                 $('#misTrabajosModal1').modal('hide');
+                alert("Se cargó la data correctamente")
+            }, 2000); // Ejemplo: oculta la animación después de 3 segundos (simula la carga completa)
+        });
+
+
+        
+
+        const botonRedireccionar = document.getElementById('cerrar_sesion');
+
+        botonRedireccionar.addEventListener('click', function() {
+          // Aquí especifica la URL de la página a la que deseas redirigir
+          const nuevaPaginaURL = 'https://semilleros-ccb45.web.app/index.html';
+
+          // Redirigir a la nueva página
+          window.location.href = nuevaPaginaURL;
+        });
+
+
+        // Hacer una solicitud a la API en http://localhost:8080/user
+        fetch('https://runnnnnnn.azurewebsites.net/user')
+            .then(response => response.json())
+            .then(data => {
+                // Obtener el elemento select
+                const select = document.getElementById('asignacion');
+
+                // Iterar a través de los datos y crear opciones para el select
+                data.forEach(user => {
+                    const option = document.createElement('option');
+                    option.value = user.email;
+                    option.textContent = user.nombreUsuario;
+                    select.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error('Error al cargar los usuarios:', error);
+            });
+
+
+
+    </script>  
+
+
+<script type="text/javascript">
+    // URL del servicio
+    var url = 'https://runnnnnnn.azurewebsites.net/requerimiento';
+    // Función para cargar los requerimientos desde el servicio
+    function cargarRequerimientos() {
+        // Realizar la petición al servicio utilizando fetch
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                // Llamar a la función para crear los botones
+                crearBotones(data);
+            })
+            .catch(error => console.error('Error al obtener requerimientos:', error));
+    }
+
+    // Función para crear los botones
+    function crearBotones(requerimientos) {
+        // Obtener el contenedor de botones
+        var contenedorBotones = document.getElementById('contenedor-botones');
+
+        // Limpiar el contenedor antes de agregar nuevos botones
+        contenedorBotones.innerHTML = '';
+
+        // Iterar sobre los requerimientos y crear los botones dinámicamente
+        requerimientos.forEach(function(requerimiento) {
+            // Crear un enlace (botón) por cada requerimiento
+            var enlace = document.createElement('a');
+            enlace.href = '#';
+            enlace.className = 'btn btn-primary';
+            enlace.textContent = 'Aquí el requerimiento ' + requerimiento.id;
+
+            // Agregar un salto de línea entre los botones (opcional)
+            contenedorBotones.appendChild(enlace);
+            contenedorBotones.appendChild(document.createElement('br'));
+        });
+
+    document.addEventListener('DOMContentLoaded', cargarRequerimientos);
+
+
+</script>
+
+<script>
+    // Cuando la página se carga, obtén las asignaciones y llénalas en el select
+    document.addEventListener('DOMContentLoaded', function () {
+        cargarAsignaciones();
+    });
+
+    // Función para cargar las asignaciones en el select
+    function cargarAsignaciones() {
+        // Aquí debes realizar la llamada al servicio para obtener la lista de asignaciones
+        // y llenarlas dinámicamente en el select con id "filtro"
+        // Puedes usar fetch para realizar la llamada al servicio
+        // Ejemplo (reemplaza la URL con la correcta):
+        fetch('https://runnnnnnn.azurewebsites.net/requerimiento')
+            .then(response => response.json())
+            .then(data => {
+                // Extraer las asignaciones únicas de los datos
+                const asignacionesUnicas = [...new Set(data.map(requerimiento => requerimiento.asignacion))];
+
+                // Llenar el select con las opciones de asignaciones
+                asignacionesUnicas.forEach(asignacion => {
+                    document.getElementById('filtro').options.add(new Option(asignacion, asignacion));
+                });
+            })
+            .catch(error => {
+                console.error('Error al obtener las asignaciones:', error);
+            });
+    }
+                        
+
+    // Cuando se selecciona una opción en el select, realizar la consulta correspondiente
+    document.getElementById('filtro').addEventListener('change', function () {
+        var opcionSeleccionada = this.value;
+        localStorage.setItem('opcionSeleccionada', opcionSeleccionada);
+
+        // Aquí debes realizar la llamada al servicio con la opción seleccionada
+        // y mostrar los resultados en el div con id "resultados"
+        // Ejemplo (reemplaza la URL con la correcta):
+        fetch('https://runnnnnnn.azurewebsites.net/requerimiento')
+            .then(response => response.json())
+            .then(data => {
+                // Filtrar los requerimientos según la opción seleccionada
+                const requerimientosFiltrados = opcionSeleccionada === 'listarTodo'
+                    ? data
+                    : data.filter(requerimiento => requerimiento.asignacion === opcionSeleccionada);
+
+                // Mostrar los resultados en el div con id "resultados"
+                mostrarResultados(requerimientosFiltrados);
+            })
+            .catch(error => {
+                console.error('Error al obtener los requerimientos:', error);
+            });
+    });
+
+    // Función para mostrar los resultados en el div con id "resultados"
+    function mostrarResultados(resultados) {
+        // Limpia el contenido actual del div
+        document.getElementById('resultados').innerHTML = '';
+
+        // Recorre los resultados y muéstralos en el div
+        resultados.forEach(requerimiento => {
+            document.getElementById('resultados').innerHTML += `<br><a class="btn btn-dark" href="#">${requerimiento.requerimiento}</a> <p></p> `;
+
+ 
+        });
+    }
+</script>
+
+
+<script type="text/javascript">
+ 
+ // Cuando la página se carga, obtén los datos y agrega el evento de clic al botón de exportar
+ document.addEventListener('DOMContentLoaded', function () {
+     fetch('https://runnnnnnn.azurewebsites.net/requerimiento')
+         .then(response => response.json())
+         .then(data => {
+             document.getElementById('exportButton').addEventListener('click', () => {
+                 exportarAExcel(data);
+             });
+         })
+         .catch(error => {
+             console.error('Error al obtener datos del servicio:', error);
+         });
+
+     // Función para convertir una cadena base64 a Blob
+     function base64ToBlob(base64, mimeType) {
+         const byteCharacters = atob(base64);
+         const byteNumbers = new Array(byteCharacters.length);
+
+         for (let i = 0; i < byteCharacters.length; i++) {
+             byteNumbers[i] = byteCharacters.charCodeAt(i);
+         }
+
+         const byteArray = new Uint8Array(byteNumbers);
+         return new Blob([byteArray], { type: mimeType });
+     }
+
+     function exportarAExcel(data) {
+         var nombreUsuario = localStorage.getItem('opcionSeleccionada');
+
+         const filteredData = data.filter(item => item.asignacion === nombreUsuario);
+
+         const worksheet = XLSX.utils.json_to_sheet(filteredData);
+         const workbook = XLSX.utils.book_new();
+         XLSX.utils.book_append_sheet(workbook, worksheet, 'Datos');
+
+         // Convertir el libro a un archivo Excel en formato base64
+         const excelData = XLSX.write(workbook, { bookType: 'xlsx', type: 'base64' });
+
+         // Crear un enlace de descarga
+         const blob = base64ToBlob(excelData, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+         const url = URL.createObjectURL(blob);
+         const a = document.createElement('a');
+         a.href = url;
+         a.download = 'datos.xlsx';
+
+         // Agregar el enlace al documento y simular un clic para iniciar la descarga
+         document.body.appendChild(a);
+         a.click();
+
+         // Eliminar el enlace del documento
+         document.body.removeChild(a);
+     }
+ });
+      
+
+</script>
+
+</body>
+
+</html>
