@@ -202,19 +202,6 @@
         </nav>
     </header>
 
-   <!--  <section class="welcome-section">
-        <div class="frameblack">
-
-            <div class="container">
-                <h1 id="textoPrincipal"></h1>
-                <p>Vista del analista.</p>
-            </div>
-        </div>
-
-    </section>
- -->
-
-
 	   <table id="nuevaTabla"
 	        class="table table-bordered table-responsive-md table-striped text-center">
 	        <thead>
@@ -283,413 +270,10 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Modal -->
-    <div class="modal fade" id="misTrabajosModal" tabindex="-1" aria-labelledby="misTrabajosModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="misTrabajosModalLabel">Mis Trabajos</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Contenido del modal -->
-                    <p>Aquí se muestra la información o contenido relacionado con tus trabajos.111</p>
-
-                    <div class="row text-center">
-                        <!-- <div class="col-sm-5 ">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">Requerimiento</h5>
-                                    <p class="card-text">***</p>
-                                    <p class="card-text">Ingresa un nuevo requerimiento</p>
-                                    <p class="card-text">***</p>
-                                    <a href="#" class="btn btn-primary" href="#" data-bs-toggle="modal"
-                                        data-bs-target="#misTrabajosModal1">Nuevo requerimiento</a>
-                                </div>
-
-                            </div>
-                        </div> -->
-
-                        <div id="solicitantesLesly"></div>
-
-
-
-                    </div>
-
-
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <!-- <button type="button" class="btn btn-primary">Guardar Cambios</button> -->
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- Modal -->
-    <div class="modal fade" id="misTrabajosModal1" tabindex="-1" aria-labelledby="misTrabajosModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="misTrabajosModalLabel">Mis Trabajos</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Contenido del modal -->
-                    <p>Aquí se muestra la información o contenido relacionado con tus trabajos.22</p>
-
-                    <div class="row">
-                        <div class="col-sm">
-                            <div class="card">
-                                <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
-                                <div class="card-body">
-                                    <div class="mb-3">
-                                        <label for="email" class="form-label">Nombre</label>
-                                        <input type="text" class="form-control" id="nombre_" placeholder="nombre*"
-                                            required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="email" class="form-label">DNI</label>
-                                        <input type="email" class="form-control" id="dni_" placeholder="dni*" required>
-                                    </div>
-
-                                    <label for="" class="form-label">Paso del trabajo vinculado</label>
-
-                                    <select id="select_1" class="form-select">
-                                        <optgroup label="Categorias">
-                                            <option value="creacion_requerimiento">Creación del requerimiento</option>
-                                            <option value="candidato_identificado">Candidato identificado</option>
-                                            <option value="en_prescreening">En Prescreening</option>
-                                            <option value="no_contactado_no_contesta">✖ No contactado - No contesta
-                                            </option>
-                                            <option value="no_apto_cv_experiencia">✖ No apto CV - Experiencia</option>
-                                            <option value="no_apto_cv_auditoria">✖ No apto CV - Auditoría</option>
-                                            <option value="no_apto_cv_expectativa_salarial">✖ No apto CV - Expectativa
-                                                salarial</option>
-                                            <option value="no_apto_cv_requisito_perfil">✖ No Apto CV - Requisito del
-                                                perfil</option>
-                                            <option value="no_apto_prescreening_black_list">✖ No Apto Prescreening -
-                                                Black List</option>
-                                            <option value="no_apto_prescreening_offlimits">✖ No Apto Prescreening -
-                                                Offlimits</option>
-                                            <option value="no_apto_prescreening_expectativas_altas">✖ No Apto
-                                                Prescreening - Expectativas altas</option>
-                                            <option value="no_apto_prescreening_estudios">✖ No Apto Prescreening -
-                                                Estudios</option>
-                                            <option value="no_apto_prescreening_comunicacion_no_efectiva">✖ No Apto
-                                                Prescreening - Comunicación no efectiva</option>
-                                            <option value="desistio_proceso_prescreening">✖ Desistió del proceso en
-                                                Prescreening</option>
-                                            <option value="apto_en_prescreening">✓ Apto en prescreening</option>
-                                            <option value="en_revision_cv">En revisión de CV</option>
-                                            <option value="multitest_recomendado">✓ Multitest - Recomendado</option>
-                                            <option value="no_apto_multitest">✖ No apto en Multitest</option>
-                                            <option value="apto_en_antecedentes">✓ Apto en Antecedentes</option>
-                                            <option value="no_apto_antecedentes">✖ No apto en Antecedentes</option>
-                                            <option value="apto_todas_las_pruebas">✓ ✓ ✓ Apto en todas las pruebas
-                                            </option>
-                                            <option value="apto_presentar_cliente">✓ Apto para presentar al Cliente
-                                            </option>
-                                            <option value="no_apto_entrevista_tecnica">✖ No apto en Entrevista con
-                                                cliente - Ent. Técnica</option>
-                                            <option value="no_fit_hitss">✖ No apto en Entrevista con cliente - No fit
-                                                HITSS</option>
-                                            <option value="desistio_proceso_entrevista">✖ Desistió del proceso luego
-                                                Ent. →</option>
-                                            <option value="backup">╩ Backup</option>
-                                            <option value="seleccionado">✌️ Seleccionado</option>
-                                            <option value="carta_oferta">✓ Carta Oferta</option>
-                                            <option value="desistio_proceso_carta_oferta">✖ Desistió del proceso luego
-                                                Carta Oferta →</option>
-                                            <option value="firma_contrato">✓ Firma de contrato</option>
-                                        </optgroup>
-                                    </select>
-                                    <br>
-                                    <label for="" class="form-label">Disponibilidad</label>
-                                    <select id="select_2" class="form-select">
-                                        <option value="inmediata">Inmediata</option>
-                                        <option value="7_dias">7 días</option>
-                                        <option value="15_dias">15 días</option>
-                                        <option value="30_dias">30 días</option>
-
-                                    </select>
-                                    <br>
-
-                                    <label for="" class="form-label">Verificación de antecedentes</label>
-                                    <select id="select_3" class="form-select">
-                                        <option value="no_registra">No registra</option>
-                                        <option value="registra">Registra</option>
-
-                                    </select>
-                                    <br>
-
-                                    <label for="" class="form-label">¿Trabajó en Hitss?</label>
-                                    <select id="select_4" class="form-select">
-                                        <option value="no">No</option>
-                                        <option value="si">Sí</option>
-
-                                    </select>
-                                    <br>
-                                    <div class="form-group">
-                                        <label for="puestoHits_">Puesto Hitss</label>
-                                        <input type="text" class="form-control" id="puestoHits_" required>
-                                    </div>
-                                    <br>
-
-                                    <label for="" class="form-label">Familiares en Hitss</label>
-                                    <select id="select_5" class="form-select">
-                                        <option value="No">No</option>
-                                        <option value="si">Sí</option>
-
-                                    </select>
-                                    <br>
-
-                                    <div class="mb-3">
-                                        <label for="solicitante" class="form-label">Teléfono</label>
-                                        <input type="text" class="form-control" id="telefono_" placeholder="teléfono"
-                                            required>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="" class="form-label">correo</label>
-                                        <input type="email" class="form-control" id="correo_" placeholder="correo" -
-                                            required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="solicitante_">Solicitante</label>
-                                        <br>
-                                        <br>
-                                        <input type="text" class="form-control" id="solicitante_" required>
-                                    </div>
-                                    <br>
-                                    <br>
-
-                                    <div class="form-group">
-                                        <label for="trabajoVinculado_">Trabajo Vinculado</label>
-                                        <br>
-                                        <br>
-                                        <input type="text" class="form-control" id="trabajoVinculado_" required>
-                                    </div>
-                                    <!-- <div class="form-group">
-                <label for="pasoTrabajoVinculado_">Paso Trabajo Vinculado</label>
-             <br>
-                <br>
-
-                <input type="text" class="form-control" id="pasoTrabajoVinculado_" required>
-            </div> -->
-                                    <div class="form-group">
-                                        <label for="fuente_">Fuente</label>
-                                        <br>
-                                        <br>
-
-                                        <input type="text" class="form-control" id="fuente_" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="fechaNacimiento_">Fecha de Nacimiento</label>
-                                        <br>
-                                        <br>
-
-                                        <input type="date" class="form-control" id="fechaNacimiento_" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="todosTelefonos_">Todos los Teléfonos</label>
-                                        <br>
-                                        <br>
-
-                                        <input type="text" class="form-control" id="todosTelefonos_" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="puesto_">Puesto</label>
-                                        <br>
-                                        <br>
-
-                                        <input type="text" class="form-control" id="puesto_" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="empleador_">Empleador</label>
-                                        <br>
-                                        <br>
-                                        <input type="text" class="form-control" id="empleador_" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="institucion_">Institución</label>
-                                        <br>
-                                        <br>
-
-                                        <input type="text" class="form-control" id="institucion_" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="carreras_">Carreras</label>
-                                        <br>
-                                        <br>
-
-                                        <input type="text" class="form-control" id="carreras_" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="grados_">Grados</label>
-                                        <br>
-                                        <br>
-
-                                        <input type="text" class="form-control" id="grados_" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="salario_">Salario</label>
-                                        <br>
-                                        <br>
-
-                                        <input type="text" class="form-control" id="salario_" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="espectativa_">Expectativa</label>
-                                        <br>
-                                        <br>
-
-                                        <input type="text" class="form-control" id="espectativa_" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="beneficio_">Beneficio</label>
-                                        <br>
-                                        <br>
-
-                                        <input type="text" class="form-control" id="beneficio_" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="pregunta1_">Pregunta 1</label>
-                                        <br>
-                                        <br>
-
-                                        <input type="text" class="form-control" id="pregunta1_" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="pregunta2_">Pregunta 2</label>
-                                        <br>
-                                        <br>
-
-                                        <input type="text" class="form-control" id="pregunta2_" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="pregunta3_">Pregunta 3</label>
-                                        <br>
-                                        <br>
-
-                                        <input type="text" class="form-control" id="pregunta3_" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="pregunta4_">Pregunta 4</label>
-                                        <br>
-                                        <br>
-                                        <input type="text" class="form-control" id="pregunta4_" required>
-                                    </div>
-                                    <br>
-                                    <div class="mb-3">
-                                        <label for="adjuntarArchivo" class="form-label">Adjuntar Archivo</label>
-                                        <!--      <input type="file" class="form-control" id="file-cv" required> -->
-
-                                        <input type="file" id="file-cv" accept="*/*">
-
-                                    </div>
-
-
-                                    <button id="btnCargar" class="btn btn-primary" onclick="guardar()">Enviar</button>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-
-    <!-- Modal -->
-    <div class="modal fade" id="misTrabajosModal2" tabindex="-1" aria-labelledby="misTrabajosModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="misTrabajosModalLabel">Nuevo candidato</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Contenido del modal -->
-                    <p>Aquí se muestra la información o contenido relacionado con tus trabajos.</p>
-
-                    <div class="row">
-                        <div class="col-sm">
-                            <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
-                            <div class="card-body">
-
-
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">VMO*</label>
-                                    <input type="email" class="form-control" id="VMO" placeholder="VMO*">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="rol" class="form-label">Requerimiento</label>
-                                    <select class="form-select" id="Rol"></select>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="Requerimiento" class="form-label">Requerimiento</label>
-                                    <input type="Requerimiento" class="form-control" id="Requerimiento"
-                                        placeholder="Requerimiento">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="Vinculado" class="form-label">Trabajo Vinculado</label>
-                                    <input type="Vinculado" class="form-control" id="Vinculado"
-                                        placeholder="Trabajo Vinculado">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="paso" class="form-label">*Paso del trabajo vinculado</label>
-                                    <input type="email" class="form-control" id="paso"
-                                        placeholder="Paso del trabajo vinculado">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="dni" class="form-label">DNI</label>
-                                    <input type="dni" class="form-control" id="dni" placeholder="DNI">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="Nombre" class="form-label">Nombre</label>
-                                    <input type="Nombre" class="form-control" id="Nombre" placeholder="Nombre">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="Apellidos" class="form-label">Apellidos</label>
-                                    <input type="Apellidos" class="form-control" id="Apellidos" placeholder="Apellidos">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="adjuntarArchivo" class="form-label">Adjuntar Archivo</label>
-
-                                    <input type="file" class="form-control" id="adjuntarArchivo">
-                                </div>
-                                <div onclick="crearRequerimiento();">Enviar</div>
-                                <div id="miDiv" style="display: none;">
-                                    Contenido del Div
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-
 
     <script>
 
-showLoadingAnimation();
+        showLoadingAnimation();
 
         function convertirAListaAnidada(dataList) {
             var listaAnidada = [];
@@ -709,57 +293,7 @@ showLoadingAnimation();
         }
 
 
-        // Función para exportar datos a Excel
-        // function exportToExcel() {
-        //     // Crear una matriz de datos de ejemplo
-
-        //     // const dataa = JSON.parse(localStorage.getItem('miData')
-
-
-        //      var dataList = JSON.parse(localStorage.getItem('miData')) || [];
-        //     // console.log("YACO 1"+JSON.stringify(dataList))
-
-        //     var listaAnidada = convertirAListaAnidada(dataList);
-        //     // console.log("listaAnidada: "+listaAnidada);
-        //     // [{"id":"7022442","status":"creado","VMO":"IBK","solicitante":"YACO","asignacion":"lesly.huaman@runa-it.com","requerimiento":"PO","cv":"azure.com/blob/cv.pdf","dni":"710203123"},{"id":"8940986","status":"creado","VMO":"IBK","solicitante":"SOCRATES","asignacion":"lesly.huaman@runa-it.com","requerimiento":"PRACTICANTE","cv":"azure.com/blob/cv.pdf","nombre":"MELENDI","dni":"70192337","telefono":"987617898789","correo":"vaoi@dasd.com","estadorequerimiento":"123123"},{"id":"2135434","status":"creado","VMO":"IBK","solicitante":"MOISES","asignacion":"abel.pineda@runa-it.com","requerimiento":"PRACTICANTE NIVEL II","cv":"azure.com/blob/cv.pdf"},]
-
-        //     const data = listaAnidada;
-        //         console.log("YACO 2: "+ data)
-        //     // Perfil 1,Analista,Perfil 2,Product Owner,Perfil 3,Scrum Master,Pedro,Software Enginner
-
-        //     // Crear un objeto de libro de trabajo de Excel
-        //     const workbook = XLSX.utils.book_new();
-
-        //     // Crear una hoja de cálculo
-        //     const worksheet = XLSX.utils.aoa_to_sheet(data);
-
-        //     // Agregar la hoja de cálculo al libro de trabajo
-        //     XLSX.utils.book_append_sheet(workbook, worksheet, 'Datos');
-
-        //     // Convertir el libro de trabajo a una cadena de datos binarios
-        //     const excelData = XLSX.write(workbook, { bookType: 'xlsx', type: 'binary' });
-
-        //     // Crear un blob a partir de la cadena de datos binarios
-        //     const blob = new Blob([s2ab(excelData)], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-
-        //     // Crear un objeto de URL para el blob
-        //     const url = URL.createObjectURL(blob);
-
-        //     // Crear un enlace de descarga
-        //     const a = document.createElement('a');
-        //     a.href = url;
-        //     const timestamp = Date.now();
-        //     a.download = 'Reporte_GDH_'+timestamp+'.xlsx';
-        //     a.style.display = 'none';
-
-        //     // Agregar el enlace al cuerpo del documento y hacer clic en él
-        //     document.body.appendChild(a);
-        //     a.click();
-
-        //     // Limpiar el objeto de URL y eliminar el enlace
-        //     URL.revokeObjectURL(url);
-        //     document.body.removeChild(a);
-        // }
+     
 
         function exportarAExcel(data) {
 
@@ -846,61 +380,7 @@ showLoadingAnimation();
         });
 
 
-        function crearRequerimiento() {
-
-            var miSelect = document.getElementById('status');
-            var asignacion = document.getElementById('asignacion');
-
-
-
-
-            var vmo = document.getElementById('VMO');
-            var email = document.getElementById('email');
-            var obtenerValorBoton = document.getElementById('obtenerValorBoton');
-
-            var dataList = JSON.parse(localStorage.getItem('miData')) || [];
-            console.log("dataList" + JSON.stringify(dataList))
-            // Crear un nuevo objeto JSON con los nuevos valores
-            var newData = {
-                id: generarID();
-                status: miSelect.value,
-                VMO: vmo.value,
-                solicitante: asignacion.value,
-                requerimiento: requerimiento.value,
-                cv: "azure.com/blob/cv.pdf"
-            };
-
-
-            dataList.push(newData);
-            console.log("PUSH" + JSON.stringify(dataList))
-            // Convertir el nuevo objeto en una cadena JSON
-            var newJsonData = JSON.stringify(dataList);
-
-            // Guardar los nuevos valores en localStorage, utilizando la misma clave ("miData" en este ejemplo)
-            localStorage.setItem("miData", newJsonData);
-
-            // var storedData = localStorage.getItem("miData");
-            // var parsedData = JSON.parse(storedData);
-
-            // // Puedes acceder a los valores individuales de la siguiente manera:
-            // var status = parsedData.status;
-            // var VMO = parsedData.VMO;
-            // var solicitante = parsedData.solicitante;
-            // var requerimiento = parsedData.requerimiento;
-            // var cv = parsedData.cv;
-
-
-
-        }
-
-        function generarID() {
-            // Generar un número aleatorio de 7 dígitos
-            const min = 1000000; // 7 dígitos
-            const max = 9999999; // 7 dígitos
-            const id = Math.floor(Math.random() * (max - min + 1)) + min;
-
-            return id.toString(); // Convertir el número en una cadena de texto
-        }
+      
     </script>
 
 
@@ -939,8 +419,6 @@ showLoadingAnimation();
     </script>
 
 
-
-
     <script type="text/javascript">
         // Recuperar la lista de objetos desde localStorage
         // var dataList = JSON.parse(localStorage.getItem('miData')) || [];
@@ -974,11 +452,10 @@ showLoadingAnimation();
                 solicitantesLesly.forEach(function (data) {
 
                      if (!uniqueRequerimientos.has(data.requerimiento)) {
-        uniqueRequerimientos.add(data.requerimiento);
-        solicitantesHTML += "<div class='col-sm-5'><div class='card'><div class='card-body'><h5 class='card-text'><div class='card-body'><div class='card'>" + data.requerimiento + "</h5> <button id='miBoton' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#misTrabajosModal1' data-valor= " + data.id + " onClick='obtenerValor(" + data.id + ")' >Completar </button>   <button id='miBoton2' class='btn btn-dark' data-bs-toggle='modal' data-bs-target='#misTrabajosModal6' data-valor= " + data.id + "   >Editar </button> </div></div></div></div></div></div>";
-    }
-                    // solicitantesHTML += " <div class='col-sm-5'><div class='card'><div class='card-body'><h5 class='card-text'><div class='card-body'><div class='card'>" + data.requerimiento + "</h5> <button id='miBoton' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#misTrabajosModal1' data-valor= " + data.id + " onClick='obtenerValor(" + data.id + ")' >Completar </button>   <button id='miBoton2' class='btn btn-dark' data-bs-toggle='modal' data-bs-target='#misTrabajosModal6' data-valor= " + data.id + " onClick='editarValor(" + data.id + ")' >Editar </button> </div></div></div></div></div></div>";
-
+                    uniqueRequerimientos.add(data.requerimiento);
+                    solicitantesHTML += "<div class='col-sm-5'><div class='card'><div class='card-body'><h5 class='card-text'><div class='card-body'><div class='card'>" + data.requerimiento + "</h5> <button id='miBoton' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#misTrabajosModal1' data-valor= " + data.id + " onClick='obtenerValor(" + data.id + ")' >Completar </button>   <button id='miBoton2' class='btn btn-dark' data-bs-toggle='modal' data-bs-target='#misTrabajosModal6' data-valor= " + data.id + "   >Editar </button> </div></div></div></div></div></div>";
+                }
+                  
                 });
 
 
@@ -1047,37 +524,6 @@ showLoadingAnimation();
                     var correo_ = document.getElementById('correo_');
                     var asignacion_ = document.getElementById('asignacion_');
                  solicitante_.value = data.solicitante;
-                    // trabajoVinculado_.value = data.requerimiento;
-                    /* NO COMPLETAR
-                     trabajoVinculado_.value = data.requerimiento;
-                    
-                     trabajoVinculado_.value = data.trabajoVinculado;
-                     // pasoTrabajoVinculado_.value = data.pasoTrabajoVinculado;
-                     fuente_.value = data.fuente;
-                     fechaNacimiento_.value = data.fechaNacimiento;
-                     todosTelefonos_.value = data.todosTelefonos;
-                     puesto_.value = data.puesto;
-                     empleador_.value = data.empleador;
-                     institucion_.value = data.institucion;
-                     carreras_.value = data.carreras;
-                     grados_.value = data.grados;
-                     salario_.value = data.salario;
-                     espectativa_.value = data.espectativa;
-                     beneficio_.value = data.beneficio;
-                     puestoHits_.value = data.puestoHits;
-                     pregunta1_.value = data.pregunta1;
-                     pregunta2_.value = data.pregunta2;
-                     pregunta3_.value = data.pregunta3;
-                     pregunta4_.value = data.pregunta4;
- 
-                     nombre_.value = data.nombre;
-                     solicitante_.value = data.solicitante;
-                     dni_.value = data.dni;
-                     telefono_.value = data.telefono;
-                     correo_.value = data.correo;
- 
-                     NO COMPLETAR */
-                    // asignacion_.value = data.asignacion;
 
                     console.log("data.nombre" + data.nombre)
                     console.log("data.dni" + data.dni)
@@ -1092,49 +538,187 @@ showLoadingAnimation();
         }
         var temporal = localStorage.getItem("id");
        	editarValor(temporal);
-        function editarValor(parametro) {
-        	console.log("parametro")
-            var miBoton2 = document.getElementById('miBoton2');
-            // Obtener el valor personalizado del botón
-            localStorage.setItem("id", parametro);
+
+        // function editarValor(parametro) {
+        // 	console.log("parametro")
+        //     var miBoton2 = document.getElementById('miBoton2');
+        //     // Obtener el valor personalizado del botón
+        //     localStorage.setItem("id", parametro);
 
 
-            fetch(`https://runnnnnnn.azurewebsites.net/requerimiento`)
-                .then(response => {
-                    if (response.ok) {
-                        return response.json();
-                    }
-                    throw new Error('Error al obtener la lista de requerimientos.');
-                })
-                .then(data => {
-                    // En lugar de utilizar los datos del 'localStorage', utilizamos los datos recibidos.
-                    var dataList = data;
+        //     fetch(`https://runnnnnnn.azurewebsites.net/requerimiento`)
+        //         .then(response => {
+        //             if (response.ok) {
+        //                 return response.json();
+        //             }
+        //             throw new Error('Error al obtener la lista de requerimientos.');
+        //         })
+        //         .then(data => {
+        //             // En lugar de utilizar los datos del 'localStorage', utilizamos los datos recibidos.
+        //             var dataList = data;
 
-                    // 1. Definir una lista para almacenar los cambios
-                    const cambiosPendientes = [];
+        //             // 1. Definir una lista para almacenar los cambios
+        //             const cambiosPendientes = [];
 
 
-                    if (Array.isArray(data)) {
-                        data.forEach(item => {
-                            // const nuevaTabla = document.getElementById('nuevaTabla').querySelector('tbody');
-                            const nombreUsuario = localStorage.getItem('nombreUsuario');
+        //             if (Array.isArray(data)) {
+        //                 data.forEach(item => {
+        //                     // const nuevaTabla = document.getElementById('nuevaTabla').querySelector('tbody');
+        //                     const nombreUsuario = localStorage.getItem('nombreUsuario');
 
-                            const nuevaTabla = document.getElementById('nuevaTabla').querySelector('tbody');
-                            nuevaTabla.innerHTML = '';
-                            // Agregar un controlador de eventos a las celdas para habilitar la edición al hacer doble clic
-                            nuevaTabla.addEventListener('dblclick', function (event) {
+        //                     const nuevaTabla = document.getElementById('nuevaTabla').querySelector('tbody');
+        //                     nuevaTabla.innerHTML = '';
+        //                     // Agregar un controlador de eventos a las celdas para habilitar la edición al hacer doble clic
+        //                     nuevaTabla.addEventListener('dblclick', function (event) {
+        //                         const target = event.target;
+
+        //                         if (target.tagName === 'TD') {
+        //                             target.setAttribute('contenteditable', 'true');
+        //                         }
+        //                     });
+
+        //                     const cambiosPendientes = [];
+
+
+
+        //                     // También puedes agregar un controlador de eventos para deshabilitar la edición al hacer clic fuera de la celda
+        //                     document.addEventListener('click', function (event) {
+        //                         const target = event.target;
+
+        //                         if (target.tagName !== 'TD') {
+        //                             const editableCells = nuevaTabla.querySelectorAll('td[contenteditable="true"]');
+        //                             editableCells.forEach(cell => cell.setAttribute('contenteditable', 'false'));
+        //                         }
+        //                     });
+
+        //                     data.forEach(item => {
+        //                         if (item.asignacion === nombreUsuario) {
+        //                             const row = nuevaTabla.insertRow();
+        //                             const cell1 = row.insertCell(0);
+        //                             const cell2 = row.insertCell(1);
+        //                             const cell3 = row.insertCell(2);
+        //                             const cell4 = row.insertCell(3);
+        //                             const cell5 = row.insertCell(4);
+
+        //                             const cell6 = row.insertCell(5);
+        //                             const cell7 = row.insertCell(6);
+        //                             const cell8 = row.insertCell(7);
+        //                             const cell9 = row.insertCell(8);
+
+        //                             const cell10 = row.insertCell(9);
+        //                             const cell11 = row.insertCell(10);
+        //                             const cell12 = row.insertCell(11);
+        //                             const cell13 = row.insertCell(12);
+        //                             const cell14 = row.insertCell(13);
+        //                             const cell15 = row.insertCell(14);
+        //                             const cell16 = row.insertCell(15);
+        //                             const cell17 = row.insertCell(16);
+
+        //                             const cell18 = row.insertCell(17);
+        //                             const cell19 = row.insertCell(18);
+        //                             const cell20 = row.insertCell(19);
+        //                             const cell21 = row.insertCell(20);
+        //                             const cell22 = row.insertCell(21);
+        //                             const cell23 = row.insertCell(22);
+        //                             const cell24 = row.insertCell(23);
+        //                             const cell25 = row.insertCell(24);
+        //                             const cell26 = row.insertCell(25);
+        //                             const cell27 = row.insertCell(26);
+        //                             const cell28 = row.insertCell(27);
+        //                             const cell29 = row.insertCell(28);
+        //                             const cell30 = row.insertCell(29);
+        //                             const cell31 = row.insertCell(30);
+        //                             const cell32 = row.insertCell(31);
+
+
+        //                             cell1.textContent = item.solicitante;
+        //                             cell2.textContent = item.asignacion;
+        //                             cell3.textContent = item.requerimiento;
+        //                             cell4.textContent = item.vmo;
+        //                             cell5.textContent = item.id;
+
+        //                             cell6.textContent = item.telefono;
+        //                             cell7.textContent = item.dni;
+        //                             cell8.textContent = item.nombre;
+        //                             cell9.textContent = item.fuente;
+
+        //                             cell10.textContent = item.correo;
+        //                             cell11.textContent = item.trabajo;
+        //                             cell12.textContent = item.disponibilidad;
+        //                             cell13.textContent = item.antecedentes;
+        //                             cell14.textContent = item.trabajoHits;
+        //                             cell15.textContent = item.familiaresHits;
+        //                             cell16.textContent = item.trabajoVinculado;
+        //                             cell17.textContent = item.pasoTrabajoVinculado;
+
+        //                             cell18.textContent = item.fechaNacimiento;
+        //                             cell19.textContent = item.todosTelefonos;
+        //                             cell20.textContent = item.puesto;
+        //                             cell21.textContent = item.empleador_;
+        //                             cell22.textContent = item.institucion_;
+        //                             cell23.textContent = item.carreras;
+        //                             cell24.textContent = item.grados;
+        //                             cell25.textContent = item.salario;
+        //                             cell26.textContent = item.espectativa;
+        //                             cell27.textContent = item.beneficio;
+        //                             cell28.textContent = item.puestoHits;
+        //                             cell29.textContent = item.pregunta1;
+        //                             cell30.textContent = item.pregunta2;
+        //                             cell31.textContent = item.pregunta3;
+        //                             cell32.textContent = item.pregunta4;
+
+        //                         }
+        //                     });
+        //                 });
+        //             } else {
+        //                 console.error('Los datos recibidos no son una matriz.');
+        //             }
+
+
+
+        //         })
+        //         .catch(error => {
+        //             console.error('Error:', error);
+        //         });
+
+
+        // }
+
+
+
+function editarValor(parametro) {
+    console.log("parametro");
+    var miBoton2 = document.getElementById('miBoton2');
+    // Obtener el valor personalizado del botón
+    localStorage.setItem("id", parametro);
+
+    fetch(`https://runnnnnnn.azurewebsites.net/requerimiento`)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error('Error al obtener la lista de requerimientos.');
+        })
+        .then(data => {
+            // En lugar de utilizar los datos del 'localStorage', utilizamos los datos recibidos.
+            var dataList = data;
+                   const cambiosPendientes = [];
+
+            if (Array.isArray(data)) {
+                const nombreUsuario = localStorage.getItem('nombreUsuario');
+                const nuevaTabla = document.getElementById('nuevaTabla').querySelector('tbody');
+                nuevaTabla.innerHTML = '';
+
+                   nuevaTabla.addEventListener('dblclick', function (event) {
                                 const target = event.target;
 
                                 if (target.tagName === 'TD') {
                                     target.setAttribute('contenteditable', 'true');
                                 }
                             });
+   const cambiosPendientes = [];
 
-                            const cambiosPendientes = [];
-
-
-
-                            // También puedes agregar un controlador de eventos para deshabilitar la edición al hacer clic fuera de la celda
+          // También puedes agregar un controlador de eventos para deshabilitar la edición al hacer clic fuera de la celda
                             document.addEventListener('click', function (event) {
                                 const target = event.target;
 
@@ -1143,118 +727,97 @@ showLoadingAnimation();
                                     editableCells.forEach(cell => cell.setAttribute('contenteditable', 'false'));
                                 }
                             });
+                            
 
-                            data.forEach(item => {
-                                if (item.asignacion === nombreUsuario) {
-                                    const row = nuevaTabla.insertRow();
-                                    const cell1 = row.insertCell(0);
-                                    const cell2 = row.insertCell(1);
-                                    const cell3 = row.insertCell(2);
-                                    const cell4 = row.insertCell(3);
-                                    const cell5 = row.insertCell(4);
+                data.forEach(item => {
+                    if (item.asignacion === nombreUsuario) {
+                        const row = nuevaTabla.insertRow();
+                        const cell1 = row.insertCell(0);
+                        const cell2 = row.insertCell(1);
+                        const cell3 = row.insertCell(2);
+                        const cell4 = row.insertCell(3);
+                        const cell5 = row.insertCell(4);
 
-                                    const cell6 = row.insertCell(5);
-                                    const cell7 = row.insertCell(6);
-                                    const cell8 = row.insertCell(7);
-                                    const cell9 = row.insertCell(8);
+                        const cell6 = row.insertCell(5);
+                        const cell7 = row.insertCell(6);
+                        const cell8 = row.insertCell(7);
+                        const cell9 = row.insertCell(8);
 
-                                    const cell10 = row.insertCell(9);
-                                    const cell11 = row.insertCell(10);
-                                    const cell12 = row.insertCell(11);
-                                    const cell13 = row.insertCell(12);
-                                    const cell14 = row.insertCell(13);
-                                    const cell15 = row.insertCell(14);
-                                    const cell16 = row.insertCell(15);
-                                    const cell17 = row.insertCell(16);
+                        const cell10 = row.insertCell(9);
+                        const cell11 = row.insertCell(10);
+                        const cell12 = row.insertCell(11);
+                        const cell13 = row.insertCell(12);
+                        const cell14 = row.insertCell(13);
+                        const cell15 = row.insertCell(14);
+                        const cell16 = row.insertCell(15);
+                        const cell17 = row.insertCell(16);
 
-                                    const cell18 = row.insertCell(17);
-                                    const cell19 = row.insertCell(18);
-                                    const cell20 = row.insertCell(19);
-                                    const cell21 = row.insertCell(20);
-                                    const cell22 = row.insertCell(21);
-                                    const cell23 = row.insertCell(22);
-                                    const cell24 = row.insertCell(23);
-                                    const cell25 = row.insertCell(24);
-                                    const cell26 = row.insertCell(25);
-                                    const cell27 = row.insertCell(26);
-                                    const cell28 = row.insertCell(27);
-                                    const cell29 = row.insertCell(28);
-                                    const cell30 = row.insertCell(29);
-                                    const cell31 = row.insertCell(30);
-                                    const cell32 = row.insertCell(31);
+                        const cell18 = row.insertCell(17);
+                        const cell19 = row.insertCell(18);
+                        const cell20 = row.insertCell(19);
+                        const cell21 = row.insertCell(20);
+                        const cell22 = row.insertCell(21);
+                        const cell23 = row.insertCell(22);
+                        const cell24 = row.insertCell(23);
+                        const cell25 = row.insertCell(24);
+                        const cell26 = row.insertCell(25);
+                        const cell27 = row.insertCell(26);
+                        const cell28 = row.insertCell(27);
+                        const cell29 = row.insertCell(28);
+                        const cell30 = row.insertCell(29);
+                        const cell31 = row.insertCell(30);
+                        const cell32 = row.insertCell(31);
 
+                        cell1.textContent = item.solicitante;
+                        cell2.textContent = item.asignacion;
+                        cell3.textContent = item.requerimiento;
+                        cell4.textContent = item.vmo;
+                        cell5.textContent = item.id;
 
-                                    cell1.textContent = item.solicitante;
-                                    cell2.textContent = item.asignacion;
-                                    cell3.textContent = item.requerimiento;
-                                    cell4.textContent = item.vmo;
-                                    cell5.textContent = item.id;
+                        cell6.textContent = item.telefono;
+                        cell7.textContent = item.dni;
+                        cell8.textContent = item.nombre;
+                        cell9.textContent = item.fuente;
 
-                                    cell6.textContent = item.telefono;
-                                    cell7.textContent = item.dni;
-                                    cell8.textContent = item.nombre;
-                                    cell9.textContent = item.fuente;
+                        cell10.textContent = item.correo;
+                        // Cambiar el campo "trabajo" a un select
+                        const selectTrabajo = document.createElement('select');
+                        selectTrabajo.innerHTML = '<option value="opcion1">Opción 1</option><option value="opcion2">Opción 2</option>';
+                        selectTrabajo.value = item.trabajo;
+                        cell11.appendChild(selectTrabajo);
 
-                                    cell10.textContent = item.correo;
-                                    cell11.textContent = item.trabajo;
-                                    cell12.textContent = item.disponibilidad;
-                                    cell13.textContent = item.antecedentes;
-                                    cell14.textContent = item.trabajoHits;
-                                    cell15.textContent = item.familiaresHits;
-                                    cell16.textContent = item.trabajoVinculado;
-                                    cell17.textContent = item.pasoTrabajoVinculado;
+                        cell12.textContent = item.disponibilidad;
+                        cell13.textContent = item.antecedentes;
+                        cell14.textContent = item.trabajoHits;
+                        cell15.textContent = item.familiaresHits;
+                        cell16.textContent = item.trabajoVinculado;
+                        cell17.textContent = item.pasoTrabajoVinculado;
 
-                                    cell18.textContent = item.fechaNacimiento;
-                                    cell19.textContent = item.todosTelefonos;
-                                    cell20.textContent = item.puesto;
-                                    cell21.textContent = item.empleador_;
-                                    cell22.textContent = item.institucion_;
-                                    cell23.textContent = item.carreras;
-                                    cell24.textContent = item.grados;
-                                    cell25.textContent = item.salario;
-                                    cell26.textContent = item.espectativa;
-                                    cell27.textContent = item.beneficio;
-                                    cell28.textContent = item.puestoHits;
-                                    cell29.textContent = item.pregunta1;
-                                    cell30.textContent = item.pregunta2;
-                                    cell31.textContent = item.pregunta3;
-                                    cell32.textContent = item.pregunta4;
-
-
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-
-
-                                }
-                            });
-                        });
-                    } else {
-                        console.error('Los datos recibidos no son una matriz.');
+                        cell18.textContent = item.fechaNacimiento;
+                        cell19.textContent = item.todosTelefonos;
+                        cell20.textContent = item.puesto;
+                        cell21.textContent = item.empleador_;
+                        cell22.textContent = item.institucion_;
+                        cell23.textContent = item.carreras;
+                        cell24.textContent = item.grados;
+                        cell25.textContent = item.salario;
+                        cell26.textContent = item.espectativa;
+                        cell27.textContent = item.beneficio;
+                        cell28.textContent = item.puestoHits;
+                        cell29.textContent = item.pregunta1;
+                        cell30.textContent = item.pregunta2;
+                        cell31.textContent = item.pregunta3;
+                        cell32.textContent = item.pregunta4;
                     }
-
-
-
-                })
-                .catch(error => {
-                    console.error('Error:', error);
                 });
-
-
-        }
+            } else {
+                console.error('Los datos recibidos no son una matriz.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
 
 
 
@@ -1298,13 +861,6 @@ showLoadingAnimation();
 
             var dataList = JSON.parse(localStorage.getItem('miData')) || [];
 
-
-            // var objeto = dataList.find(function (item) {
-            //     console.log(" item.id" + item.id)
-            //     console.log(" item.id" + idddd)
-            //     return item.id === idddd;
-
-            // });
 
               var nombreUsuario = localStorage.getItem('nombreUsuario');
 
@@ -1543,109 +1099,6 @@ showLoadingAnimation();
 
     </script>
 
-<!-- <style type="text/css">
-    #nuevaTablaContainer tbody{
-  color:#00467f;
-  font-weight:500;
-  position:absolute;
-  overflow-y: auto;
-  overflow-x: scroll;
-  height:300px;
-  width:1001px;
-}
-   thead{
-  color:#00467f;
-  font-weight:500;
-  position:absolute;
-  overflow-y: auto;
-  overflow-x: scroll;
-  height:300px;
-  width:1001px;
-}
-
-
-</style> -->
-
- 
- 
-
-
-    <!-- <script type="text/javascript">
-    const $tableID = $('#table'); const $BTN = $('#export-btn'); const $EXPORT = $('#export');
-  const newTr = `
-  <tr class="hide">
-    <td class="pt-3-half" contenteditable="true">Example</td>
-    <td class="pt-3-half" contenteditable="true">Example</td>
-    <td class="pt-3-half" contenteditable="true">Example</td>
-    <td class="pt-3-half" contenteditable="true">Example</td>
-    <td class="pt-3-half" contenteditable="true">Example</td>
-    <td class="pt-3-half">
-      <span class="table-up"
-        ><a href="#!" class="indigo-text"
-          ><i class="fas fa-long-arrow-alt-up" aria-hidden="true"></i></a
-      ></span>
-      <span class="table-down"
-        ><a href="#!" class="indigo-text"
-          ><i class="fas fa-long-arrow-alt-down" aria-hidden="true"></i></a
-      ></span>
-    </td>
-    <td>
-      <span class="table-remove"
-        ><button
-          type="button"
-          class="btn btn-danger btn-rounded btn-sm my-0 waves-effect waves-light"
-        >
-          Remove
-        </button></span
-      >
-    </td>
-  </tr>
-  `;
-  $('.table-add').on('click', 'i', () => {
-    const $clone = $tableID.find('tbody tr ').last().clone(true).removeClass(' hide table - line '); if ($tableID.find('tbody tr ').length === 0) {
-        $('tbody').append(newTr);
-    }
-    $tableID.find('table').append($clone);
-        });
-        $tableID.on('click', '.table-remove', function() {
-            $(this).parents('tr').detach();
-        });
-        $tableID.on('click', '.table-up', function() {
-            const $row = $(this).parents('tr');
-            if ($row.index() === 0) {
-                return;
-            }
-            $row.prev().before($row.get(0));
-        });
-        $tableID.on('click',
-            '.table-down',
-            function() {
-                const $row = $(this).parents('tr');
-                $row.next().after($row.get(0));
-            }); // A few jQuery helpers for exporting only jQuery.fn.pop
-        = [].pop;
-        jQuery.fn.shift = [].shift;
-        $BTN.on('click', () => {
-            const $rows =
-                $tableID.find('tr:not(:hidden)');
-            const headers = [];
-            const data = []; // Get the headers
-            (add special header logic here) $($rows.shift()).find('th:not(:empty)').each(function() {
-                headers.push($(this).text().toLowerCase());
-            }); // Turn all existing rows into a loopable
-            array $rows.each(function() {
-                const $td = $(this).find('td');
-                const h = {}; // Use the
-                headers from earlier to name our hash keys headers.forEach((header, i) => {
-                    h[header] =
-                        $td.eq(i).text();
-                });
-                data.push(h);
-            }); // Output the result
-            $EXPORT.text(JSON.stringify(data));
-        });
-</script> -->
-
 
 
     <script>
@@ -1698,8 +1151,6 @@ showLoadingAnimation();
                     console.error('Error:', error);
                 });
 
-            // Si deseas establecerlo en "po" en su lugar, puedes usar:
-            // select.val("po");
 
         }
     </script>
@@ -1750,11 +1201,6 @@ showLoadingAnimation();
                     pregunta2: cells[29].textContent,
                     pregunta3: cells[30].textContent,
                     pregunta4: cells[31].textContent,
- 
-   
-
-
-                
                 };
                 datos.push(objeto);
             });
