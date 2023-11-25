@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.1/xlsx.full.min.js"></script>
+
+
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
+
+    <style>
+        /* Estilos para el loader */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        .loader {
+            display: none;
+            border: 15px solid black;
+            border-top: 5px solid black;
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            animation: spin 2s linear infinite;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 11111;
+        }
+
+        .loader.visible {
+            display: block;
+        }
+    </style>
+
+    <style type="text/css">
+        #tablaContenedor {
+            width: 5000px !important;
+            /* Asegura que el contenedor ocupe todo el ancho disponible */
+            overflow-x: auto !important;
+            /* Habilita la barra de desplazamiento horizontal cuando sea necesario */
+        }
+
+        #nuevaTabla {
+            /* Aquí puedes definir estilos para tu tabla si lo deseas */
+        }
+    </style>
+
+
+
+    <style type="text/css">
+        .pt-3-half {
+            padding-top: 1.4rem;
+        }
+
+
+        .welcome-section {
+            background-image: url('https://img.freepik.com/free-photo/portrait-smiling-man-sitting-cafe-bar-with-his-laptop-computer_342744-944.jpg?w=1060&t=st=1694226598~exp=1694227198~hmac=1d48fe8fe124568bfdd5c8adc049e1800ecf3af62e463931c39644d580dbd1c6');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 200px 0;
+
+        }
+
+        /* Personaliza el estilo de la página */
+        .divider:after,
+        .divider:before {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #eee;
+        }
+
+        .h-custom {
+            height: calc(100% - 73px);
+        }
+
+        @media (max-width: 450px) {
+            .h-custom {
+                height: 100%;
+            }
+        }
+
+        .frameblack {
+            background-color: rgba(10, 10, 10, 0.4);
+            padding: 4em;
+        }
+
+        /* Estilos para el pie de página */
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: black;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .black {
+            background-color: black;
+        }
+
+        .custom-card {
+            width: 18rem;
+            margin: 20px;
+        }
+    </style>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <style>
+        /* Estilos para el loader */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        .loader {
+            display: none;
+            border: 15px solid black;
+            border-top: 5px solid black;
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            animation: spin 2s linear infinite;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 11111;
+        }
+
+        .loader.visible {
+            display: block;
+        }
+    </style>
+
+    <div class="loader " id="loader"></div>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="#">Talento</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <button id="exportButton">Reporte Talento</button>
+                        <button id="cerrar_sesion">Regresar</button>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <table id="nuevaTabla" class="table table-bordered table-responsive-md table-striped text-center">
+        <thead  class="thead-dark">
+            <tr>
+                <th class="text-center">solicitante</th>
+                <th class="text-center">asignacion</th>
+                <th class="text-center">requerimiento</th>
+                <th class="text-center">VMO</th>
+                <th class="text-center">ID</th>
+
+                <th class="text-center">telefono</th>
+                <th class="text-center">dni</th>
+                <th class="text-center">nombre</th>
+                <th class="text-center">fuente</th>
+
+                <th class="text-center">correo</th>
+                <th class="text-center">trabajo</th>
+                <th class="text-center">disponibilidad</th>
+                <th class="text-center">antecedentes</th>
+                <th class="text-center">trabajoHits</th>
+                <th class="text-center">familiaresHits</th>
+                <th class="text-center">trabajoVinculado</th>
+                <th class="text-center">pasoTrabajoVinculado</th>
+
+
+                <th class="text-center">fechaNacimiento</th>
+                <th class="text-center">todosTelefonos</th>
+                <th class="text-center">puesto</th>
+                <th class="text-center">empleador_</th>
+                <th class="text-center">institucion_</th>
+                <th class="text-center">carreras</th>
+                <th class="text-center">grados</th>
+                <th class="text-center">salario</th>
+                <th class="text-center">espectativa</th>
+                <th class="text-center">beneficio</th>
+                <th class="text-center">puestoHits</th>
+                <th class="text-center">pregunta1</th>
+                <th class="text-center">pregunta2</th>
+                <th class="text-center">pregunta3</th>
+                <th class="text-center">pregunta4</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Aquí se agregarán las filas automaticamente por el js  -->
+        </tbody>
+    </table>
+    </div>
+
+ 
+    </section>
+    <section>
+        <div
+            class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 black">
+            <!-- Derechos de autor -->
+            <div class="text-white mb-12 mb-md-0 text-center">
+                Derechos de autor © 2023. Todos los derechos reservados.
+            </div>
+
+
+        </div>
+    </section>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <form>
+          <div class="form-group " >
+            <label for="" class="col-form-label"><b>Adjunto 1:</b></label>
+            <input type="file" class="form-control" id="recipient-name">
+            <a href="" targe="_blank" id="adjunto1_">Click para visualizar</a>
+          </div>
+           <div class="form-group">
+            <label for="" class="col-form-label"><b>Adjunto 2:</b></label>
+            <input type="file" class="form-control" id="recipient-name">
+            <a href="" targe="_blank" id="adjunto2_">Click para visualizar</a>
+
+          </div>
+           <div class="form-group">
+            <label for="" class="col-form-label"><b>Adjunto 3:</b></label>
+            <input type="file" class="form-control" id="recipient-name">
+            <a href="" targe="_blank" id="adjunto3_">Click para visualizar</a>
+
+          </div>
+           <div class="form-group">
+            <label for="" class="col-form-label"><b>Adjunto 4:</b></label>
+            <input type="file" class="form-control" id="recipient-name">
+            <a href="" targe="_blank" id="adjunto4_">Click para visualizar</a>
+
+          </div>
+       <!--    <div class="form-group ">
+            <label for="message-text" class="col-form-label"><b>Detalle adicional:</b></label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div> -->
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <script>
+
+        showLoadingAnimation();
+
+        function convertirAListaAnidada(dataList) {
+            var listaAnidada = [];
+            var nombreUsuario = localStorage.getItem('nombreUsuario');
+
+            dataList.forEach(function (item) {
+                var arreglo = Object.values(item);
+                if (item.asignacion == nombreUsuario) {
+                    listaAnidada.push(arreglo);
+
+                    console.log("filtrado" + arreglo)
+
+                }
+            });
+
+            return listaAnidada;
+        }
+
+
+
+
+        function exportarAExcel(data) {
+
+            var nombreUsuario = localStorage.getItem('nombreUsuario');
+
+            const filteredData = data.filter(item => item.asignacion === nombreUsuario);
+
+            const worksheet = XLSX.utils.json_to_sheet(filteredData);
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, 'Datos');
+
+            // Convertir el libro a un archivo Excel en formato base64
+            const excelData = XLSX.write(workbook, { bookType: 'xlsx', type: 'base64' });
+
+            // Crear un enlace de descarga
+            const blob = base64ToBlob(excelData, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'datos.xlsx';
+
+            // Agregar el enlace al documento y simular un clic para iniciar la descarga
+            document.body.appendChild(a);
+            a.click();
+
+            // Eliminar el enlace del documento
+            document.body.removeChild(a);
+        }
+
+        // Función para convertir una cadena base64 a Blob
+        function base64ToBlob(base64, mimeType) {
+            const byteCharacters = atob(base64);
+            const byteNumbers = new Array(byteCharacters.length);
+
+            for (let i = 0; i < byteCharacters.length; i++) {
+                byteNumbers[i] = byteCharacters.charCodeAt(i);
+            }
+
+            const byteArray = new Uint8Array(byteNumbers);
+            return new Blob([byteArray], { type: mimeType });
+        }
+
+        function exportToExcel() {
+            fetch('https://runnnnnnn.azurewebsites.net/requerimiento')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('exportButton').addEventListener('click', () => {
+                        exportarAExcel(data);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error al obtener datos del servicio:', error);
+                });
+        }
+        exportToExcel();
+
+
+        // Función para convertir una cadena en una matriz de bytes
+        function s2ab(s) {
+            const buf = new ArrayBuffer(s.length);
+            const view = new Uint8Array(buf);
+            for (let i = 0; i < s.length; i++) {
+                view[i] = s.charCodeAt(i) & 0xFF;
+            }
+            return buf;
+        }
+
+        // Agregar un controlador de eventos al botón de exportación
+        $('#exportButton').click(exportToExcel);
+    </script>
+
+
+
+    <script type="text/javascript">
+
+
+        var mostrarBoton = document.getElementById('mostrarBoton');
+        var miDiv = document.getElementById('miDiv');
+
+        // Agregar un controlador de evento clic al botón
+        mostrarBoton.addEventListener('click', function () {
+            // Cambiar el estilo de display del div para mostrarlo
+            crearRequerimiento();
+        });
+
+
+
+    </script>
+
+
+    <script type="text/javascript">
+        // Función para mostrar la animación de carga
+        function showLoadingAnimation() {
+            $('#loader').addClass('visible');
+        }
+
+        // Función para ocultar la animación de carga
+        function hideLoadingAnimation() {
+            $('#loader').removeClass('visible');
+        }
+
+        // Agregar un controlador de eventos al botón de carga
+        $('#btnCargar').click(function () {
+            showLoadingAnimation();
+
+            Simula una tarea de carga, puedes reemplazar esto con tu propia lógica
+            setTimeout(function () {
+                hideLoadingAnimation();
+                $('#misTrabajosModal1').modal('hide');
+                // alert("Se cargó la data correctamente")
+            }, 2000); // Ejemplo: oculta la animación después de 3 segundos (simula la carga completa)
+        });
+    </script>
+
+    <script type="text/javascript">
+        var miH1 = document.getElementById('textoPrincipal');
+
+        var nombreUsuario = localStorage.getItem('nombreUsuario');
+        var splitNombre = nombreUsuario.split('.');
+
+        miH1.textContent = 'Bienvenid@: ' + splitNombre[0];
+
+    </script>
+
+
+    <script type="text/javascript">
+        // Recuperar la lista de objetos desde localStorage
+        // var dataList = JSON.parse(localStorage.getItem('miData')) || [];
+        var dataList = [];
+
+        var url = 'https://runnnnnnn.azurewebsites.net/requerimiento';
+
+
+        fetch(url)
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('Error al obtener la lista de requerimientos.');
+            })
+            .then(data => {
+                // En lugar de utilizar los datos del 'localStorage', utilizamos los datos recibidos.
+                var dataList = data;
+
+                var nombreUsuario = localStorage.getItem('nombreUsuario');
+
+                // Filtrar los objetos con "Analista_Lesly" como solicitante
+                var solicitantesLesly = dataList.filter(function (data) {
+                    return data.asignacion === nombreUsuario;
+                });
+
+
+                // Crear una lista de solicitantes en formato HTML
+                var solicitantesHTML = "";
+                var uniqueRequerimientos = new Set();
+                solicitantesLesly.forEach(function (data) {
+
+                    if (!uniqueRequerimientos.has(data.requerimiento)) {
+                        uniqueRequerimientos.add(data.requerimiento);
+                        solicitantesHTML += "<div class='col-sm-5'><div class='card'><div class='card-body'><h5 class='card-text'><div class='card-body'><div class='card'>" + data.requerimiento + "</h5> <button id='miBoton' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#misTrabajosModal1' data-valor= " + data.id + " onClick='obtenerValor(" + data.id + ")' >Completar </button>   <button id='miBoton2' class='btn btn-dark' data-bs-toggle='modal' data-bs-target='#misTrabajosModal6' data-valor= " + data.id + "   >Editar </button> </div></div></div></div></div></div>";
+                    }
+
+                });
+
+
+                // Mostrar la lista de solicitantes en el div "solicitantesLesly"
+                document.getElementById('solicitantesLesly').innerHTML = solicitantesHTML;
+
+                // Función para editar el campo "requerimiento" por ID
+
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+
+        function obtenerValor(parametro) {
+
+            var miBoton = document.getElementById('miBoton');
+            // Obtener el valor personalizado del botón
+            var valorPersonalizado = miBoton.getAttribute('data-valor');
+            localStorage.setItem("id", parametro);
+
+            fetch(`https://runnnnnnn.azurewebsites.net/requerimiento/${parametro}`)
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw new Error('Error al obtener la lista de requerimientos.');
+                })
+                .then(data => {
+                    // En lugar de utilizar los datos del 'localStorage', utilizamos los datos recibidos.
+                    var dataList = data;
+
+                    var dni = data.dni
+                    // alert("data: " + JSON.stringify(data));
+
+                    // var asd = JSON.stringify(data);
+                    console.log(dataList)
+                    console.log(data.dni)
+                    console.log(dataList.dni)
+                    // alert("asd.trabajoVinculado: " + asd.trabajoVinculado)
+                    var solicitante_ = document.getElementById('solicitante_');
+
+                    var trabajoVinculado_ = document.getElementById('trabajoVinculado_');
+                    // var pasoTrabajoVinculado_ = document.getElementById('pasoTrabajoVinculado_');
+                    var fuente_ = document.getElementById('fuente_');
+                    var fechaNacimiento_ = document.getElementById('fechaNacimiento_');
+                    var todosTelefonos_ = document.getElementById('todosTelefonos_');
+                    var puesto_ = document.getElementById('puesto_');
+                    var empleador_ = document.getElementById('empleador_');
+                    var institucion_ = document.getElementById('institucion_');
+                    var carreras_ = document.getElementById('carreras_');
+                    var grados_ = document.getElementById('grados_');
+                    var salario_ = document.getElementById('salario_');
+                    var espectativa_ = document.getElementById('espectativa_');
+                    var beneficio_ = document.getElementById('beneficio_');
+                    var puestoHits_ = document.getElementById('puestoHits_');
+                    var pregunta1_ = document.getElementById('pregunta1_');
+                    var pregunta2_ = document.getElementById('pregunta2_');
+                    var pregunta3_ = document.getElementById('pregunta3_');
+                    var pregunta4_ = document.getElementById('pregunta4_');
+
+                    var nombre_ = document.getElementById('nombre_');
+                    var solicitante_ = document.getElementById('solicitante_');
+                    var dni_ = document.getElementById('dni_');
+                    var telefono_ = document.getElementById('telefono_');
+                    var correo_ = document.getElementById('correo_');
+                    var asignacion_ = document.getElementById('asignacion_');
+                    solicitante_.value = data.solicitante;
+
+                    console.log("data.nombre" + data.nombre)
+                    console.log("data.dni" + data.dni)
+                    console.log("data.telefono" + data.telefono)
+
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+
+
+        }
+        var temporal = localStorage.getItem("id");
+        editarValor(temporal);
+ 
+ 
+        function editarValor(parametro) {
+            console.log("parametro");
+            var miBoton2 = document.getElementById('miBoton2');
+            // Obtener el valor personalizado del botón
+            localStorage.setItem("id", parametro);
+
+            fetch(`https://runnnnnnn.azurewebsites.net/requerimiento`)
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw new Error('Error al obtener la lista de requerimientos.');
+                })
+                .then(data => {
+                    // En lugar de utilizar los datos del 'localStorage', utilizamos los datos recibidos.
+                    var dataList = data;
+                    const cambiosPendientes = [];
+
+                    if (Array.isArray(data)) {
+                        const nombreUsuario = localStorage.getItem('nombreUsuario');
+                        const nuevaTabla = document.getElementById('nuevaTabla').querySelector('tbody');
+                        nuevaTabla.innerHTML = '';
+
+                        nuevaTabla.addEventListener('dblclick', function (event) {
+                            const target = event.target;
+
+                            if (target.tagName === 'TD') {
+                                target.setAttribute('contenteditable', 'false');
+                            }
+                        });
+                        const cambiosPendientes = [];
+
+                        // También puedes agregar un controlador de eventos para deshabilitar la edición al hacer clic fuera de la celda
+                        document.addEventListener('click', function (event) {
+                            const target = event.target;
+
+                            const fila = target.parentNode;
+                            const dniValor = fila.cells[6].textContent;
+                            // alert("DNI: " + dniValor);
+
+                            // Obtén la referencia al modal por su ID
+                            var miModal = document.getElementById('exampleModal');
+
+                            // Crea un objeto Bootstrap Modal utilizando el constructor
+                            var modal = new bootstrap.Modal(miModal);
+
+                            // Llama al método show para mostrar el modal
+                            modal.show();
+
+                             datosObjeto = {
+                                solicitante: fila.cells[1].textContent,
+                                asignacion: fila.cells[2].textContent,
+                                requerimiento: fila.cells[3].textContent,
+                                vmo: fila.cells[4].textContent,
+                                id: fila.cells[5].textContent,
+                                telefono: fila.cells[6].textContent,
+                                dni: fila.cells[7].textContent,
+                                nombre: fila.cells[8].textContent,
+                                fuente: fila.cells[9].textContent,
+                                correo: fila.cells[10].textContent,
+                                trabajo: fila.cells[11].textContent,
+                                disponibilidad: fila.cells[12].textContent,
+                                antecedentes: fila.cells[13].textContent,
+                                trabajoHits: fila.cells[14].textContent,
+                                familiaresHits: fila.cells[15].textContent,
+                                trabajoVinculado: fila.cells[16].textContent,
+                                pasoTrabajoVinculado: fila.cells[17].textContent,
+                                fechaNacimiento: fila.cells[18].textContent,
+                                todosTelefonos: fila.cells[19].textContent,
+                                puesto: fila.cells[20].textContent,
+                                empleador_: fila.cells[21].textContent,
+                                institucion_: fila.cells[22].textContent,
+                                carreras: fila.cells[23].textContent,
+                                grados: fila.cells[24].textContent,
+                                salario: fila.cells[25].textContent,
+                                espectativa: fila.cells[26].textContent,
+                                beneficio: fila.cells[27].textContent,
+                                puestoHits: fila.cells[28].textContent,
+                                pregunta1: fila.cells[29].textContent,
+                                pregunta2: fila.cells[30].textContent,
+                                pregunta3: fila.cells[31].textContent,
+                                pregunta4: fila.cells[31].textContent,
+                                adjunto1: fila.cells[31].textContent,
+                                adjunto2: fila.cells[31].textContent,   
+                                adjunto3: fila.cells[31].textContent,
+                                adjunto4: fila.cells[31].textContent
+                            };
+
+
+                            // Obtén el elemento <a> por su ID
+                            const enlaceAdjunto1 = document.getElementById('adjunto1');
+                            const enlaceAdjunto2 = document.getElementById('adjunto2');
+                            const enlaceAdjunto3 = document.getElementById('adjunto3');
+                            const enlaceAdjunto4 = document.getElementById('adjunto4');
+
+                            // Asigna el valor de datosObjeto.adjunto1 al atributo href del enlace
+                            enlaceAdjunto1.href = datosObjeto.adjunto1;
+                            enlaceAdjunto2.href = datosObjeto.adjunto2;
+                            enlaceAdjunto3.href = datosObjeto.adjunto3;
+                            enlaceAdjunto4.href = datosObjeto.adjunto4;
+
+                            // if (target.tagName !== 'TD') {
+                            //     const editableCells = nuevaTabla.querySelectorAll('td[contenteditable="true"]');
+                            //     editableCells.forEach(cell => cell.setAttribute('contenteditable', 'false'));
+                            // }
+                        });
+
+
+                        data.forEach(item => {
+                            // if (item.asignacion === nombreUsuario) {
+                            const row = nuevaTabla.insertRow();
+                            const cell1 = row.insertCell(0);
+                            const cell2 = row.insertCell(1);
+                            const cell3 = row.insertCell(2);
+                            const cell4 = row.insertCell(3);
+                            const cell5 = row.insertCell(4);
+
+                            const cell6 = row.insertCell(5);
+                            const cell7 = row.insertCell(6);
+                            const cell8 = row.insertCell(7);
+                            const cell9 = row.insertCell(8);
+
+                            const cell10 = row.insertCell(9);
+                            const cell11 = row.insertCell(10);
+                            const cell12 = row.insertCell(11);
+                            const cell13 = row.insertCell(12);
+                            const cell14 = row.insertCell(13);
+                            const cell15 = row.insertCell(14);
+                            const cell16 = row.insertCell(15);
+                            const cell17 = row.insertCell(16);
+
+                            const cell18 = row.insertCell(17);
+                            const cell19 = row.insertCell(18);
+                            const cell20 = row.insertCell(19);
+                            const cell21 = row.insertCell(20);
+                            const cell22 = row.insertCell(21);
+                            const cell23 = row.insertCell(22);
+                            const cell24 = row.insertCell(23);
+                            const cell25 = row.insertCell(24);
+                            const cell26 = row.insertCell(25);
+                            const cell27 = row.insertCell(26);
+                            const cell28 = row.insertCell(27);
+                            const cell29 = row.insertCell(28);
+                            const cell30 = row.insertCell(29);
+                            const cell31 = row.insertCell(30);
+                            const cell32 = row.insertCell(31);
+
+                            cell1.textContent = item.solicitante;
+                            cell2.textContent = item.asignacion;
+                            cell3.textContent = item.requerimiento;
+                            cell4.textContent = item.vmo;
+                            cell5.textContent = item.id;
+
+                            cell6.textContent = item.telefono;
+                            cell7.textContent = item.dni;
+                            cell8.textContent = item.nombre;
+                            cell9.textContent = item.fuente;
+
+                            cell10.textContent = item.correo;
+                            cell11.textContent = item.trabajo;
+                            cell12.textContent = item.disponibilidad;
+                            cell13.textContent = item.antecedentes;
+
+                            cell14.textContent = item.trabajoHits;
+                            cell15.textContent = item.familiaresHits;
+                            cell16.textContent = item.trabajoVinculado;
+                            cell17.textContent = item.pasoTrabajoVinculado;
+
+                            cell18.textContent = item.fechaNacimiento;
+                            cell19.textContent = item.todosTelefonos;
+                            cell20.textContent = item.puesto;
+                            cell21.textContent = item.empleador_;
+                            cell22.textContent = item.institucion_;
+                            cell23.textContent = item.carreras;
+                            cell24.textContent = item.grados;
+                            cell25.textContent = item.salario;
+                            cell26.textContent = item.espectativa;
+                            cell27.textContent = item.beneficio;
+                            cell28.textContent = item.puestoHits;
+                            cell29.textContent = item.pregunta1;
+                            cell30.textContent = item.pregunta2;
+                            cell31.textContent = item.pregunta3;
+                            cell32.textContent = item.pregunta4;
+                            // }
+                        });
+                    } else {
+                        console.error('Los datos recibidos no son una matriz.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+
+
+        var idddd = localStorage.getItem('id');
+        console.log(idddd)
+        function guardar() {
+            showLoadingAnimation();
+            // var nuevoRequerimiento = prompt("Ingrese : nuevoRequerimiento");
+            console.log("guardar")
+            var nombre_ = document.getElementById('nombre_');
+            var solicitante_ = document.getElementById('solicitante_');
+            var dni_ = document.getElementById('dni_');
+            var telefono_ = document.getElementById('telefono_');
+            var correo_ = document.getElementById('correo_');
+            var asignacion_ = document.getElementById('asignacion_');
+
+            var trabajoVinculado_ = document.getElementById('trabajoVinculado_');
+            // var pasoTrabajoVinculado_ = document.getElementById('pasoTrabajoVinculado_');
+            var fuente_ = document.getElementById('fuente_');
+            var fechaNacimiento_ = document.getElementById('fechaNacimiento_');
+            var todosTelefonos_ = document.getElementById('todosTelefonos_');
+            var puesto_ = document.getElementById('puesto_');
+            var empleador_ = document.getElementById('empleador_');
+            var institucion_ = document.getElementById('institucion_');
+            var carreras_ = document.getElementById('carreras_');
+            var grados_ = document.getElementById('grados_');
+            var salario_ = document.getElementById('salario_');
+            var espectativa_ = document.getElementById('espectativa_');
+            var beneficio_ = document.getElementById('beneficio_');
+            var puestoHits_ = document.getElementById('puestoHits_');
+            var pregunta1_ = document.getElementById('pregunta1_');
+            var pregunta2_ = document.getElementById('pregunta2_');
+            var pregunta3_ = document.getElementById('pregunta3_');
+            var pregunta4_ = document.getElementById('pregunta4_');
+
+            var select_1 = document.getElementById('select_1');
+            var select_2 = document.getElementById('select_2');
+
+            var dataList = JSON.parse(localStorage.getItem('miData')) || [];
+
+
+            var nombreUsuario = localStorage.getItem('nombreUsuario');
+
+            var objeto = {
+                dni: "",
+                status: "Creado",
+                solicitante: "",
+                asignacion: "" + nombreUsuario,
+                requerimiento: "",
+                cv: "",
+                telefono: "",
+                correo: "",
+                dni: "",
+                nombre: "",
+                trabajo: "",
+                disponibilidad: "",
+                antecedentes: "",
+                trabajoHits: "",
+                familiaresHits: "",
+                trabajoVinculado: "",
+                pasoTrabajoVinculado: "",
+                fuente: "",
+                fechaNacimiento: "",
+                todosTelefonos: "",
+                puesto: "",
+                empleador_: "",
+                institucion_: "",
+                carreras: "",
+                grados: "",
+                salario: "",
+                espectativa: "",
+                beneficio: "",
+                puestoHits: "",
+                pregunta1: "",
+                pregunta2: "",
+                pregunta3: "",
+                pregunta4: "",
+                vmo: ""
+            };
+
+            var oka;
+
+            fetch(`https://runnnnnnn.azurewebsites.net/requerimiento/${idddd}`)
+                // fetch("https://runnnnnnn.azurewebsites.net/requerimiento")
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw new Error('Error al obtener la lista de requerimientos.');
+                })
+                .then(data => {
+                    // En lugar de utilizar los datos del 'localStorage', utilizamos los datos recibidos.
+
+                    //objeto = data;
+                    // oka = data.solicitante;
+                    if (true) {
+
+
+
+                        const firebaseConfig = {
+                            apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
+                            authDomain: "semilleros-ccb45.firebaseapp.com",
+                            projectId: "semilleros-ccb45",
+                            storageBucket: "semilleros-ccb45.appspot.com",
+                            messagingSenderId: "543478666358",
+                            appId: "1:543478666358:web:dc0e8cff35c982faab3b57",
+                            measurementId: "G-WK87KGXSWK"
+                        };
+
+
+
+                        // Inicializa Firebase
+                        firebase.initializeApp(firebaseConfig);
+
+                        // Obtiene una referencia al servicio de Storage
+                        const storage = firebase.storage();
+
+
+                        const fileInput = document.getElementById("file-cv");
+
+
+
+                        var nombreUsuario = localStorage.getItem('nombreUsuario');
+
+                        const file = fileInput.files[0];
+                        if (file) {
+                            // Crea una referencia al archivo en Firebase Storage
+                            const storageRef = storage.ref(nombreUsuario + "/" + file.name); // Cambia 'carpeta_subida' a la carpeta deseada
+
+                            // Sube el archivo
+                            storageRef.put(file).then((snapshot) => {
+                                console.log("Archivo subido con éxito");
+
+                                snapshot.ref.getDownloadURL().then((url) => {
+                                    console.log("URL del archivo:", url);
+
+                                    // Actualizar el campo "requerimiento" del objeto
+                                    objeto.solicitante = data.solicitante + "";
+
+
+
+                                    objeto.requerimiento = data.requerimiento + "";
+
+                                    objeto.telefono = telefono_.value;
+                                    objeto.correo = correo_.value;
+                                    objeto.dni = dni_.value;
+                                    objeto.nombre = nombre_.value;
+                                    objeto.cv = url;
+                                    objeto.trabajo = select_1.value;
+                                    objeto.disponibilidad = select_2.value;
+                                    objeto.antecedentes = select_3.value;
+                                    objeto.trabajoHits = select_4.value;
+                                    objeto.familiaresHits = select_5.value;
+                                    objeto.trabajoVinculado = trabajoVinculado_.value;
+                                    // objeto.pasoTrabajoVinculado = pasoTrabajoVinculado_.value;
+                                    objeto.fuente = fuente_.value;
+                                    objeto.fechaNacimiento = fechaNacimiento_.value;
+                                    objeto.todosTelefonos = todosTelefonos_.value;
+                                    objeto.puesto = puesto_.value;
+                                    objeto.empleador_ = empleador_.value;
+                                    objeto.institucion_ = institucion_.value;
+                                    objeto.carreras = carreras_.value;
+                                    objeto.grados = grados_.value;
+                                    objeto.salario = salario_.value;
+                                    objeto.espectativa = espectativa_.value;
+                                    objeto.beneficio = beneficio_.value;
+                                    objeto.puestoHits = puestoHits_.value;
+                                    objeto.pregunta1 = pregunta1_.value;
+                                    objeto.pregunta2 = pregunta2_.value;
+                                    objeto.pregunta3 = pregunta3_.value;
+                                    objeto.pregunta4 = pregunta4_.value;
+
+                                    objeto.correo = fuente_.value;
+
+                                    // objeto.estadorequerimiento = nuevoRequerimiento;
+
+                                    console.log("Objeto actualizado1:", objeto);
+
+                                    //
+                                    // fetch(`https://runnnnnnn.azurewebsites.net/requerimiento${idddd}`, {
+                                    fetch("https://runnnnnnn.azurewebsites.net/requerimiento", {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json'
+                                        },
+                                        body: JSON.stringify(objeto)
+                                    })
+                                        .then(response => {
+                                            if (response.ok) {
+                                                alert('Requerimiento actualizado correctamente.');
+                                                $('#misTrabajosModal1').modal('hide');
+
+                                                telefono_.value = ""
+                                                correo_.value = ""
+                                                dni_.value = ""
+                                                nombre_.value = ""
+
+                                                select_1.value = ""
+                                                select_2.value = ""
+                                                select_3.value = ""
+                                                select_4.value = ""
+                                                select_5.value = ""
+                                                trabajoVinculado_.value = ""
+                                                // pasoTrabajoVinculado_.value = ""
+                                                fuente_.value = ""
+                                                fechaNacimiento_.value = ""
+                                                todosTelefonos_.value = ""
+                                                puesto_.value = ""
+                                                empleador_.value = ""
+                                                institucion_.value = ""
+                                                carreras_.value = ""
+                                                grados_.value = ""
+                                                salario_.value = ""
+                                                espectativa_.value = ""
+                                                beneficio_.value = ""
+                                                puestoHits_.value = ""
+                                                pregunta1_.value = ""
+                                                pregunta2_.value = ""
+                                                pregunta3_.value = ""
+                                                pregunta4_.value = ""
+
+                                                objeto.correo = fuente_.value;
+                                                hideLoadingAnimation();
+                                                location.reload();
+                                            } else {
+                                                alert('Error al actualizar el requerimiento. Verifica los datos e intenta nuevamente.');
+                                                hideLoadingAnimation();
+                                            }
+
+                                            console.log('Lista de requerimientosssssss:', response);
+
+                                        })
+                                        .catch(error => {
+                                            hideLoadingAnimation();
+                                            console.error('Hubo un error en la solicitud:', error);
+                                        });
+
+                                    //setear 0
+
+                                });
+
+                            }).catch((error) => {
+                                console.error("Error al subir el archivo:", error);
+                            });
+                        } else {
+                            hideLoadingAnimation();
+                            location.reload();
+                            alert("Es obligatorio adjuntar el CV")
+                        }
+
+
+
+                        //localStorage.setItem("miData", JSON.stringify(dataList));
+                        // Aquí puedes guardar la lista actualizada en localStorage si lo deseas
+                        // localStorage.setItem("dataList", JSON.stringify(dataList));
+
+
+                    } else {
+                        console.log("No se encontró ningún objeto con el ID proporcionado.");
+                    }
+
+
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+ 
+        }
+
+
+        // Realiza las operaciones necesarias con la lista de requerimientos recibida.
+
+    </script>
+
+
+
+    <script>
+
+        window.addEventListener("DOMContentLoaded", listarrrrr);
+
+        function listarrrrr() {
+
+            fetch(`https://runnnnnnn.azurewebsites.net/requerimiento`)
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw new Error('Error al obtener la lista de requerimientos.');
+                })
+                .then(data => {
+                    // En lugar de utilizar los datos del 'localStorage', utilizamos los datos recibidos.
+                    var roles = [];
+
+                    // 1. Definir una lista para almacenar los cambios
+
+                    //   if (Array.isArray(data)) {
+
+                    // } else {
+                    //   console.error('Los datos recibidos no son una matriz.');
+                    // }
+
+                    data.forEach(item => {
+
+                        if (item.asignacion === nombreUsuario) {
+                            roles.push(item.requerimiento + "");
+                        }
+
+                    });
+                    var select = document.getElementById("Rol");
+
+                    for (var i = 0; i < roles.length; i++) {
+                        var option = document.createElement("option");
+                        option.value = roles[i];
+                        option.text = roles[i];
+                        select.appendChild(option);
+                    }
+                    console.log("roles: " + roles)
+
+
+
+
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+
+
+        }
+    </script>
+
+
+    <script type="text/javascript">
+        // Array para almacenar los objetos con los datos
+        var datos = [{ "id": 1, "dni": "1111" }];
+
+        // Función para guardar los cambios en el array
+        function guardarCambios() {
+            showLoadingAnimation();
+            var filas = document.querySelectorAll('#nuevaTabla tbody tr');
+            datos = [];
+
+            filas.forEach(function (fila) {
+                var cells = fila.querySelectorAll('td');
+                var objeto = {
+                    id: cells[4].textContent,
+                    solicitante: cells[0].textContent,
+                    asignacion: cells[1].textContent,
+                    requerimiento: cells[2].textContent,
+                    vmo: cells[3].textContent,
+                    telefono: cells[5].textContent,
+                    dni: cells[6].textContent,
+                    nombre: cells[7].textContent,
+                    fuente: cells[8].textContent,
+                    correo: cells[9].textContent,
+                    trabajo: cells[10].textContent,
+                    disponibilidad: cells[11].textContent,
+                    antecedentes: cells[12].textContent,
+                    trabajoHits: cells[13].textContent,
+                    familiaresHits: cells[14].textContent,
+                    trabajoVinculado: cells[15].textContent,
+                    pasoTrabajoVinculado: cells[16].textContent,
+                    fechaNacimiento: cells[17].textContent,
+                    todosTelefonos: cells[18].textContent,
+                    puesto: cells[19].textContent,
+                    empleador_: cells[20].textContent,
+                    institucion_: cells[21].textContent,
+                    carreras: cells[22].textContent,
+                    grados: cells[23].textContent,
+                    salario: cells[24].textContent,
+                    espectativa: cells[25].textContent,
+                    beneficio: cells[26].textContent,
+                    puestoHits: cells[27].textContent,
+                    pregunta1: cells[28].textContent,
+                    pregunta2: cells[29].textContent,
+                    pregunta3: cells[30].textContent,
+                    pregunta4: cells[31].textContent,
+                };
+                datos.push(objeto);
+            });
+
+            fetch("https://runnnnnnn.azurewebsites.net/requerimientos", {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(datos)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        const contentType = response.headers.get('content-type');
+                        if (contentType && contentType.includes('application/json')) {
+                            return response.json();
+                        } else {
+                            console.error('La respuesta no es JSON válido' + response.json());
+                        }
+                    } else {
+                        throw new Error('Error en la solicitud PUT');
+                    }
+                })
+                .then(data => {
+                    console.log('Solicitud PUT exitosa', datos);
+                    alert("Los datos fueron actualizados correctamente")
+                    hideLoadingAnimation();
+
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    console.log('Error completo:', error.message);
+                });
+
+
+            console.log(JSON.stringify(datos));
+            console.log(datos);
+
+        }
+
+        // Agrega un evento 'input' a cada campo de entrada para detectar cambios
+        var camposEntrada = document.querySelectorAll('#nuevaTabla tbody td');
+        camposEntrada.forEach(function (campo) {
+            campo.addEventListener('input', function () {
+                guardarCambios();
+            });
+        });
+
+        // Agrega un evento al botón "Guardar Cambios" para guardar los cambios
+        document.getElementById('guardarCambios').addEventListener('click', function () {
+            guardarCambios();
+
+        });
+
+
+        const botonRedireccionar = document.getElementById('cerrar_sesion');
+
+        botonRedireccionar.addEventListener('click', function () {
+            // Aquí especifica la URL de la página a la que deseas redirigir
+            const nuevaPaginaURL = 'https://semilleros-ccb45.web.app/b.html';
+
+            // Redirigir a la nueva página
+            window.location.href = nuevaPaginaURL;
+        });
+
+        function showLoadingAnimation() {
+            $('#loader').addClass('visible');
+        }
+
+        // Función para ocultar la animación de carga
+        function hideLoadingAnimation() {
+            $('#loader').removeClass('visible');
+        }
+
+    </script>
+
+
+    <div class="loader " id="loader"></div>
+
+
+    <script type="text/javascript">
+        var datosObjeto = {
+            solicitante: "-",
+            asignacion: "-",
+            requerimiento: "-",
+            vmo: "-",
+            id: "-",
+            telefono: "-",
+            dni: "-",
+            nombre: "-",
+            fuente: "-",
+            correo:  "-",
+            trabajo:  "-",
+            disponibilidad:  "-",
+            antecedentes:  "-",
+            trabajoHits:  "-",
+            familiaresHits:  "-",
+            trabajoVinculado:  "-",
+            pasoTrabajoVinculado:  "-",
+            fechaNacimiento:  "-",
+            todosTelefonos:  "-",
+            puesto:  "-",
+            empleador_:  "-",
+            institucion_:  "-",
+            carreras:  "-",
+            grados:  "-",
+            salario:  "-",
+            espectativa:  "-",
+            beneficio:  "-",
+            puestoHits:  "-",
+            pregunta1:  "-",
+            pregunta2:  "-",
+            pregunta3:  "-",
+            pregunta4: "-",
+            adjunto1: "-",
+            adjunto2: "-",
+            adjunto3: "-",
+            adjunto4: "-"
+        };
+
+    </script>
+
+</body>
+
+</html>
