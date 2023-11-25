@@ -282,24 +282,24 @@
           <div class="form-group " >
             <label for="" class="col-form-label"><b>Adjunto 1:</b></label>
             <input type="file" class="form-control" id="recipient-name">
-            <a href="" targe="_blank" id="adjunto1_">Click para visualizar</a>
+            <a href="" target="_blank" id="adjunto1_">Click para visualizar</a>
           </div>
            <div class="form-group">
             <label for="" class="col-form-label"><b>Adjunto 2:</b></label>
             <input type="file" class="form-control" id="recipient-name">
-            <a href="" targe="_blank" id="adjunto2_">Click para visualizar</a>
+            <a href="" target="_blank" id="adjunto2_">Click para visualizar</a>
 
           </div>
            <div class="form-group">
             <label for="" class="col-form-label"><b>Adjunto 3:</b></label>
             <input type="file" class="form-control" id="recipient-name">
-            <a href="" targe="_blank" id="adjunto3_">Click para visualizar</a>
+            <a href="" target="_blank" id="adjunto3_">Click para visualizar</a>
 
           </div>
            <div class="form-group">
             <label for="" class="col-form-label"><b>Adjunto 4:</b></label>
             <input type="file" class="form-control" id="recipient-name">
-            <a href="" targe="_blank" id="adjunto4_">Click para visualizar</a>
+            <a href="" target="_blank" id="adjunto4_">Click para visualizar</a>
 
           </div>
        <!--    <div class="form-group ">
@@ -310,11 +310,14 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
+        <button  class="btn btn-primary">Send message</button>
+        <p id="subirAdjuntos" >subir</p>
       </div>
     </div>
   </div>
 </div>
+
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -469,6 +472,17 @@
 
 
     <script type="text/javascript">
+
+         const firebaseConfig = {
+                            apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
+                            authDomain: "semilleros-ccb45.firebaseapp.com",
+                            projectId: "semilleros-ccb45",
+                            storageBucket: "semilleros-ccb45.appspot.com",
+                            messagingSenderId: "543478666358",
+                            appId: "1:543478666358:web:dc0e8cff35c982faab3b57",
+                            measurementId: "G-WK87KGXSWK"
+                        };
+
         // Recuperar la lista de objetos desde localStorage
         // var dataList = JSON.parse(localStorage.getItem('miData')) || [];
         var dataList = [];
@@ -622,11 +636,11 @@
                         const cambiosPendientes = [];
 
                         // También puedes agregar un controlador de eventos para deshabilitar la edición al hacer clic fuera de la celda
-                        document.addEventListener('click', function (event) {
+                        nuevaTabla.addEventListener('click', function (event) {
                             const target = event.target;
 
                             const fila = target.parentNode;
-                            const dniValor = fila.cells[6].textContent;
+                            // const dniValor = fila.cells[6].textContent;
                             // alert("DNI: " + dniValor);
 
                             // Obtén la referencia al modal por su ID
@@ -684,16 +698,17 @@
                             const enlaceAdjunto3 = document.getElementById('adjunto3');
                             const enlaceAdjunto4 = document.getElementById('adjunto4');
 
-                            // Asigna el valor de datosObjeto.adjunto1 al atributo href del enlace
-                            enlaceAdjunto1.href = datosObjeto.adjunto1;
-                            enlaceAdjunto2.href = datosObjeto.adjunto2;
-                            enlaceAdjunto3.href = datosObjeto.adjunto3;
-                            enlaceAdjunto4.href = datosObjeto.adjunto4;
+                            // // Asigna el valor de datosObjeto.adjunto1 al atributo href del enlace
+                            // enlaceAdjunto1.href = datosObjeto.adjunto1;
+                            // enlaceAdjunto2.href = datosObjeto.adjunto2;
+                            // enlaceAdjunto3.href = datosObjeto.adjunto3;
+                            // enlaceAdjunto4.href = datosObjeto.adjunto4;
 
-                            // if (target.tagName !== 'TD') {
-                            //     const editableCells = nuevaTabla.querySelectorAll('td[contenteditable="true"]');
-                            //     editableCells.forEach(cell => cell.setAttribute('contenteditable', 'false'));
-                            // }
+
+
+
+
+                            
                         });
 
 
@@ -879,9 +894,7 @@
                     // oka = data.solicitante;
                     if (true) {
 
-
-
-                        const firebaseConfig = {
+                         firebaseConfig = {
                             apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
                             authDomain: "semilleros-ccb45.firebaseapp.com",
                             projectId: "semilleros-ccb45",
@@ -1277,6 +1290,166 @@
             adjunto3: "-",
             adjunto4: "-"
         };
+
+    </script>
+
+        <script>
+         
+ 
+        document.addEventListener('DOMContentLoaded', function () {
+            var parrafoSubirAdjuntos = document.getElementById('subirAdjuntos');
+            
+            parrafoSubirAdjuntos.addEventListener('click', function () {
+                alert("asd");
+            });
+        });
+
+
+        // Define la función que se invocará al hacer clic en el botón
+        function tuFuncion() {
+            // Coloca aquí el código que deseas ejecutar cuando se hace clic en el botón
+            // Obtén el elemento <a> por su ID
+            const enlaceAdjunto1 = document.getElementById('adjunto1');
+            const enlaceAdjunto2 = document.getElementById('adjunto2');
+            const enlaceAdjunto3 = document.getElementById('adjunto3');
+            const enlaceAdjunto4 = document.getElementById('adjunto4');
+
+
+            const firebaseConfig = {
+                apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
+                authDomain: "semilleros-ccb45.firebaseapp.com",
+                projectId: "semilleros-ccb45",
+                storageBucket: "semilleros-ccb45.appspot.com",
+                messagingSenderId: "543478666358",
+                appId: "1:543478666358:web:dc0e8cff35c982faab3b57",
+                measurementId: "G-WK87KGXSWK"
+            };
+
+
+
+            // Inicializa Firebase
+            firebase.initializeApp(firebaseConfig);
+
+            // Obtiene una referencia al servicio de Storage
+            const storage = firebase.storage();
+
+            const file1 = enlaceAdjunto1.files[0];
+            if (file1) {
+                // Crea una referencia al archivo en Firebase Storage
+                const storageRef = storage.ref("adjuntos" + "/" + file.name);
+
+                // Sube el archivo
+                storageRef.put(file1).then((snapshot) => {
+                    console.log("Archivo subido con éxito");
+
+                    snapshot.ref.getDownloadURL().then((url) => {
+                        console.log("URL del archivo:", url);
+                        enlaceAdjunto1.href = url;
+
+                    })
+                        .catch(error => {
+                            hideLoadingAnimation();
+                            console.error('Hubo un error en la solicitud:', error);
+                        });
+
+                }).catch((error) => {
+                    console.error("Error al subir el archivo:", error);
+                });
+            } else {
+                hideLoadingAnimation();
+                location.reload();
+                alert("Es obligatorio adjuntar el CV")
+            }
+
+
+            const file2 = enlaceAdjunto2.files[0];
+            if (file2) {
+                // Crea una referencia al archivo en Firebase Storage
+                const storageRef = storage.ref("adjuntos" + "/" + file.name);
+
+                // Sube el archivo
+                storageRef.put(file2).then((snapshot) => {
+                    console.log("Archivo subido con éxito");
+
+                    snapshot.ref.getDownloadURL().then((url) => {
+                        console.log("URL del archivo:", url);
+                        enlaceAdjunto1.href = url;
+
+                    })
+                        .catch(error => {
+                            hideLoadingAnimation();
+                            console.error('Hubo un error en la solicitud:', error);
+                        });
+
+                }).catch((error) => {
+                    console.error("Error al subir el archivo:", error);
+                });
+            } else {
+                hideLoadingAnimation();
+                location.reload();
+                alert("Es obligatorio adjuntar el CV")
+            }
+
+
+
+
+            const file3 = enlaceAdjunto1.files[0];
+            if (file3) {
+                // Crea una referencia al archivo en Firebase Storage
+                const storageRef = storage.ref("adjuntos" + "/" + file.name);
+
+                // Sube el archivo
+                storageRef.put(file3).then((snapshot) => {
+                    console.log("Archivo subido con éxito");
+
+                    snapshot.ref.getDownloadURL().then((url) => {
+                        console.log("URL del archivo:", url);
+                        enlaceAdjunto1.href = url;
+
+                    })
+                        .catch(error => {
+                            hideLoadingAnimation();
+                            console.error('Hubo un error en la solicitud:', error);
+                        });
+
+                }).catch((error) => {
+                    console.error("Error al subir el archivo:", error);
+                });
+            } else {
+                alert("Es obligatorio adjuntar el CV")
+            }
+
+
+
+            const file4 = enlaceAdjunto1.files[0];
+            if (file4) {
+                // Crea una referencia al archivo en Firebase Storage
+                const storageRef = storage.ref("adjuntos" + "/" + file.name);
+
+                // Sube el archivo
+                storageRef.put(file4).then((snapshot) => {
+                    console.log("Archivo subido con éxito");
+
+                    snapshot.ref.getDownloadURL().then((url) => {
+                        console.log("URL del archivo:", url);
+                        enlaceAdjunto1.href = url;
+
+                    })
+                        .catch(error => {
+                            hideLoadingAnimation();
+                            console.error('Hubo un error en la solicitud:', error);
+                        });
+
+                }).catch((error) => {
+                    console.error("Error al subir el archivo:", error);
+                });
+            } else {
+                hideLoadingAnimation();
+                location.reload();
+                alert("Es obligatorio adjuntar el CV")
+            }
+
+
 
     </script>
 
