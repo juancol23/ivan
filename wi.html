@@ -211,12 +211,10 @@
 	                <th class="text-center">requerimiento</th>
 	                <th class="text-center">VMO</th>
 	                <th class="text-center">ID</th>
-
 	                <th class="text-center">telefono</th>
 	                <th class="text-center">dni</th>
 	                <th class="text-center">nombre</th>
 	                <th class="text-center">fuente</th>
-
 	                <th class="text-center">correo</th>
 	                <th class="text-center">trabajo</th>
 	                <th class="text-center">disponibilidad</th>
@@ -225,8 +223,6 @@
 	                <th class="text-center">familiaresHits</th>
 	                <th class="text-center">trabajoVinculado</th>
 	                <th class="text-center">pasoTrabajoVinculado</th>
-
-
 	                <th class="text-center">fechaNacimiento</th>
 	                <th class="text-center">todosTelefonos</th>
 	                <th class="text-center">puesto</th>
@@ -242,6 +238,22 @@
 	                <th class="text-center">pregunta2</th>
 	                <th class="text-center">pregunta3</th>
 	                <th class="text-center">pregunta4</th>
+
+                    <th class="text-center">antecedentesA</th>
+                    <th class="text-center">antecedentesB</th>
+                    <th class="text-center">antecedentePolicial</th>
+                    <th class="text-center">antecedentePenal</th>
+                    <th class="text-center">antecedenteJudicial</th>
+                    <th class="text-center">certiAdulto</th>
+                    <th class="text-center">multiTest</th>
+                    <th class="text-center">informePsicologico</th>
+                    <th class="text-center">fichaDatos</th>
+                    <th class="text-center">fichaMedica</th>
+                    <th class="text-center">fichaRequerimiento</th>
+                    <th class="text-center">fichaAprobación</th>
+                    <th class="text-center">otrosAdjuntos</th>
+
+                  
 
 
 	            </tr>
@@ -523,7 +535,7 @@
                     var telefono_ = document.getElementById('telefono_');
                     var correo_ = document.getElementById('correo_');
                     var asignacion_ = document.getElementById('asignacion_');
-                 solicitante_.value = data.solicitante;
+                    solicitante_.value = data.solicitante;
 
                     console.log("data.nombre" + data.nombre)
                     console.log("data.dni" + data.dni)
@@ -538,153 +550,7 @@
         }
         var temporal = localStorage.getItem("id");
        	editarValor(temporal);
-
-        // function editarValor(parametro) {
-        // 	console.log("parametro")
-        //     var miBoton2 = document.getElementById('miBoton2');
-        //     // Obtener el valor personalizado del botón
-        //     localStorage.setItem("id", parametro);
-
-
-        //     fetch(`https://runnnnnnn.azurewebsites.net/requerimiento`)
-        //         .then(response => {
-        //             if (response.ok) {
-        //                 return response.json();
-        //             }
-        //             throw new Error('Error al obtener la lista de requerimientos.');
-        //         })
-        //         .then(data => {
-        //             // En lugar de utilizar los datos del 'localStorage', utilizamos los datos recibidos.
-        //             var dataList = data;
-
-        //             // 1. Definir una lista para almacenar los cambios
-        //             const cambiosPendientes = [];
-
-
-        //             if (Array.isArray(data)) {
-        //                 data.forEach(item => {
-        //                     // const nuevaTabla = document.getElementById('nuevaTabla').querySelector('tbody');
-        //                     const nombreUsuario = localStorage.getItem('nombreUsuario');
-
-        //                     const nuevaTabla = document.getElementById('nuevaTabla').querySelector('tbody');
-        //                     nuevaTabla.innerHTML = '';
-        //                     // Agregar un controlador de eventos a las celdas para habilitar la edición al hacer doble clic
-        //                     nuevaTabla.addEventListener('dblclick', function (event) {
-        //                         const target = event.target;
-
-        //                         if (target.tagName === 'TD') {
-        //                             target.setAttribute('contenteditable', 'true');
-        //                         }
-        //                     });
-
-        //                     const cambiosPendientes = [];
-
-
-
-        //                     // También puedes agregar un controlador de eventos para deshabilitar la edición al hacer clic fuera de la celda
-        //                     document.addEventListener('click', function (event) {
-        //                         const target = event.target;
-
-        //                         if (target.tagName !== 'TD') {
-        //                             const editableCells = nuevaTabla.querySelectorAll('td[contenteditable="true"]');
-        //                             editableCells.forEach(cell => cell.setAttribute('contenteditable', 'false'));
-        //                         }
-        //                     });
-
-        //                     data.forEach(item => {
-        //                         if (item.asignacion === nombreUsuario) {
-        //                             const row = nuevaTabla.insertRow();
-        //                             const cell1 = row.insertCell(0);
-        //                             const cell2 = row.insertCell(1);
-        //                             const cell3 = row.insertCell(2);
-        //                             const cell4 = row.insertCell(3);
-        //                             const cell5 = row.insertCell(4);
-
-        //                             const cell6 = row.insertCell(5);
-        //                             const cell7 = row.insertCell(6);
-        //                             const cell8 = row.insertCell(7);
-        //                             const cell9 = row.insertCell(8);
-
-        //                             const cell10 = row.insertCell(9);
-        //                             const cell11 = row.insertCell(10);
-        //                             const cell12 = row.insertCell(11);
-        //                             const cell13 = row.insertCell(12);
-        //                             const cell14 = row.insertCell(13);
-        //                             const cell15 = row.insertCell(14);
-        //                             const cell16 = row.insertCell(15);
-        //                             const cell17 = row.insertCell(16);
-
-        //                             const cell18 = row.insertCell(17);
-        //                             const cell19 = row.insertCell(18);
-        //                             const cell20 = row.insertCell(19);
-        //                             const cell21 = row.insertCell(20);
-        //                             const cell22 = row.insertCell(21);
-        //                             const cell23 = row.insertCell(22);
-        //                             const cell24 = row.insertCell(23);
-        //                             const cell25 = row.insertCell(24);
-        //                             const cell26 = row.insertCell(25);
-        //                             const cell27 = row.insertCell(26);
-        //                             const cell28 = row.insertCell(27);
-        //                             const cell29 = row.insertCell(28);
-        //                             const cell30 = row.insertCell(29);
-        //                             const cell31 = row.insertCell(30);
-        //                             const cell32 = row.insertCell(31);
-
-
-        //                             cell1.textContent = item.solicitante;
-        //                             cell2.textContent = item.asignacion;
-        //                             cell3.textContent = item.requerimiento;
-        //                             cell4.textContent = item.vmo;
-        //                             cell5.textContent = item.id;
-
-        //                             cell6.textContent = item.telefono;
-        //                             cell7.textContent = item.dni;
-        //                             cell8.textContent = item.nombre;
-        //                             cell9.textContent = item.fuente;
-
-        //                             cell10.textContent = item.correo;
-        //                             cell11.textContent = item.trabajo;
-        //                             cell12.textContent = item.disponibilidad;
-        //                             cell13.textContent = item.antecedentes;
-        //                             cell14.textContent = item.trabajoHits;
-        //                             cell15.textContent = item.familiaresHits;
-        //                             cell16.textContent = item.trabajoVinculado;
-        //                             cell17.textContent = item.pasoTrabajoVinculado;
-
-        //                             cell18.textContent = item.fechaNacimiento;
-        //                             cell19.textContent = item.todosTelefonos;
-        //                             cell20.textContent = item.puesto;
-        //                             cell21.textContent = item.empleador_;
-        //                             cell22.textContent = item.institucion_;
-        //                             cell23.textContent = item.carreras;
-        //                             cell24.textContent = item.grados;
-        //                             cell25.textContent = item.salario;
-        //                             cell26.textContent = item.espectativa;
-        //                             cell27.textContent = item.beneficio;
-        //                             cell28.textContent = item.puestoHits;
-        //                             cell29.textContent = item.pregunta1;
-        //                             cell30.textContent = item.pregunta2;
-        //                             cell31.textContent = item.pregunta3;
-        //                             cell32.textContent = item.pregunta4;
-
-        //                         }
-        //                     });
-        //                 });
-        //             } else {
-        //                 console.error('Los datos recibidos no son una matriz.');
-        //             }
-
-
-
-        //         })
-        //         .catch(error => {
-        //             console.error('Error:', error);
-        //         });
-
-
-        // }
-
-
+ 
 
 function editarValor(parametro) {
     console.log("parametro");
@@ -768,6 +634,22 @@ function editarValor(parametro) {
                         const cell31 = row.insertCell(30);
                         const cell32 = row.insertCell(31);
 
+
+                        const cell33 = row.insertCell(32);
+                        const cell34 = row.insertCell(33);
+                        const cell35 = row.insertCell(34);
+                        const cell36 = row.insertCell(35);
+                        const cell37 = row.insertCell(36);
+                        const cell38 = row.insertCell(37);
+                        const cell39 = row.insertCell(38);
+                        const cell40 = row.insertCell(39);
+                        const cell41 = row.insertCell(40);
+                        const cell42 = row.insertCell(41);
+                        const cell43 = row.insertCell(42);
+                        const cell44 = row.insertCell(43);
+                        const cell45 = row.insertCell(44);
+ 
+
                         cell1.textContent = item.solicitante;
                         cell2.textContent = item.asignacion;
                         cell3.textContent = item.requerimiento;
@@ -782,19 +664,19 @@ function editarValor(parametro) {
                         cell10.textContent = item.correo;
                         // Cambiar el campo "trabajo" a un select
                         const selectTrabajo = document.createElement('select');
-                        selectTrabajo.innerHTML = '<option selected >'+item.trabajo+'</option><option value="opcion2">Opción 2</option>';
+                        selectTrabajo.innerHTML = '<option selected >'+item.trabajo+'</option><option value="creacion_requerimiento">Creación del requerimiento</option><option value="candidato_identificado">Candidato identificado</option><option value="en_prescreening">En Prescreening</option><option value="no_contactado_no_contesta">✖ No contactado - No contesta</option><option value="no_apto_cv_experiencia">✖ No apto CV - Experiencia</option><option value="no_apto_cv_auditoria">✖ No apto CV - Auditoría</option><option value="no_apto_cv_expectativa_salarial">✖ No apto CV - Expectativasalarial</option><option value="no_apto_cv_requisito_perfil">✖ No Apto CV - Requisito delperfil</option><option value="no_apto_prescreening_black_list">✖ No Apto Prescreening -Black List</option><option value="no_apto_prescreening_offlimits">✖ No Apto Prescreening -Offlimits</option><option value="no_apto_prescreening_expectativas_altas">✖ No AptoPrescreening - Expectativas altas</option><option value="no_apto_prescreening_estudios">✖ No Apto Prescreening -Estudios</option><option value="no_apto_prescreening_comunicacion_no_efectiva">✖ No AptoPrescreening - Comunicación no efectiva</option><option value="desistio_proceso_prescreening">✖ Desistió del proceso enPrescreening</option><option value="apto_en_prescreening">✓ Apto en prescreening</option><option value="en_revision_cv">En revisión de CV</option><option value="multitest_recomendado">✓ Multitest - Recomendado</option><option value="no_apto_multitest">✖ No apto en Multitest</option><option value="apto_en_antecedentes">✓ Apto en Antecedentes</option><option value="no_apto_antecedentes">✖ No apto en Antecedentes</option><option value="apto_todas_las_pruebas">✓ ✓ ✓ Apto en todas las pruebas</option><option value="apto_presentar_cliente">✓ Apto para presentar al Cliente</option><option value="no_apto_entrevista_tecnica">✖ No apto en Entrevista concliente - Ent. Técnica</option><option value="no_fit_hitss">✖ No apto en Entrevista con cliente - No fitHITSS</option><option value="desistio_proceso_entrevista">✖ Desistió del proceso luegoEnt. →</option><option value="backup">╩ Backup</option><option value="seleccionado">✌️ Seleccionado</option><option value="carta_oferta">✓ Carta Oferta</option><option value="desistio_proceso_carta_oferta">✖ Desistió del proceso luegoCarta Oferta →</option><option value="firma_contrato">✓ Firma de contrato</option>';
                         selectTrabajo.value = item.trabajo;
                         cell11.appendChild(selectTrabajo);
 
                         // Cambiar el campo "trabajo" a un select
                         const selectDisponibilidad = document.createElement('select');
-                        selectDisponibilidad.innerHTML = '<option  selected>'+item.disponibilidad+'</option><option value="opcion2">Opción 2</option>';
+                        selectDisponibilidad.innerHTML = '<option  selected>'+item.disponibilidad+'</option>;<option value="inmediata">Inmediata</option><option value="7_dias">7 días</option><option value="15_dias">15 días</option><option value="30_dias">30 días</option>';
                         selectDisponibilidad.value = item.disponibilidad;
                         cell12.appendChild(selectDisponibilidad);
 
                         // Cambiar el campo "trabajo" a un select
                         const antecedentesDisponibilidad = document.createElement('select');
-                        antecedentesDisponibilidad.innerHTML = '<option  selected>'+item.antecedentes+'</option><option value="opcion2">Opción 2</option>';
+                        antecedentesDisponibilidad.innerHTML = '<option  selected>'+item.antecedentes+'</option><option value="no_registra">No Registra</option><option value="registra">Registra</option>';
                         antecedentesDisponibilidad.value = item.antecedentes;
                         cell13.appendChild(antecedentesDisponibilidad);
 
@@ -804,7 +686,7 @@ function editarValor(parametro) {
 
                          // Cambiar el campo "trabajo" a un select
                         const trabajoHitsDisponibilidad = document.createElement('select');
-                        trabajoHitsDisponibilidad.innerHTML = '<option >Disponibilidad</option><option  selected>'+item.trabajoHits+'</option>';
+                        trabajoHitsDisponibilidad.innerHTML = '<option >'+item.trabajoHits+'</option><option value="no">No</option><option value="si">Sí</option>';
                         trabajoHitsDisponibilidad.value = item.trabajoHits;
                         cell14.appendChild(trabajoHitsDisponibilidad);
 
@@ -828,6 +710,22 @@ function editarValor(parametro) {
                         cell30.textContent = item.pregunta2;
                         cell31.textContent = item.pregunta3;
                         cell32.textContent = item.pregunta4;
+
+                        cell33.textContent = item.antecedentesA;
+                        cell34.textContent = item.antecedentesB;
+                        cell35.textContent = item.antecedentePolicial;
+                        cell36.textContent = item.antecedentePenal;
+                        cell37.textContent = item.antecedenteJudicial;
+                        cell38.textContent = item.certiAdulto;
+                        cell39.textContent = item.multiTest;
+                        cell40.textContent = item.informePsicologico;
+                        cell41.textContent = item.fichaDatos;
+                        cell42.textContent = item.fichaMedica;
+                        cell43.textContent = item.fichaRequerimiento;
+                        cell44.textContent = item.fichaAprobación;
+                        cell45.textContent = item.otrosAdjuntos;
+
+
                     }
                 });
             } else {
@@ -1221,6 +1119,22 @@ function editarValor(parametro) {
                     pregunta2: cells[29].textContent,
                     pregunta3: cells[30].textContent,
                     pregunta4: cells[31].textContent,
+
+                    antecedentesA: cells[32].textContent;
+                    antecedentesB: cells[33].textContent;
+                    antecedentePolicial: cells[34].textContent;
+                    antecedentePenal: cells[35].textContent;
+                    antecedenteJudicial: cells[36].textContent;
+                    certiAdulto: cells[37].textContent;
+                    multiTest: cells[38].textContent;
+                    informePsicologico: cells[39].textContent;
+                    fichaDatos: cells[40].textContent;
+                    fichaMedica: cells[41].textContent;
+                    fichaRequerimiento: cells[42].textContent;
+                    fichaAprobación: cells[43].textContent;
+                    otrosAdjuntos: cells[44].textContent;
+
+                     
                 };
                 datos.push(objeto);
             });
