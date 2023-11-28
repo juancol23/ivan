@@ -1154,7 +1154,20 @@
                 pregunta2: "",
                 pregunta3: "",
                 pregunta4: "",
-                vmo: ""
+                vmo: "",
+                antecedentesA: "a",
+                antecedentesB: "b",
+                antecedentePolicial : "antecedentePolicial",
+                antecedentePenal: "antecedentePenal",
+                antecedenteJudicial: "antecedenteJudicial",
+                certiAdulto: "certiAdulto",
+                multiTest: "multiTest",
+                informePsicologico: "informePsicologico",
+                fichaDatos: "fichaDatos",
+                fichaMedica: "fichaMedica",
+                fichaRequerimiento: "fichaRequerimiento",
+                fichaAprobación: "fichaAprobación",
+                otrosAdjuntos : "otrosAdjuntos"
             };
 
             var oka;
@@ -1251,6 +1264,21 @@
 
                                     objeto.correo = fuente_.value;
 
+
+                                    objeto.antecedentesA= "a";
+                                    objeto.antecedentesB= "b";
+                                    objeto.antecedentePolicial = "antecedentePolicial";
+                                    objeto.antecedentePenal= "antecedentePenal";
+                                    objeto.antecedenteJudicial= "antecedenteJudicial";
+                                    objeto.certiAdulto= "certiAdulto";
+                                    objeto.multiTest= "multiTest";
+                                    objeto.informePsicologico= "informePsicologico";
+                                    objeto.fichaDatos= "fichaDatos";
+                                    objeto.fichaMedica= "fichaMedica";
+                                    objeto.fichaRequerimiento= "fichaRequerimiento";
+                                    objeto.fichaAprobación= "fichaAprobación";
+                                    objeto.otrosAdjuntos = "otrosAdjuntos";
+
                                     // objeto.estadorequerimiento = nuevoRequerimiento;
 
                                     console.log("Objeto actualizado1:", objeto);
@@ -1299,6 +1327,21 @@
                                                 pregunta4_.value = ""
 
                                                 objeto.correo = fuente_.value;
+
+                                                // objeto.antecedentesA= "a";
+                                                // objeto.antecedentesB= "b";
+                                                // objeto.antecedentePolicial = "antecedentePolicial";
+                                                // objeto.antecedentePenal= "antecedentePenal";
+                                                // objeto.antecedenteJudicial= "antecedenteJudicial";
+                                                // objeto.certiAdulto= "certiAdulto";
+                                                // objeto.multiTest= "multiTest";
+                                                // objeto.informePsicologico= "informePsicologico";
+                                                // objeto.fichaDatos= "fichaDatos";
+                                                // objeto.fichaMedica= "fichaMedica";
+                                                // objeto.fichaRequerimiento= "fichaRequerimiento";
+                                                // objeto.fichaAprobación= "fichaAprobación";
+                                                // objeto.otrosAdjuntos = "otrosAdjuntos";
+
                                                 hideLoadingAnimation();
                                                 location.reload();
                                             } else {
