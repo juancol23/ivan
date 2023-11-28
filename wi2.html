@@ -244,6 +244,19 @@
                 <th class="text-center">pregunta4</th>
 
 
+                    <th class="text-center">antecedentesA</th>
+                    <th class="text-center">antecedentesB</th>
+                    <th class="text-center">antecedentePolicial</th>
+                    <th class="text-center">antecedentePenal</th>
+                    <th class="text-center">antecedenteJudicial</th>
+                    <th class="text-center">certiAdulto</th>
+                    <th class="text-center">multiTest</th>
+                    <th class="text-center">informePsicologico</th>
+                    <th class="text-center">fichaDatos</th>
+                    <th class="text-center">fichaMedica</th>
+                    <th class="text-center">fichaRequerimiento</th>
+                    <th class="text-center">fichaAprobación</th>
+                    <th class="text-center">otrosAdjuntos</th>
             </tr>
         </thead>
         <tbody>
@@ -713,7 +726,7 @@
 
 
                         data.forEach(item => {
-                            // if (item.asignacion === nombreUsuario) {
+                            if (item.trabajo === "firma_contrato") {
                             const row = nuevaTabla.insertRow();
                             const cell1 = row.insertCell(0);
                             const cell2 = row.insertCell(1);
@@ -787,7 +800,22 @@
                             cell30.textContent = item.pregunta2;
                             cell31.textContent = item.pregunta3;
                             cell32.textContent = item.pregunta4;
-                            // }
+
+                            cell33.textContent = item.antecedentesA;
+                            cell34.textContent = item.antecedentesB;
+                            cell35.textContent = item.antecedentePolicial;
+                            cell36.textContent = item.antecedentePenal;
+                            cell37.textContent = item.antecedenteJudicial;
+                            cell38.textContent = item.certiAdulto;
+                            cell39.textContent = item.multiTest;
+                            cell40.textContent = item.informePsicologico;
+                            cell41.textContent = item.fichaDatos;
+                            cell42.textContent = item.fichaMedica;
+                            cell43.textContent = item.fichaRequerimiento;
+                            cell44.textContent = item.fichaAprobación;
+                            cell45.textContent = item.otrosAdjuntos;
+                        
+                            }
                         });
                     } else {
                         console.error('Los datos recibidos no son una matriz.');
