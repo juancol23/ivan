@@ -722,7 +722,7 @@ function editarValor(parametro) {
                         cell41.textContent = item.fichaDatos;
                         cell42.textContent = item.fichaMedica;
                         cell43.textContent = item.fichaRequerimiento;
-                        cell44.textContent = item.fichaAprobación;
+                        cell44.textContent = item.fichaAprobacion;
                         cell45.textContent = item.otrosAdjuntos;
 
 
@@ -1019,7 +1019,7 @@ function editarValor(parametro) {
 
 
 
-    <script>
+   <!--  <script>
 
         window.addEventListener("DOMContentLoaded", listarrrrr);
 
@@ -1071,7 +1071,7 @@ function editarValor(parametro) {
 
 
         }
-    </script>
+    </script> -->
 
 
     <script type="text/javascript">
@@ -1097,7 +1097,7 @@ function editarValor(parametro) {
                     nombre: cells[7].textContent,
                     fuente: cells[8].textContent,
                     correo: cells[9].textContent,
-                    trabajo: cells[10].textContent,
+                    trabajo: (cells[10].textContent).slice(0,100),
                     disponibilidad: cells[11].textContent,
                     antecedentes: cells[12].textContent,
                     trabajoHits: cells[13].textContent,
@@ -1120,20 +1120,19 @@ function editarValor(parametro) {
                     pregunta3: cells[30].textContent,
                     pregunta4: cells[31].textContent,
 
-                    antecedentesA: cells[32].textContent;
-                    antecedentesB: cells[33].textContent;
-                    antecedentePolicial: cells[34].textContent;
-                    antecedentePenal: cells[35].textContent;
-                    antecedenteJudicial: cells[36].textContent;
-                    certiAdulto: cells[37].textContent;
-                    multiTest: cells[38].textContent;
-                    informePsicologico: cells[39].textContent;
-                    fichaDatos: cells[40].textContent;
-                    fichaMedica: cells[41].textContent;
-                    fichaRequerimiento: cells[42].textContent;
-                    fichaAprobación: cells[43].textContent;
-                    otrosAdjuntos: cells[44].textContent;
-
+                    antecedentesA: cells[32].textContent,
+                    antecedentesB: cells[33].textContent,
+                    antecedentePolicial: cells[34].textContent,
+                    antecedentePenal: cells[35].textContent,
+                    antecedenteJudicial: cells[36].textContent,
+                    certiAdulto: cells[37].textContent,
+                    multiTest: cells[38].textContent,
+                    informePsicologico: cells[39].textContent,
+                    fichaDatos: cells[40].textContent,
+                    fichaMedica: cells[41].textContent,
+                    fichaRequerimiento: cells[42].textContent,
+                    fichaAprobacion: cells[43].textContent,
+                    otrosAdjuntos: cells[44].textContent
                      
                 };
                 datos.push(objeto);
