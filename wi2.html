@@ -294,32 +294,62 @@
                 <div class="modal-body text-center">
                     <form>
                         <div class="form-group ">
-                            <label for="" class="col-form-label"><b>Adjunto A antecedentesA:</b></label>
+                            <label for="" class="col-form-label"><b>Adjunto Antecedentes A:</b></label>
                             <input type="file" class="form-control" id="antecedentesA">
-                            <a href="" target="_blank" id="adjunto1_">Click para visualizar</a>
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-form-label"><b>Adjunto B:</b></label>
+                            <label for="" class="col-form-label"><b>Adjunto Antecedentes B:</b></label>
                             <input type="file" class="form-control" id="antecedentesB">
-                            <a href="" target="_blank" id="adjunto2_">Click para visualizar</a>
-
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-form-label"><b>Adjunto 3:</b></label>
-                            <input type="file" class="form-control" id="recipient-name">
-                            <a href="" target="_blank" id="adjunto3_">Click para visualizar</a>
-
+                            <label for="" class="col-form-label"><b>Antecedente Policial:</b></label>
+                            <input type="file" class="form-control" id="antecedentePolicial">
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-form-label"><b>Adjunto 4:</b></label>
-                            <input type="file" class="form-control" id="recipient-name">
-                            <a href="" target="_blank" id="adjunto4_">Click para visualizar</a>
-
+                            <label for="" class="col-form-label"><b>Antecedente Penal:</b></label>
+                            <input type="file" class="form-control" id="antecedentePenal">
                         </div>
-                        <!--    <div class="form-group ">
-            <label for="message-text" class="col-form-label"><b>Detalle adicional:</b></label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div> -->
+                        <div class="form-group">
+                            <label for="" class="col-form-label"><b>Antecedente Judicial:</b></label>
+                            <input type="file" class="form-control" id="antecedenteJudicial">
+                        </div>
+                         <div class="form-group">
+                            <label for="" class="col-form-label"><b>Certi Adulto:</b></label>
+                            <input type="file" class="form-control" id="certiAdulto">
+                        </div>
+                         <div class="form-group">
+                            <label for="" class="col-form-label"><b>multiTest:</b></label>
+                            <input type="file" class="form-control" id="multiTest">
+                        </div>
+                         <div class="form-group">
+                            <label for="" class="col-form-label"><b>informePsicologico:</b></label>
+                            <input type="file" class="form-control" id="informePsicologico">
+                        </div>
+                         <div class="form-group">
+                            <label for="" class="col-form-label"><b>fichaDatos:</b></label>
+                            <input type="file" class="form-control" id="fichaDatos">
+                        </div>
+
+                          <div class="form-group">
+                            <label for="" class="col-form-label"><b>fichaMedica:</b></label>
+                            <input type="file" class="form-control" id="fichaMedica">
+                        </div>
+                          <div class="form-group">
+                            <label for="" class="col-form-label"><b>fichaRequerimiento:</b></label>
+                            <input type="file" class="form-control" id="fichaRequerimiento">
+                        </div>
+                          <div class="form-group">
+                            <label for="" class="col-form-label"><b>fichaAprobacion:</b></label>
+                            <input type="file" class="form-control" id="fichaAprobacion">
+                        </div>
+                          <div class="form-group">
+                            <label for="" class="col-form-label"><b>otrosAdjuntos:</b></label>
+                            <input type="file" class="form-control" id="otrosAdjuntos">
+                        </div>
+                        
+                        
+                        
+                        
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -1411,6 +1441,639 @@
 
                     snapshot.ref.getDownloadURL().then((url) => {
                         console.log("URL del archivo:", url);
+                        datosObjeto.antecedentesA = url;
+
+                        // Haz lo que necesitas con la URL, como asignarla a un enlace
+                        // enlaceAdjunto1.href = url;
+                    }).catch(error => {
+                        hideLoadingAnimation();
+                        console.error('Hubo un error en la solicitud:', error);
+                    });
+
+                }).catch((error) => {
+                    console.error("Error al subir el archivo:", error);
+                });
+            } else {
+                hideLoadingAnimation();
+                location.reload();
+                alert("Es obligatorio adjuntar el CV");
+            }
+        });
+
+        document.getElementById('antecedentesB').addEventListener('change', function () {
+            // Se ejecuta cuando se suelta el botón del mouse sobre el input
+            console.log("Botón del mouse liberado sobre el input de archivo");
+
+
+            const firebaseConfig = {
+                apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
+                authDomain: "semilleros-ccb45.firebaseapp.com",
+                projectId: "semilleros-ccb45",
+                storageBucket: "semilleros-ccb45.appspot.com",
+                messagingSenderId: "543478666358",
+                appId: "1:543478666358:web:dc0e8cff35c982faab3b57",
+                measurementId: "G-WK87KGXSWK"
+            };
+
+
+
+            // Inicializa Firebase
+            firebase.initializeApp(firebaseConfig);
+
+            // Obtiene una referencia al servicio de Storage
+            const storage = firebase.storage();
+            // Verifica si hay un archivo seleccionado después de soltar el botón del mouse
+            const file1 = this.files[0];
+
+            if (file1) {
+                // Tu código para subir el archivo a Firebase Storage
+                const storageRef = storage.ref("adjuntos" + "/" + file1.name);
+
+                storageRef.put(file1).then((snapshot) => {
+                    console.log("Archivo subido con éxito");
+
+                    snapshot.ref.getDownloadURL().then((url) => {
+                        console.log("URL del archivo:", url);
+                        datosObjeto.antecedentesB = url;
+
+                        // Haz lo que necesitas con la URL, como asignarla a un enlace
+                        // enlaceAdjunto1.href = url;
+                    }).catch(error => {
+                        hideLoadingAnimation();
+                        console.error('Hubo un error en la solicitud:', error);
+                    });
+
+                }).catch((error) => {
+                    console.error("Error al subir el archivo:", error);
+                });
+            } else {
+                hideLoadingAnimation();
+                location.reload();
+                alert("Es obligatorio adjuntar el CV");
+            }
+        });
+
+        document.getElementById('antecedentePolicial').addEventListener('change', function () {
+            // Se ejecuta cuando se suelta el botón del mouse sobre el input
+            console.log("Botón del mouse liberado sobre el input de archivo");
+
+
+            const firebaseConfig = {
+                apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
+                authDomain: "semilleros-ccb45.firebaseapp.com",
+                projectId: "semilleros-ccb45",
+                storageBucket: "semilleros-ccb45.appspot.com",
+                messagingSenderId: "543478666358",
+                appId: "1:543478666358:web:dc0e8cff35c982faab3b57",
+                measurementId: "G-WK87KGXSWK"
+            };
+
+
+
+            // Inicializa Firebase
+            firebase.initializeApp(firebaseConfig);
+
+            // Obtiene una referencia al servicio de Storage
+            const storage = firebase.storage();
+            // Verifica si hay un archivo seleccionado después de soltar el botón del mouse
+            const file1 = this.files[0];
+
+            if (file1) {
+                // Tu código para subir el archivo a Firebase Storage
+                const storageRef = storage.ref("adjuntos" + "/" + file1.name);
+
+                storageRef.put(file1).then((snapshot) => {
+                    console.log("Archivo subido con éxito");
+
+                    snapshot.ref.getDownloadURL().then((url) => {
+                        console.log("URL del archivo:", url);
+                        datosObjeto.antecedentePolicial = url;
+
+                        // Haz lo que necesitas con la URL, como asignarla a un enlace
+                        // enlaceAdjunto1.href = url;
+                    }).catch(error => {
+                        hideLoadingAnimation();
+                        console.error('Hubo un error en la solicitud:', error);
+                    });
+
+                }).catch((error) => {
+                    console.error("Error al subir el archivo:", error);
+                });
+            } else {
+                hideLoadingAnimation();
+                location.reload();
+                alert("Es obligatorio adjuntar el CV");
+            }
+        });
+
+        document.getElementById('antecedentePenal').addEventListener('change', function () {
+            // Se ejecuta cuando se suelta el botón del mouse sobre el input
+            console.log("Botón del mouse liberado sobre el input de archivo");
+
+
+            const firebaseConfig = {
+                apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
+                authDomain: "semilleros-ccb45.firebaseapp.com",
+                projectId: "semilleros-ccb45",
+                storageBucket: "semilleros-ccb45.appspot.com",
+                messagingSenderId: "543478666358",
+                appId: "1:543478666358:web:dc0e8cff35c982faab3b57",
+                measurementId: "G-WK87KGXSWK"
+            };
+
+
+
+            // Inicializa Firebase
+            firebase.initializeApp(firebaseConfig);
+
+            // Obtiene una referencia al servicio de Storage
+            const storage = firebase.storage();
+            // Verifica si hay un archivo seleccionado después de soltar el botón del mouse
+            const file1 = this.files[0];
+
+            if (file1) {
+                // Tu código para subir el archivo a Firebase Storage
+                const storageRef = storage.ref("adjuntos" + "/" + file1.name);
+
+                storageRef.put(file1).then((snapshot) => {
+                    console.log("Archivo subido con éxito");
+
+                    snapshot.ref.getDownloadURL().then((url) => {
+                        console.log("URL del archivo:", url);
+                        datosObjeto.antecedentePenal = url;
+
+                        // Haz lo que necesitas con la URL, como asignarla a un enlace
+                        // enlaceAdjunto1.href = url;
+                    }).catch(error => {
+                        hideLoadingAnimation();
+                        console.error('Hubo un error en la solicitud:', error);
+                    });
+
+                }).catch((error) => {
+                    console.error("Error al subir el archivo:", error);
+                });
+            } else {
+                hideLoadingAnimation();
+                location.reload();
+                alert("Es obligatorio adjuntar el CV");
+            }
+        });
+        document.getElementById('antecedenteJudicial').addEventListener('change', function () {
+            // Se ejecuta cuando se suelta el botón del mouse sobre el input
+            console.log("Botón del mouse liberado sobre el input de archivo");
+
+
+            const firebaseConfig = {
+                apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
+                authDomain: "semilleros-ccb45.firebaseapp.com",
+                projectId: "semilleros-ccb45",
+                storageBucket: "semilleros-ccb45.appspot.com",
+                messagingSenderId: "543478666358",
+                appId: "1:543478666358:web:dc0e8cff35c982faab3b57",
+                measurementId: "G-WK87KGXSWK"
+            };
+
+
+
+            // Inicializa Firebase
+            firebase.initializeApp(firebaseConfig);
+
+            // Obtiene una referencia al servicio de Storage
+            const storage = firebase.storage();
+            // Verifica si hay un archivo seleccionado después de soltar el botón del mouse
+            const file1 = this.files[0];
+
+            if (file1) {
+                // Tu código para subir el archivo a Firebase Storage
+                const storageRef = storage.ref("adjuntos" + "/" + file1.name);
+
+                storageRef.put(file1).then((snapshot) => {
+                    console.log("Archivo subido con éxito");
+
+                    snapshot.ref.getDownloadURL().then((url) => {
+                        console.log("URL del archivo:", url);
+                        datosObjeto.antecedenteJudicial = url;
+
+                        // Haz lo que necesitas con la URL, como asignarla a un enlace
+                        // enlaceAdjunto1.href = url;
+                    }).catch(error => {
+                        hideLoadingAnimation();
+                        console.error('Hubo un error en la solicitud:', error);
+                    });
+
+                }).catch((error) => {
+                    console.error("Error al subir el archivo:", error);
+                });
+            } else {
+                hideLoadingAnimation();
+                location.reload();
+                alert("Es obligatorio adjuntar el CV");
+            }
+        });
+
+
+        document.getElementById('certiAdulto').addEventListener('change', function () {
+            // Se ejecuta cuando se suelta el botón del mouse sobre el input
+            console.log("Botón del mouse liberado sobre el input de archivo");
+
+
+            const firebaseConfig = {
+                apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
+                authDomain: "semilleros-ccb45.firebaseapp.com",
+                projectId: "semilleros-ccb45",
+                storageBucket: "semilleros-ccb45.appspot.com",
+                messagingSenderId: "543478666358",
+                appId: "1:543478666358:web:dc0e8cff35c982faab3b57",
+                measurementId: "G-WK87KGXSWK"
+            };
+
+
+
+            // Inicializa Firebase
+            firebase.initializeApp(firebaseConfig);
+
+            // Obtiene una referencia al servicio de Storage
+            const storage = firebase.storage();
+            // Verifica si hay un archivo seleccionado después de soltar el botón del mouse
+            const file1 = this.files[0];
+
+            if (file1) {
+                // Tu código para subir el archivo a Firebase Storage
+                const storageRef = storage.ref("adjuntos" + "/" + file1.name);
+
+                storageRef.put(file1).then((snapshot) => {
+                    console.log("Archivo subido con éxito");
+
+                    snapshot.ref.getDownloadURL().then((url) => {
+                        console.log("URL del archivo:", url);
+                        datosObjeto.certiAdulto = url;
+
+                        // Haz lo que necesitas con la URL, como asignarla a un enlace
+                        // enlaceAdjunto1.href = url;
+                    }).catch(error => {
+                        hideLoadingAnimation();
+                        console.error('Hubo un error en la solicitud:', error);
+                    });
+
+                }).catch((error) => {
+                    console.error("Error al subir el archivo:", error);
+                });
+            } else {
+                hideLoadingAnimation();
+                location.reload();
+                alert("Es obligatorio adjuntar el CV");
+            }
+        });
+
+        document.getElementById('multiTest').addEventListener('change', function () {
+            // Se ejecuta cuando se suelta el botón del mouse sobre el input
+            console.log("Botón del mouse liberado sobre el input de archivo");
+
+
+            const firebaseConfig = {
+                apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
+                authDomain: "semilleros-ccb45.firebaseapp.com",
+                projectId: "semilleros-ccb45",
+                storageBucket: "semilleros-ccb45.appspot.com",
+                messagingSenderId: "543478666358",
+                appId: "1:543478666358:web:dc0e8cff35c982faab3b57",
+                measurementId: "G-WK87KGXSWK"
+            };
+
+
+
+            // Inicializa Firebase
+            firebase.initializeApp(firebaseConfig);
+
+            // Obtiene una referencia al servicio de Storage
+            const storage = firebase.storage();
+            // Verifica si hay un archivo seleccionado después de soltar el botón del mouse
+            const file1 = this.files[0];
+
+            if (file1) {
+                // Tu código para subir el archivo a Firebase Storage
+                const storageRef = storage.ref("adjuntos" + "/" + file1.name);
+
+                storageRef.put(file1).then((snapshot) => {
+                    console.log("Archivo subido con éxito");
+
+                    snapshot.ref.getDownloadURL().then((url) => {
+                        console.log("URL del archivo:", url);
+                        datosObjeto.multiTest = url;
+
+                        // Haz lo que necesitas con la URL, como asignarla a un enlace
+                        // enlaceAdjunto1.href = url;
+                    }).catch(error => {
+                        hideLoadingAnimation();
+                        console.error('Hubo un error en la solicitud:', error);
+                    });
+
+                }).catch((error) => {
+                    console.error("Error al subir el archivo:", error);
+                });
+            } else {
+                hideLoadingAnimation();
+                location.reload();
+                alert("Es obligatorio adjuntar el CV");
+            }
+        });
+
+
+        document.getElementById('informePsicologico').addEventListener('change', function () {
+            // Se ejecuta cuando se suelta el botón del mouse sobre el input
+            console.log("Botón del mouse liberado sobre el input de archivo");
+
+
+            const firebaseConfig = {
+                apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
+                authDomain: "semilleros-ccb45.firebaseapp.com",
+                projectId: "semilleros-ccb45",
+                storageBucket: "semilleros-ccb45.appspot.com",
+                messagingSenderId: "543478666358",
+                appId: "1:543478666358:web:dc0e8cff35c982faab3b57",
+                measurementId: "G-WK87KGXSWK"
+            };
+
+
+
+            // Inicializa Firebase
+            firebase.initializeApp(firebaseConfig);
+
+            // Obtiene una referencia al servicio de Storage
+            const storage = firebase.storage();
+            // Verifica si hay un archivo seleccionado después de soltar el botón del mouse
+            const file1 = this.files[0];
+
+            if (file1) {
+                // Tu código para subir el archivo a Firebase Storage
+                const storageRef = storage.ref("adjuntos" + "/" + file1.name);
+
+                storageRef.put(file1).then((snapshot) => {
+                    console.log("Archivo subido con éxito");
+
+                    snapshot.ref.getDownloadURL().then((url) => {
+                        console.log("URL del archivo:", url);
+                        datosObjeto.informePsicologico = url;
+
+                        // Haz lo que necesitas con la URL, como asignarla a un enlace
+                        // enlaceAdjunto1.href = url;
+                    }).catch(error => {
+                        hideLoadingAnimation();
+                        console.error('Hubo un error en la solicitud:', error);
+                    });
+
+                }).catch((error) => {
+                    console.error("Error al subir el archivo:", error);
+                });
+            } else {
+                hideLoadingAnimation();
+                location.reload();
+                alert("Es obligatorio adjuntar el CV");
+            }
+        });
+     document.getElementById('fichaDatos').addEventListener('change', function () {
+            // Se ejecuta cuando se suelta el botón del mouse sobre el input
+            console.log("Botón del mouse liberado sobre el input de archivo");
+
+
+            const firebaseConfig = {
+                apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
+                authDomain: "semilleros-ccb45.firebaseapp.com",
+                projectId: "semilleros-ccb45",
+                storageBucket: "semilleros-ccb45.appspot.com",
+                messagingSenderId: "543478666358",
+                appId: "1:543478666358:web:dc0e8cff35c982faab3b57",
+                measurementId: "G-WK87KGXSWK"
+            };
+
+
+
+            // Inicializa Firebase
+            firebase.initializeApp(firebaseConfig);
+
+            // Obtiene una referencia al servicio de Storage
+            const storage = firebase.storage();
+            // Verifica si hay un archivo seleccionado después de soltar el botón del mouse
+            const file1 = this.files[0];
+
+            if (file1) {
+                // Tu código para subir el archivo a Firebase Storage
+                const storageRef = storage.ref("adjuntos" + "/" + file1.name);
+
+                storageRef.put(file1).then((snapshot) => {
+                    console.log("Archivo subido con éxito");
+
+                    snapshot.ref.getDownloadURL().then((url) => {
+                        console.log("URL del archivo:", url);
+                        datosObjeto.fichaDatos = url;
+
+                        // Haz lo que necesitas con la URL, como asignarla a un enlace
+                        // enlaceAdjunto1.href = url;
+                    }).catch(error => {
+                        hideLoadingAnimation();
+                        console.error('Hubo un error en la solicitud:', error);
+                    });
+
+                }).catch((error) => {
+                    console.error("Error al subir el archivo:", error);
+                });
+            } else {
+                hideLoadingAnimation();
+                location.reload();
+                alert("Es obligatorio adjuntar el CV");
+            }
+        });
+
+  document.getElementById('fichaMedica').addEventListener('change', function () {
+            // Se ejecuta cuando se suelta el botón del mouse sobre el input
+            console.log("Botón del mouse liberado sobre el input de archivo");
+
+
+            const firebaseConfig = {
+                apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
+                authDomain: "semilleros-ccb45.firebaseapp.com",
+                projectId: "semilleros-ccb45",
+                storageBucket: "semilleros-ccb45.appspot.com",
+                messagingSenderId: "543478666358",
+                appId: "1:543478666358:web:dc0e8cff35c982faab3b57",
+                measurementId: "G-WK87KGXSWK"
+            };
+
+
+
+            // Inicializa Firebase
+            firebase.initializeApp(firebaseConfig);
+
+            // Obtiene una referencia al servicio de Storage
+            const storage = firebase.storage();
+            // Verifica si hay un archivo seleccionado después de soltar el botón del mouse
+            const file1 = this.files[0];
+
+            if (file1) {
+                // Tu código para subir el archivo a Firebase Storage
+                const storageRef = storage.ref("adjuntos" + "/" + file1.name);
+
+                storageRef.put(file1).then((snapshot) => {
+                    console.log("Archivo subido con éxito");
+
+                    snapshot.ref.getDownloadURL().then((url) => {
+                        console.log("URL del archivo:", url);
+                        datosObjeto.fichaMedica = url;
+
+                        // Haz lo que necesitas con la URL, como asignarla a un enlace
+                        // enlaceAdjunto1.href = url;
+                    }).catch(error => {
+                        hideLoadingAnimation();
+                        console.error('Hubo un error en la solicitud:', error);
+                    });
+
+                }).catch((error) => {
+                    console.error("Error al subir el archivo:", error);
+                });
+            } else {
+                hideLoadingAnimation();
+                location.reload();
+                alert("Es obligatorio adjuntar el CV");
+            }
+        });
+document.getElementById('fichaRequerimiento').addEventListener('change', function () {
+            // Se ejecuta cuando se suelta el botón del mouse sobre el input
+            console.log("Botón del mouse liberado sobre el input de archivo");
+
+
+            const firebaseConfig = {
+                apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
+                authDomain: "semilleros-ccb45.firebaseapp.com",
+                projectId: "semilleros-ccb45",
+                storageBucket: "semilleros-ccb45.appspot.com",
+                messagingSenderId: "543478666358",
+                appId: "1:543478666358:web:dc0e8cff35c982faab3b57",
+                measurementId: "G-WK87KGXSWK"
+            };
+
+
+
+            // Inicializa Firebase
+            firebase.initializeApp(firebaseConfig);
+
+            // Obtiene una referencia al servicio de Storage
+            const storage = firebase.storage();
+            // Verifica si hay un archivo seleccionado después de soltar el botón del mouse
+            const file1 = this.files[0];
+
+            if (file1) {
+                // Tu código para subir el archivo a Firebase Storage
+                const storageRef = storage.ref("adjuntos" + "/" + file1.name);
+
+                storageRef.put(file1).then((snapshot) => {
+                    console.log("Archivo subido con éxito");
+
+                    snapshot.ref.getDownloadURL().then((url) => {
+                        console.log("URL del archivo:", url);
+                        datosObjeto.fichaRequerimiento = url;
+
+                        // Haz lo que necesitas con la URL, como asignarla a un enlace
+                        // enlaceAdjunto1.href = url;
+                    }).catch(error => {
+                        hideLoadingAnimation();
+                        console.error('Hubo un error en la solicitud:', error);
+                    });
+
+                }).catch((error) => {
+                    console.error("Error al subir el archivo:", error);
+                });
+            } else {
+                hideLoadingAnimation();
+                location.reload();
+                alert("Es obligatorio adjuntar el CV");
+            }
+        });
+document.getElementById('fichaAprobacion').addEventListener('change', function () {
+            // Se ejecuta cuando se suelta el botón del mouse sobre el input
+            console.log("Botón del mouse liberado sobre el input de archivo");
+
+
+            const firebaseConfig = {
+                apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
+                authDomain: "semilleros-ccb45.firebaseapp.com",
+                projectId: "semilleros-ccb45",
+                storageBucket: "semilleros-ccb45.appspot.com",
+                messagingSenderId: "543478666358",
+                appId: "1:543478666358:web:dc0e8cff35c982faab3b57",
+                measurementId: "G-WK87KGXSWK"
+            };
+
+
+
+            // Inicializa Firebase
+            firebase.initializeApp(firebaseConfig);
+
+            // Obtiene una referencia al servicio de Storage
+            const storage = firebase.storage();
+            // Verifica si hay un archivo seleccionado después de soltar el botón del mouse
+            const file1 = this.files[0];
+
+            if (file1) {
+                // Tu código para subir el archivo a Firebase Storage
+                const storageRef = storage.ref("adjuntos" + "/" + file1.name);
+
+                storageRef.put(file1).then((snapshot) => {
+                    console.log("Archivo subido con éxito");
+
+                    snapshot.ref.getDownloadURL().then((url) => {
+                        console.log("URL del archivo:", url);
+                        datosObjeto.fichaAprobacion = url;
+
+                        // Haz lo que necesitas con la URL, como asignarla a un enlace
+                        // enlaceAdjunto1.href = url;
+                    }).catch(error => {
+                        hideLoadingAnimation();
+                        console.error('Hubo un error en la solicitud:', error);
+                    });
+
+                }).catch((error) => {
+                    console.error("Error al subir el archivo:", error);
+                });
+            } else {
+                hideLoadingAnimation();
+                location.reload();
+                alert("Es obligatorio adjuntar el CV");
+            }
+        });
+document.getElementById('otrosAdjuntos').addEventListener('change', function () {
+            // Se ejecuta cuando se suelta el botón del mouse sobre el input
+            console.log("Botón del mouse liberado sobre el input de archivo");
+
+
+            const firebaseConfig = {
+                apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
+                authDomain: "semilleros-ccb45.firebaseapp.com",
+                projectId: "semilleros-ccb45",
+                storageBucket: "semilleros-ccb45.appspot.com",
+                messagingSenderId: "543478666358",
+                appId: "1:543478666358:web:dc0e8cff35c982faab3b57",
+                measurementId: "G-WK87KGXSWK"
+            };
+
+
+
+            // Inicializa Firebase
+            firebase.initializeApp(firebaseConfig);
+
+            // Obtiene una referencia al servicio de Storage
+            const storage = firebase.storage();
+            // Verifica si hay un archivo seleccionado después de soltar el botón del mouse
+            const file1 = this.files[0];
+
+            if (file1) {
+                // Tu código para subir el archivo a Firebase Storage
+                const storageRef = storage.ref("adjuntos" + "/" + file1.name);
+
+                storageRef.put(file1).then((snapshot) => {
+                    console.log("Archivo subido con éxito");
+
+                    snapshot.ref.getDownloadURL().then((url) => {
+                        console.log("URL del archivo:", url);
                         datosObjeto.otrosAdjuntos = url;
 
                         // Haz lo que necesitas con la URL, como asignarla a un enlace
@@ -1429,6 +2092,8 @@
                 alert("Es obligatorio adjuntar el CV");
             }
         });
+
+
     </script>
 
 </body>
