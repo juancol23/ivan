@@ -934,7 +934,9 @@
      
           // solicitantesHTML += "<div class='col-sm-5'><div class='card'><div class='card-body'><h5 class='card-text'><div class='card-body'><div class='card'>" + data.requerimiento + "</h5> <h5 class='card-text'><div class='card-body'><div class='card'>" + data.nombre_puesto + "</h5> <button id='miBoton' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#misTrabajosModal1' data-valor= " + data.id + "  onClick='obtenerValor(" +data.id+ ")' >Completar </button>   <button id='miBoton2' class='btn btn-dark'   data-valor= " + data.id + " onClick='editarValor(" + data.id + ")' >Editar </button> </div></div></div></div></div></div>";
 
-          solicitantesHTML += "<div class='col-sm-5'><div class='card'><div class='card-body'><h5 class='card-text'><div class='card-body'><div class='card'>" + data.requerimiento + "</div></div></h5> <h5 class='card-text'><div class='card-body'><div class='card'>" + data.nombre_puesto+ "</div></div></h5> <button id='miBoton' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#misTrabajosModal1' data-valor= " + data.id + " onClick='obtenerValor(\"" + ((data.nombre_puesto || '').replace(/\s+/g, '_')) + "\")' >Completar </button>   <button id='miBoton2' class='btn btn-dark'   data-valor= " + data.id + " onClick='editarValor(" + data.id + ")' >Editar </button> </div></div></div>";
+          solicitantesHTML += "<div class='col-sm-5'><div class='card'><div class='card-body'><h5 class='card-text'><div class='card-body'><div class='card'>" + data.requerimiento + "</div></div></h5> <h5 class='card-text'><div class='card-body'><div class='card'>" + data.nombre_puesto+ "</div></div></h5> <button id='miBoton' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#misTrabajosModal1' data-valor= " + data.id + " onClick='obtenerValor(" + data.id + ")' >Completar </button>   <button id='miBoton2' class='btn btn-dark'   data-valor= " + data.id + " onClick='editarValor(" + data.id + ")' >Editar </button> </div></div></div>";
+
+             // solicitantesHTML += "<div class='col-sm-5'><div class='card'><div class='card-body'><h5 class='card-text'><div class='card-body'><div class='card'>" + data.requerimiento + "</div></div></h5> <h5 class='card-text'><div class='card-body'><div class='card'>" + data.nombre_puesto+ "</div></div></h5> <button id='miBoton' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#misTrabajosModal1' data-valor= " + data.id + " onClick='obtenerValor(\"" + ((data.nombre_puesto || '').replace(/\s+/g, '_')) + "\")' >Completar </button>   <button id='miBoton2' class='btn btn-dark'   data-valor= " + data.id + " onClick='editarValor(" + data.id + ")' >Editar </button> </div></div></div>";
 
         }
                     // solicitantesHTML += " <div class='col-sm-5'><div class='card'><div class='card-body'><h5 class='card-text'><div class='card-body'><div class='card'>" + data.requerimiento + "</h5> <button id='miBoton' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#misTrabajosModal1' data-valor= " + data.id + " onClick='obtenerValor(" + data.id + ")' >Completar </button>   <button id='miBoton2' class='btn btn-dark' data-bs-toggle='modal' data-bs-target='#misTrabajosModal6' data-valor= " + data.id + " onClick='editarValor(" + data.id + ")' >Editar </button> </div></div></div></div></div></div>";
@@ -954,11 +956,11 @@
 
 
         function obtenerValor(parametro) {
-            alert(parametro+"")
+            alert(parametro+"asd")
             // var miBoton = document.getElementById('miBoton');
             // Obtener el valor personalizado del botón
             // var valorPersonalizado = miBoton.getAttribute('data-valor');
-            // localStorage.setItem("id", parametro);
+            localStorage.setItem("id", parametro);
 
 
              var trabajoVinculado_ = document.getElementById('trabajoVinculado_');
@@ -1069,12 +1071,8 @@
         }
 
 
-
-
-
-
         var idddd = localStorage.getItem('id');
-        console.log(idddd)
+        console.log(idddd+"IDDDDD")
         function guardar() {
             showLoadingAnimation();
             // var nuevoRequerimiento = prompt("Ingrese : nuevoRequerimiento");
@@ -1170,7 +1168,6 @@
                 otrosAdjuntos : "otrosAdjuntos"
             };
 
-            var oka;
 
             fetch(`https://runnnnnnn.azurewebsites.net/requerimiento/${idddd}`)
             // fetch("https://runnnnnnn.azurewebsites.net/requerimiento")
