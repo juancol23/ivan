@@ -329,7 +329,7 @@
 
                                     <div class="mb-3">
                                         <label for="nombre" class="form-label">Seniority S</label>
-                                            <select class="form-select" id="status">
+                                            <select class="form-select" id="seniority">
                                                 <option value="JR">JR</option>
                                                 <option value="SS">SS</option>
                                                 <option value="S">S</option>
@@ -341,7 +341,7 @@
 
                                     <div class="mb-3">
                                         <label for="nombre" class="form-label">Tecnológia</label>
-                                            <select class="form-select" id="status">
+                                            <select class="form-select" id="tecnologia">
                                                 <option value=".NET"> .NET </option>
                                                 <option value="ANDROID"> ANDROID </option>
                                                 <option value="APLICACIONES"> APLICACIONES </option>
@@ -405,7 +405,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="nombre" class="form-label">Cliente</label>
-                                            <select class="form-select" id="status">
+                                            <select class="form-select" id="cliente">
                                                 <option value="G_HITSS">G. HITSS</option>
                                                 <option value="CLARO_U">CLARO U.</option>
                                                 <option value="CLARO_P">CLARO P.</option>
@@ -422,7 +422,7 @@
 
                                     <div class="mb-3">
                                         <label for="nombre" class="form-label">Prioridad</label>
-                                            <select class="form-select" id="status">
+                                            <select class="form-select" id="prioridad">
                                                 <option value="A">A</option>
                                                 <option value="M">M</option>
                                                 <option value="B">B</option>
@@ -431,7 +431,7 @@
 
                                     <div class="mb-3">
                                         <label for="nombre" class="form-label">Motivo</label>
-                                            <select class="form-select" id="status">
+                                            <select class="form-select" id="motivo">
                                                 <option value="NUEVA">NUEVA</option>
                                                 <option value="SUSTITUCION">SUSTITUCIÓN</option>
                                                 <option value="PREVENTA">PREVENTA</option>  
@@ -440,7 +440,7 @@
 
                                          <div class="mb-3">
                                         <label for="nombre" class="form-label">OBS_CANCELADOS</label>
-                                            <select class="form-select" id="status">
+                                            <select class="form-select" id="OBS_CANCELADOS">
                                                 <option value="CAMBIO DE PERFIL">CAMBIO DE PERFIL</option>
                                                 <option value="CANDIDATO DESISTE DEL PROCESO">CANDIDATO DESISTE DEL PROCESO</option>
                                                 <option value="DEMORA EN RESPUESTA CVs">DEMORA EN RESPUESTA CVs</option>
@@ -451,27 +451,8 @@
                                                 <option value="A SOLICITUD DEL GERENTE">A SOLICITUD DEL GERENTE</option>
                                             </select>
                                     </div>
-
-
-
-
-
-
-
-
-
-
-
-                                        <div class="mb-3">
-                                        <label for="nombre" class="form-label">Seniority S</label>
-                                            <select class="form-select" id="status">
-                                                <option value="JR">JR</option>
-                                                <option value="SS">SS</option>
-                                                <option value="S">S</option>
-                                                <option value="N/A">N/A</option>
-                                                <!-- Agrega más opciones según tus necesidades -->
-                                            </select>
-                                    </div>
+ 
+ 
 
                                     <div class="mb-3">
                                         <label for="" class="form-label">Asignación</label>
@@ -655,6 +636,15 @@
         function crearRequerimiento() {
 
             var miSelect = document.getElementById('status');
+
+            var fechaSolicitud = document.getElementById('fechaSolicitud');
+            var tecnologia = document.getElementById('tecnologia');
+            var seniority = document.getElementById('seniority');
+            var cliente = document.getElementById('cliente');
+            var prioridad = document.getElementById('prioridad');
+            var motivo = document.getElementById('motivo');
+            var OBS_CANCELADOS = document.getElementById('OBS_CANCELADOS');
+
             var asignacion = document.getElementById('asignacion');
             var solicitante = document.getElementById('solicitante');
 
@@ -697,7 +687,15 @@
                 fichaMedica: "fichaMedica",
                 fichaRequerimiento: "fichaRequerimiento",
                 fichaAprobación: "fichaAprobación",
-                otrosAdjuntos: "otrosAdjuntos"
+                otrosAdjuntos: "otrosAdjuntos",
+
+                fechaSolicitud: "fechaSolicitud.value",
+                tecnologia: "tecnologia.value",
+                seniority: "seniority.value",
+                cliente: "cliente.value",
+                prioridad: "prioridad.value",
+                motivo: "motivo.value",
+                OBS_CANCELADOS: "OBS_CANCELADOS.value"
 
             };
 
