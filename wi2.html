@@ -195,10 +195,11 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
-                        <button id="exportButton">Reporte Talento</button>
                         <button id="cerrar_sesion">Regresar</button>
                     </ul>
                 </div>
+                        <button id="exportButton">Reporte Talento</button>
+
             </div>
         </nav>
     </header>
@@ -369,7 +370,7 @@
 
     <script>
 
-        showLoadingAnimation();
+        // showLoadingAnimation();
 
         function convertirAListaAnidada(dataList) {
             var listaAnidada = [];
@@ -392,7 +393,7 @@
 
 
         function exportarAExcel(data) {
-
+alert("asd")
             var nombreUsuario = localStorage.getItem('nombreUsuario');
 
             const filteredData = data.filter(item => item.asignacion === nombreUsuario);
