@@ -204,7 +204,7 @@
     </header>
 
     <table id="nuevaTabla" class="table table-bordered table-responsive-md table-striped text-center">
-        <thead  class="thead-dark">
+        <thead class="thead-dark">
             <tr>
                 <th class="text-center">solicitante</th>
                 <th class="text-center">asignacion</th>
@@ -244,19 +244,19 @@
                 <th class="text-center">pregunta4</th>
 
 
-                    <th class="text-center">antecedentesA</th>
-                    <th class="text-center">antecedentesB</th>
-                    <th class="text-center">antecedentePolicial</th>
-                    <th class="text-center">antecedentePenal</th>
-                    <th class="text-center">antecedenteJudicial</th>
-                    <th class="text-center">certiAdulto</th>
-                    <th class="text-center">multiTest</th>
-                    <th class="text-center">informePsicologico</th>
-                    <th class="text-center">fichaDatos</th>
-                    <th class="text-center">fichaMedica</th>
-                    <th class="text-center">fichaRequerimiento</th>
-                    <th class="text-center">fichaAprobación</th>
-                    <th class="text-center">otrosAdjuntos</th>
+                <th class="text-center">antecedentesA</th>
+                <th class="text-center">antecedentesB</th>
+                <th class="text-center">antecedentePolicial</th>
+                <th class="text-center">antecedentePenal</th>
+                <th class="text-center">antecedenteJudicial</th>
+                <th class="text-center">certiAdulto</th>
+                <th class="text-center">multiTest</th>
+                <th class="text-center">informePsicologico</th>
+                <th class="text-center">fichaDatos</th>
+                <th class="text-center">fichaMedica</th>
+                <th class="text-center">fichaRequerimiento</th>
+                <th class="text-center">fichaAprobación</th>
+                <th class="text-center">otrosAdjuntos</th>
             </tr>
         </thead>
         <tbody>
@@ -265,7 +265,7 @@
     </table>
     </div>
 
- 
+
     </section>
     <section>
         <div
@@ -281,54 +281,55 @@
 
 
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body text-center">
-        <form>
-          <div class="form-group " >
-            <label for="" class="col-form-label"><b>Adjunto 1:</b></label>
-            <input type="file" class="form-control" id="recipient-name">
-            <a href="" target="_blank" id="adjunto1_">Click para visualizar</a>
-          </div>
-           <div class="form-group">
-            <label for="" class="col-form-label"><b>Adjunto 2:</b></label>
-            <input type="file" class="form-control" id="recipient-name">
-            <a href="" target="_blank" id="adjunto2_">Click para visualizar</a>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <form>
+                        <div class="form-group ">
+                            <label for="" class="col-form-label"><b>Adjunto A antecedentesA:</b></label>
+                            <input type="file" class="form-control" id="antecedentesA">
+                            <a href="" target="_blank" id="adjunto1_">Click para visualizar</a>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-form-label"><b>Adjunto B:</b></label>
+                            <input type="file" class="form-control" id="antecedentesB">
+                            <a href="" target="_blank" id="adjunto2_">Click para visualizar</a>
 
-          </div>
-           <div class="form-group">
-            <label for="" class="col-form-label"><b>Adjunto 3:</b></label>
-            <input type="file" class="form-control" id="recipient-name">
-            <a href="" target="_blank" id="adjunto3_">Click para visualizar</a>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-form-label"><b>Adjunto 3:</b></label>
+                            <input type="file" class="form-control" id="recipient-name">
+                            <a href="" target="_blank" id="adjunto3_">Click para visualizar</a>
 
-          </div>
-           <div class="form-group">
-            <label for="" class="col-form-label"><b>Adjunto 4:</b></label>
-            <input type="file" class="form-control" id="recipient-name">
-            <a href="" target="_blank" id="adjunto4_">Click para visualizar</a>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-form-label"><b>Adjunto 4:</b></label>
+                            <input type="file" class="form-control" id="recipient-name">
+                            <a href="" target="_blank" id="adjunto4_">Click para visualizar</a>
 
-          </div>
-       <!--    <div class="form-group ">
+                        </div>
+                        <!--    <div class="form-group ">
             <label for="message-text" class="col-form-label"><b>Detalle adicional:</b></label>
             <textarea class="form-control" id="message-text"></textarea>
           </div> -->
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button  class="btn btn-primary">Send message</button>
-        <p id="subirAdjuntos" >subir</p>
-      </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" onclick="mostrarAlerta()">Send message</button>
+                    <p id="subirAdjuntos">subir</p>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
 
 
@@ -486,15 +487,15 @@
 
     <script type="text/javascript">
 
-         const firebaseConfig = {
-                            apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
-                            authDomain: "semilleros-ccb45.firebaseapp.com",
-                            projectId: "semilleros-ccb45",
-                            storageBucket: "semilleros-ccb45.appspot.com",
-                            messagingSenderId: "543478666358",
-                            appId: "1:543478666358:web:dc0e8cff35c982faab3b57",
-                            measurementId: "G-WK87KGXSWK"
-                        };
+        const firebaseConfig = {
+            apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
+            authDomain: "semilleros-ccb45.firebaseapp.com",
+            projectId: "semilleros-ccb45",
+            storageBucket: "semilleros-ccb45.appspot.com",
+            messagingSenderId: "543478666358",
+            appId: "1:543478666358:web:dc0e8cff35c982faab3b57",
+            measurementId: "G-WK87KGXSWK"
+        };
 
         // Recuperar la lista de objetos desde localStorage
         // var dataList = JSON.parse(localStorage.getItem('miData')) || [];
@@ -614,13 +615,13 @@
         }
         var temporal = localStorage.getItem("id");
         editarValor(temporal);
- 
- 
+
+
         function editarValor(parametro) {
             console.log("parametro");
             var miBoton2 = document.getElementById('miBoton2');
             // Obtener el valor personalizado del botón
-            localStorage.setItem("id", parametro);
+
 
             fetch(`https://runnnnnnn.azurewebsites.net/requerimiento`)
                 .then(response => {
@@ -665,51 +666,96 @@
                             // Llama al método show para mostrar el modal
                             modal.show();
 
-                             datosObjeto = {
-                                solicitante: fila.cells[1].textContent,
-                                asignacion: fila.cells[2].textContent,
-                                requerimiento: fila.cells[3].textContent,
-                                vmo: fila.cells[4].textContent,
-                                id: fila.cells[5].textContent,
-                                telefono: fila.cells[6].textContent,
-                                dni: fila.cells[7].textContent,
-                                nombre: fila.cells[8].textContent,
-                                fuente: fila.cells[9].textContent,
-                                correo: fila.cells[10].textContent,
-                                trabajo: fila.cells[11].textContent,
-                                disponibilidad: fila.cells[12].textContent,
-                                antecedentes: fila.cells[13].textContent,
-                                trabajoHits: fila.cells[14].textContent,
-                                familiaresHits: fila.cells[15].textContent,
-                                trabajoVinculado: fila.cells[16].textContent,
-                                pasoTrabajoVinculado: fila.cells[17].textContent,
-                                fechaNacimiento: fila.cells[18].textContent,
-                                todosTelefonos: fila.cells[19].textContent,
-                                puesto: fila.cells[20].textContent,
-                                empleador_: fila.cells[21].textContent,
-                                institucion_: fila.cells[22].textContent,
-                                carreras: fila.cells[23].textContent,
-                                grados: fila.cells[24].textContent,
-                                salario: fila.cells[25].textContent,
-                                espectativa: fila.cells[26].textContent,
-                                beneficio: fila.cells[27].textContent,
-                                puestoHits: fila.cells[28].textContent,
-                                pregunta1: fila.cells[29].textContent,
-                                pregunta2: fila.cells[30].textContent,
-                                pregunta3: fila.cells[31].textContent,
+                            console.log(fila.cells);
+                            localStorage.setItem("id", fila.cells[4].textContent);
+                            console.log("solicitante asd " + fila.cells[0].textContent)
+                            console.log("asignacion " + fila.cells[1].textContent)
+                            console.log("requerimiento " + fila.cells[2].textContent)
+                            console.log("vmo " + fila.cells[3].textContent)
+                            console.log("id " + fila.cells[4].textContent)
+                            console.log("telefono " + fila.cells[5].textContent)
+                            console.log("dni " + fila.cells[6].textContent)
+                            console.log("nombre " + fila.cells[7].textContent)
+                            console.log("fuente " + fila.cells[8].textContent)
+                            console.log("correo " + fila.cells[9].textContent)
+                            console.log("trabajo " + fila.cells[10].textContent)
+                            console.log("disponibilidad " + fila.cells[11].textContent)
+                            console.log("antecedentes " + fila.cells[12].textContent)
+                            console.log("trabajoHits " + fila.cells[13].textContent)
+                            console.log("familiaresHits " + fila.cells[14].textContent)
+                            console.log("trabajoVinculado " + fila.cells[15].textContent)
+                            console.log("pasoTrabajoVinculado " + fila.cells[16].textContent)
+                            console.log("fechaNacimiento " + fila.cells[17].textContent)
+                            console.log("todosTelefonos " + fila.cells[18].textContent)
+                            console.log("puesto " + fila.cells[19].textContent)
+                            console.log("empleador_ " + fila.cells[20].textContent)
+                            console.log("institucion_ " + fila.cells[21].textContent)
+                            console.log("carreras " + fila.cells[22].textContent)
+                            console.log("grados " + fila.cells[23].textContent)
+                            console.log("salario " + fila.cells[24].textContent)
+                            console.log("espectativa " + fila.cells[25].textContent)
+                            console.log("beneficio " + fila.cells[26].textContent)
+                            console.log("puestoHits " + fila.cells[27].textContent)
+                            console.log("pregunta1 " + fila.cells[28].textContent)
+                            console.log("pregunta2 " + fila.cells[29].textContent)
+                            console.log("pregunta3 " + fila.cells[30].textContent)
+                            console.log("pregunta4 " + fila.cells[31].textContent)
+                            datosObjeto = {
+                                solicitante: fila.cells[0].textContent,
+                                asignacion: fila.cells[1].textContent,
+                                requerimiento: fila.cells[2].textContent,
+                                vmo: fila.cells[3].textContent,
+                                id: fila.cells[4].textContent,
+                                telefono: fila.cells[5].textContent,
+                                dni: fila.cells[6].textContent,
+                                nombre: fila.cells[7].textContent,
+                                fuente: fila.cells[8].textContent,
+                                correo: fila.cells[9].textContent,
+                                trabajo: fila.cells[10].textContent,
+                                disponibilidad: fila.cells[11].textContent,
+                                antecedentes: fila.cells[12].textContent,
+                                trabajoHits: fila.cells[13].textContent,
+                                familiaresHits: fila.cells[14].textContent,
+                                trabajoVinculado: fila.cells[15].textContent,
+                                pasoTrabajoVinculado: fila.cells[16].textContent,
+                                fechaNacimiento: fila.cells[17].textContent,
+                                todosTelefonos: fila.cells[18].textContent,
+                                puesto: fila.cells[19].textContent,
+                                empleador_: fila.cells[20].textContent,
+                                institucion_: fila.cells[21].textContent,
+                                carreras: fila.cells[22].textContent,
+                                grados: fila.cells[23].textContent,
+                                salario: fila.cells[24].textContent,
+                                espectativa: fila.cells[25].textContent,
+                                beneficio: fila.cells[26].textContent,
+                                puestoHits: fila.cells[27].textContent,
+                                pregunta1: fila.cells[28].textContent,
+                                pregunta2: fila.cells[29].textContent,
+                                pregunta3: fila.cells[30].textContent,
                                 pregunta4: fila.cells[31].textContent,
-                                adjunto1: fila.cells[31].textContent,
-                                adjunto2: fila.cells[31].textContent,   
-                                adjunto3: fila.cells[31].textContent,
-                                adjunto4: fila.cells[31].textContent
+
+                                antecedentesA: fila.cells[32].textContent,
+                                antecedentesB: fila.cells[33].textContent,
+                                antecedentePolicial: fila.cells[34].textContent,
+                                antecedentePenal: fila.cells[35].textContent,
+                                antecedenteJudicial: fila.cells[36].textContent,
+                                certiAdulto: fila.cells[37].textContent,
+                                multiTest: fila.cells[38].textContent,
+                                informePsicologico: fila.cells[39].textContent,
+                                fichaDatos: fila.cells[40].textContent,
+                                fichaMedica: fila.cells[41].textContent,
+                                fichaRequerimiento: fila.cells[42].textContent,
+                                fichaRequerimiento: fila.cells[43].textContent,
+                                otrosAdjuntos: fila.cells[44].textContent
+
                             };
 
 
                             // Obtén el elemento <a> por su ID
-                            const enlaceAdjunto1 = document.getElementById('adjunto1');
-                            const enlaceAdjunto2 = document.getElementById('adjunto2');
-                            const enlaceAdjunto3 = document.getElementById('adjunto3');
-                            const enlaceAdjunto4 = document.getElementById('adjunto4');
+                            // const enlaceAdjunto1 = document.getElementById('adjunto1');
+                            // const enlaceAdjunto2 = document.getElementById('adjunto2');
+                            // const enlaceAdjunto3 = document.getElementById('adjunto3');
+                            // const enlaceAdjunto4 = document.getElementById('adjunto4');
 
                             // // Asigna el valor de datosObjeto.adjunto1 al atributo href del enlace
                             // enlaceAdjunto1.href = datosObjeto.adjunto1;
@@ -721,100 +767,116 @@
 
 
 
-                            
+
                         });
 
 
                         data.forEach(item => {
                             if (item.trabajo === "firma_contrato") {
-                            const row = nuevaTabla.insertRow();
-                            const cell1 = row.insertCell(0);
-                            const cell2 = row.insertCell(1);
-                            const cell3 = row.insertCell(2);
-                            const cell4 = row.insertCell(3);
-                            const cell5 = row.insertCell(4);
+                                const row = nuevaTabla.insertRow();
+                                const cell1 = row.insertCell(0);
+                                const cell2 = row.insertCell(1);
+                                const cell3 = row.insertCell(2);
+                                const cell4 = row.insertCell(3);
+                                const cell5 = row.insertCell(4);
 
-                            const cell6 = row.insertCell(5);
-                            const cell7 = row.insertCell(6);
-                            const cell8 = row.insertCell(7);
-                            const cell9 = row.insertCell(8);
+                                const cell6 = row.insertCell(5);
+                                const cell7 = row.insertCell(6);
+                                const cell8 = row.insertCell(7);
+                                const cell9 = row.insertCell(8);
 
-                            const cell10 = row.insertCell(9);
-                            const cell11 = row.insertCell(10);
-                            const cell12 = row.insertCell(11);
-                            const cell13 = row.insertCell(12);
-                            const cell14 = row.insertCell(13);
-                            const cell15 = row.insertCell(14);
-                            const cell16 = row.insertCell(15);
-                            const cell17 = row.insertCell(16);
+                                const cell10 = row.insertCell(9);
+                                const cell11 = row.insertCell(10);
+                                const cell12 = row.insertCell(11);
+                                const cell13 = row.insertCell(12);
+                                const cell14 = row.insertCell(13);
+                                const cell15 = row.insertCell(14);
+                                const cell16 = row.insertCell(15);
+                                const cell17 = row.insertCell(16);
 
-                            const cell18 = row.insertCell(17);
-                            const cell19 = row.insertCell(18);
-                            const cell20 = row.insertCell(19);
-                            const cell21 = row.insertCell(20);
-                            const cell22 = row.insertCell(21);
-                            const cell23 = row.insertCell(22);
-                            const cell24 = row.insertCell(23);
-                            const cell25 = row.insertCell(24);
-                            const cell26 = row.insertCell(25);
-                            const cell27 = row.insertCell(26);
-                            const cell28 = row.insertCell(27);
-                            const cell29 = row.insertCell(28);
-                            const cell30 = row.insertCell(29);
-                            const cell31 = row.insertCell(30);
-                            const cell32 = row.insertCell(31);
+                                const cell18 = row.insertCell(17);
+                                const cell19 = row.insertCell(18);
+                                const cell20 = row.insertCell(19);
+                                const cell21 = row.insertCell(20);
+                                const cell22 = row.insertCell(21);
+                                const cell23 = row.insertCell(22);
+                                const cell24 = row.insertCell(23);
+                                const cell25 = row.insertCell(24);
+                                const cell26 = row.insertCell(25);
+                                const cell27 = row.insertCell(26);
+                                const cell28 = row.insertCell(27);
+                                const cell29 = row.insertCell(28);
+                                const cell30 = row.insertCell(29);
+                                const cell31 = row.insertCell(30);
+                                const cell32 = row.insertCell(31);
 
-                            cell1.textContent = item.solicitante;
-                            cell2.textContent = item.asignacion;
-                            cell3.textContent = item.requerimiento;
-                            cell4.textContent = item.vmo;
-                            cell5.textContent = item.id;
+                                const cell33 = row.insertCell(32);
+                                const cell34 = row.insertCell(33);
+                                const cell35 = row.insertCell(34);
+                                const cell36 = row.insertCell(35);
+                                const cell37 = row.insertCell(36);
+                                const cell38 = row.insertCell(37);
+                                const cell39 = row.insertCell(38);
+                                const cell40 = row.insertCell(39);
+                                const cell41 = row.insertCell(40);
+                                const cell42 = row.insertCell(41);
+                                const cell43 = row.insertCell(42);
+                                const cell44 = row.insertCell(43);
+                                const cell45 = row.insertCell(44);
 
-                            cell6.textContent = item.telefono;
-                            cell7.textContent = item.dni;
-                            cell8.textContent = item.nombre;
-                            cell9.textContent = item.fuente;
 
-                            cell10.textContent = item.correo;
-                            cell11.textContent = item.trabajo;
-                            cell12.textContent = item.disponibilidad;
-                            cell13.textContent = item.antecedentes;
 
-                            cell14.textContent = item.trabajoHits;
-                            cell15.textContent = item.familiaresHits;
-                            cell16.textContent = item.trabajoVinculado;
-                            cell17.textContent = item.pasoTrabajoVinculado;
+                                cell1.textContent = item.solicitante;
+                                cell2.textContent = item.asignacion;
+                                cell3.textContent = item.requerimiento;
+                                cell4.textContent = item.vmo;
+                                cell5.textContent = item.id;
 
-                            cell18.textContent = item.fechaNacimiento;
-                            cell19.textContent = item.todosTelefonos;
-                            cell20.textContent = item.puesto;
-                            cell21.textContent = item.empleador_;
-                            cell22.textContent = item.institucion_;
-                            cell23.textContent = item.carreras;
-                            cell24.textContent = item.grados;
-                            cell25.textContent = item.salario;
-                            cell26.textContent = item.espectativa;
-                            cell27.textContent = item.beneficio;
-                            cell28.textContent = item.puestoHits;
-                            cell29.textContent = item.pregunta1;
-                            cell30.textContent = item.pregunta2;
-                            cell31.textContent = item.pregunta3;
-                            cell32.textContent = item.pregunta4;
+                                cell6.textContent = item.telefono;
+                                cell7.textContent = item.dni;
+                                cell8.textContent = item.nombre;
+                                cell9.textContent = item.fuente;
 
-                            cell33.textContent = item.antecedentesA;
-                            cell34.textContent = item.antecedentesB;
-                            cell35.textContent = item.antecedentePolicial;
-                            cell36.textContent = item.antecedentePenal;
-                            cell37.textContent = item.antecedenteJudicial;
-                            cell38.textContent = item.certiAdulto;
-                            cell39.textContent = item.multiTest;
-                            cell40.textContent = item.informePsicologico;
-                            cell41.textContent = item.fichaDatos;
-                            cell42.textContent = item.fichaMedica;
-                            cell43.textContent = item.fichaRequerimiento;
-                            cell44.textContent = item.fichaAprobación;
-                            cell45.textContent = item.otrosAdjuntos;
-                        
+                                cell10.textContent = item.correo;
+                                cell11.textContent = item.trabajo;
+                                cell12.textContent = item.disponibilidad;
+                                cell13.textContent = item.antecedentes;
+
+                                cell14.textContent = item.trabajoHits;
+                                cell15.textContent = item.familiaresHits;
+                                cell16.textContent = item.trabajoVinculado;
+                                cell17.textContent = item.pasoTrabajoVinculado;
+
+                                cell18.textContent = item.fechaNacimiento;
+                                cell19.textContent = item.todosTelefonos;
+                                cell20.textContent = item.puesto;
+                                cell21.textContent = item.empleador_;
+                                cell22.textContent = item.institucion_;
+                                cell23.textContent = item.carreras;
+                                cell24.textContent = item.grados;
+                                cell25.textContent = item.salario;
+                                cell26.textContent = item.espectativa;
+                                cell27.textContent = item.beneficio;
+                                cell28.textContent = item.puestoHits;
+                                cell29.textContent = item.pregunta1;
+                                cell30.textContent = item.pregunta2;
+                                cell31.textContent = item.pregunta3;
+                                cell32.textContent = item.pregunta4;
+
+                                cell33.textContent = item.antecedentesA;
+                                cell34.textContent = item.antecedentesB;
+                                cell35.textContent = item.antecedentePolicial;
+                                cell36.textContent = item.antecedentePenal;
+                                cell37.textContent = item.antecedenteJudicial;
+                                cell38.textContent = item.certiAdulto;
+                                cell39.textContent = item.multiTest;
+                                cell40.textContent = item.informePsicologico;
+                                cell41.textContent = item.fichaDatos;
+                                cell42.textContent = item.fichaMedica;
+                                cell43.textContent = item.fichaRequerimiento;
+                                cell44.textContent = item.fichaAprobación;
+                                cell45.textContent = item.otrosAdjuntos;
+
                             }
                         });
                     } else {
@@ -922,7 +984,7 @@
                     // oka = data.solicitante;
                     if (true) {
 
-                         firebaseConfig = {
+                        firebaseConfig = {
                             apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
                             authDomain: "semilleros-ccb45.firebaseapp.com",
                             projectId: "semilleros-ccb45",
@@ -1089,7 +1151,7 @@
                 .catch(error => {
                     console.error('Error:', error);
                 });
- 
+
         }
 
 
@@ -1101,56 +1163,56 @@
 
     <script>
 
-        window.addEventListener("DOMContentLoaded", listarrrrr);
+        // window.addEventListener("DOMContentLoaded", listarrrrr);
 
-        function listarrrrr() {
+        // function listarrrrr() {
 
-            fetch(`https://runnnnnnn.azurewebsites.net/requerimiento`)
-                .then(response => {
-                    if (response.ok) {
-                        return response.json();
-                    }
-                    throw new Error('Error al obtener la lista de requerimientos.');
-                })
-                .then(data => {
-                    // En lugar de utilizar los datos del 'localStorage', utilizamos los datos recibidos.
-                    var roles = [];
+        //     fetch(`https://runnnnnnn.azurewebsites.net/requerimiento`)
+        //         .then(response => {
+        //             if (response.ok) {
+        //                 return response.json();
+        //             }
+        //             throw new Error('Error al obtener la lista de requerimientos.');
+        //         })
+        //         .then(data => {
+        //             // En lugar de utilizar los datos del 'localStorage', utilizamos los datos recibidos.
+        //             var roles = [];
 
-                    // 1. Definir una lista para almacenar los cambios
+        //             // 1. Definir una lista para almacenar los cambios
 
-                    //   if (Array.isArray(data)) {
+        //             //   if (Array.isArray(data)) {
 
-                    // } else {
-                    //   console.error('Los datos recibidos no son una matriz.');
-                    // }
+        //             // } else {
+        //             //   console.error('Los datos recibidos no son una matriz.');
+        //             // }
 
-                    data.forEach(item => {
+        //             data.forEach(item => {
 
-                        if (item.asignacion === nombreUsuario) {
-                            roles.push(item.requerimiento + "");
-                        }
+        //                 if (item.asignacion === nombreUsuario) {
+        //                     roles.push(item.requerimiento + "");
+        //                 }
 
-                    });
-                    var select = document.getElementById("Rol");
+        //             });
+        //             var select = document.getElementById("Rol");
 
-                    for (var i = 0; i < roles.length; i++) {
-                        var option = document.createElement("option");
-                        option.value = roles[i];
-                        option.text = roles[i];
-                        select.appendChild(option);
-                    }
-                    console.log("roles: " + roles)
-
-
+        //             for (var i = 0; i < roles.length; i++) {
+        //                 var option = document.createElement("option");
+        //                 option.value = roles[i];
+        //                 option.text = roles[i];
+        //                 select.appendChild(option);
+        //             }
+        //             console.log("roles: " + roles)
 
 
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
 
 
-        }
+        //         })
+        //         .catch(error => {
+        //             console.error('Error:', error);
+        //         });
+
+
+        // }
     </script>
 
 
@@ -1160,98 +1222,22 @@
 
         // Función para guardar los cambios en el array
         function guardarCambios() {
-            showLoadingAnimation();
-            var filas = document.querySelectorAll('#nuevaTabla tbody tr');
-            datos = [];
-
-            filas.forEach(function (fila) {
-                var cells = fila.querySelectorAll('td');
-                var objeto = {
-                    id: cells[4].textContent,
-                    solicitante: cells[0].textContent,
-                    asignacion: cells[1].textContent,
-                    requerimiento: cells[2].textContent,
-                    vmo: cells[3].textContent,
-                    telefono: cells[5].textContent,
-                    dni: cells[6].textContent,
-                    nombre: cells[7].textContent,
-                    fuente: cells[8].textContent,
-                    correo: cells[9].textContent,
-                    trabajo: cells[10].textContent,
-                    disponibilidad: cells[11].textContent,
-                    antecedentes: cells[12].textContent,
-                    trabajoHits: cells[13].textContent,
-                    familiaresHits: cells[14].textContent,
-                    trabajoVinculado: cells[15].textContent,
-                    pasoTrabajoVinculado: cells[16].textContent,
-                    fechaNacimiento: cells[17].textContent,
-                    todosTelefonos: cells[18].textContent,
-                    puesto: cells[19].textContent,
-                    empleador_: cells[20].textContent,
-                    institucion_: cells[21].textContent,
-                    carreras: cells[22].textContent,
-                    grados: cells[23].textContent,
-                    salario: cells[24].textContent,
-                    espectativa: cells[25].textContent,
-                    beneficio: cells[26].textContent,
-                    puestoHits: cells[27].textContent,
-                    pregunta1: cells[28].textContent,
-                    pregunta2: cells[29].textContent,
-                    pregunta3: cells[30].textContent,
-                    pregunta4: cells[31].textContent,
-                };
-                datos.push(objeto);
-            });
-
-            fetch("https://runnnnnnn.azurewebsites.net/requerimientos", {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(datos)
-            })
-                .then(response => {
-                    if (response.ok) {
-                        const contentType = response.headers.get('content-type');
-                        if (contentType && contentType.includes('application/json')) {
-                            return response.json();
-                        } else {
-                            console.error('La respuesta no es JSON válido' + response.json());
-                        }
-                    } else {
-                        throw new Error('Error en la solicitud PUT');
-                    }
-                })
-                .then(data => {
-                    console.log('Solicitud PUT exitosa', datos);
-                    alert("Los datos fueron actualizados correctamente")
-                    hideLoadingAnimation();
-
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    console.log('Error completo:', error.message);
-                });
-
-
-            console.log(JSON.stringify(datos));
-            console.log(datos);
 
         }
 
         // Agrega un evento 'input' a cada campo de entrada para detectar cambios
         var camposEntrada = document.querySelectorAll('#nuevaTabla tbody td');
-        camposEntrada.forEach(function (campo) {
-            campo.addEventListener('input', function () {
-                guardarCambios();
-            });
-        });
+        // camposEntrada.forEach(function (campo) {
+        //     campo.addEventListener('input', function () {
+        //         guardarCambios();
+        //     });
+        // });
 
-        // Agrega un evento al botón "Guardar Cambios" para guardar los cambios
-        document.getElementById('guardarCambios').addEventListener('click', function () {
-            guardarCambios();
+        // // Agrega un evento al botón "Guardar Cambios" para guardar los cambios
+        // document.getElementById('guardarCambios').addEventListener('click', function () {
+        //     guardarCambios();
 
-        });
+        // });
 
 
         const botonRedireccionar = document.getElementById('cerrar_sesion');
@@ -1279,6 +1265,7 @@
     <div class="loader " id="loader"></div>
 
 
+
     <script type="text/javascript">
         var datosObjeto = {
             solicitante: "-",
@@ -1290,57 +1277,109 @@
             dni: "-",
             nombre: "-",
             fuente: "-",
-            correo:  "-",
-            trabajo:  "-",
-            disponibilidad:  "-",
-            antecedentes:  "-",
-            trabajoHits:  "-",
-            familiaresHits:  "-",
-            trabajoVinculado:  "-",
-            pasoTrabajoVinculado:  "-",
-            fechaNacimiento:  "-",
-            todosTelefonos:  "-",
-            puesto:  "-",
-            empleador_:  "-",
-            institucion_:  "-",
-            carreras:  "-",
-            grados:  "-",
-            salario:  "-",
-            espectativa:  "-",
-            beneficio:  "-",
-            puestoHits:  "-",
-            pregunta1:  "-",
-            pregunta2:  "-",
-            pregunta3:  "-",
+            correo: "-",
+            trabajo: "-",
+            disponibilidad: "-",
+            antecedentes: "-",
+            trabajoHits: "-",
+            familiaresHits: "-",
+            trabajoVinculado: "-",
+            pasoTrabajoVinculado: "-",
+            fechaNacimiento: "-",
+            todosTelefonos: "-",
+            puesto: "-",
+            empleador_: "-",
+            institucion_: "-",
+            carreras: "-",
+            grados: "-",
+            salario: "-",
+            espectativa: "-",
+            beneficio: "-",
+            puestoHits: "-",
+            pregunta1: "-",
+            pregunta2: "-",
+            pregunta3: "-",
             pregunta4: "-",
             adjunto1: "-",
             adjunto2: "-",
             adjunto3: "-",
-            adjunto4: "-"
-        };
+            adjunto4: "-",
+            antecedentesA: "antecedentesA",
+            antecedentesB: "antecedentesB",
+            antecedentePolicial: "antecedentePolicial",
+            antecedentePenal: "antecedentePenal",
+            antecedenteJudicial: "antecedenteJudicial",
+            certiAdulto: "certiAdulto",
+            multiTest: "multiTest",
+            informePsicologico: "informePsicologico",
+            fichaDatos: "fichaDatos",
+            fichaMedica: "fichaMedica",
+            fichaRequerimiento: "fichaRequerimiento",
+            fichaAprobacion: "fichaAprobacion",
+            otrosAdjuntos: "otrosAdjuntos"
+        }
 
-    </script>
+        function mostrarAlerta() {
+            // Alerta al hacer clic en el botón
+            alert("¡Hiciste clic en el botón guardandoPut!");
+            // URL del servicio
+            const url = 'https://runnnnnnn.azurewebsites.net/requerimiento/';
 
-        <script>
-         
- 
-        document.addEventListener('DOMContentLoaded', function () {
-            var parrafoSubirAdjuntos = document.getElementById('subirAdjuntos');
-            
-            parrafoSubirAdjuntos.addEventListener('click', function () {
-                alert("asd");
-            });
-        });
+            // ID del objeto que deseas actualizar
+            const id = localStorage.getItem('id');
+
+            datosObjeto.id = id;
+            // Realizar la solicitud PUT
+            fetch(`${url}${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(datosObjeto),
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Error en la solicitud: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Respuesta exitosa:', data);
+                    // Puedes realizar acciones adicionales después de la actualización
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+
+        }
+
+
+
+        // document.addEventListener('DOMContentLoaded', function () {
+        //     var parrafoSubirAdjuntos = document.getElementById('subirAdjuntos');
+
+        //     parrafoSubirAdjuntos.addEventListener('click', function () {
+        //         alert("asd");
+        //     });
+        // });
 
 
         // Define la función que se invocará al hacer clic en el botón
-        function tuFuncion() {
-            // Coloca aquí el código que deseas ejecutar cuando se hace clic en el botón
-            // Obtén el elemento <a> por su ID
-            const enlaceAdjunto1 = document.getElementById('adjunto1');
-            const enlaceAdjunto2 = document.getElementById('adjunto2');
-            const enlaceAdjunto3 = document.getElementById('adjunto3');
-            const enlaceAdjunto4 = document.getElementById('adjunto4');
+        // Coloca aquí el código que deseas ejecutar cuando se hace clic en el botón
+        // Obtén el elemento <a> por su ID
+        // const enlaceAdjunto1 = document.getElementById('antecedentesA');
+        // const enlaceAdjunto2 = document.getElementById('adjunto2');
+        // const enlaceAdjunto3 = document.getElementById('adjunto3');
+        // const enlaceAdjunto4 = document.getElementById('adjunto4');
+
+
+
+
+    
+
+        document.getElementById('antecedentesA').addEventListener('change', function () {
+            // Se ejecuta cuando se suelta el botón del mouse sobre el input
+            console.log("Botón del mouse liberado sobre el input de archivo");
 
 
             const firebaseConfig = {
@@ -1360,54 +1399,26 @@
 
             // Obtiene una referencia al servicio de Storage
             const storage = firebase.storage();
+            // Verifica si hay un archivo seleccionado después de soltar el botón del mouse
+            const file1 = this.files[0];
 
-            const file1 = enlaceAdjunto1.files[0];
             if (file1) {
-                // Crea una referencia al archivo en Firebase Storage
-                const storageRef = storage.ref("adjuntos" + "/" + file.name);
+                // Tu código para subir el archivo a Firebase Storage
+                const storageRef = storage.ref("adjuntos" + "/" + file1.name);
 
-                // Sube el archivo
                 storageRef.put(file1).then((snapshot) => {
                     console.log("Archivo subido con éxito");
 
                     snapshot.ref.getDownloadURL().then((url) => {
                         console.log("URL del archivo:", url);
-                        enlaceAdjunto1.href = url;
+                        datosObjeto.otrosAdjuntos = url;
 
-                    })
-                        .catch(error => {
-                            hideLoadingAnimation();
-                            console.error('Hubo un error en la solicitud:', error);
-                        });
-
-                }).catch((error) => {
-                    console.error("Error al subir el archivo:", error);
-                });
-            } else {
-                hideLoadingAnimation();
-                location.reload();
-                alert("Es obligatorio adjuntar el CV")
-            }
-
-
-            const file2 = enlaceAdjunto2.files[0];
-            if (file2) {
-                // Crea una referencia al archivo en Firebase Storage
-                const storageRef = storage.ref("adjuntos" + "/" + file.name);
-
-                // Sube el archivo
-                storageRef.put(file2).then((snapshot) => {
-                    console.log("Archivo subido con éxito");
-
-                    snapshot.ref.getDownloadURL().then((url) => {
-                        console.log("URL del archivo:", url);
-                        enlaceAdjunto1.href = url;
-
-                    })
-                        .catch(error => {
-                            hideLoadingAnimation();
-                            console.error('Hubo un error en la solicitud:', error);
-                        });
+                        // Haz lo que necesitas con la URL, como asignarla a un enlace
+                        // enlaceAdjunto1.href = url;
+                    }).catch(error => {
+                        hideLoadingAnimation();
+                        console.error('Hubo un error en la solicitud:', error);
+                    });
 
                 }).catch((error) => {
                     console.error("Error al subir el archivo:", error);
@@ -1415,70 +1426,9 @@
             } else {
                 hideLoadingAnimation();
                 location.reload();
-                alert("Es obligatorio adjuntar el CV")
+                alert("Es obligatorio adjuntar el CV");
             }
-
-
-
-
-            const file3 = enlaceAdjunto1.files[0];
-            if (file3) {
-                // Crea una referencia al archivo en Firebase Storage
-                const storageRef = storage.ref("adjuntos" + "/" + file.name);
-
-                // Sube el archivo
-                storageRef.put(file3).then((snapshot) => {
-                    console.log("Archivo subido con éxito");
-
-                    snapshot.ref.getDownloadURL().then((url) => {
-                        console.log("URL del archivo:", url);
-                        enlaceAdjunto1.href = url;
-
-                    })
-                        .catch(error => {
-                            hideLoadingAnimation();
-                            console.error('Hubo un error en la solicitud:', error);
-                        });
-
-                }).catch((error) => {
-                    console.error("Error al subir el archivo:", error);
-                });
-            } else {
-                alert("Es obligatorio adjuntar el CV")
-            }
-
-
-
-            const file4 = enlaceAdjunto1.files[0];
-            if (file4) {
-                // Crea una referencia al archivo en Firebase Storage
-                const storageRef = storage.ref("adjuntos" + "/" + file.name);
-
-                // Sube el archivo
-                storageRef.put(file4).then((snapshot) => {
-                    console.log("Archivo subido con éxito");
-
-                    snapshot.ref.getDownloadURL().then((url) => {
-                        console.log("URL del archivo:", url);
-                        enlaceAdjunto1.href = url;
-
-                    })
-                        .catch(error => {
-                            hideLoadingAnimation();
-                            console.error('Hubo un error en la solicitud:', error);
-                        });
-
-                }).catch((error) => {
-                    console.error("Error al subir el archivo:", error);
-                });
-            } else {
-                hideLoadingAnimation();
-                location.reload();
-                alert("Es obligatorio adjuntar el CV")
-            }
-
-
-
+        });
     </script>
 
 </body>
