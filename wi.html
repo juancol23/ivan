@@ -132,7 +132,6 @@
         }
     </style>
 
-    <link rel="stylesheet" href="style.css">
 
 </head>
 
@@ -194,9 +193,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
-                        <button id="exportButton">Reporte Talento</button>
                         <button id="cerrar_sesion">Regresar</button>
                     </ul>
+                        <button id="exportButton">Reporte Talento</button>
+
                 </div>
             </div>
         </nav>
@@ -285,7 +285,6 @@
 
     <script>
 
-        showLoadingAnimation();
 
         function convertirAListaAnidada(dataList) {
             var listaAnidada = [];
@@ -308,7 +307,7 @@
      
 
         function exportarAExcel(data) {
-
+            alert("as")
             var nombreUsuario = localStorage.getItem('nombreUsuario');
 
             const filteredData = data.filter(item => item.asignacion === nombreUsuario);
@@ -378,23 +377,7 @@
     </script>
 
 
-
-    <script type="text/javascript">
-
-
-        var mostrarBoton = document.getElementById('mostrarBoton');
-        var miDiv = document.getElementById('miDiv');
-
-        // Agregar un controlador de evento clic al botón
-        mostrarBoton.addEventListener('click', function () {
-            // Cambiar el estilo de display del div para mostrarlo
-            crearRequerimiento();
-        });
-
-
-      
-    </script>
-
+ 
 
     <script type="text/javascript">
         // Función para mostrar la animación de carga
@@ -411,7 +394,6 @@
         $('#btnCargar').click(function () {
             showLoadingAnimation();
 
-            Simula una tarea de carga, puedes reemplazar esto con tu propia lógica
             setTimeout(function () {
                 hideLoadingAnimation();
                 $('#misTrabajosModal1').modal('hide');
@@ -420,15 +402,7 @@
         });
     </script>
 
-    <script type="text/javascript">
-        var miH1 = document.getElementById('textoPrincipal');
-
-        var nombreUsuario = localStorage.getItem('nombreUsuario');
-        var splitNombre = nombreUsuario.split('.');
-
-        miH1.textContent = 'Bienvenid@: ' + splitNombre[0];
-
-    </script>
+   
 
 
     <script type="text/javascript">
@@ -439,47 +413,7 @@
         var url = 'https://runnnnnnn.azurewebsites.net/requerimiento';
 
 
-        fetch(url)
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                }
-                throw new Error('Error al obtener la lista de requerimientos.');
-            })
-            .then(data => {
-                // En lugar de utilizar los datos del 'localStorage', utilizamos los datos recibidos.
-                var dataList = data;
-
-                var nombreUsuario = localStorage.getItem('nombreUsuario');
-
-                // Filtrar los objetos con "Analista_Lesly" como solicitante
-                var solicitantesLesly = dataList.filter(function (data) {
-                    return data.asignacion === nombreUsuario;
-                });
-
-
-                // Crear una lista de solicitantes en formato HTML
-                var solicitantesHTML = "";
-                var uniqueRequerimientos = new Set();
-                solicitantesLesly.forEach(function (data) {
-
-                     if (!uniqueRequerimientos.has(data.requerimiento)) {
-                    uniqueRequerimientos.add(data.requerimiento);
-                    solicitantesHTML += "<div class='col-sm-5'><div class='card'><div class='card-body'><h5 class='card-text'><div class='card-body'><div class='card'>" + data.requerimiento + "</h5> <button id='miBoton' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#misTrabajosModal1' data-valor= " + data.id + " onClick='obtenerValor(" + data.id + ")' >Completar </button>   <button id='miBoton2' class='btn btn-dark' data-bs-toggle='modal' data-bs-target='#misTrabajosModal6' data-valor= " + data.id + "   >Editar </button> </div></div></div></div></div></div>";
-                }
-                  
-                });
-
-
-                // Mostrar la lista de solicitantes en el div "solicitantesLesly"
-                document.getElementById('solicitantesLesly').innerHTML = solicitantesHTML;
-
-                // Función para editar el campo "requerimiento" por ID
-
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+         
 
 
         function obtenerValor(parametro) {
