@@ -132,6 +132,7 @@
         }
     </style>
 
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
@@ -193,88 +194,34 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
-                        <button id="cerrar_sesion">Regresar</button>
-                    </ul>
-                        <button id="exportButton">Reporte Talento</button>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#misTrabajosModal">Mis
+                                trabajos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="nuevo_candidato" href="#" data-bs-toggle="modal"
+                                data-bs-target="#misTrabajosModal2">Nuevo Candidato</a>
+                        </li>
 
+                        <button id="exportButton">Reporte Talento</button>
+                        <button id="cerrar_sesion">Cerrar Sesión</button>
+                    </ul>
                 </div>
             </div>
         </nav>
     </header>
 
-	   <table id="nuevaTabla"
-	        class="table table-bordered table-responsive-md table-striped text-center">
-	        <thead>
-	            <tr>
-	                <th class="text-center">solicitante</th>
-	                <th class="text-center">asignacion</th>
-	                <th class="text-center">requerimiento</th>
-	                <th class="text-center">VMO</th>
-	                <th class="text-center">ID</th>
-	                <th class="text-center">telefono</th>
-	                <th class="text-center">dni</th>
-	                <th class="text-center">nombre</th>
-	                <th class="text-center">fuente</th>
-	                <th class="text-center">correo</th>
-	                <th class="text-center">trabajo</th>
-	                <th class="text-center">disponibilidad</th>
-	                <th class="text-center">antecedentes</th>
-	                <th class="text-center">trabajoHits</th>
-	                <th class="text-center">familiaresHits</th>
-	                <th class="text-center">trabajoVinculado</th>
-	                <th class="text-center">pasoTrabajoVinculado</th>
-	                <th class="text-center">fechaNacimiento</th>
-	                <th class="text-center">todosTelefonos</th>
-	                <th class="text-center">puesto</th>
-	                <th class="text-center">empleador_</th>
-	                <th class="text-center">institucion_</th>
-	                <th class="text-center">carreras</th>
-	                <th class="text-center">grados</th>
-	                <th class="text-center">salario</th>
-	                <th class="text-center">espectativa</th>
-	                <th class="text-center">beneficio</th>
-	                <th class="text-center">puestoHits</th>
-	                <th class="text-center">pregunta1</th>
-	                <th class="text-center">pregunta2</th>
-	                <th class="text-center">pregunta3</th>
-	                <th class="text-center">pregunta4</th>
+    <section class="welcome-section">
+        <div class="frameblack">
 
-                    <th class="text-center">antecedentesA</th>
-                    <th class="text-center">antecedentesB</th>
-                    <th class="text-center">antecedentePolicial</th>
-                    <th class="text-center">antecedentePenal</th>
-                    <th class="text-center">antecedenteJudicial</th>
-                    <th class="text-center">certiAdulto</th>
-                    <th class="text-center">multiTest</th>
-                    <th class="text-center">informePsicologico</th>
-                    <th class="text-center">fichaDatos</th>
-                    <th class="text-center">fichaMedica</th>
-                    <th class="text-center">fichaRequerimiento</th>
-                    <th class="text-center">fichaAprobación</th>
-                    <th class="text-center">otrosAdjuntos</th>
+            <div class="container">
+                <h1 id="textoPrincipal"></h1>
+                <p>Vista del analista.</p>
+            </div>
+        </div>
 
+    </section>
 
-                    <th class="text-center">fechaSolicitud</th>
-                    <th class="text-center">tecnologia</th>
-                    <th class="text-center">seniority</th>
-                    <th class="text-center">cliente</th>
-                    <th class="text-center">prioridad</th>
-                    <th class="text-center">motivo</th>
-                    <th class="text-center">OBS_CANCELADOS</th>
-
-                  
-
-
-	            </tr>
-	        </thead>
-	        <tbody>
-	            <!-- Aquí se agregarán las filas automaticamente por el js  -->
-	        </tbody>
-	    </table>
-	</div>
-
-	<button id="guardarCambios" class="btn btn-primary">Actualizar
-	    masivamente</button>
 
     </section>
     <section>
@@ -290,6 +237,544 @@
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Modal -->
+    <div class="modal fade" id="misTrabajosModal" tabindex="-1" aria-labelledby="misTrabajosModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="misTrabajosModalLabel">Mis Trabajos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Contenido del modal -->
+                    <p>Por favor, proporciona la información necesaria para tus requerimientos</p>
+
+                    <div class="row text-center">
+                        <!-- <div class="col-sm-5 ">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Requerimiento</h5>
+                                    <p class="card-text">***</p>
+                                    <p class="card-text">Ingresa un nuevo requerimiento</p>
+                                    <p class="card-text">***</p>
+                                    <a href="#" class="btn btn-primary" href="#" data-bs-toggle="modal"
+                                        data-bs-target="#misTrabajosModal1">Nuevo requerimiento</a>
+                                </div>
+
+                            </div>
+                        </div> -->
+
+                        <div id="solicitantesLesly"></div>
+
+
+
+                    </div>
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <!-- <button type="button" class="btn btn-primary">Guardar Cambios</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="misTrabajosModal1" tabindex="-1" aria-labelledby="misTrabajosModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="misTrabajosModalLabel">Mis Trabajos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Contenido del modal -->
+                    <p>Por favor, proporciona la información necesaria para tus requerimientos</p>
+
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="card">
+                                <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Nombre</label>
+                                        <input type="text" class="form-control" id="nombre_" placeholder="nombre*"
+                                            required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">DNI</label>
+                                        <input type="email" class="form-control" id="dni_" placeholder="dni*" required>
+                                    </div>
+
+                                    <label for="" class="form-label">Paso del trabajo vinculado</label>
+
+                                    <select id="select_1" class="form-select">
+                                        <optgroup label="Categorias">
+                                            <option value="creacion_requerimiento">Creación del requerimiento</option>
+                                            <option value="candidato_identificado">Candidato identificado</option>
+                                            <option value="en_prescreening">En Prescreening</option>
+                                            <option value="no_contactado_no_contesta">✖ No contactado - No contesta
+                                            </option>
+                                            <option value="no_apto_cv_experiencia">✖ No apto CV - Experiencia</option>
+                                            <option value="no_apto_cv_auditoria">✖ No apto CV - Auditoría</option>
+                                            <option value="no_apto_cv_expectativa_salarial">✖ No apto CV - Expectativa
+                                                salarial</option>
+                                            <option value="no_apto_cv_requisito_perfil">✖ No Apto CV - Requisito del
+                                                perfil</option>
+                                            <option value="no_apto_prescreening_black_list">✖ No Apto Prescreening -
+                                                Black List</option>
+                                            <option value="no_apto_prescreening_offlimits">✖ No Apto Prescreening -
+                                                Offlimits</option>
+                                            <option value="no_apto_prescreening_expectativas_altas">✖ No Apto
+                                                Prescreening - Expectativas altas</option>
+                                            <option value="no_apto_prescreening_estudios">✖ No Apto Prescreening -
+                                                Estudios</option>
+                                            <option value="no_apto_prescreening_comunicacion_no_efectiva">✖ No Apto
+                                                Prescreening - Comunicación no efectiva</option>
+                                            <option value="desistio_proceso_prescreening">✖ Desistió del proceso en
+                                                Prescreening</option>
+                                            <option value="apto_en_prescreening">✓ Apto en prescreening</option>
+                                            <option value="en_revision_cv">En revisión de CV</option>
+                                            <option value="multitest_recomendado">✓ Multitest - Recomendado</option>
+                                            <option value="no_apto_multitest">✖ No apto en Multitest</option>
+                                            <option value="apto_en_antecedentes">✓ Apto en Antecedentes</option>
+                                            <option value="no_apto_antecedentes">✖ No apto en Antecedentes</option>
+                                            <option value="apto_todas_las_pruebas">✓ ✓ ✓ Apto en todas las pruebas
+                                            </option>
+                                            <option value="apto_presentar_cliente">✓ Apto para presentar al Cliente
+                                            </option>
+                                            <option value="no_apto_entrevista_tecnica">✖ No apto en Entrevista con
+                                                cliente - Ent. Técnica</option>
+                                            <option value="no_fit_hitss">✖ No apto en Entrevista con cliente - No fit
+                                                HITSS</option>
+                                            <option value="desistio_proceso_entrevista">✖ Desistió del proceso luego
+                                                Ent. →</option>
+                                            <option value="backup">╩ Backup</option>
+                                            <option value="seleccionado">✌️ Seleccionado</option>
+                                            <option value="carta_oferta">✓ Carta Oferta</option>
+                                            <option value="desistio_proceso_carta_oferta">✖ Desistió del proceso luego
+                                                Carta Oferta →</option>
+                                            <option value="firma_contrato">✓ Firma de contrato</option>
+                                        </optgroup>
+                                    </select>
+
+                                      <br>
+
+                                        <div class="mb-3">
+                                        <label for="" class="form-label">Fecha Solicitud</label>
+                                        <input type="date" class="form-control" id="fechaSolicitud"
+                                            placeholder="Fecha Solicitud" - required>
+                                    </div>
+  <br>
+                                    <div class="mb-3">
+                                        <label for="nombre" class="form-label">Seniority S</label>
+                                            <select class="form-select" id="status">
+                                                <option value="JR">JR</option>
+                                                <option value="SS">SS</option>
+                                                <option value="S">S</option>
+                                                <option value="N/A">N/A</option>
+                                                <!-- Agrega más opciones según tus necesidades -->
+                                            </select>
+                                    </div>
+  <br>
+
+                                    <div class="mb-3">
+                                        <label for="nombre" class="form-label">Tecnológia</label>
+                                            <select class="form-select" id="status">
+                                                <option value=".NET"> .NET </option>
+                                                <option value="ANDROID"> ANDROID </option>
+                                                <option value="APLICACIONES"> APLICACIONES </option>
+                                                <option value="ATU"> ATU </option>
+                                                <option value="BI"> BI </option>
+                                                <option value="BIG_DATA"> BIG DATA </option>
+                                                <option value="BIGD_ATA/ IOT"> BIG DATA/ IOT </option>
+                                                <option value="BPEL"> BPEL </option>
+                                                <option value="BPMN"> BPMN </option>
+                                                <option value="BSCR"> BSCR </option>
+                                                <option value="CCNA"> CCNA </option>
+                                                <option value="CLOUD"> CLOUD </option>
+                                                <option value="EAI"> EAI </option>
+                                                <option value="ERP_ORACLE"> ERP ORACLE </option>
+                                                <option value="EXCEL"> EXCEL </option>
+                                                <option value="IONIC"> IONIC </option>
+                                                <option value="IOT"> IOT </option>
+                                                <option value="ISO"> ISO </option>
+                                                <option value="ISTQB"> ISTQB </option>
+                                                <option value="ITIL"> ITIL </option>
+                                                <option value="JAVA"> JAVA </option>
+                                                <option value="JAVA WEB "> JAVA WEB  </option>
+                                                <option value="JBOSS"> JBOSS </option>
+                                                <option value="LINUX"> LINUX </option>
+                                                <option value="MICROSERVICIOS"> MICROSERVICIOS </option>
+                                                <option value="MÓVILES"> MÓVILES </option>
+                                                <option value="MS_ACCESS"> MS ACCESS </option>
+                                                <option value="MS_PROJECT/PMP"> MS PROJECT/PMP </option>
+                                                <option value="N_A"> N/A </option>
+                                                <option value="OAC"> OAC </option>
+                                                <option value="ORACLE"> ORACLE </option>
+                                                <option value="ORACLE/JAVA"> ORACLE/JAVA </option>
+                                                <option value="P_BUILDER"> P. BUILDER </option>
+                                                <option value="PHP"> PHP </option>
+                                                <option value="PLSQL"> PLSQL </option>
+                                                <option value="PMO"> PMO </option>
+                                                <option value="PMP"> PMP </option>
+                                                <option value="PMP/SCRUM"> PMP/SCRUM </option>
+                                                <option value="POSTVENTA"> POSTVENTA </option>
+                                                <option value="POWER BUILDER"> POWER BUILDER </option>
+                                                <option value="POWER POINT"> POWER POINT </option>
+                                                <option value="PROCESOS"> PROCESOS </option>
+                                                <option value="RED"> RED </option>
+                                                <option value="REMEDY"> REMEDY </option>
+                                                <option value="RETAIL"> RETAIL </option>
+                                                <option value="RFP/FINANZAS"> RFP/FINANZAS </option>
+                                                <option value="RPA"> RPA </option>
+                                                <option value="RPA/API"> RPA/API </option>
+                                                <option value="RTC"> RTC </option>
+                                                <option value="SAP"> SAP </option>
+                                                <option value="SAP/SISCONT"> SAP/SISCONT </option>
+                                                <option value="SCRUM/KANBAM"> SCRUM/KANBAM </option>
+                                                <option value="SEGURIDAD"> SEGURIDAD </option>
+                                                <option value="SGA"> SGA </option>
+                                                <option value="SHELL"> SHELL </option>
+                                                <option value="SOA"> SOA </option>
+                                                <option value="SOA/PMP"> SOA/PMP </option>
+                                                <option value="SOPORTE "> SOPORTE  </option>
+                                                <option value="SQL"> SQL </option>
+                                            </select>
+                                    </div>
+                                      <br>
+                                    <div class="mb-3">
+                                        <label for="nombre" class="form-label">Cliente</label>
+                                            <select class="form-select" id="status">
+                                                <option value="G_HITSS">G. HITSS</option>
+                                                <option value="CLARO_U">CLARO U.</option>
+                                                <option value="CLARO_P">CLARO P.</option>
+                                                <option value="MAPFRE">MAPFRE</option>
+                                                <option value="MIBANCO">MIBANCO</option>
+                                                <option value="NUEVO">NUEVO</option>
+                                                <option value="CLARO_CHILE">CLARO CHILE</option>
+                                                <option value="REMICSA">REMICSA</option>
+                                                <option value="MEDIFARMA">MEDIFARMA</option>
+                                                <option value="SANTANDER">SANTANDER</option>
+                                                <option value="SELECCIONABLE">SELECCIONABLE</option>
+                                            </select>
+                                    </div>
+  <br>
+                                    <div class="mb-3">
+                                        <label for="nombre" class="form-label">Prioridad</label>
+                                            <select class="form-select" id="status">
+                                                <option value="A">A</option>
+                                                <option value="M">M</option>
+                                                <option value="B">B</option>
+                                            </select>
+                                    </div>
+  <br>
+                                    <div class="mb-3">
+                                        <label for="nombre" class="form-label">Motivo</label>
+                                            <select class="form-select" id="status">
+                                                <option value="NUEVA">NUEVA</option>
+                                                <option value="SUSTITUCION">SUSTITUCIÓN</option>
+                                                <option value="PREVENTA">PREVENTA</option>  
+                                            </select>
+                                    </div>
+  <br>
+                                         <div class="mb-3">
+                                        <label for="nombre" class="form-label">OBS_CANCELADOS</label>
+                                            <select class="form-select" id="status">
+                                                <option value="CAMBIO DE PERFIL">CAMBIO DE PERFIL</option>
+                                                <option value="CANDIDATO DESISTE DEL PROCESO">CANDIDATO DESISTE DEL PROCESO</option>
+                                                <option value="DEMORA EN RESPUESTA CVs">DEMORA EN RESPUESTA CVs</option>
+                                                <option value="NO SE TIENE OC">NO SE TIENE OC</option>
+                                                <option value="PROCESO EN STAND BY">PROCESO EN STAND BY</option>
+                                                <option value="MOVIMIENTO DE PERSONAL">MOVIMIENTO DE PERSONAL</option>
+                                                <option value="REGISTRO EQUIVOCADO">REGISTRO EQUIVOCADO</option>
+                                                <option value="A SOLICITUD DEL GERENTE">A SOLICITUD DEL GERENTE</option>
+                                            </select>
+                                    </div>
+
+                                    <br>
+                                    <label for="" class="form-label">Disponibilidad</label>
+                                    <select id="select_2" class="form-select">
+                                        <option value="inmediata">Inmediata</option>
+                                        <option value="7_dias">7 días</option>
+                                        <option value="15_dias">15 días</option>
+                                        <option value="30_dias">30 días</option>
+
+                                    </select>
+                                    <br>
+
+                                    <label for="" class="form-label">Verificación de antecedentes</label>
+                                    <select id="select_3" class="form-select">
+                                        <option value="no_registra">No registra</option>
+                                        <option value="registra">Registra</option>
+
+                                    </select>
+                                    <br>
+
+                                    <label for="" class="form-label">¿Trabajó en Hitss?</label>
+                                    <select id="select_4" class="form-select">
+                                        <option value="no">No</option>
+                                        <option value="si">Sí</option>
+
+                                    </select>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="puestoHits_">Puesto Hitss</label>
+                                        <input type="text" class="form-control" id="puestoHits_" required>
+                                    </div>
+                                    <br>
+
+                                    <label for="" class="form-label">Familiares en Hitss</label>
+                                    <select id="select_5" class="form-select">
+                                        <option value="No">No</option>
+                                        <option value="si">Sí</option>
+
+                                    </select>
+                                    <br>
+
+                                    <div class="mb-3">
+                                        <label for="solicitante" class="form-label">Teléfono</label>
+                                        <input type="text" class="form-control" id="telefono_" placeholder="teléfono"
+                                            required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">correo</label>
+                                        <input type="email" class="form-control" id="correo_" placeholder="correo" -
+                                            required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="solicitante_">Solicitante</label>
+                                        <br>
+                                        <br>
+                                        <input type="text" class="form-control" id="solicitante_" required>
+                                    </div>
+                                    <br>
+                                    <br>
+
+                                    <div class="form-group">
+                                        <label for="trabajoVinculado_">Trabajo Vinculado</label>
+                                        <br>
+                                        <br>
+                                        <input type="text" class="form-control" id="trabajoVinculado_" required>
+                                    </div>
+                                    <!-- <div class="form-group">
+                <label for="pasoTrabajoVinculado_">Paso Trabajo Vinculado</label>
+             <br>
+                <br>
+
+                <input type="text" class="form-control" id="pasoTrabajoVinculado_" required>
+            </div> -->
+                                    <div class="form-group">
+                                        <label for="fuente_">Fuente</label>
+                                        <br>
+                                        <br>
+
+                                        <input type="text" class="form-control" id="fuente_" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="fechaNacimiento_">Fecha de Nacimiento</label>
+                                        <br>
+                                        <br>
+
+                                        <input type="date" class="form-control" id="fechaNacimiento_" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="todosTelefonos_">Todos los Teléfonos</label>
+                                        <br>
+                                        <br>
+
+                                        <input type="text" class="form-control" id="todosTelefonos_" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="puesto_">Puesto</label>
+                                        <br>
+                                        <br>
+
+                                        <input type="text" class="form-control" id="puesto_" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="empleador_">Empleador</label>
+                                        <br>
+                                        <br>
+                                        <input type="text" class="form-control" id="empleador_" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="institucion_">Institución</label>
+                                        <br>
+                                        <br>
+
+                                        <input type="text" class="form-control" id="institucion_" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="carreras_">Carreras</label>
+                                        <br>
+                                        <br>
+
+                                        <input type="text" class="form-control" id="carreras_" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="grados_">Grados</label>
+                                        <br>
+                                        <br>
+
+                                        <input type="text" class="form-control" id="grados_" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="salario_">Salario</label>
+                                        <br>
+                                        <br>
+
+                                        <input type="text" class="form-control" id="salario_" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="espectativa_">Expectativa</label>
+                                        <br>
+                                        <br>
+
+                                        <input type="text" class="form-control" id="espectativa_" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="beneficio_">Beneficio</label>
+                                        <br>
+                                        <br>
+
+                                        <input type="text" class="form-control" id="beneficio_" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="pregunta1_">Pregunta 1</label>
+                                        <br>
+                                        <br>
+
+                                        <input type="text" class="form-control" id="pregunta1_" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pregunta2_">Pregunta 2</label>
+                                        <br>
+                                        <br>
+
+                                        <input type="text" class="form-control" id="pregunta2_" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pregunta3_">Pregunta 3</label>
+                                        <br>
+                                        <br>
+
+                                        <input type="text" class="form-control" id="pregunta3_" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pregunta4_">Pregunta 4</label>
+                                        <br>
+                                        <br>
+                                        <input type="text" class="form-control" id="pregunta4_" required>
+                                    </div>
+                                    <br>
+                                    <div class="mb-3">
+                                        <label for="adjuntarArchivo" class="form-label">Adjuntar Archivo</label>
+                                        <!--      <input type="file" class="form-control" id="file-cv" required> -->
+
+                                        <input type="file" id="file-cv" accept="*/*">
+
+                                    </div>
+
+
+                                    <button id="btnCargar" class="btn btn-primary" onclick="guardar()">Enviar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="misTrabajosModal2" tabindex="-1" aria-labelledby="misTrabajosModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="misTrabajosModalLabel">Nuevo candidato</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Contenido del modal -->
+                    <p>Aquí se muestra la información o contenido relacionado con tus trabajos.</p>
+
+                    <div class="row">
+                        <div class="col-sm">
+                            <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                            <div class="card-body">
+
+
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">VMO*</label>
+                                    <input type="email" class="form-control" id="VMO" placeholder="VMO*">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="rol" class="form-label">Requerimiento</label>
+                                    <select class="form-select" id="Rol"></select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Requerimiento" class="form-label">Requerimiento</label>
+                                    <input type="Requerimiento" class="form-control" id="Requerimiento"
+                                        placeholder="Requerimiento">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Vinculado" class="form-label">Trabajo Vinculado</label>
+                                    <input type="Vinculado" class="form-control" id="Vinculado"
+                                        placeholder="Trabajo Vinculado">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="paso" class="form-label">*Paso del trabajo vinculado</label>
+                                    <input type="email" class="form-control" id="paso"
+                                        placeholder="Paso del trabajo vinculado">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="dni" class="form-label">DNI</label>
+                                    <input type="dni" class="form-control" id="dni" placeholder="DNI">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Nombre" class="form-label">Nombre</label>
+                                    <input type="Nombre" class="form-control" id="Nombre" placeholder="Nombre">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Apellidos" class="form-label">Apellidos</label>
+                                    <input type="Apellidos" class="form-control" id="Apellidos" placeholder="Apellidos">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="adjuntarArchivo" class="form-label">Adjuntar Archivo</label>
+
+                                    <input type="file" class="form-control" id="adjuntarArchivo">
+                                </div>
+                                <div onclick="crearRequerimiento();">Enviar</div>
+                                <div id="miDiv" style="display: none;">
+                                    Contenido del Div
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 
     <script>
@@ -313,10 +798,60 @@
         }
 
 
-     
+        // Función para exportar datos a Excel
+        // function exportToExcel() {
+        //     // Crear una matriz de datos de ejemplo
+
+        //     // const dataa = JSON.parse(localStorage.getItem('miData')
+
+
+        //      var dataList = JSON.parse(localStorage.getItem('miData')) || [];
+        //     // console.log("YACO 1"+JSON.stringify(dataList))
+
+        //     var listaAnidada = convertirAListaAnidada(dataList);
+        //     // console.log("listaAnidada: "+listaAnidada);
+        //     // [{"id":"7022442","status":"creado","VMO":"IBK","solicitante":"YACO","asignacion":"lesly.huaman@runa-it.com","requerimiento":"PO","cv":"azure.com/blob/cv.pdf","dni":"710203123"},{"id":"8940986","status":"creado","VMO":"IBK","solicitante":"SOCRATES","asignacion":"lesly.huaman@runa-it.com","requerimiento":"PRACTICANTE","cv":"azure.com/blob/cv.pdf","nombre":"MELENDI","dni":"70192337","telefono":"987617898789","correo":"vaoi@dasd.com","estadorequerimiento":"123123"},{"id":"2135434","status":"creado","VMO":"IBK","solicitante":"MOISES","asignacion":"abel.pineda@runa-it.com","requerimiento":"PRACTICANTE NIVEL II","cv":"azure.com/blob/cv.pdf"},]
+
+        //     const data = listaAnidada;
+        //         console.log("YACO 2: "+ data)
+        //     // Perfil 1,Analista,Perfil 2,Product Owner,Perfil 3,Scrum Master,Pedro,Software Enginner
+
+        //     // Crear un objeto de libro de trabajo de Excel
+        //     const workbook = XLSX.utils.book_new();
+
+        //     // Crear una hoja de cálculo
+        //     const worksheet = XLSX.utils.aoa_to_sheet(data);
+
+        //     // Agregar la hoja de cálculo al libro de trabajo
+        //     XLSX.utils.book_append_sheet(workbook, worksheet, 'Datos');
+
+        //     // Convertir el libro de trabajo a una cadena de datos binarios
+        //     const excelData = XLSX.write(workbook, { bookType: 'xlsx', type: 'binary' });
+
+        //     // Crear un blob a partir de la cadena de datos binarios
+        //     const blob = new Blob([s2ab(excelData)], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+        //     // Crear un objeto de URL para el blob
+        //     const url = URL.createObjectURL(blob);
+
+        //     // Crear un enlace de descarga
+        //     const a = document.createElement('a');
+        //     a.href = url;
+        //     const timestamp = Date.now();
+        //     a.download = 'Reporte_GDH_'+timestamp+'.xlsx';
+        //     a.style.display = 'none';
+
+        //     // Agregar el enlace al cuerpo del documento y hacer clic en él
+        //     document.body.appendChild(a);
+        //     a.click();
+
+        //     // Limpiar el objeto de URL y eliminar el enlace
+        //     URL.revokeObjectURL(url);
+        //     document.body.removeChild(a);
+        // }
 
         function exportarAExcel(data) {
-            alert("as")
+
             var nombreUsuario = localStorage.getItem('nombreUsuario');
 
             const filteredData = data.filter(item => item.asignacion === nombreUsuario);
@@ -386,7 +921,77 @@
     </script>
 
 
- 
+
+    <script type="text/javascript">
+
+
+        var mostrarBoton = document.getElementById('mostrarBoton');
+        var miDiv = document.getElementById('miDiv');
+
+        // Agregar un controlador de evento clic al botón
+        mostrarBoton.addEventListener('click', function () {
+            // Cambiar el estilo de display del div para mostrarlo
+            crearRequerimiento();
+        });
+
+
+        function crearRequerimiento() {
+
+            var miSelect = document.getElementById('status');
+            var asignacion = document.getElementById('asignacion');
+
+
+
+
+            var vmo = document.getElementById('VMO');
+            var email = document.getElementById('email');
+            var obtenerValorBoton = document.getElementById('obtenerValorBoton');
+
+            var dataList = JSON.parse(localStorage.getItem('miData')) || [];
+            console.log("dataList" + JSON.stringify(dataList))
+            // Crear un nuevo objeto JSON con los nuevos valores
+            var newData = {
+                id: generarID();
+                status: miSelect.value,
+                VMO: vmo.value,
+                solicitante: asignacion.value,
+                requerimiento: requerimiento.value,
+                cv: "azure.com/blob/cv.pdf"
+            };
+
+
+            dataList.push(newData);
+            console.log("PUSH" + JSON.stringify(dataList))
+            // Convertir el nuevo objeto en una cadena JSON
+            var newJsonData = JSON.stringify(dataList);
+
+            // Guardar los nuevos valores en localStorage, utilizando la misma clave ("miData" en este ejemplo)
+            localStorage.setItem("miData", newJsonData);
+
+            // var storedData = localStorage.getItem("miData");
+            // var parsedData = JSON.parse(storedData);
+
+            // // Puedes acceder a los valores individuales de la siguiente manera:
+            // var status = parsedData.status;
+            // var VMO = parsedData.VMO;
+            // var solicitante = parsedData.solicitante;
+            // var requerimiento = parsedData.requerimiento;
+            // var cv = parsedData.cv;
+
+
+
+        }
+
+        function generarID() {
+            // Generar un número aleatorio de 7 dígitos
+            const min = 1000000; // 7 dígitos
+            const max = 9999999; // 7 dígitos
+            const id = Math.floor(Math.random() * (max - min + 1)) + min;
+
+            return id.toString(); // Convertir el número en una cadena de texto
+        }
+    </script>
+
 
     <script type="text/javascript">
         // Función para mostrar la animación de carga
@@ -403,6 +1008,7 @@
         $('#btnCargar').click(function () {
             showLoadingAnimation();
 
+            Simula una tarea de carga, puedes reemplazar esto con tu propia lógica
             setTimeout(function () {
                 hideLoadingAnimation();
                 $('#misTrabajosModal1').modal('hide');
@@ -411,7 +1017,17 @@
         });
     </script>
 
-   
+    <script type="text/javascript">
+        var miH1 = document.getElementById('textoPrincipal');
+
+        var nombreUsuario = localStorage.getItem('nombreUsuario');
+        var splitNombre = nombreUsuario.split('.');
+
+        miH1.textContent = 'Bienvenid@: ' + splitNombre[0];
+
+    </script>
+
+
 
 
     <script type="text/javascript">
@@ -422,290 +1038,176 @@
         var url = 'https://runnnnnnn.azurewebsites.net/requerimiento';
 
 
-         
+        fetch(url)
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('Error al obtener la lista de requerimientos.');
+            })
+            .then(data => {
+                // En lugar de utilizar los datos del 'localStorage', utilizamos los datos recibidos.
+                var dataList = data;
+
+                var nombreUsuario = localStorage.getItem('nombreUsuario');
+
+                // Filtrar los objetos con "Analista_Lesly" como solicitante
+                var solicitantesLesly = dataList.filter(function (data) {
+                    return data.asignacion === nombreUsuario;
+                });
+
+
+                // Crear una lista de solicitantes en formato HTML
+                var solicitantesHTML = "";
+                var uniqueRequerimientos = new Set();
+                solicitantesLesly.forEach(function (data) {
+
+                     if (!uniqueRequerimientos.has(data.requerimiento)) {
+        uniqueRequerimientos.add(data.requerimiento);
+        // alert(JSON.stringify(data))
+        // solicitantesHTML += "<div class='col-sm-5'><div class='card'><div class='card-body'><h5 class='card-text'><div class='card-body'><div class='card'>" + data.requerimiento + "</h5> <h5 class='card-text'><div class='card-body'><div class='card'>" + data.nombre_puesto + "</h5> <button id='miBoton' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#misTrabajosModal1' data-valor= " + data.id + "  onClick='obtenerValor(" + data.id + ")' >Completar </button>   <button id='miBoton2' class='btn btn-dark'   data-valor= " + data.id + " onClick='editarValor(" + data.id + ")' >Editar </button> </div></div></div></div></div></div>";
+     
+          // solicitantesHTML += "<div class='col-sm-5'><div class='card'><div class='card-body'><h5 class='card-text'><div class='card-body'><div class='card'>" + data.requerimiento + "</h5> <h5 class='card-text'><div class='card-body'><div class='card'>" + data.nombre_puesto + "</h5> <button id='miBoton' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#misTrabajosModal1' data-valor= " + data.id + "  onClick='obtenerValor(" +data.id+ ")' >Completar </button>   <button id='miBoton2' class='btn btn-dark'   data-valor= " + data.id + " onClick='editarValor(" + data.id + ")' >Editar </button> </div></div></div></div></div></div>";
+
+          solicitantesHTML += "<div class='col-sm-5'><div class='card'><div class='card-body'><h5 class='card-text'><div class='card-body'><div class='card'>" + data.requerimiento + "</div></div></h5> <h5 class='card-text'><div class='card-body'><div class='card'>" + data.nombre_puesto+ "</div></div></h5> <button id='miBoton' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#misTrabajosModal1' data-valor= " + data.id + " onClick='obtenerValor(" + data.id + ")' >Completar </button>   <button id='miBoton2' class='btn btn-dark'   data-valor= " + data.id + " onClick='editarValor(" + data.id + ")' >Editar </button> </div></div></div>";
+
+             // solicitantesHTML += "<div class='col-sm-5'><div class='card'><div class='card-body'><h5 class='card-text'><div class='card-body'><div class='card'>" + data.requerimiento + "</div></div></h5> <h5 class='card-text'><div class='card-body'><div class='card'>" + data.nombre_puesto+ "</div></div></h5> <button id='miBoton' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#misTrabajosModal1' data-valor= " + data.id + " onClick='obtenerValor(\"" + ((data.nombre_puesto || '').replace(/\s+/g, '_')) + "\")' >Completar </button>   <button id='miBoton2' class='btn btn-dark'   data-valor= " + data.id + " onClick='editarValor(" + data.id + ")' >Editar </button> </div></div></div>";
+
+        }
+                    // solicitantesHTML += " <div class='col-sm-5'><div class='card'><div class='card-body'><h5 class='card-text'><div class='card-body'><div class='card'>" + data.requerimiento + "</h5> <button id='miBoton' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#misTrabajosModal1' data-valor= " + data.id + " onClick='obtenerValor(" + data.id + ")' >Completar </button>   <button id='miBoton2' class='btn btn-dark' data-bs-toggle='modal' data-bs-target='#misTrabajosModal6' data-valor= " + data.id + " onClick='editarValor(" + data.id + ")' >Editar </button> </div></div></div></div></div></div>";
+
+                });
+
+
+                // Mostrar la lista de solicitantes en el div "solicitantesLesly"
+                document.getElementById('solicitantesLesly').innerHTML = solicitantesHTML;
+
+                // Función para editar el campo "requerimiento" por ID
+
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
 
 
         function obtenerValor(parametro) {
-
-            var miBoton = document.getElementById('miBoton');
+            alert(parametro+"asd")
+            // var miBoton = document.getElementById('miBoton');
             // Obtener el valor personalizado del botón
-            var valorPersonalizado = miBoton.getAttribute('data-valor');
+            // var valorPersonalizado = miBoton.getAttribute('data-valor');
             localStorage.setItem("id", parametro);
 
-            fetch(`https://runnnnnnn.azurewebsites.net/requerimiento/${parametro}`)
-                .then(response => {
-                    if (response.ok) {
-                        return response.json();
-                    }
-                    throw new Error('Error al obtener la lista de requerimientos.');
-                })
-                .then(data => {
-                    // En lugar de utilizar los datos del 'localStorage', utilizamos los datos recibidos.
-                    var dataList = data;
 
-                    var dni = data.dni
-                    // alert("data: " + JSON.stringify(data));
+             var trabajoVinculado_ = document.getElementById('trabajoVinculado_');
+            trabajoVinculado_.value = parametro;
 
-                    // var asd = JSON.stringify(data);
-                    console.log(dataList)
-                    console.log(data.dni)
-                    console.log(dataList.dni)
-                    // alert("asd.trabajoVinculado: " + asd.trabajoVinculado)
-                    var solicitante_ = document.getElementById('solicitante_');
 
-                    var trabajoVinculado_ = document.getElementById('trabajoVinculado_');
-                    // var pasoTrabajoVinculado_ = document.getElementById('pasoTrabajoVinculado_');
-                    var fuente_ = document.getElementById('fuente_');
-                    var fechaNacimiento_ = document.getElementById('fechaNacimiento_');
-                    var todosTelefonos_ = document.getElementById('todosTelefonos_');
-                    var puesto_ = document.getElementById('puesto_');
-                    var empleador_ = document.getElementById('empleador_');
-                    var institucion_ = document.getElementById('institucion_');
-                    var carreras_ = document.getElementById('carreras_');
-                    var grados_ = document.getElementById('grados_');
-                    var salario_ = document.getElementById('salario_');
-                    var espectativa_ = document.getElementById('espectativa_');
-                    var beneficio_ = document.getElementById('beneficio_');
-                    var puestoHits_ = document.getElementById('puestoHits_');
-                    var pregunta1_ = document.getElementById('pregunta1_');
-                    var pregunta2_ = document.getElementById('pregunta2_');
-                    var pregunta3_ = document.getElementById('pregunta3_');
-                    var pregunta4_ = document.getElementById('pregunta4_');
+            // fetch(`https://runnnnnnn.azurewebsites.net/requerimiento/${parametro}`)
+            //     .then(response => {
+            //         if (response.ok) {
+            //             return response.json();
+            //         }
+            //         throw new Error('Error al obtener la lista de requerimientos.');
+            //     })
+            //     .then(data => {
+            //         // En lugar de utilizar los datos del 'localStorage', utilizamos los datos recibidos.
+            //         var dataList = data;
 
-                    var nombre_ = document.getElementById('nombre_');
-                    var solicitante_ = document.getElementById('solicitante_');
-                    var dni_ = document.getElementById('dni_');
-                    var telefono_ = document.getElementById('telefono_');
-                    var correo_ = document.getElementById('correo_');
-                    var asignacion_ = document.getElementById('asignacion_');
-                    solicitante_.value = data.solicitante;
+            //         var dni = data.dni
+            //         // alert("data: " + JSON.stringify(data));
 
-                    console.log("data.nombre" + data.nombre)
-                    console.log("data.dni" + data.dni)
-                    console.log("data.telefono" + data.telefono)
+            //         // var asd = JSON.stringify(data);
+            //         console.log(dataList)
+            //         console.log(data.dni)
+            //         console.log(dataList.dni)
+            //         // alert("asd.trabajoVinculado: " + asd.trabajoVinculado)
+            //         var solicitante_ = document.getElementById('solicitante_');
 
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
+            //         var trabajoVinculado_ = document.getElementById('trabajoVinculado_');
+            //         // var pasoTrabajoVinculado_ = document.getElementById('pasoTrabajoVinculado_');
+            //         var fuente_ = document.getElementById('fuente_');
+            //         var fechaNacimiento_ = document.getElementById('fechaNacimiento_');
+            //         var todosTelefonos_ = document.getElementById('todosTelefonos_');
+            //         var puesto_ = document.getElementById('puesto_');
+            //         var empleador_ = document.getElementById('empleador_');
+            //         var institucion_ = document.getElementById('institucion_');
+            //         var carreras_ = document.getElementById('carreras_');
+            //         var grados_ = document.getElementById('grados_');
+            //         var salario_ = document.getElementById('salario_');
+            //         var espectativa_ = document.getElementById('espectativa_');
+            //         var beneficio_ = document.getElementById('beneficio_');
+            //         var puestoHits_ = document.getElementById('puestoHits_');
+            //         var pregunta1_ = document.getElementById('pregunta1_');
+            //         var pregunta2_ = document.getElementById('pregunta2_');
+            //         var pregunta3_ = document.getElementById('pregunta3_');
+            //         var pregunta4_ = document.getElementById('pregunta4_');
+
+            //         var nombre_ = document.getElementById('nombre_');
+            //         var solicitante_ = document.getElementById('solicitante_');
+            //         var dni_ = document.getElementById('dni_');
+            //         var telefono_ = document.getElementById('telefono_');
+            //         var correo_ = document.getElementById('correo_');
+            //         var asignacion_ = document.getElementById('asignacion_');
+            //      solicitante_.value = data.solicitante;
+            //         // trabajoVinculado_.value = data.requerimiento;
+            //         /* NO COMPLETAR
+            //          trabajoVinculado_.value = data.requerimiento;
+                    
+            //          trabajoVinculado_.value = data.trabajoVinculado;
+            //          // pasoTrabajoVinculado_.value = data.pasoTrabajoVinculado;
+            //          fuente_.value = data.fuente;
+            //          fechaNacimiento_.value = data.fechaNacimiento;
+            //          todosTelefonos_.value = data.todosTelefonos;
+            //          puesto_.value = data.puesto;
+            //          empleador_.value = data.empleador;
+            //          institucion_.value = data.institucion;
+            //          carreras_.value = data.carreras;
+            //          grados_.value = data.grados;
+            //          salario_.value = data.salario;
+            //          espectativa_.value = data.espectativa;
+            //          beneficio_.value = data.beneficio;
+            //          puestoHits_.value = data.puestoHits;
+            //          pregunta1_.value = data.pregunta1;
+            //          pregunta2_.value = data.pregunta2;
+            //          pregunta3_.value = data.pregunta3;
+            //          pregunta4_.value = data.pregunta4;
+ 
+            //          nombre_.value = data.nombre;
+            //          solicitante_.value = data.solicitante;
+            //          dni_.value = data.dni;
+            //          telefono_.value = data.telefono;
+            //          correo_.value = data.correo;
+ 
+            //          NO COMPLETAR */
+            //         // asignacion_.value = data.asignacion;
+
+            //         console.log("data.nombre" + data.nombre)
+            //         console.log("data.dni" + data.dni)
+            //         console.log("data.telefono" + data.telefono)
+
+            //     })
+            //     .catch(error => {
+            //         console.error('Error:', error);
+            //     });
 
 
         }
-        var temporal = localStorage.getItem("id");
-       	editarValor(temporal);
- 
-
-function editarValor(parametro) {
-    console.log("parametro");
-    var miBoton2 = document.getElementById('miBoton2');
-    // Obtener el valor personalizado del botón
-    localStorage.setItem("id", parametro);
-
-    fetch(`https://runnnnnnn.azurewebsites.net/requerimiento`)
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            }
-            throw new Error('Error al obtener la lista de requerimientos.');
-        })
-        .then(data => {
-            // En lugar de utilizar los datos del 'localStorage', utilizamos los datos recibidos.
-            var dataList = data;
-                   const cambiosPendientes = [];
-
-            if (Array.isArray(data)) {
-                const nombreUsuario = localStorage.getItem('nombreUsuario');
-                const nuevaTabla = document.getElementById('nuevaTabla').querySelector('tbody');
-                nuevaTabla.innerHTML = '';
-
-                   nuevaTabla.addEventListener('dblclick', function (event) {
-                                const target = event.target;
-
-                                if (target.tagName === 'TD') {
-                                    target.setAttribute('contenteditable', 'true');
-                                }
-                            });
-             const cambiosPendientes = [];
-
-          // También puedes agregar un controlador de eventos para deshabilitar la edición al hacer clic fuera de la celda
-                            document.addEventListener('click', function (event) {
-                                const target = event.target;
-
-                                if (target.tagName !== 'TD') {
-                                    const editableCells = nuevaTabla.querySelectorAll('td[contenteditable="true"]');
-                                    editableCells.forEach(cell => cell.setAttribute('contenteditable', 'false'));
-                                }
-                            });
 
 
-                data.forEach(item => {
-                    if (item.asignacion === nombreUsuario) {
-                        const row = nuevaTabla.insertRow();
-                        const cell1 = row.insertCell(0);
-                        const cell2 = row.insertCell(1);
-                        const cell3 = row.insertCell(2);
-                        const cell4 = row.insertCell(3);
-                        const cell5 = row.insertCell(4);
+        function editarValor(parametro) {
 
-                        const cell6 = row.insertCell(5);
-                        const cell7 = row.insertCell(6);
-                        const cell8 = row.insertCell(7);
-                        const cell9 = row.insertCell(8);
+            localStorage.setItem("id", parametro);
 
-                        const cell10 = row.insertCell(9);
-                        const cell11 = row.insertCell(10);
-                        const cell12 = row.insertCell(11);
-                        const cell13 = row.insertCell(12);
-                        const cell14 = row.insertCell(13);
-                        const cell15 = row.insertCell(14);
-                        const cell16 = row.insertCell(15);
-                        const cell17 = row.insertCell(16);
+           const nuevaPaginaURL = 'https://semilleros-ccb45.web.app/wi.html';
 
-                        const cell18 = row.insertCell(17);
-                        const cell19 = row.insertCell(18);
-                        const cell20 = row.insertCell(19);
-                        const cell21 = row.insertCell(20);
-                        const cell22 = row.insertCell(21);
-                        const cell23 = row.insertCell(22);
-                        const cell24 = row.insertCell(23);
-                        const cell25 = row.insertCell(24);
-                        const cell26 = row.insertCell(25);
-                        const cell27 = row.insertCell(26);
-                        const cell28 = row.insertCell(27);
-                        const cell29 = row.insertCell(28);
-                        const cell30 = row.insertCell(29);
-                        const cell31 = row.insertCell(30);
-                        const cell32 = row.insertCell(31);
+            // Redirigir a la nueva página
+            window.location.href = nuevaPaginaURL;
 
-
-                        const cell33 = row.insertCell(32);
-                        const cell34 = row.insertCell(33);
-                        const cell35 = row.insertCell(34);
-                        const cell36 = row.insertCell(35);
-                        const cell37 = row.insertCell(36);
-                        const cell38 = row.insertCell(37);
-                        const cell39 = row.insertCell(38);
-                        const cell40 = row.insertCell(39);
-                        const cell41 = row.insertCell(40);
-                        const cell42 = row.insertCell(41);
-                        const cell43 = row.insertCell(42);
-                        const cell44 = row.insertCell(43);
-                        const cell45 = row.insertCell(44);
-
-
-                        const cell46 = row.insertCell(45);
-                        const cell47 = row.insertCell(46);
-                        const cell48 = row.insertCell(47);
-                        const cell49 = row.insertCell(48);
-                        const cell50 = row.insertCell(49);
-                        const cell51 = row.insertCell(50);
-                        const cell52 = row.insertCell(51);
-
-
-                        cell1.textContent = item.solicitante;
-                        cell2.textContent = item.asignacion;
-                        cell3.textContent = item.requerimiento;
-                        cell4.textContent = item.vmo;
-                        cell5.textContent = item.id;
-
-                        cell6.textContent = item.telefono;
-                        cell7.textContent = item.dni;
-                        cell8.textContent = item.nombre;
-                        cell9.textContent = item.fuente;
-
-                        cell10.textContent = item.correo;
-                        // Cambiar el campo "trabajo" a un select
-                        const selectTrabajo = document.createElement('select');
-                        selectTrabajo.innerHTML = '<option selected >'+item.trabajo+'</option><option value="creacion_requerimiento">Creación del requerimiento</option><option value="candidato_identificado">Candidato identificado</option><option value="en_prescreening">En Prescreening</option><option value="no_contactado_no_contesta">✖ No contactado - No contesta</option><option value="no_apto_cv_experiencia">✖ No apto CV - Experiencia</option><option value="no_apto_cv_auditoria">✖ No apto CV - Auditoría</option><option value="no_apto_cv_expectativa_salarial">✖ No apto CV - Expectativasalarial</option><option value="no_apto_cv_requisito_perfil">✖ No Apto CV - Requisito delperfil</option><option value="no_apto_prescreening_black_list">✖ No Apto Prescreening -Black List</option><option value="no_apto_prescreening_offlimits">✖ No Apto Prescreening -Offlimits</option><option value="no_apto_prescreening_expectativas_altas">✖ No AptoPrescreening - Expectativas altas</option><option value="no_apto_prescreening_estudios">✖ No Apto Prescreening -Estudios</option><option value="no_apto_prescreening_comunicacion_no_efectiva">✖ No AptoPrescreening - Comunicación no efectiva</option><option value="desistio_proceso_prescreening">✖ Desistió del proceso enPrescreening</option><option value="apto_en_prescreening">✓ Apto en prescreening</option><option value="en_revision_cv">En revisión de CV</option><option value="multitest_recomendado">✓ Multitest - Recomendado</option><option value="no_apto_multitest">✖ No apto en Multitest</option><option value="apto_en_antecedentes">✓ Apto en Antecedentes</option><option value="no_apto_antecedentes">✖ No apto en Antecedentes</option><option value="apto_todas_las_pruebas">✓ ✓ ✓ Apto en todas las pruebas</option><option value="apto_presentar_cliente">✓ Apto para presentar al Cliente</option><option value="no_apto_entrevista_tecnica">✖ No apto en Entrevista concliente - Ent. Técnica</option><option value="no_fit_hitss">✖ No apto en Entrevista con cliente - No fitHITSS</option><option value="desistio_proceso_entrevista">✖ Desistió del proceso luegoEnt. →</option><option value="backup">╩ Backup</option><option value="seleccionado">✌️ Seleccionado</option><option value="carta_oferta">✓ Carta Oferta</option><option value="desistio_proceso_carta_oferta">✖ Desistió del proceso luegoCarta Oferta →</option><option value="firma_contrato">✓ Firma de contrato</option>';
-                        selectTrabajo.value = item.trabajo;
-                        cell11.appendChild(selectTrabajo);
-
-                        // Cambiar el campo "trabajo" a un select
-                        const selectDisponibilidad = document.createElement('select');
-                        selectDisponibilidad.innerHTML = '<option  selected>'+item.disponibilidad+'</option>;<option value="inmediata">Inmediata</option><option value="7_dias">7 días</option><option value="15_dias">15 días</option><option value="30_dias">30 días</option>';
-                        selectDisponibilidad.value = item.disponibilidad;
-                        cell12.appendChild(selectDisponibilidad);
-
-                        // Cambiar el campo "trabajo" a un select
-                        const antecedentesDisponibilidad = document.createElement('select');
-                        antecedentesDisponibilidad.innerHTML = '<option  selected>'+item.antecedentes+'</option><option value="no_registra">No Registra</option><option value="registra">Registra</option>';
-                        antecedentesDisponibilidad.value = item.antecedentes;
-                        cell13.appendChild(antecedentesDisponibilidad);
-
-
-                        // cell12.textContent = item.disponibilidad;
-                        // cell13.textContent = item.antecedentes;
-
-                         // Cambiar el campo "trabajo" a un select
-                        const trabajoHitsDisponibilidad = document.createElement('select');
-                        trabajoHitsDisponibilidad.innerHTML = '<option >'+item.trabajoHits+'</option><option value="no">No</option><option value="si">Sí</option>';
-                        trabajoHitsDisponibilidad.value = item.trabajoHits;
-                        cell14.appendChild(trabajoHitsDisponibilidad);
-
-                        // cell14.textContent = item.trabajoHits;
-                        cell15.textContent = item.familiaresHits;
-                        cell16.textContent = item.trabajoVinculado;
-                        cell17.textContent = item.pasoTrabajoVinculado;
-
-                        cell18.textContent = item.fechaNacimiento;
-                        cell19.textContent = item.todosTelefonos;
-                        cell20.textContent = item.puesto;
-                        cell21.textContent = item.empleador_;
-                        cell22.textContent = item.institucion_;
-                        cell23.textContent = item.carreras;
-                        cell24.textContent = item.grados;
-                        cell25.textContent = item.salario;
-                        cell26.textContent = item.espectativa;
-                        cell27.textContent = item.beneficio;
-                        cell28.textContent = item.puestoHits;
-                        cell29.textContent = item.pregunta1;
-                        cell30.textContent = item.pregunta2;
-                        cell31.textContent = item.pregunta3;
-                        cell32.textContent = item.pregunta4;
-
-                        cell33.textContent = item.antecedentesA;
-                        cell34.textContent = item.antecedentesB;
-                        cell35.textContent = item.antecedentePolicial;
-                        cell36.textContent = item.antecedentePenal;
-                        cell37.textContent = item.antecedenteJudicial;
-                        cell38.textContent = item.certiAdulto;
-                        cell39.textContent = item.multiTest;
-                        cell40.textContent = item.informePsicologico;
-                        cell41.textContent = item.fichaDatos;
-                        cell42.textContent = item.fichaMedica;
-                        cell43.textContent = item.fichaRequerimiento;
-                        cell44.textContent = item.fichaAprobacion;
-                        cell45.textContent = item.otrosAdjuntos;
-
-
-
-                        cell46.textContent = item.fechaSolicitud
-                        cell47.textContent = item.tecnologia
-                        cell48.textContent = item.seniority
-                        cell49.textContent = item.cliente
-                        cell50.textContent = item.prioridad
-                        cell51.textContent = item.motivo
-                        cell52.textContent = item.OBS_CANCELADOS
-
-
-                    }
-                });
-            } else {
-                console.error('Los datos recibidos no son una matriz.');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-}
-
-
-
-
+        }
 
 
         var idddd = localStorage.getItem('id');
-        console.log(idddd)
+        console.log(idddd+"IDDDDD")
         function guardar() {
             showLoadingAnimation();
             // var nuevoRequerimiento = prompt("Ingrese : nuevoRequerimiento");
@@ -741,6 +1243,13 @@ function editarValor(parametro) {
 
             var dataList = JSON.parse(localStorage.getItem('miData')) || [];
 
+
+            // var objeto = dataList.find(function (item) {
+            //     console.log(" item.id" + item.id)
+            //     console.log(" item.id" + idddd)
+            //     return item.id === idddd;
+
+            // });
 
               var nombreUsuario = localStorage.getItem('nombreUsuario');
 
@@ -779,10 +1288,21 @@ function editarValor(parametro) {
                 pregunta3: "",
                 pregunta4: "",
                 vmo: "",
-
+                antecedentesA: "a",
+                antecedentesB: "b",
+                antecedentePolicial : "antecedentePolicial",
+                antecedentePenal: "antecedentePenal",
+                antecedenteJudicial: "antecedenteJudicial",
+                certiAdulto: "certiAdulto",
+                multiTest: "multiTest",
+                informePsicologico: "informePsicologico",
+                fichaDatos: "fichaDatos",
+                fichaMedica: "fichaMedica",
+                fichaRequerimiento: "fichaRequerimiento",
+                fichaAprobación: "fichaAprobación",
+                otrosAdjuntos : "otrosAdjuntos"
             };
 
-            var oka;
 
             fetch(`https://runnnnnnn.azurewebsites.net/requerimiento/${idddd}`)
             // fetch("https://runnnnnnn.azurewebsites.net/requerimiento")
@@ -876,6 +1396,21 @@ function editarValor(parametro) {
 
                                     objeto.correo = fuente_.value;
 
+
+                                    objeto.antecedentesA= "a";
+                                    objeto.antecedentesB= "b";
+                                    objeto.antecedentePolicial = "antecedentePolicial";
+                                    objeto.antecedentePenal= "antecedentePenal";
+                                    objeto.antecedenteJudicial= "antecedenteJudicial";
+                                    objeto.certiAdulto= "certiAdulto";
+                                    objeto.multiTest= "multiTest";
+                                    objeto.informePsicologico= "informePsicologico";
+                                    objeto.fichaDatos= "fichaDatos";
+                                    objeto.fichaMedica= "fichaMedica";
+                                    objeto.fichaRequerimiento= "fichaRequerimiento";
+                                    objeto.fichaAprobación= "fichaAprobación";
+                                    objeto.otrosAdjuntos = "otrosAdjuntos";
+
                                     // objeto.estadorequerimiento = nuevoRequerimiento;
 
                                     console.log("Objeto actualizado1:", objeto);
@@ -924,6 +1459,21 @@ function editarValor(parametro) {
                                                 pregunta4_.value = ""
 
                                                 objeto.correo = fuente_.value;
+
+                                                // objeto.antecedentesA= "a";
+                                                // objeto.antecedentesB= "b";
+                                                // objeto.antecedentePolicial = "antecedentePolicial";
+                                                // objeto.antecedentePenal= "antecedentePenal";
+                                                // objeto.antecedenteJudicial= "antecedenteJudicial";
+                                                // objeto.certiAdulto= "certiAdulto";
+                                                // objeto.multiTest= "multiTest";
+                                                // objeto.informePsicologico= "informePsicologico";
+                                                // objeto.fichaDatos= "fichaDatos";
+                                                // objeto.fichaMedica= "fichaMedica";
+                                                // objeto.fichaRequerimiento= "fichaRequerimiento";
+                                                // objeto.fichaAprobación= "fichaAprobación";
+                                                // objeto.otrosAdjuntos = "otrosAdjuntos";
+
                                                 hideLoadingAnimation();
                                                 location.reload();
                                             } else {
@@ -980,9 +1530,193 @@ function editarValor(parametro) {
 
     </script>
 
+<!-- <style type="text/css">
+    #nuevaTablaContainer tbody{
+  color:#00467f;
+  font-weight:500;
+  position:absolute;
+  overflow-y: auto;
+  overflow-x: scroll;
+  height:300px;
+  width:1001px;
+}
+   thead{
+  color:#00467f;
+  font-weight:500;
+  position:absolute;
+  overflow-y: auto;
+  overflow-x: scroll;
+  height:300px;
+  width:1001px;
+}
 
 
-   <!--  <script>
+</style> -->
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="misTrabajosModal6" tabindex="-1" aria-labelledby="misTrabajosModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="misTrabajosModalLabel">Nuevo candidato</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Contenido del modal -->
+                    <p>Edita todo lo que tienes.</p>
+
+                    <div class="row">
+                        <div class="col-sm">
+                            <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                            <div class="card-body">
+                                <!-- Editable table -->
+                                <div class="card">
+                                    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
+                                        Editar datos masivos
+                                    </h3>
+                                    <div class="card-body">
+
+
+                                        <div id="nuevaTablaContainer">
+                                            <table id="nuevaTabla"
+                                                class="table table-bordered table-responsive-md table-striped text-center">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">solicitante</th>
+                                                        <th class="text-center">asignacion</th>
+                                                        <th class="text-center">requerimiento</th>
+                                                        <th class="text-center">VMO</th>
+                                                        <th class="text-center">ID</th>
+
+                                                        <th class="text-center">telefono</th>
+                                                        <th class="text-center">dni</th>
+                                                        <th class="text-center">nombre</th>
+                                                        <th class="text-center">fuente</th>
+
+                                                    
+
+
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <!-- Aquí se agregarán las filas automaticamente por el js  -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <button id="guardarCambios" class="btn btn-primary">Actualizar
+                                            masivamente</button>
+
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <!-- Editable table -->
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+
+    </script>
+
+
+
+    <!-- <script type="text/javascript">
+    const $tableID = $('#table'); const $BTN = $('#export-btn'); const $EXPORT = $('#export');
+  const newTr = `
+  <tr class="hide">
+    <td class="pt-3-half" contenteditable="true">Example</td>
+    <td class="pt-3-half" contenteditable="true">Example</td>
+    <td class="pt-3-half" contenteditable="true">Example</td>
+    <td class="pt-3-half" contenteditable="true">Example</td>
+    <td class="pt-3-half" contenteditable="true">Example</td>
+    <td class="pt-3-half">
+      <span class="table-up"
+        ><a href="#!" class="indigo-text"
+          ><i class="fas fa-long-arrow-alt-up" aria-hidden="true"></i></a
+      ></span>
+      <span class="table-down"
+        ><a href="#!" class="indigo-text"
+          ><i class="fas fa-long-arrow-alt-down" aria-hidden="true"></i></a
+      ></span>
+    </td>
+    <td>
+      <span class="table-remove"
+        ><button
+          type="button"
+          class="btn btn-danger btn-rounded btn-sm my-0 waves-effect waves-light"
+        >
+          Remove
+        </button></span
+      >
+    </td>
+  </tr>
+  `;
+  $('.table-add').on('click', 'i', () => {
+    const $clone = $tableID.find('tbody tr ').last().clone(true).removeClass(' hide table - line '); if ($tableID.find('tbody tr ').length === 0) {
+        $('tbody').append(newTr);
+    }
+    $tableID.find('table').append($clone);
+        });
+        $tableID.on('click', '.table-remove', function() {
+            $(this).parents('tr').detach();
+        });
+        $tableID.on('click', '.table-up', function() {
+            const $row = $(this).parents('tr');
+            if ($row.index() === 0) {
+                return;
+            }
+            $row.prev().before($row.get(0));
+        });
+        $tableID.on('click',
+            '.table-down',
+            function() {
+                const $row = $(this).parents('tr');
+                $row.next().after($row.get(0));
+            }); // A few jQuery helpers for exporting only jQuery.fn.pop
+        = [].pop;
+        jQuery.fn.shift = [].shift;
+        $BTN.on('click', () => {
+            const $rows =
+                $tableID.find('tr:not(:hidden)');
+            const headers = [];
+            const data = []; // Get the headers
+            (add special header logic here) $($rows.shift()).find('th:not(:empty)').each(function() {
+                headers.push($(this).text().toLowerCase());
+            }); // Turn all existing rows into a loopable
+            array $rows.each(function() {
+                const $td = $(this).find('td');
+                const h = {}; // Use the
+                headers from earlier to name our hash keys headers.forEach((header, i) => {
+                    h[header] =
+                        $td.eq(i).text();
+                });
+                data.push(h);
+            }); // Output the result
+            $EXPORT.text(JSON.stringify(data));
+        });
+</script> -->
+
+
+
+    <script>
 
         window.addEventListener("DOMContentLoaded", listarrrrr);
 
@@ -1032,9 +1766,11 @@ function editarValor(parametro) {
                     console.error('Error:', error);
                 });
 
+            // Si deseas establecerlo en "po" en su lugar, puedes usar:
+            // select.val("po");
 
         }
-    </script> -->
+    </script>
 
 
     <script type="text/javascript">
@@ -1055,57 +1791,13 @@ function editarValor(parametro) {
                     asignacion: cells[1].textContent,
                     requerimiento: cells[2].textContent,
                     vmo: cells[3].textContent,
+
                     telefono: cells[5].textContent,
-                    dni: cells[6].textContent,
-                    nombre: cells[7].textContent,
-                    fuente: cells[8].textContent,
-                    correo: cells[9].textContent,
-                    trabajo: (cells[10].textContent).slice(0,100),
-                    disponibilidad: cells[11].textContent,
-                    antecedentes: cells[12].textContent,
-                    trabajoHits: cells[13].textContent,
-                    familiaresHits: cells[14].textContent,
-                    trabajoVinculado: cells[15].textContent,
-                    pasoTrabajoVinculado: cells[16].textContent,
-                    fechaNacimiento: cells[17].textContent,
-                    todosTelefonos: cells[18].textContent,
-                    puesto: cells[19].textContent,
-                    empleador_: cells[20].textContent,
-                    institucion_: cells[21].textContent,
-                    carreras: cells[22].textContent,
-                    grados: cells[23].textContent,
-                    salario: cells[24].textContent,
-                    espectativa: cells[25].textContent,
-                    beneficio: cells[26].textContent,
-                    puestoHits: cells[27].textContent,
-                    pregunta1: cells[28].textContent,
-                    pregunta2: cells[29].textContent,
-                    pregunta3: cells[30].textContent,
-                    pregunta4: cells[31].textContent,
+                    telefono: cells[6].textContent,
+                    telefono: cells[7].textContent,
+                    telefono: cells[8].textContent,
 
-                    antecedentesA: cells[32].textContent,
-                    antecedentesB: cells[33].textContent,
-                    antecedentePolicial: cells[34].textContent,
-                    antecedentePenal: cells[35].textContent,
-                    antecedenteJudicial: cells[36].textContent,
-                    certiAdulto: cells[37].textContent,
-                    multiTest: cells[38].textContent,
-                    informePsicologico: cells[39].textContent,
-                    fichaDatos: cells[40].textContent,
-                    fichaMedica: cells[41].textContent,
-                    fichaRequerimiento: cells[42].textContent,
-                    fichaAprobacion: cells[43].textContent,
-                    otrosAdjuntos: cells[44].textContent,
-
-
-                    fechaSolicitud: cells[45].textContent,
-                    tecnologia: cells[46].textContent,
-                    seniority: cells[47].textContent,
-                    cliente: cells[48].textContent,
-                    prioridad: cells[49].textContent,
-                    motivo: cells[50].textContent,
-                    OBS_CANCELADOS: cells[51].textContent
-                     
+                
                 };
                 datos.push(objeto);
             });
@@ -1123,6 +1815,7 @@ function editarValor(parametro) {
                         if (contentType && contentType.includes('application/json')) {
                             return response.json();
                         } else {
+
                             console.error('La respuesta no es JSON válido' + response.json());
                         }
                     } else {
@@ -1131,9 +1824,7 @@ function editarValor(parametro) {
                 })
                 .then(data => {
                     console.log('Solicitud PUT exitosa', datos);
-                    alert("Los datos fueron actualizados correctamente")
                     hideLoadingAnimation();
-
                 })
                 .catch(error => {
                     console.error('Error:', error);
@@ -1165,7 +1856,7 @@ function editarValor(parametro) {
 
         botonRedireccionar.addEventListener('click', function () {
             // Aquí especifica la URL de la página a la que deseas redirigir
-            const nuevaPaginaURL = 'https://semilleros-ccb45.web.app/b.html';
+            const nuevaPaginaURL = 'https://semilleros-ccb45.web.app/index.html';
 
             // Redirigir a la nueva página
             window.location.href = nuevaPaginaURL;
