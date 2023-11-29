@@ -354,7 +354,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    
+                    <button class="btn btn-primary" onclick="mostrarAlerta()">Send message</button>
                     <p id="subirAdjuntos">subir</p>
                 </div>
             </div>
@@ -1351,7 +1351,6 @@
 
         function mostrarAlerta() {
             // Alerta al hacer clic en el botón
-            alert("¡Hiciste clic en el botón guardandoPut!");
             // URL del servicio
             const url = 'https://runnnnnnn.azurewebsites.net/requerimiento/';
 
@@ -1376,6 +1375,9 @@
                 .then(data => {
                     console.log('Respuesta exitosa:', data);
                     // Puedes realizar acciones adicionales después de la actualización
+                     alert("Se cargó satifatoriamente")
+                     location.reload();
+
                 })
                 .catch(error => {
                     console.error('Error:', error);
@@ -1383,7 +1385,7 @@
 
         }
 
-
+const timestamp = Date.now();
 
         // document.addEventListener('DOMContentLoaded', function () {
         //     var parrafoSubirAdjuntos = document.getElementById('subirAdjuntos');
@@ -1412,16 +1414,6 @@
             console.log("Botón del mouse liberado sobre el input de archivo");
 
 
-            const firebaseConfig = {
-                apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
-                authDomain: "semilleros-ccb45.firebaseapp.com",
-                projectId: "semilleros-ccb45",
-                storageBucket: "semilleros-ccb45.appspot.com",
-                messagingSenderId: "543478666358",
-                appId: "1:543478666358:web:dc0e8cff35c982faab3b57",
-                measurementId: "G-WK87KGXSWK"
-            };
-
 
 
             // Inicializa Firebase
@@ -1434,7 +1426,7 @@
 
             if (file1) {
                 // Tu código para subir el archivo a Firebase Storage
-                const storageRef = storage.ref("adjuntos" + "/" + file1.name);
+                const storageRef = storage.ref("adjuntos" + "/" + timestamp);
 
                 storageRef.put(file1).then((snapshot) => {
                     console.log("Archivo subido con éxito");
@@ -1465,15 +1457,7 @@
             console.log("Botón del mouse liberado sobre el input de archivo");
 
 
-            const firebaseConfig = {
-                apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
-                authDomain: "semilleros-ccb45.firebaseapp.com",
-                projectId: "semilleros-ccb45",
-                storageBucket: "semilleros-ccb45.appspot.com",
-                messagingSenderId: "543478666358",
-                appId: "1:543478666358:web:dc0e8cff35c982faab3b57",
-                measurementId: "G-WK87KGXSWK"
-            };
+            
 
 
 
@@ -1487,7 +1471,7 @@
 
             if (file1) {
                 // Tu código para subir el archivo a Firebase Storage
-                const storageRef = storage.ref("adjuntos" + "/" + file1.name);
+                const storageRef = storage.ref("adjuntos" + "/" + timestamp);
 
                 storageRef.put(file1).then((snapshot) => {
                     console.log("Archivo subido con éxito");
@@ -1518,15 +1502,7 @@
             console.log("Botón del mouse liberado sobre el input de archivo");
 
 
-            const firebaseConfig = {
-                apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
-                authDomain: "semilleros-ccb45.firebaseapp.com",
-                projectId: "semilleros-ccb45",
-                storageBucket: "semilleros-ccb45.appspot.com",
-                messagingSenderId: "543478666358",
-                appId: "1:543478666358:web:dc0e8cff35c982faab3b57",
-                measurementId: "G-WK87KGXSWK"
-            };
+            
 
 
 
@@ -1540,7 +1516,7 @@
 
             if (file1) {
                 // Tu código para subir el archivo a Firebase Storage
-                const storageRef = storage.ref("adjuntos" + "/" + file1.name);
+                const storageRef = storage.ref("adjuntos" + "/" + timestamp);
 
                 storageRef.put(file1).then((snapshot) => {
                     console.log("Archivo subido con éxito");
@@ -1593,7 +1569,7 @@
 
             if (file1) {
                 // Tu código para subir el archivo a Firebase Storage
-                const storageRef = storage.ref("adjuntos" + "/" + file1.name);
+                const storageRef = storage.ref("adjuntos" + "/" + timestamp);
 
                 storageRef.put(file1).then((snapshot) => {
                     console.log("Archivo subido con éxito");
@@ -1623,15 +1599,7 @@
             console.log("Botón del mouse liberado sobre el input de archivo");
 
 
-            const firebaseConfig = {
-                apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
-                authDomain: "semilleros-ccb45.firebaseapp.com",
-                projectId: "semilleros-ccb45",
-                storageBucket: "semilleros-ccb45.appspot.com",
-                messagingSenderId: "543478666358",
-                appId: "1:543478666358:web:dc0e8cff35c982faab3b57",
-                measurementId: "G-WK87KGXSWK"
-            };
+            
 
 
 
@@ -1645,7 +1613,7 @@
 
             if (file1) {
                 // Tu código para subir el archivo a Firebase Storage
-                const storageRef = storage.ref("adjuntos" + "/" + file1.name);
+                const storageRef = storage.ref("adjuntos" + "/" + timestamp);
 
                 storageRef.put(file1).then((snapshot) => {
                     console.log("Archivo subido con éxito");
@@ -1677,15 +1645,7 @@
             console.log("Botón del mouse liberado sobre el input de archivo");
 
 
-            const firebaseConfig = {
-                apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
-                authDomain: "semilleros-ccb45.firebaseapp.com",
-                projectId: "semilleros-ccb45",
-                storageBucket: "semilleros-ccb45.appspot.com",
-                messagingSenderId: "543478666358",
-                appId: "1:543478666358:web:dc0e8cff35c982faab3b57",
-                measurementId: "G-WK87KGXSWK"
-            };
+            
 
 
 
@@ -1699,7 +1659,7 @@
 
             if (file1) {
                 // Tu código para subir el archivo a Firebase Storage
-                const storageRef = storage.ref("adjuntos" + "/" + file1.name);
+                const storageRef = storage.ref("adjuntos" + "/" + timestamp);
 
                 storageRef.put(file1).then((snapshot) => {
                     console.log("Archivo subido con éxito");
@@ -1730,15 +1690,7 @@
             console.log("Botón del mouse liberado sobre el input de archivo");
 
 
-            const firebaseConfig = {
-                apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
-                authDomain: "semilleros-ccb45.firebaseapp.com",
-                projectId: "semilleros-ccb45",
-                storageBucket: "semilleros-ccb45.appspot.com",
-                messagingSenderId: "543478666358",
-                appId: "1:543478666358:web:dc0e8cff35c982faab3b57",
-                measurementId: "G-WK87KGXSWK"
-            };
+            
 
 
 
@@ -1752,7 +1704,7 @@
 
             if (file1) {
                 // Tu código para subir el archivo a Firebase Storage
-                const storageRef = storage.ref("adjuntos" + "/" + file1.name);
+                const storageRef = storage.ref("adjuntos" + "/" + timestamp);
 
                 storageRef.put(file1).then((snapshot) => {
                     console.log("Archivo subido con éxito");
@@ -1784,15 +1736,7 @@
             console.log("Botón del mouse liberado sobre el input de archivo");
 
 
-            const firebaseConfig = {
-                apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
-                authDomain: "semilleros-ccb45.firebaseapp.com",
-                projectId: "semilleros-ccb45",
-                storageBucket: "semilleros-ccb45.appspot.com",
-                messagingSenderId: "543478666358",
-                appId: "1:543478666358:web:dc0e8cff35c982faab3b57",
-                measurementId: "G-WK87KGXSWK"
-            };
+            
 
 
 
@@ -1806,7 +1750,7 @@
 
             if (file1) {
                 // Tu código para subir el archivo a Firebase Storage
-                const storageRef = storage.ref("adjuntos" + "/" + file1.name);
+                const storageRef = storage.ref("adjuntos" + "/" + timestamp);
 
                 storageRef.put(file1).then((snapshot) => {
                     console.log("Archivo subido con éxito");
@@ -1836,15 +1780,7 @@
             console.log("Botón del mouse liberado sobre el input de archivo");
 
 
-            const firebaseConfig = {
-                apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
-                authDomain: "semilleros-ccb45.firebaseapp.com",
-                projectId: "semilleros-ccb45",
-                storageBucket: "semilleros-ccb45.appspot.com",
-                messagingSenderId: "543478666358",
-                appId: "1:543478666358:web:dc0e8cff35c982faab3b57",
-                measurementId: "G-WK87KGXSWK"
-            };
+            
 
 
 
@@ -1858,7 +1794,7 @@
 
             if (file1) {
                 // Tu código para subir el archivo a Firebase Storage
-                const storageRef = storage.ref("adjuntos" + "/" + file1.name);
+                const storageRef = storage.ref("adjuntos" + "/" + timestamp);
 
                 storageRef.put(file1).then((snapshot) => {
                     console.log("Archivo subido con éxito");
@@ -1889,15 +1825,7 @@
             console.log("Botón del mouse liberado sobre el input de archivo");
 
 
-            const firebaseConfig = {
-                apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
-                authDomain: "semilleros-ccb45.firebaseapp.com",
-                projectId: "semilleros-ccb45",
-                storageBucket: "semilleros-ccb45.appspot.com",
-                messagingSenderId: "543478666358",
-                appId: "1:543478666358:web:dc0e8cff35c982faab3b57",
-                measurementId: "G-WK87KGXSWK"
-            };
+            
 
 
 
@@ -1911,7 +1839,7 @@
 
             if (file1) {
                 // Tu código para subir el archivo a Firebase Storage
-                const storageRef = storage.ref("adjuntos" + "/" + file1.name);
+                const storageRef = storage.ref("adjuntos" + "/" + timestamp);
 
                 storageRef.put(file1).then((snapshot) => {
                     console.log("Archivo subido con éxito");
@@ -1941,15 +1869,7 @@ document.getElementById('fichaRequerimiento').addEventListener('change', functio
             console.log("Botón del mouse liberado sobre el input de archivo");
 
 
-            const firebaseConfig = {
-                apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
-                authDomain: "semilleros-ccb45.firebaseapp.com",
-                projectId: "semilleros-ccb45",
-                storageBucket: "semilleros-ccb45.appspot.com",
-                messagingSenderId: "543478666358",
-                appId: "1:543478666358:web:dc0e8cff35c982faab3b57",
-                measurementId: "G-WK87KGXSWK"
-            };
+            
 
 
 
@@ -1963,7 +1883,7 @@ document.getElementById('fichaRequerimiento').addEventListener('change', functio
 
             if (file1) {
                 // Tu código para subir el archivo a Firebase Storage
-                const storageRef = storage.ref("adjuntos" + "/" + file1.name);
+                const storageRef = storage.ref("adjuntos" + "/" + timestamp);
 
                 storageRef.put(file1).then((snapshot) => {
                     console.log("Archivo subido con éxito");
@@ -1993,15 +1913,7 @@ document.getElementById('fichaAprobacion').addEventListener('change', function (
             console.log("Botón del mouse liberado sobre el input de archivo");
 
 
-            const firebaseConfig = {
-                apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
-                authDomain: "semilleros-ccb45.firebaseapp.com",
-                projectId: "semilleros-ccb45",
-                storageBucket: "semilleros-ccb45.appspot.com",
-                messagingSenderId: "543478666358",
-                appId: "1:543478666358:web:dc0e8cff35c982faab3b57",
-                measurementId: "G-WK87KGXSWK"
-            };
+            
 
 
 
@@ -2015,7 +1927,7 @@ document.getElementById('fichaAprobacion').addEventListener('change', function (
 
             if (file1) {
                 // Tu código para subir el archivo a Firebase Storage
-                const storageRef = storage.ref("adjuntos" + "/" + file1.name);
+                const storageRef = storage.ref("adjuntos" + "/" + timestamp);
 
                 storageRef.put(file1).then((snapshot) => {
                     console.log("Archivo subido con éxito");
@@ -2045,15 +1957,7 @@ document.getElementById('otrosAdjuntos').addEventListener('change', function () 
             console.log("Botón del mouse liberado sobre el input de archivo");
 
 
-            const firebaseConfig = {
-                apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
-                authDomain: "semilleros-ccb45.firebaseapp.com",
-                projectId: "semilleros-ccb45",
-                storageBucket: "semilleros-ccb45.appspot.com",
-                messagingSenderId: "543478666358",
-                appId: "1:543478666358:web:dc0e8cff35c982faab3b57",
-                measurementId: "G-WK87KGXSWK"
-            };
+            
 
 
 
@@ -2067,7 +1971,7 @@ document.getElementById('otrosAdjuntos').addEventListener('change', function () 
 
             if (file1) {
                 // Tu código para subir el archivo a Firebase Storage
-                const storageRef = storage.ref("adjuntos" + "/" + file1.name);
+                const storageRef = storage.ref("adjuntos" + "/" + timestamp);
 
                 storageRef.put(file1).then((snapshot) => {
                     console.log("Archivo subido con éxito");
