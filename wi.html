@@ -221,8 +221,8 @@
 	                <th class="text-center">antecedentes</th>
 	                <th class="text-center">trabajoHits</th>
 	                <th class="text-center">familiaresHits</th>
-	                <th class="text-center">trabajoVinculado</th>
-	                <th class="text-center">pasoTrabajoVinculado</th>
+	                <!-- <th class="text-center">trabajoVinculado</th>     Quitado temporal-->
+	                <!-- <th class="text-center">pasoTrabajoVinculado</th>  pasoTrabajoVinculado-->
 	                <th class="text-center">fechaNacimiento</th>
 	                <th class="text-center">todosTelefonos</th>
 	                <th class="text-center">puesto</th>
@@ -252,6 +252,15 @@
                     <th class="text-center">fichaRequerimiento</th>
                     <th class="text-center">fichaAprobación</th>
                     <th class="text-center">otrosAdjuntos</th>
+
+
+                    <th class="text-center">fechaSolicitud</th>
+                    <th class="text-center">tecnologia</th>
+                    <th class="text-center">seniority</th>
+                    <th class="text-center">cliente</th>
+                    <th class="text-center">prioridad</th>
+                    <th class="text-center">motivo</th>
+                    <th class="text-center">OBS_CANCELADOS</th>
 
                   
 
@@ -582,7 +591,16 @@ function editarValor(parametro) {
                         const cell43 = row.insertCell(42);
                         const cell44 = row.insertCell(43);
                         const cell45 = row.insertCell(44);
- 
+
+
+                        const cell46 = row.insertCell(45);
+                        const cell47 = row.insertCell(46);
+                        const cell48 = row.insertCell(47);
+                        const cell49 = row.insertCell(48);
+                        const cell50 = row.insertCell(49);
+                        const cell51 = row.insertCell(50);
+                        const cell52 = row.insertCell(51);
+
 
                         cell1.textContent = item.solicitante;
                         cell2.textContent = item.asignacion;
@@ -658,6 +676,16 @@ function editarValor(parametro) {
                         cell43.textContent = item.fichaRequerimiento;
                         cell44.textContent = item.fichaAprobacion;
                         cell45.textContent = item.otrosAdjuntos;
+
+
+
+                        cell46.textContent = item.fechaSolicitud
+                        cell47.textContent = item.tecnologia
+                        cell48.textContent = item.seniority
+                        cell49.textContent = item.cliente
+                        cell50.textContent = item.prioridad
+                        cell51.textContent = item.motivo
+                        cell52.textContent = item.OBS_CANCELADOS
 
 
                     }
@@ -750,7 +778,8 @@ function editarValor(parametro) {
                 pregunta2: "",
                 pregunta3: "",
                 pregunta4: "",
-                vmo: ""
+                vmo: "",
+
             };
 
             var oka;
@@ -773,13 +802,20 @@ function editarValor(parametro) {
 
 
                         const firebaseConfig = {
-                            apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
-                            authDomain: "semilleros-ccb45.firebaseapp.com",
-                            projectId: "semilleros-ccb45",
-                            storageBucket: "semilleros-ccb45.appspot.com",
-                            messagingSenderId: "543478666358",
-                            appId: "1:543478666358:web:dc0e8cff35c982faab3b57",
-                            measurementId: "G-WK87KGXSWK"
+                            // apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
+                            // authDomain: "semilleros-ccb45.firebaseapp.com",
+                            // projectId: "semilleros-ccb45",
+                            // storageBucket: "semilleros-ccb45.appspot.com",
+                            // messagingSenderId: "543478666358",
+                            // appId: "1:543478666358:web:dc0e8cff35c982faab3b57",
+                            // measurementId: "G-WK87KGXSWK"
+                             apiKey: "AIzaSyBwESGsLzqp0TU8RwQw2wJGvotGtloNFWY",
+                             authDomain: "semillero-f14a2.firebaseapp.com",
+                             projectId: "semillero-f14a2",
+                             storageBucket: "semillero-f14a2.appspot.com",
+                             messagingSenderId: "944862888865",
+                             appId: "1:944862888865:web:343e28812cc5e7633841e0",
+                             measurementId: "G-Q1N56FGZC4"
                         };
 
 
@@ -1066,7 +1102,16 @@ function editarValor(parametro) {
                     fichaMedica: cells[41].textContent,
                     fichaRequerimiento: cells[42].textContent,
                     fichaAprobacion: cells[43].textContent,
-                    otrosAdjuntos: cells[44].textContent
+                    otrosAdjuntos: cells[44].textContent,
+
+
+                    fechaSolicitud: cells[45].textContent,
+                    tecnologia: cells[46].textContent,
+                    seniority: cells[47].textContent,
+                    cliente: cells[48].textContent,
+                    prioridad: cells[49].textContent,
+                    motivo: cells[50].textContent,
+                    OBS_CANCELADOS: cells[51].textContent
                      
                 };
                 datos.push(objeto);
