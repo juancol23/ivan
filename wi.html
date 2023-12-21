@@ -221,8 +221,8 @@
 	                <th class="text-center">antecedentes</th>
 	                <th class="text-center">trabajoHits</th>
 	                <th class="text-center">familiaresHits</th>
-	                <!-- <th class="text-center">trabajoVinculado</th>     Quitado temporal-->
-	                <!-- <th class="text-center">pasoTrabajoVinculado</th>  pasoTrabajoVinculado-->
+	                 <th class="text-center">trabajoVinculado</th>     
+	                 <th class="text-center">pasoTrabajoVinculado</th>  
 	                <th class="text-center">fechaNacimiento</th>
 	                <th class="text-center">todosTelefonos</th>
 	                <th class="text-center">puesto</th>
@@ -261,6 +261,7 @@
                     <th class="text-center">prioridad</th>
                     <th class="text-center">motivo</th>
                     <th class="text-center">OBS_CANCELADOS</th>
+                    <th class="text-center">CV</th>
 
                   
 
@@ -600,6 +601,7 @@ function editarValor(parametro) {
                         const cell50 = row.insertCell(49);
                         const cell51 = row.insertCell(50);
                         const cell52 = row.insertCell(51);
+                        const cell53 = row.insertCell(52);
 
 
                         cell1.textContent = item.solicitante;
@@ -686,6 +688,7 @@ function editarValor(parametro) {
                         cell50.textContent = item.prioridad
                         cell51.textContent = item.motivo
                         cell52.textContent = item.OBS_CANCELADOS
+                        cell53.textContent = item.cv
 
 
                     }
@@ -1112,6 +1115,7 @@ function editarValor(parametro) {
                     prioridad: cells[49].textContent,
                     motivo: cells[50].textContent,
                     OBS_CANCELADOS: cells[51].textContent
+                    cv: cells[52].textContent
                      
                 };
                 datos.push(objeto);
