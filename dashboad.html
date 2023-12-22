@@ -860,108 +860,106 @@
 
 
     <script type="text/javascript">
-        // URL del servicio
-        var url = 'https://runnnnnnn.azurewebsites.net/requerimiento';
-        // Función para cargar los requerimientos desde el servicio
-        function cargarRequerimientos() {
-            // Realizar la petición al servicio utilizando fetch
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    // Llamar a la función para crear los botones
-                    crearBotones(data);
-                })
-                .catch(error => console.error('Error al obtener requerimientos:', error));
-        }
+      // URL del servicio
+var url = 'https://runnnnnnn.azurewebsites.net/requerimiento';
 
-        // Función para crear los botones
-        function crearBotones(requerimientos) {
-            // Obtener el contenedor de botones
-            var contenedorBotones = document.getElementById('contenedor-botones');
+// Función para cargar los requerimientos desde el servicio
+function cargarRequerimientos() {
+    // Realizar la petición al servicio utilizando fetch
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            // Llamar a la función para crear los botones
+            crearBotones(data);
+        })
+        .catch(error => console.error('Error al obtener requerimientos:', error));
+}
 
-            // Limpiar el contenedor antes de agregar nuevos botones
-            contenedorBotones.innerHTML = '';
+// Función para crear los botones
+function crearBotones(requerimientos) {
+    // Obtener el contenedor de botones
+    var contenedorBotones = document.getElementById('contenedor-botones');
 
-            // Iterar sobre los requerimientos y crear los botones dinámicamente
-            requerimientos.forEach(function (requerimiento) {
-                // Crear un enlace (botón) por cada requerimiento
-                var enlace = document.createElement('a');
-                enlace.href = '#';
-                enlace.className = 'btn btn-primary';
-                enlace.textContent = 'Aquí el requerimiento ' + requerimiento.id;
+    // Limpiar el contenedor antes de agregar nuevos botones
+    contenedorBotones.innerHTML = '';
 
-                // Agregar un salto de línea entre los botones (opcional)
-                contenedorBotones.appendChild(enlace);
-                contenedorBotones.appendChild(document.createElement('br'));
+    // Iterar sobre los requerimientos y crear los botones dinámicamente
+    requerimientos.forEach(function (requerimiento) {
+        // Crear un enlace (botón) por cada requerimiento
+        var enlace = document.createElement('a');
+        enlace.href = '#';
+        enlace.className = 'btn btn-primary';
+        enlace.textContent = 'Aquí el requerimiento ' + requerimiento.id;
+
+        // Agregar un salto de línea entre los botones (opcional)
+        contenedorBotones.appendChild(enlace);
+        contenedorBotones.appendChild(document.createElement('br'));
+    });
+
+    // Cuando la página se carga, obtén las asignaciones y llénalas en el select
+    cargarAsignaciones();
+}
+
+// Función para cargar las asignaciones en el select
+function cargarAsignaciones() {
+    // Aquí debes realizar la llamada al servicio para obtener la lista de asignaciones
+    // y llenarlas dinámicamente en el select con id "filtro"
+    // Puedes usar fetch para realizar la llamada al servicio
+    // Ejemplo (reemplaza la URL con la correcta):
+    fetch('https://runnnnnnn.azurewebsites.net/requerimiento')
+        .then(response => response.json())
+        .then(data => {
+            // Extraer las asignaciones únicas de los datos
+            const asignacionesUnicas = [...new Set(data.map(requerimiento => requerimiento.asignacion))];
+
+            // Llenar el select con las opciones de asignaciones
+            asignacionesUnicas.forEach(asignacion => {
+                document.getElementById('filtro').options.add(new Option(asignacion, asignacion));
             });
-
-            document.addEventListener('DOMContentLoaded', cargarRequerimientos);
-
-
-        // Cuando la página se carga, obtén las asignaciones y llénalas en el select
-        document.addEventListener('DOMContentLoaded', function () {
-            cargarAsignaciones();
+        })
+        .catch(error => {
+            console.error('Error al obtener las asignaciones:', error);
         });
+}
 
-        // Función para cargar las asignaciones en el select
-        function cargarAsignaciones() {
-            // Aquí debes realizar la llamada al servicio para obtener la lista de asignaciones
-            // y llenarlas dinámicamente en el select con id "filtro"
-            // Puedes usar fetch para realizar la llamada al servicio
-            // Ejemplo (reemplaza la URL con la correcta):
-            fetch('https://runnnnnnn.azurewebsites.net/requerimiento')
-                .then(response => response.json())
-                .then(data => {
-                    // Extraer las asignaciones únicas de los datos
-                    const asignacionesUnicas = [...new Set(data.map(requerimiento => requerimiento.asignacion))];
+// Cuando se selecciona una opción en el select, realizar la consulta correspondiente
+document.getElementById('filtro').addEventListener('change', function () {
+    var opcionSeleccionada = this.value;
+    localStorage.setItem('opcionSeleccionada', opcionSeleccionada);
 
-                    // Llenar el select con las opciones de asignaciones
-                    asignacionesUnicas.forEach(asignacion => {
-                        document.getElementById('filtro').options.add(new Option(asignacion, asignacion));
-                    });
-                })
-                .catch(error => {
-                    console.error('Error al obtener las asignaciones:', error);
-                });
-        }
+    // Aquí debes realizar la llamada al servicio con la opción seleccionada
+    // y mostrar los resultados en el div con id "resultados"
+    // Ejemplo (reemplaza la URL con la correcta):
+    fetch('https://runnnnnnn.azurewebsites.net/requerimiento')
+        .then(response => response.json())
+        .then(data => {
+            // Filtrar los requerimientos según la opción seleccionada
+            const requerimientosFiltrados = opcionSeleccionada === 'listarTodo'
+                ? data
+                : data.filter(requerimiento => requerimiento.asignacion === opcionSeleccionada);
 
-
-        // Cuando se selecciona una opción en el select, realizar la consulta correspondiente
-        document.getElementById('filtro').addEventListener('change', function () {
-            var opcionSeleccionada = this.value;
-            localStorage.setItem('opcionSeleccionada', opcionSeleccionada);
-
-            // Aquí debes realizar la llamada al servicio con la opción seleccionada
-            // y mostrar los resultados en el div con id "resultados"
-            // Ejemplo (reemplaza la URL con la correcta):
-            fetch('https://runnnnnnn.azurewebsites.net/requerimiento')
-                .then(response => response.json())
-                .then(data => {
-                    // Filtrar los requerimientos según la opción seleccionada
-                    const requerimientosFiltrados = opcionSeleccionada === 'listarTodo'
-                        ? data
-                        : data.filter(requerimiento => requerimiento.asignacion === opcionSeleccionada);
-
-                    // Mostrar los resultados en el div con id "resultados"
-                    mostrarResultados(requerimientosFiltrados);
-                })
-                .catch(error => {
-                    console.error('Error al obtener los requerimientos:', error);
-                });
+            // Mostrar los resultados en el div con id "resultados"
+            mostrarResultados(requerimientosFiltrados);
+        })
+        .catch(error => {
+            console.error('Error al obtener los requerimientos:', error);
         });
+});
 
-        // Función para mostrar los resultados en el div con id "resultados"
-        function mostrarResultados(resultados) {
-            // Limpia el contenido actual del div
-            document.getElementById('resultados').innerHTML = '';
+// Función para mostrar los resultados en el div con id "resultados"
+function mostrarResultados(resultados) {
+    // Limpia el contenido actual del div
+    document.getElementById('resultados').innerHTML = '';
 
-            // Recorre los resultados y muéstralos en el div
-            resultados.forEach(requerimiento => {
-                document.getElementById('resultados').innerHTML += `<br><a class="btn btn-dark" href="#">${requerimiento.requerimiento}</a> <p></p> `;
+    // Recorre los resultados y muéstralos en el div
+    resultados.forEach(requerimiento => {
+        document.getElementById('resultados').innerHTML += `<br><a class="btn btn-dark" href="#">${requerimiento.requerimiento}</a> <p></p> `;
+    });
+}
 
+// Cuando la página se carga, llama a cargarRequerimientos
+document.addEventListener('DOMContentLoaded', cargarRequerimientos);
 
-            });
-        }
     </script>
 
 
