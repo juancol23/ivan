@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.1/xlsx.full.min.js"></script>
+
+
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
+
+    <style>
+        /* Estilos para el loader */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        .loader {
+            display: none;
+            border: 15px solid black;
+            border-top: 5px solid black;
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            animation: spin 2s linear infinite;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 11111;
+        }
+
+        .loader.visible {
+            display: block;
+        }
+    </style>
+
+<style type="text/css">
+    #tablaContenedor {
+      width: 5000px !important; /* Asegura que el contenedor ocupe todo el ancho disponible */
+      overflow-x: auto !important; /* Habilita la barra de desplazamiento horizontal cuando sea necesario */
+    }
+
+    #nuevaTabla {
+      /* Aquí puedes definir estilos para tu tabla si lo deseas */
+    }
+
+</style>
+
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style type="text/css">
+        .pt-3-half {
+            padding-top: 1.4rem;
+        }
+
+
+        .welcome-section {
+            background-image: url('https://img.freepik.com/free-photo/portrait-smiling-man-sitting-cafe-bar-with-his-laptop-computer_342744-944.jpg?w=1060&t=st=1694226598~exp=1694227198~hmac=1d48fe8fe124568bfdd5c8adc049e1800ecf3af62e463931c39644d580dbd1c6');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 200px 0;
+
+        }
+
+        /* Personaliza el estilo de la página */
+        .divider:after,
+        .divider:before {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #eee;
+        }
+
+        .h-custom {
+            height: calc(100% - 73px);
+        }
+
+        @media (max-width: 450px) {
+            .h-custom {
+                height: 100%;
+            }
+        }
+
+        .frameblack {
+            background-color: rgba(10, 10, 10, 0.4);
+            padding: 4em;
+        }
+
+        /* Estilos para el pie de página */
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: black;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .black {
+            background-color: black;
+        }
+
+        .custom-card {
+            width: 18rem;
+            margin: 20px;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <style>
+        /* Estilos para el loader */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        .loader {
+            display: none;
+            border: 15px solid black;
+            border-top: 5px solid black;
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            animation: spin 2s linear infinite;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 11111;
+        }
+
+        .loader.visible {
+            display: block;
+        }
+    </style>
+
+    <div class="loader " id="loader"></div>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="#">Talento</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <!-- <button id="cerrar_sesion">Regresar</button> -->
+                    </ul>
+                        <!-- <button id="exportButton">Reporte Talento</button> -->
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+ 
+ <div class="container">
+    <div class="row">
+        <!-- Otras columnas, si es necesario -->
+
+        <!-- Columna principal (5 columnas en dispositivos sm) -->
+        <section class="col-sm-4">
+            <h2>Graficos</h2>
+            <p>Trazabilidad de contactaciones</p>
+            <canvas id="myChart" width="400px" height="400"></canvas>
+
+        </section>
+
+         <section class="col-sm-4">
+            <h2>Graficos Diarios</h2>
+            <p>Trazabilidad de contactaciones</p>
+            <canvas id="myChart2" width="400px" height="400"></canvas>
+
+        </section>
+
+         <section class="col-sm-4">
+            <h2>Graficos otra forma</h2>
+            <p>Trazabilidad de contactaciones</p>
+            <canvas id="myChart3" width="400px" height="400"></canvas>
+
+        </section>
+
+        <!-- Otras columnas, si es necesario -->
+    </div>
+</div>
+
+
+    <script>
+        // Datos para el gráfico
+        var data = {
+            labels: ['Septiembre', 'Octubre', 'Noviembre', 'Diciembre', 'Enero'],
+            datasets: [{
+                label: 'Contractaciones Mensuales Hitts',
+                data: [2, 19, 3, 5, 2],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        // Configuración del gráfico
+        var options = {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        };
+
+        // Crear el gráfico de barras
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: data,
+            options: options
+        });
+    </script> 
+
+       <script>
+        // Datos para el gráfico
+        var data = {
+            labels: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'],
+            datasets: [{
+                label: 'Contractaciones Mensuales Hitts',
+                data: [12, 1, 3, 15, 8, 19, 3],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 2
+            }]
+        };
+
+        // Configuración del gráfico
+        var options = {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        };
+
+        // Crear el gráfico de barras
+        var ctx = document.getElementById('myChart2').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: data,
+            options: options
+        });
+    </script> 
+
+
+    <script type="text/javascript">
+        // Datos para el gráfico de torta
+           var data = {
+               labels: ['No aptos', 'Descalificados', 'Firma de contrato'],
+               datasets: [{
+                   data: [30, 40, 30], // Ajusta los valores según tus necesidades
+                   backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+               }]
+           };
+
+           // Configuración del gráfico de torta
+           var options = {};
+
+           // Crear el gráfico de torta
+           var ctx = document.getElementById('myChart3').getContext('2d');
+           var myChart3 = new Chart(ctx, {
+               type: 'pie',
+               data: data,
+               options: options
+           });
+    </script>
+    </section>
+    
+
+    <section class="footer fixed-bottom">
+    <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 black">
+        <!-- Derechos de autor -->
+        <div class="text-white mb-12 mb-md-0 text-center">
+            Derechos de autor © 2023. Todos los derechos reservados.
+        </div>
+    </div>
+</section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    
+
+   
+
+
+    <script type="text/javascript">
+
+        function showLoadingAnimation() {
+            $('#loader').addClass('visible');
+        }
+
+        // Función para ocultar la animación de carga
+        function hideLoadingAnimation() {
+            $('#loader').removeClass('visible');
+        }
+
+    </script>
+
+
+
+
+
+    <div class="loader " id="loader"></div>
+
+</body>
+
+</html>
