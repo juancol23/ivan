@@ -627,6 +627,7 @@ function editarValor(parametro) {
                         // Verificar si item.trabajo no es null ni vacío antes de aplicar substring
                         if (item.trabajo != null && item.trabajo.trim() !== '') {
                             // Asignar la subcadena a selectTrabajo.value
+                            selectTrabajo.id = 'selectTrabajo___'; 
                             selectTrabajo.value = item.trabajo.substring(0, 100);
                         } else {
                             // En caso de que item.trabajo sea null o vacío, asignar un valor predeterminado o manejar según sea necesario
@@ -989,11 +990,7 @@ function editarValor(parametro) {
                         }
 
 
-
-                        //localStorage.setItem("miData", JSON.stringify(dataList));
-                        // Aquí puedes guardar la lista actualizada en localStorage si lo deseas
-                        // localStorage.setItem("dataList", JSON.stringify(dataList));
-
+ 
 
                     } else {
                         console.log("No se encontró ningún objeto con el ID proporcionado.");
@@ -1017,60 +1014,7 @@ function editarValor(parametro) {
     </script>
 
 
-
-   <!--  <script>
-
-        window.addEventListener("DOMContentLoaded", listarrrrr);
-
-        function listarrrrr() {
-
-            fetch(`https://runnnnnnn.azurewebsites.net/requerimiento`)
-                .then(response => {
-                    if (response.ok) {
-                        return response.json();
-                    }
-                    throw new Error('Error al obtener la lista de requerimientos.');
-                })
-                .then(data => {
-                    // En lugar de utilizar los datos del 'localStorage', utilizamos los datos recibidos.
-                    var roles = [];
-
-                    // 1. Definir una lista para almacenar los cambios
-
-                    //   if (Array.isArray(data)) {
-
-                    // } else {
-                    //   console.error('Los datos recibidos no son una matriz.');
-                    // }
-
-                    data.forEach(item => {
-
-                        if (item.asignacion === nombreUsuario) {
-                            roles.push(item.requerimiento + "");
-                        }
-
-                    });
-                    var select = document.getElementById("Rol");
-
-                    for (var i = 0; i < roles.length; i++) {
-                        var option = document.createElement("option");
-                        option.value = roles[i];
-                        option.text = roles[i];
-                        select.appendChild(option);
-                    }
-                    console.log("roles: " + roles)
-
-
-
-
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-
-
-        }
-    </script> -->
+ 
 
 
     <script type="text/javascript">
@@ -1085,6 +1029,8 @@ function editarValor(parametro) {
 
             filas.forEach(function (fila) {
                 var cells = fila.querySelectorAll('td');
+                const selectElement = cells[10].querySelector('#selectTrabajo___');  // Buscar el elemento select dentro de la celda
+                const valorSeleccionado = selectElement.value; 
                 var objeto = {
                     id: cells[4].textContent,
                     solicitante: cells[0].textContent,
@@ -1096,7 +1042,7 @@ function editarValor(parametro) {
                     nombre: cells[7].textContent,
                     fuente: cells[8].textContent,
                     correo: cells[9].textContent,
-                    trabajo: (cells[10].textContent.substring(0, 100)).slice(0,100),
+                    trabajo:  valorSeleccionado,
                     disponibilidad: cells[11].textContent.substring(0, 100),
                     antecedentes: cells[12].textContent,
                     trabajoHits: cells[13].textContent.substring(0, 100),
