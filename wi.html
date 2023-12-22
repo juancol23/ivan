@@ -631,6 +631,7 @@ function editarValor(parametro) {
                             selectTrabajo.value = item.trabajo.substring(0, 100);
                         } else {
                             // En caso de que item.trabajo sea null o vacío, asignar un valor predeterminado o manejar según sea necesario
+                             selectTrabajo.id = 'selectTrabajo___'; 
                             selectTrabajo.value = 'Valor predeterminado'; // Puedes cambiar esto según tus necesidades
                         }
 
@@ -640,12 +641,16 @@ function editarValor(parametro) {
                         const selectDisponibilidad = document.createElement('select');
                         selectDisponibilidad.innerHTML = '<option  selected>'+item.disponibilidad+'</option>;<option value="inmediata">Inmediata</option><option value="7_dias">7 días</option><option value="15_dias">15 días</option><option value="30_dias">30 días</option>';
                         selectDisponibilidad.value = item.disponibilidad;
+                            selectDisponibilidad.id = 'selectDisponibilidad___'; 
+
                         cell12.appendChild(selectDisponibilidad);
 
                         // Cambiar el campo "trabajo" a un select
                         const antecedentesDisponibilidad = document.createElement('select');
                         antecedentesDisponibilidad.innerHTML = '<option  selected>'+item.antecedentes+'</option><option value="no_registra">No Registra</option><option value="registra">Registra</option>';
                         antecedentesDisponibilidad.value = item.antecedentes;
+                        antecedentesDisponibilidad.id = 'antecedentesDisponibilidad___'; 
+
                         cell13.appendChild(antecedentesDisponibilidad);
 
 
@@ -656,11 +661,23 @@ function editarValor(parametro) {
                         const trabajoHitsDisponibilidad = document.createElement('select');
                         trabajoHitsDisponibilidad.innerHTML = '<option >'+item.trabajoHits+'</option><option value="no">No</option><option value="si">Sí</option>';
                         trabajoHitsDisponibilidad.value = item.trabajoHits;
+                        trabajoHitsDisponibilidad.id = 'trabajoHitsDisponibilidad____'; 
                         cell14.appendChild(trabajoHitsDisponibilidad);
 
-                        // cell14.textContent = item.trabajoHits;
-                        cell15.textContent = item.familiaresHits;
+                      
+
+                        const familiaresHits = document.createElement('select');
+                        familiaresHits.innerHTML = '<option >'+item.trabajoHits+'</option><option value="no">No</option><option value="si">Sí</option>';
+                        familiaresHits.value = item.trabajoHits;
+                        familiaresHits.id = 'familiaresHits___'; 
+                        cell15.appendChild(familiaresHits);
+
+                          // cell14.textContent = item.trabajoHits;
+                        // cell15.textContent = item.familiaresHits;
+
                         cell16.textContent = item.trabajoVinculado;
+
+
                         cell17.textContent = item.pasoTrabajoVinculado;
 
                         cell18.textContent = item.fechaNacimiento;
@@ -716,6 +733,8 @@ function editarValor(parametro) {
                         url.appendChild(link);
                         cell53.appendChild(url);
                     }
+                        // cell53.appendChild(item.cv);
+
 
 
                     }
@@ -1029,8 +1048,23 @@ function editarValor(parametro) {
 
             filas.forEach(function (fila) {
                 var cells = fila.querySelectorAll('td');
-                const selectElement = cells[10].querySelector('#selectTrabajo___');  // Buscar el elemento select dentro de la celda
+                const selectElement = cells[10].querySelector('#selectTrabajo___');    
                 const valorSeleccionado = selectElement.value; 
+
+                const selectElement1 = cells[11].querySelector('#selectDisponibilidad___');  
+                const valorSeleccionado1 = selectElement1.value; 
+
+                const selectElement2 = cells[12].querySelector('#antecedentesDisponibilidad___');  
+                const valorSeleccionado2 = selectElement2.value; 
+
+                const selectElement3 = cells[13].querySelector('#trabajoHitsDisponibilidad____');  
+                const valorSeleccionado3 = selectElement3.value; 
+
+                  const selectElement4 = cells[14].querySelector('#familiaresHits___');  
+                const valorSeleccionado4 = selectElement4.value; 
+                
+                
+                
                 var objeto = {
                     id: cells[4].textContent,
                     solicitante: cells[0].textContent,
@@ -1043,10 +1077,10 @@ function editarValor(parametro) {
                     fuente: cells[8].textContent,
                     correo: cells[9].textContent,
                     trabajo:  valorSeleccionado,
-                    disponibilidad: cells[11].textContent.substring(0, 100),
-                    antecedentes: cells[12].textContent,
-                    trabajoHits: cells[13].textContent.substring(0, 100),
-                    familiaresHits: cells[14].textContent.substring(0, 100),
+                    disponibilidad: valorSeleccionado1,
+                    antecedentes: valorSeleccionado2,
+                    trabajoHits: valorSeleccionado3,
+                    familiaresHits: valorSeleccionado4,
                     trabajoVinculado: cells[15].textContent.substring(0, 100),
                     pasoTrabajoVinculado: cells[16].textContent,
                     fechaNacimiento: cells[17].textContent,
