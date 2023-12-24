@@ -1053,7 +1053,28 @@
         uniqueRequerimientos.add(data.requerimiento);
     
 
-          solicitantesHTML += "<div class='col-sm-4'><div class='card'><div class='card-body'><h4 class='card-text'><div class='card-body'><div class='card'>" + data.requerimiento + "</div></div></h4> <h4 class='card-text'><div class='card-body'><div class='card'>" + data.nombre_puesto+ "</div></div></h4> <div class=''>Cantidad de vacantes: <b>1</b></div></div></h4> <button id='miBoton' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#misTrabajosModal1' data-valor= " + data.id + " onClick='obtenerValor(" + data.id + ")' >Completar </button>   <button id='miBoton2' class='btn btn-dark'   data-valor= " + data.id + " onClick='editarValor(" + data.id + ")' >Editar </button> </div></div></div>";
+        solicitantesHTML += `
+          <div class='col-sm-4'>
+            <div class='card'>
+              <div class='card-body'>
+                <h4 class='card-text'>
+                  <div class='card-body'>
+                    <div class='card'>${data.requerimiento}</div>
+                  </div>
+                </h4>
+                <h4 class='card-text'>
+                  <div class='card-body'>
+                    <div class='card'>${data.nombre_puesto}</div>
+                  </div>
+                </h4>
+                <div> Cantidad de vacantes: <b>1</b></div>
+              </div>
+              <button id='miBoton' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#misTrabajosModal1' data-valor='${data.id}' onClick='obtenerValor(${data.id})'>Completar</button>
+              <button id='miBoton2' class='btn btn-dark' data-valor='${data.id}' onClick='editarValor(${data.id})'>Editar</button>
+            </div>
+          </div>
+        `;
+
 
       
 
@@ -1181,6 +1202,7 @@
         function editarValor(parametro) {
 
             localStorage.setItem("id", parametro);
+            alert(parametro+"parametro")
 
            const nuevaPaginaURL = 'https://semilleros-ccb45.web.app/wi.html';
 
@@ -1401,6 +1423,8 @@
                                     objeto.fichaRequerimiento= "fichaRequerimiento";
                                     objeto.fichaAprobación= "fichaAprobación";
                                     objeto.otrosAdjuntos = "otrosAdjuntos";
+
+                                    // objeto.nombre_puesto = 
 
                                     // objeto.estadorequerimiento = nuevoRequerimiento;
 
