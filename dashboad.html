@@ -347,7 +347,7 @@
 
                                  <div class="mb-3">
                                         <label for="nombre" class="form-label">Cantidad de vacantes</label>
-                                             <input type="text" class="form-control" id="fechaSolicitud"
+                                             <input type="text" class="form-control" id="cantidad"
                                             placeholder="Ingresa el número de vacantes " - required>
                                     </div>
                                     <div class="mb-3">
@@ -656,6 +656,8 @@
             var miSelect = document.getElementById('status');
 
             var fechaSolicitud = document.getElementById('fechaSolicitud');
+            var cantidad = document.getElementById('cantidad');
+
             var tecnologia = document.getElementById('tecnologia');
             var seniority = document.getElementById('seniority');
             var cliente = document.getElementById('cliente');
@@ -708,6 +710,7 @@
                 otrosAdjuntos: "otrosAdjuntos",
 
                 fechaSolicitud: "fechaSolicitud.value",
+                cantidad: "cantidad.value",
                 tecnologia: "tecnologia.value",
                 seniority: "seniority.value",
                 cliente: "cliente.value",
