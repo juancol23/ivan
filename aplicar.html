@@ -26,9 +26,7 @@
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
     }
-  </style>
-
-  <style>
+ 
     /* Estilos personalizados para el botón de adjuntar archivo */
     .custom-file-upload {
       display: inline-block;
@@ -51,11 +49,15 @@
       clip: rect(0, 0, 0, 0);
       pointer-events: none;
     }
+
+    body{
+       background-image: url('https://i.pinimg.com/564x/b2/d1/73/b2d173bf629d0c351018336c3c8747eb.jpg');background-size: cover;
+    }
   </style>
  </head>
 
     <div class="loader " id="loader"></div>
-    <header>
+   <!--  <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
                 <a class="navbar-brand" href="#">Talento</a>
@@ -64,24 +66,10 @@
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-               <!--  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#misTrabajosModal">Mis
-                                trabajos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="nuevo_candidato" href="#" data-bs-toggle="modal"
-                                data-bs-target="#misTrabajosModal2">Nuevo Candidato</a>
-                        </li>
-
-                        <button id="exportButton">Reporte Talento</button>
-                        <button id="cerrar_sesion">Cerrar Sesión</button>
-                    </ul>
-                </div> -->
+             
             </div>
         </nav>
-    </header>
+    </header> -->
 <br>
 <div class="container mt-12">
   <!-- <h2 class="text-center mb-4">Buscador</h2> -->
@@ -112,17 +100,17 @@
 
   <!-- Aquí puedes mostrar los resultados de la búsqueda si es necesario -->
 </div>
+                <br>
 
-    <section class="welcome-section">
+    <section class="welcome-section ">
         <div class="frameblack">
 
-            <div class="container">
+            <div class="container rounded-form bg-light p-3">
                 <br>
-                <h4 ><b>Publica tu CV </b>- Deja que las empresas te encuentren</h4>
+                    <h4><b>Publica tu CV </b>- Deja que las empresas te encuentren</h4>
                 <br>
-                <hr>
-                <br>
-                   <div id="solicitantesLesly"></div>
+
+                   <div id="solicitantesLesly" class=""></div>
 
             </div>
         </div>
@@ -131,17 +119,21 @@
 
 
     </section>
-    <section>
-        <div
-            class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 black">
+ 
+
+
+
+
+    <section class="footer fixed-bottom">
+        <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 black">
             <!-- Derechos de autor -->
-            <div class="text-white mb-12 mb-md-0 text-center">
+            <div class="mb-12 mb-md-0 text-center">
                 Derechos de autor © 2023. Todos los derechos reservados.
             </div>
-
-
         </div>
     </section>
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -242,14 +234,6 @@
                                             required>
                                     </div>
            
-                                    
-                                  <!--   <div class="mb-3">
-                                        <label for="adjuntarArchivo" class="form-label">Adjuntar Archivo</label>
-                                        <input type="file" id="file-cv" accept="*/*">
-
-                                    </div> -->
-
-                                  
 
 
                                     <button id="btnCargar" class="btn btn-success" onclick="guardar()">Enviar candidatura ahora</button>
@@ -267,82 +251,7 @@
         </div>
     </div>
 
-
-    <!-- Modal -->
-    <div class="modal fade" id="misTrabajosModal2" tabindex="-1" aria-labelledby="misTrabajosModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="misTrabajosModalLabel">Nuevo candidato</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Contenido del modal -->
-                    <p>Aquí se muestra la información o contenido relacionado con tus trabajos.</p>
-
-                    <div class="row">
-                        <div class="col-sm">
-                            <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
-                            <div class="card-body">
-
-
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">VMO*</label>
-                                    <input type="email" class="form-control" id="VMO" placeholder="VMO*">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="rol" class="form-label">Requerimiento</label>
-                                    <select class="form-select" id="Rol"></select>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="Requerimiento" class="form-label">Requerimiento</label>
-                                    <input type="Requerimiento" class="form-control" id="Requerimiento"
-                                        placeholder="Requerimiento">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="Vinculado" class="form-label">Trabajo Vinculado</label>
-                                    <input type="Vinculado" class="form-control" id="Vinculado"
-                                        placeholder="Trabajo Vinculado">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="paso" class="form-label">*Paso del trabajo vinculado</label>
-                                    <input type="email" class="form-control" id="paso"
-                                        placeholder="Paso del trabajo vinculado">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="dni" class="form-label">DNI</label>
-                                    <input type="dni" class="form-control" id="dni" placeholder="DNI">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="Nombre" class="form-label">Nombre</label>
-                                    <input type="Nombre" class="form-control" id="Nombre" placeholder="Nombre">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="Apellidos" class="form-label">Apellidos</label>
-                                    <input type="Apellidos" class="form-control" id="Apellidos" placeholder="Apellidos">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="adjuntarArchivo" class="form-label">Adjuntar Archivo</label>
-
-                                    <input type="file" class="form-control" id="adjuntarArchivo">
-                                </div>
-                                <div onclick="crearRequerimiento();">Enviar</div>
-                                <div id="miDiv" style="display: none;">
-                                    Contenido del Div
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-
+ 
 
     <script>
 
@@ -807,89 +716,9 @@
                 // Realiza las operaciones necesarias con la lista de requerimientos recibida.
 
     </script>
+ 
 
-
-    <!-- Modal -->
-    <div class="modal fade" id="misTrabajosModal6" tabindex="-1" aria-labelledby="misTrabajosModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="misTrabajosModalLabel">Nuevo candidato</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Contenido del modal -->
-                    <p>Edita todo lo que tienes.</p>
-
-                    <div class="row">
-                        <div class="col-sm">
-                            <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
-                            <div class="card-body">
-                                <!-- Editable table -->
-                                <div class="card">
-                                    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
-                                        Editar datos masivos
-                                    </h3>
-                                    <div class="card-body">
-
-
-                                        <div id="nuevaTablaContainer">
-                                            <table id="nuevaTabla"
-                                                class="table table-bordered table-responsive-md table-striped text-center">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="text-center">solicitante</th>
-                                                        <th class="text-center">asignacion</th>
-                                                        <th class="text-center">requerimiento</th>
-                                                        <th class="text-center">VMO</th>
-                                                        <th class="text-center">ID</th>
-
-                                                        <th class="text-center">telefono</th>
-                                                        <th class="text-center">dni</th>
-                                                        <th class="text-center">nombre</th>
-                                                        <th class="text-center">fuente</th>
-
-                                                    
-
-
-
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <!-- Aquí se agregarán las filas automaticamente por el js  -->
-                                                </tbody>
-                                            </table>
-                                        </div>
-
-                                        <button id="guardarCambios" class="btn btn-primary">Actualizar
-                                            masivamente</button>
-
-                                    </div>
-                                </div>
-
-
-
-
-
-                                <!-- Editable table -->
-
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-
-    <script type="text/javascript">
-
-    </script>
+  
 
 
 
