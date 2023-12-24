@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.1/xlsx.full.min.js"></script>
+
+
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
+ 
+ 
+  <style>
+    /* Estilos personalizados */
+    .rounded-form {
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .rounded-form .btn {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  </style>
+
+  <style>
+    /* Estilos personalizados para el botón de adjuntar archivo */
+    .custom-file-upload {
+      display: inline-block;
+      cursor: pointer;
+      padding: 8px 12px;
+      font-size: 14px;
+      font-weight: bold;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      user-select: none;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background-color: #f8f9fa;
+      color: #495057;
+    }
+
+    .custom-file-input {
+      position: absolute;
+      clip: rect(0, 0, 0, 0);
+      pointer-events: none;
+    }
+  </style>
+ </head>
+
+    <div class="loader " id="loader"></div>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="#">Talento</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+               <!--  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#misTrabajosModal">Mis
+                                trabajos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="nuevo_candidato" href="#" data-bs-toggle="modal"
+                                data-bs-target="#misTrabajosModal2">Nuevo Candidato</a>
+                        </li>
+
+                        <button id="exportButton">Reporte Talento</button>
+                        <button id="cerrar_sesion">Cerrar Sesión</button>
+                    </ul>
+                </div> -->
+            </div>
+        </nav>
+    </header>
+<br>
+<div class="container mt-12">
+  <!-- <h2 class="text-center mb-4">Buscador</h2> -->
+  <form id="searchForm" class="rounded-form bg-light p-3">
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="keyword">Palabra Clave</label>
+        <div class="input-group">
+          <input type="text" class="form-control rounded-right" id="keyword" placeholder="Ingrese palabra clave">
+        
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="availability">Disponibilidad</label>
+        <select class="form-control" id="availability">
+          <option value="any">Cualquiera</option>
+          <option value="available">Disponible</option>
+          <option value="notAvailable">No Disponible</option>
+        </select>
+      </div>
+      <div class="col-md-2 mb-3">
+        <br>
+        <label>&nbsp;</label>
+        <button type="button" class="btn btn-success btn-block rounded-left" onclick="buscar()">Buscar</button>
+      </div>
+    </div>
+  </form>
+
+  <!-- Aquí puedes mostrar los resultados de la búsqueda si es necesario -->
+</div>
+
+    <section class="welcome-section">
+        <div class="frameblack">
+
+            <div class="container">
+                <br>
+                <h4 ><b>Publica tu CV </b>- Deja que las empresas te encuentren</h4>
+                <br>
+                <hr>
+                <br>
+                   <div id="solicitantesLesly"></div>
+
+            </div>
+        </div>
+
+    </section>
+
+
+    </section>
+    <section>
+        <div
+            class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 black">
+            <!-- Derechos de autor -->
+            <div class="text-white mb-12 mb-md-0 text-center">
+                Derechos de autor © 2023. Todos los derechos reservados.
+            </div>
+
+
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Modal -->
+    <div class="modal fade" id="misTrabajosModal" tabindex="-1" aria-labelledby="misTrabajosModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="misTrabajosModalLabel">Mis Trabajos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Contenido del modal -->
+                    <p>Por favor, proporciona la información necesaria para tus requerimientos</p>
+
+                    <div class="row text-center">
+                       
+
+                     
+
+
+                    </div>
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <!-- <button type="button" class="btn btn-primary">Guardar Cambios</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="aplicarCandidaturaModal" tabindex="-1" aria-labelledby="misTrabajosModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="misTrabajosModalLabel">Mi Postulación</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Contenido del modal -->
+                    <p>Por favor, proporciona la información necesaria correctamente</p>
+
+                    <div class="row">
+                        <div class="col-lg">
+                            <div class="card">
+                                <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                                <div class="card-body">
+
+                                      <div class="mb-3">
+                                        <!-- <label for="file-cv" class="form-label">Adjuntar Archivo</label> -->
+                                        <label class="custom-file-upload">
+                                          <input type="file" id="file-cv" class="custom-file-input" accept="*/*">
+                                          <i class="fa fa-cloud-upload"></i> Seleccionar Archivo
+                                        </label>
+                                      </div>
+
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Nombre</label>
+                                        <input type="text" class="form-control" id="nombre_" placeholder="nombre*"
+                                            required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">DNI</label>
+                                        <input type="email" class="form-control" id="dni_" placeholder="dni*" required>
+                                    </div>
+
+                                    <label for="" class="form-label">Disponibilidad</label>
+                                    <select id="select_2" class="form-select">
+                                        <option value="inmediata">Inmediata</option>
+                                        <option value="7_dias">7 días</option>
+                                        <option value="15_dias">15 días</option>
+                                        <option value="30_dias">30 días</option>
+
+                                    </select>
+
+                                     <div class="form-group">
+                                        <label for="salario_">Pretensión Salarial</label>
+
+                                        <input type="text" class="form-control" id="salario_" required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="solicitante" class="form-label">Teléfono</label>
+                                        <input type="text" class="form-control" id="telefono_" placeholder="teléfono"
+                                            required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">correo</label>
+                                        <input type="email" class="form-control" id="correo_" placeholder="correo" -
+                                            required>
+                                    </div>
+           
+                                    
+                                  <!--   <div class="mb-3">
+                                        <label for="adjuntarArchivo" class="form-label">Adjuntar Archivo</label>
+                                        <input type="file" id="file-cv" accept="*/*">
+
+                                    </div> -->
+
+                                  
+
+
+                                    <button id="btnCargar" class="btn btn-success" onclick="guardar()">Enviar candidatura ahora</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="misTrabajosModal2" tabindex="-1" aria-labelledby="misTrabajosModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="misTrabajosModalLabel">Nuevo candidato</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Contenido del modal -->
+                    <p>Aquí se muestra la información o contenido relacionado con tus trabajos.</p>
+
+                    <div class="row">
+                        <div class="col-sm">
+                            <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                            <div class="card-body">
+
+
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">VMO*</label>
+                                    <input type="email" class="form-control" id="VMO" placeholder="VMO*">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="rol" class="form-label">Requerimiento</label>
+                                    <select class="form-select" id="Rol"></select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Requerimiento" class="form-label">Requerimiento</label>
+                                    <input type="Requerimiento" class="form-control" id="Requerimiento"
+                                        placeholder="Requerimiento">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Vinculado" class="form-label">Trabajo Vinculado</label>
+                                    <input type="Vinculado" class="form-control" id="Vinculado"
+                                        placeholder="Trabajo Vinculado">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="paso" class="form-label">*Paso del trabajo vinculado</label>
+                                    <input type="email" class="form-control" id="paso"
+                                        placeholder="Paso del trabajo vinculado">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="dni" class="form-label">DNI</label>
+                                    <input type="dni" class="form-control" id="dni" placeholder="DNI">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Nombre" class="form-label">Nombre</label>
+                                    <input type="Nombre" class="form-control" id="Nombre" placeholder="Nombre">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Apellidos" class="form-label">Apellidos</label>
+                                    <input type="Apellidos" class="form-control" id="Apellidos" placeholder="Apellidos">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="adjuntarArchivo" class="form-label">Adjuntar Archivo</label>
+
+                                    <input type="file" class="form-control" id="adjuntarArchivo">
+                                </div>
+                                <div onclick="crearRequerimiento();">Enviar</div>
+                                <div id="miDiv" style="display: none;">
+                                    Contenido del Div
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+
+
+        function convertirAListaAnidada(dataList) {
+            var listaAnidada = [];
+            var nombreUsuario = localStorage.getItem('nombreUsuario');
+
+            dataList.forEach(function (item) {
+                var arreglo = Object.values(item);
+                if (item.asignacion == nombreUsuario) {
+                    listaAnidada.push(arreglo);
+
+                    console.log("filtrado" + arreglo)
+
+                }
+            });
+
+            return listaAnidada;
+        }
+
+ 
+ 
+
+
+
+
+
+        var mostrarBoton = document.getElementById('mostrarBoton');
+        var miDiv = document.getElementById('miDiv');
+
+        // Agregar un controlador de evento clic al botón
+        mostrarBoton.addEventListener('click', function () {
+            // Cambiar el estilo de display del div para mostrarlo
+            crearRequerimiento();
+        });
+
+
+        function crearRequerimiento() {
+
+            var miSelect = document.getElementById('status');
+            var asignacion = document.getElementById('asignacion');
+
+            var vmo = document.getElementById('VMO');
+            var email = document.getElementById('email');
+            var obtenerValorBoton = document.getElementById('obtenerValorBoton');
+
+            var dataList = JSON.parse(localStorage.getItem('miData')) || [];
+            console.log("dataList" + JSON.stringify(dataList))
+            // Crear un nuevo objeto JSON con los nuevos valores
+            var newData = {
+                id: generarID();
+                status: miSelect.value,
+                VMO: vmo.value,
+                solicitante: asignacion.value,
+                requerimiento: requerimiento.value,
+                cv: "azure.com/blob/cv.pdf"
+            };
+
+
+            dataList.push(newData);
+            console.log("PUSH" + JSON.stringify(dataList))
+            // Convertir el nuevo objeto en una cadena JSON
+            var newJsonData = JSON.stringify(dataList);
+
+            // Guardar los nuevos valores en localStorage, utilizando la misma clave ("miData" en este ejemplo)
+            localStorage.setItem("miData", newJsonData);
+
+            // var storedData = localStorage.getItem("miData");
+            // var parsedData = JSON.parse(storedData);
+
+            // // Puedes acceder a los valores individuales de la siguiente manera:
+            // var status = parsedData.status;
+            // var VMO = parsedData.VMO;
+            // var solicitante = parsedData.solicitante;
+            // var requerimiento = parsedData.requerimiento;
+            // var cv = parsedData.cv;
+
+
+
+        }
+
+        function generarID() {
+            // Generar un número aleatorio de 7 dígitos
+            const min = 1000000; // 7 dígitos
+            const max = 9999999; // 7 dígitos
+            const id = Math.floor(Math.random() * (max - min + 1)) + min;
+
+            return id.toString(); // Convertir el número en una cadena de texto
+        }
+    </script>
+
+
+    <script type="text/javascript">
+        // Función para mostrar la animación de carga
+        function showLoadingAnimation() {
+            $('#loader').addClass('visible');
+        }
+
+        // Función para ocultar la animación de carga
+        function hideLoadingAnimation() {
+            $('#loader').removeClass('visible');
+        }
+
+        // Agregar un controlador de eventos al botón de carga
+        $('#btnCargar').click(function () {
+            showLoadingAnimation();
+
+            setTimeout(function () {
+                hideLoadingAnimation();
+                $('#aplicarCandidaturaModal').modal('hide');
+                // alert("Se cargó la data correctamente")
+            }, 2000); // Ejemplo: oculta la animación después de 3 segundos (simula la carga completa)
+        });
+    </script>
+
+
+    <script type="text/javascript">
+        // Recuperar la lista de objetos desde localStorage
+        // var dataList = JSON.parse(localStorage.getItem('miData')) || [];
+        var dataList = [];
+
+        var url = 'https://runnnnnnn.azurewebsites.net/requerimiento';
+
+
+        fetch(url)
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('Error al obtener la lista de requerimientos.');
+            })
+            .then(data => {
+                // En lugar de utilizar los datos del 'localStorage', utilizamos los datos recibidos.
+                var dataList = data;
+
+               var solicitantesLesly = dataList;
+
+                // Crear una lista de solicitantes en formato HTML
+                var solicitantesHTML = "";
+                var uniqueRequerimientos = new Set();
+                solicitantesLesly.forEach(function (data) {
+
+                     if (!uniqueRequerimientos.has(data.requerimiento)) {
+        uniqueRequerimientos.add(data.requerimiento);
+    
+
+        
+        solicitantesHTML += `
+         <div class='row text-center'>
+
+           <div class="offset-md-1 col-md-2 mb-2">
+             <h4 class='card-title'>${data.requerimiento}</h4>
+           </div>
+           <div class="col-md-2 mb-2">
+             <p class='card-text'>${data.nombre_puesto}</p>
+           </div>
+           <div class="col-md-2 mb-2">
+             <p class='card-text'>Cantidad de vacantes: <b>1</b></p>
+           </div>
+           <div class="col-md-3 mb-3">
+             <button class='btn btn-success' data-bs-toggle='modal' data-bs-target='#aplicarCandidaturaModal' data-valor='${data.id}'
+               onClick='obtenerValor(${data.id})'>Enviar candidatura ahora</button>
+           </div>
+         </div>
+        `;
+      
+
+        }
+                 
+                });
+
+
+                // Mostrar la lista de solicitantes en el div "solicitantesLesly"
+                document.getElementById('solicitantesLesly').innerHTML = solicitantesHTML;
+
+                // Función para editar el campo "requerimiento" por ID
+
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+
+        function obtenerValor(parametro) {
+            localStorage.setItem("id", parametro);
+
+
+             var trabajoVinculado_ = document.getElementById('trabajoVinculado_');
+            trabajoVinculado_.value = parametro;
+
+        }
+
+
+        function editarValor(parametro) {
+
+            localStorage.setItem("id", parametro);
+
+           const nuevaPaginaURL = 'https://semilleros-ccb45.web.app/wi.html';
+
+            // Redirigir a la nueva página
+            window.location.href = nuevaPaginaURL;
+
+        }
+
+
+        var idddd = localStorage.getItem('id');
+        console.log(idddd+"IDDDDD")
+        function guardar() {
+            showLoadingAnimation();
+            // var nuevoRequerimiento = prompt("Ingrese : nuevoRequerimiento");
+            console.log("guardar")
+            var nombre_ = document.getElementById('nombre_');
+            var dni_ = document.getElementById('dni_');
+            var telefono_ = document.getElementById('telefono_');
+            var correo_ = document.getElementById('correo_');
+            var salario_ = document.getElementById('salario_');
+
+            var select_2 = document.getElementById('select_2');
+
+
+            var dataList = JSON.parse(localStorage.getItem('miData')) || [];
+
+            // var nombreUsuario = localStorage.getItem('nombreUsuario');
+
+            var objeto = {
+                dni: "",
+                status: "Creado",
+                solicitante: "",
+                asignacion: "",
+                requerimiento: "",
+                cv: "",
+                telefono: "",
+                correo: "",
+                dni: "",
+                nombre: "",
+                trabajo: "",
+                disponibilidad: "",
+                antecedentes: "",
+                trabajoHits: "",
+                familiaresHits: "",
+                trabajoVinculado: "",
+                pasoTrabajoVinculado: "",
+                fuente: "",
+                fechaNacimiento: "",
+                todosTelefonos: "",
+                puesto: "",
+                empleador_: "",
+                institucion_: "",
+                carreras: "",
+                grados: "",
+                salario: "",
+                espectativa: "",
+                beneficio: "",
+                puestoHits: "",
+                pregunta1: "",
+                pregunta2: "",
+                pregunta3: "",
+                pregunta4: "",
+                vmo: "",
+                antecedentesA: "a",
+                antecedentesB: "b",
+                antecedentePolicial : "antecedentePolicial",
+                antecedentePenal: "antecedentePenal",
+                antecedenteJudicial: "antecedenteJudicial",
+                certiAdulto: "certiAdulto",
+                multiTest: "multiTest",
+                informePsicologico: "informePsicologico",
+                fichaDatos: "fichaDatos",
+                fichaMedica: "fichaMedica",
+                fichaRequerimiento: "fichaRequerimiento",
+                fichaAprobación: "fichaAprobación",
+                otrosAdjuntos : "otrosAdjuntos"
+            };
+
+
+            fetch(`https://runnnnnnn.azurewebsites.net/requerimiento/${idddd}`)
+            // fetch("https://runnnnnnn.azurewebsites.net/requerimiento")
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw new Error('Error al obtener la lista de requerimientos.');
+                })
+                .then(data => {
+                    // En lugar de utilizar los datos del 'localStorage', utilizamos los datos recibidos.
+
+                    //objeto = data;
+                    // oka = data.solicitante;
+                    if (true) {
+
+
+
+                        const firebaseConfig = {
+                             apiKey: "AIzaSyBwESGsLzqp0TU8RwQw2wJGvotGtloNFWY",
+                             authDomain: "semillero-f14a2.firebaseapp.com",
+                             projectId: "semillero-f14a2",
+                             storageBucket: "semillero-f14a2.appspot.com",
+                             messagingSenderId: "944862888865",
+                             appId: "1:944862888865:web:343e28812cc5e7633841e0",
+                             measurementId: "G-Q1N56FGZC4"
+                        };
+
+
+
+                        // Inicializa Firebase
+                        firebase.initializeApp(firebaseConfig);
+
+                        // Obtiene una referencia al servicio de Storage
+                        const storage = firebase.storage();
+
+
+                        const fileInput = document.getElementById("file-cv");
+
+
+
+                        var nombreUsuario = "candidatosAll";
+
+                        const file = fileInput.files[0];
+                        if (file) {
+                            // Crea una referencia al archivo en Firebase Storage
+                            const storageRef = storage.ref(nombreUsuario + "/" + file.name); // Cambia 'carpeta_subida' a la carpeta deseada
+
+                            // Sube el archivo
+                            storageRef.put(file).then((snapshot) => {
+                                console.log("Archivo subido con éxito");
+
+                                snapshot.ref.getDownloadURL().then((url) => {
+                                    console.log("URL del archivo:", url);
+
+                                    // Actualizar el campo "requerimiento" del objeto
+                                    objeto.solicitante = data.solicitante+"";
+
+                             
+
+                                    objeto.requerimiento = data.requerimiento+"";
+
+                                    objeto.telefono = telefono_.value;
+                                    objeto.correo = correo_.value;
+                                    objeto.dni = dni_.value;
+                                    objeto.nombre = nombre_.value;
+                                    objeto.cv = url;
+                                    objeto.disponibilidad = select_2.value;
+                                    objeto.salario = salario_.value;
+
+                                    objeto.antecedentesA= "a";
+                                    objeto.antecedentesB= "b";
+                                    objeto.antecedentePolicial = "antecedentePolicial";
+                                    objeto.antecedentePenal= "antecedentePenal";
+                                    objeto.antecedenteJudicial= "antecedenteJudicial";
+                                    objeto.certiAdulto= "certiAdulto";
+                                    objeto.multiTest= "multiTest";
+                                    objeto.informePsicologico= "informePsicologico";
+                                    objeto.fichaDatos= "fichaDatos";
+                                    objeto.fichaMedica= "fichaMedica";
+                                    objeto.fichaRequerimiento= "fichaRequerimiento";
+                                    objeto.fichaAprobación= "fichaAprobación";
+                                    objeto.otrosAdjuntos = "otrosAdjuntos";
+
+                                    // objeto.estadorequerimiento = nuevoRequerimiento;
+
+                                    console.log("Objeto actualizado1:", objeto);
+
+                                    //
+                                    // fetch(`https://runnnnnnn.azurewebsites.net/requerimiento${idddd}`, {
+                                    fetch("https://runnnnnnn.azurewebsites.net/requerimiento", {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json'
+                                        },
+                                        body: JSON.stringify(objeto)
+                                    })
+                                        .then(response => {
+                                            if (response.ok) {
+                                                alert('Requerimiento actualizado correctamente.');
+                                                $('#aplicarCandidaturaModal').modal('hide');
+
+                                                telefono_.value = ""
+                                                correo_.value = ""
+                                                dni_.value = ""
+                                                nombre_.value = ""
+
+                                                select_1.value = ""
+                                                select_2.value = ""
+                                                select_3.value = ""
+                                                select_4.value = ""
+                                                select_5.value = ""
+                                                trabajoVinculado_.value = ""
+                                                // pasoTrabajoVinculado_.value = ""
+                                                fuente_.value = ""
+                                                fechaNacimiento_.value = ""
+                                                todosTelefonos_.value = ""
+                                                puesto_.value = ""
+                                                empleador_.value = ""
+                                                institucion_.value = ""
+                                                carreras_.value = ""
+                                                grados_.value = ""
+                                                salario_.value = ""
+                                                espectativa_.value = ""
+                                                beneficio_.value = ""
+                                                puestoHits_.value = ""
+                                                pregunta1_.value = ""
+                                                pregunta2_.value = ""
+                                                pregunta3_.value = ""
+                                                pregunta4_.value = ""
+
+                                                objeto.correo = fuente_.value;
+
+
+                                                hideLoadingAnimation();
+                                                location.reload();
+                                            } else {
+                                                alert('Error al actualizar el requerimiento. Verifica los datos e intenta nuevamente.');
+                                                hideLoadingAnimation();
+                                            }
+
+                                            console.log('Lista de requerimientosssssss:', response);
+
+                                        })
+                                        .catch(error => {
+                                            hideLoadingAnimation();
+                                            console.error('Hubo un error en la solicitud:', error);
+                                        });
+
+                                    //setear 0
+
+                                });
+
+                            }).catch((error) => {
+                                console.error("Error al subir el archivo:", error);
+                            });
+                        }else{
+                            hideLoadingAnimation();
+                            location.reload();
+                            alert("Es obligatorio adjuntar el CV")
+                        }
+
+
+
+                        //localStorage.setItem("miData", JSON.stringify(dataList));
+                        // Aquí puedes guardar la lista actualizada en localStorage si lo deseas
+                        // localStorage.setItem("dataList", JSON.stringify(dataList));
+
+
+                    } else {
+                        console.log("No se encontró ningún objeto con el ID proporcionado.");
+                    }
+
+
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+
+
+
+
+
+        }
+
+
+                // Realiza las operaciones necesarias con la lista de requerimientos recibida.
+
+    </script>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="misTrabajosModal6" tabindex="-1" aria-labelledby="misTrabajosModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="misTrabajosModalLabel">Nuevo candidato</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Contenido del modal -->
+                    <p>Edita todo lo que tienes.</p>
+
+                    <div class="row">
+                        <div class="col-sm">
+                            <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                            <div class="card-body">
+                                <!-- Editable table -->
+                                <div class="card">
+                                    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
+                                        Editar datos masivos
+                                    </h3>
+                                    <div class="card-body">
+
+
+                                        <div id="nuevaTablaContainer">
+                                            <table id="nuevaTabla"
+                                                class="table table-bordered table-responsive-md table-striped text-center">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">solicitante</th>
+                                                        <th class="text-center">asignacion</th>
+                                                        <th class="text-center">requerimiento</th>
+                                                        <th class="text-center">VMO</th>
+                                                        <th class="text-center">ID</th>
+
+                                                        <th class="text-center">telefono</th>
+                                                        <th class="text-center">dni</th>
+                                                        <th class="text-center">nombre</th>
+                                                        <th class="text-center">fuente</th>
+
+                                                    
+
+
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <!-- Aquí se agregarán las filas automaticamente por el js  -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <button id="guardarCambios" class="btn btn-primary">Actualizar
+                                            masivamente</button>
+
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <!-- Editable table -->
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+
+    </script>
+
+
+
+
+
+    <div class="loader " id="loader"></div>
+
+</body>
+
+</html>
