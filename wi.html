@@ -1128,7 +1128,8 @@ function editarValor(parametro) {
                     prioridad: cells[49].textContent,
                     motivo: cells[50].textContent,
                     OBS_CANCELADOS: cells[51].textContent,
-                    cv: cells[52].textContent
+                    cv: cells[52].textContent,
+                    nombre_puesto: localStorage.getItem('nombre_puesto')
                      
                 };
                 datos.push(objeto);
@@ -1204,6 +1205,33 @@ function editarValor(parametro) {
             $('#loader').removeClass('visible');
         }
 
+    </script>
+
+
+    <script type="text/javascript">
+        const idRequerimiento = localStorage.getItem('id');
+        // Verifica si el id está presente antes de realizar la solicitud
+        if (idRequerimiento) {
+          // Construye la URL del servicio con el id
+          const url = `https://runnnnnnn.azurewebsites.net/requerimiento/${idRequerimiento}`;
+
+          // Realiza la solicitud Fetch
+          fetch(url)
+            .then(response => response.json())
+            .then(data => {
+              // Extrae el nombre_puesto de la respuesta
+              const nombre_puesto = data.nombre_puesto;
+              localStorage.setItem("nombre_puesto",nombre_puesto)
+              // Usa la variable nombre_puesto según tus necesidades
+              console.log('Nombre Puesto:', nombre_puesto);
+              console.log('idRequerimiento:', idRequerimiento);
+            })
+            .catch(error => {
+              console.error('Error al obtener datos:', error);
+            });
+        } else {
+          console.error('No se encontró el id en el localStorage');
+        }
     </script>
 
 
