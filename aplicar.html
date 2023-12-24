@@ -387,6 +387,7 @@
             .then(data => {
                 // En lugar de utilizar los datos del 'localStorage', utilizamos los datos recibidos.
                 var dataList = data;
+                    var cantidad = data.length;
 
                var solicitantesLesly = dataList;
 
@@ -410,7 +411,7 @@
              <p class='card-text'>${data.nombre_puesto}</p>
            </div>
            <div class="col-md-2 mb-2">
-             <p class='card-text'>Cantidad de vacantes: <b>1</b></p>
+             <p class='card-text'>Cantidad de vacantes: <b>${data.cantidad}</b></p>
            </div>
            <div class="col-md-3 mb-3">
              <button class='btn btn-success' data-bs-toggle='modal' data-bs-target='#aplicarCandidaturaModal' data-valor='${data.id}'
