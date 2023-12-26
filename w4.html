@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.1/xlsx.full.min.js"></script>
+
+
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
+
+    <style>
+        /* Estilos para el loader */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        .loader {
+            display: none;
+            border: 15px solid black;
+            border-top: 5px solid black;
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            animation: spin 2s linear infinite;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 11111;
+        }
+
+        .loader.visible {
+            display: block;
+        }
+    </style>
+
+<style type="text/css">
+    #tablaContenedor {
+      width: 5000px !important; /* Asegura que el contenedor ocupe todo el ancho disponible */
+      overflow-x: auto !important; /* Habilita la barra de desplazamiento horizontal cuando sea necesario */
+    }
+
+    #nuevaTabla {
+      /* Aquí puedes definir estilos para tu tabla si lo deseas */
+    }
+
+</style>
+
+
+
+    <style type="text/css">
+        .pt-3-half {
+            padding-top: 1.4rem;
+        }
+
+
+        .welcome-section {
+            background-image: url('https://img.freepik.com/free-photo/portrait-smiling-man-sitting-cafe-bar-with-his-laptop-computer_342744-944.jpg?w=1060&t=st=1694226598~exp=1694227198~hmac=1d48fe8fe124568bfdd5c8adc049e1800ecf3af62e463931c39644d580dbd1c6');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 200px 0;
+
+        }
+
+        /* Personaliza el estilo de la página */
+        .divider:after,
+        .divider:before {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #eee;
+        }
+
+        .h-custom {
+            height: calc(100% - 73px);
+        }
+
+        @media (max-width: 450px) {
+            .h-custom {
+                height: 100%;
+            }
+        }
+
+        .frameblack {
+            background-color: rgba(10, 10, 10, 0.4);
+            padding: 4em;
+        }
+
+        /* Estilos para el pie de página */
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: black;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .black {
+            background-color: black;
+        }
+
+        .custom-card {
+            width: 18rem;
+            margin: 20px;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <style>
+        /* Estilos para el loader */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        .loader {
+            display: none;
+            border: 15px solid black;
+            border-top: 5px solid black;
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            animation: spin 2s linear infinite;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 11111;
+        }
+
+        .loader.visible {
+            display: block;
+        }
+    </style>
+
+    <div class="loader " id="loader"></div>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="#">Talento</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <button id="cerrar_sesion">Regresar</button>
+                    </ul>
+                        <button id="exportButton">Reporte Talento</button>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+	   <table id="nuevaTabla"
+	        class="table table-bordered table-responsive-md table-striped text-center">
+	        <thead>
+	            <tr>
+	                <th class="text-center">solicitante</th>
+	                <th class="text-center">asignacion</th>
+	                <th class="text-center">requerimiento</th>
+	                <th class="text-center">VMO</th>
+	                <th class="text-center">ID</th>
+	                <th class="text-center">telefono</th>
+	                <th class="text-center">dni</th>
+	                <th class="text-center">nombre</th>
+	                <th class="text-center">fuente</th>
+	                <th class="text-center">correo</th>
+	                <th class="text-center">trabajo</th>
+	                <th class="text-center">disponibilidad</th>
+	                <th class="text-center">antecedentes</th>
+	                <th class="text-center">trabajoHits</th>
+	                <th class="text-center">familiaresHits</th>
+	                 <th class="text-center">trabajoVinculado</th>     
+	                 <th class="text-center">pasoTrabajoVinculado</th>  
+	                <th class="text-center">fechaNacimiento</th>
+	                <th class="text-center">todosTelefonos</th>
+	                <th class="text-center">puesto</th>
+	                <th class="text-center">empleador_</th>
+	                <th class="text-center">institucion_</th>
+	                <th class="text-center">carreras</th>
+	                <th class="text-center">grados</th>
+	                <th class="text-center">salario</th>
+	                <th class="text-center">espectativa</th>
+	                <th class="text-center">beneficio</th>
+	                <th class="text-center">puestoHits</th>
+	                <th class="text-center">pregunta1</th>
+	                <th class="text-center">pregunta2</th>
+	                <th class="text-center">pregunta3</th>
+	                <th class="text-center">pregunta4</th>
+
+                    <th class="text-center">antecedentesA</th>
+                    <th class="text-center">antecedentesB</th>
+                    <th class="text-center">antecedentePolicial</th>
+                    <th class="text-center">antecedentePenal</th>
+                    <th class="text-center">antecedenteJudicial</th>
+                    <th class="text-center">certiAdulto</th>
+                    <th class="text-center">multiTest</th>
+                    <th class="text-center">informePsicologico</th>
+                    <th class="text-center">fichaDatos</th>
+                    <th class="text-center">fichaMedica</th>
+                    <th class="text-center">fichaRequerimiento</th>
+                    <th class="text-center">fichaAprobación</th>
+                    <th class="text-center">otrosAdjuntos</th>
+
+
+                    <th class="text-center">fechaSolicitud</th>
+                    <th class="text-center">tecnologia</th>
+                    <th class="text-center">seniority</th>
+                    <th class="text-center">cliente</th>
+                    <th class="text-center">prioridad</th>
+                    <th class="text-center">motivo</th>
+                    <th class="text-center">OBS_CANCELADOS</th>
+                    <th class="text-center">CV</th>
+
+                  
+
+
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <!-- Aquí se agregarán las filas automaticamente por el js  -->
+	        </tbody>
+	    </table>
+	</div>
+
+	<button id="guardarCambios" class="btn btn-primary">Actualizar
+	    masivamente</button>
+
+    </section>
+    <section>
+        <div
+            class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 black">
+            <!-- Derechos de autor -->
+            <div class="text-white mb-12 mb-md-0 text-center">
+                Derechos de autor © 2023. Todos los derechos reservados.
+            </div>
+
+
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <script>
+
+
+        function convertirAListaAnidada(dataList) {
+            var listaAnidada = [];
+            var nombreUsuario = localStorage.getItem('nombreUsuario');
+
+            dataList.forEach(function (item) {
+                var arreglo = Object.values(item);
+                if (item.asignacion == nombreUsuario) {
+                    listaAnidada.push(arreglo);
+
+                    console.log("filtrado" + arreglo)
+
+                }
+            });
+
+            return listaAnidada;
+        }
+
+
+     
+
+        function exportarAExcel(data) {
+            alert("as")
+            var nombreUsuario = localStorage.getItem('nombreUsuario');
+
+            const filteredData = data.filter(item => item.asignacion === nombreUsuario);
+
+            const worksheet = XLSX.utils.json_to_sheet(filteredData);
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, 'Datos');
+
+            // Convertir el libro a un archivo Excel en formato base64
+            const excelData = XLSX.write(workbook, { bookType: 'xlsx', type: 'base64' });
+
+            // Crear un enlace de descarga
+            const blob = base64ToBlob(excelData, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'datos.xlsx';
+
+            // Agregar el enlace al documento y simular un clic para iniciar la descarga
+            document.body.appendChild(a);
+            a.click();
+
+            // Eliminar el enlace del documento
+            document.body.removeChild(a);
+        }
+
+        // Función para convertir una cadena base64 a Blob
+        function base64ToBlob(base64, mimeType) {
+            const byteCharacters = atob(base64);
+            const byteNumbers = new Array(byteCharacters.length);
+
+            for (let i = 0; i < byteCharacters.length; i++) {
+                byteNumbers[i] = byteCharacters.charCodeAt(i);
+            }
+
+            const byteArray = new Uint8Array(byteNumbers);
+            return new Blob([byteArray], { type: mimeType });
+        }
+
+        function exportToExcel() {
+            fetch('https://runnnnnnn.azurewebsites.net/requerimiento')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('exportButton').addEventListener('click', () => {
+                        exportarAExcel(data);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error al obtener datos del servicio:', error);
+                });
+        }
+        exportToExcel();
+
+
+        // Función para convertir una cadena en una matriz de bytes
+        function s2ab(s) {
+            const buf = new ArrayBuffer(s.length);
+            const view = new Uint8Array(buf);
+            for (let i = 0; i < s.length; i++) {
+                view[i] = s.charCodeAt(i) & 0xFF;
+            }
+            return buf;
+        }
+
+        // Agregar un controlador de eventos al botón de exportación
+        $('#exportButton').click(exportToExcel);
+    </script>
+
+
+ 
+
+    <script type="text/javascript">
+        // Función para mostrar la animación de carga
+        function showLoadingAnimation() {
+            $('#loader').addClass('visible');
+        }
+
+        // Función para ocultar la animación de carga
+        function hideLoadingAnimation() {
+            $('#loader').removeClass('visible');
+        }
+
+        // Agregar un controlador de eventos al botón de carga
+        $('#btnCargar').click(function () {
+            showLoadingAnimation();
+
+            setTimeout(function () {
+                hideLoadingAnimation();
+                $('#misTrabajosModal1').modal('hide');
+                // alert("Se cargó la data correctamente")
+            }, 2000); // Ejemplo: oculta la animación después de 3 segundos (simula la carga completa)
+        });
+    </script>
+
+   
+
+
+    <script type="text/javascript">
+        // Recuperar la lista de objetos desde localStorage
+        // var dataList = JSON.parse(localStorage.getItem('miData')) || [];
+        var dataList = [];
+
+        var url = 'https://runnnnnnn.azurewebsites.net/requerimiento';
+
+
+         
+
+
+        function obtenerValor(parametro) {
+
+            var miBoton = document.getElementById('miBoton');
+            // Obtener el valor personalizado del botón
+            var valorPersonalizado = miBoton.getAttribute('data-valor');
+            localStorage.setItem("id", parametro);
+
+            fetch(`https://runnnnnnn.azurewebsites.net/requerimiento/${parametro}`)
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw new Error('Error al obtener la lista de requerimientos.');
+                })
+                .then(data => {
+                    // En lugar de utilizar los datos del 'localStorage', utilizamos los datos recibidos.
+                    var dataList = data;
+
+                    var dni = data.dni
+                    // alert("data: " + JSON.stringify(data));
+
+                    // var asd = JSON.stringify(data);
+                    console.log(dataList)
+                    console.log(data.dni)
+                    console.log(dataList.dni)
+                    // alert("asd.trabajoVinculado: " + asd.trabajoVinculado)
+                    var solicitante_ = document.getElementById('solicitante_');
+
+                    var trabajoVinculado_ = document.getElementById('trabajoVinculado_');
+                    // var pasoTrabajoVinculado_ = document.getElementById('pasoTrabajoVinculado_');
+                    var fuente_ = document.getElementById('fuente_');
+                    var fechaNacimiento_ = document.getElementById('fechaNacimiento_');
+                    var todosTelefonos_ = document.getElementById('todosTelefonos_');
+                    var puesto_ = document.getElementById('puesto_');
+                    var empleador_ = document.getElementById('empleador_');
+                    var institucion_ = document.getElementById('institucion_');
+                    var carreras_ = document.getElementById('carreras_');
+                    var grados_ = document.getElementById('grados_');
+                    var salario_ = document.getElementById('salario_');
+                    var espectativa_ = document.getElementById('espectativa_');
+                    var beneficio_ = document.getElementById('beneficio_');
+                    var puestoHits_ = document.getElementById('puestoHits_');
+                    var pregunta1_ = document.getElementById('pregunta1_');
+                    var pregunta2_ = document.getElementById('pregunta2_');
+                    var pregunta3_ = document.getElementById('pregunta3_');
+                    var pregunta4_ = document.getElementById('pregunta4_');
+
+                    var nombre_ = document.getElementById('nombre_');
+                    var solicitante_ = document.getElementById('solicitante_');
+                    var dni_ = document.getElementById('dni_');
+                    var telefono_ = document.getElementById('telefono_');
+                    var correo_ = document.getElementById('correo_');
+                    var asignacion_ = document.getElementById('asignacion_');
+                    solicitante_.value = data.solicitante;
+
+                    console.log("data.nombre" + data.nombre)
+                    console.log("data.dni" + data.dni)
+                    console.log("data.telefono" + data.telefono)
+
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+
+
+        }
+        var temporal = localStorage.getItem("id");
+       	editarValor(temporal);
+ 
+
+function editarValor(parametro) {
+    console.log("parametro");
+    var miBoton2 = document.getElementById('miBoton2');
+    // Obtener el valor personalizado del botón
+    localStorage.setItem("id", parametro);
+
+
+ var parametroparametro = localStorage.getItem("item")
+    alert("parametroparametro"+parametroparametro)
+
+    fetch(`https://runnnnnnn.azurewebsites.net/requerimiento/${parametroparametro}`)
+
+
+    // fetch(`https://runnnnnnn.azurewebsites.net/requerimiento`)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error('Error al obtener la lista de requerimientos.');
+        })
+        .then(data => {
+            // En lugar de utilizar los datos del 'localStorage', utilizamos los datos recibidos.
+            var dataList = data;
+                   const cambiosPendientes = [];
+
+            if (data) {
+                const nombreUsuario = localStorage.getItem('nombreUsuario');
+                const nombre_puesto = localStorage.getItem('nombre_puesto');
+                const requerimiento = localStorage.getItem('requerimiento');
+
+                const nuevaTabla = document.getElementById('nuevaTabla').querySelector('tbody');
+                nuevaTabla.innerHTML = '';
+
+                   nuevaTabla.addEventListener('dblclick', function (event) {
+                                const target = event.target;
+
+                                if (target.tagName === 'TD') {
+                                    target.setAttribute('contenteditable', 'true');
+                                }
+                            });
+             const cambiosPendientes = [];
+
+          // También puedes agregar un controlador de eventos para deshabilitar la edición al hacer clic fuera de la celda
+                            document.addEventListener('click', function (event) {
+                                const target = event.target;
+
+                                if (target.tagName !== 'TD') {
+                                    const editableCells = nuevaTabla.querySelectorAll('td[contenteditable="true"]');
+                                    editableCells.forEach(cell => cell.setAttribute('contenteditable', 'false'));
+                                }
+                            });
+
+
+             
+                        
+                                const row = nuevaTabla.insertRow();
+                                const cell1 = row.insertCell(0);
+                                const cell2 = row.insertCell(1);
+                                const cell3 = row.insertCell(2);
+                                const cell4 = row.insertCell(3);
+                                const cell5 = row.insertCell(4);
+
+                                const cell6 = row.insertCell(5);
+                                const cell7 = row.insertCell(6);
+                                const cell8 = row.insertCell(7);
+                                const cell9 = row.insertCell(8);
+
+                                const cell10 = row.insertCell(9);
+                                const cell11 = row.insertCell(10);
+                                const cell12 = row.insertCell(11);
+                                const cell13 = row.insertCell(12);
+                                const cell14 = row.insertCell(13);
+                                const cell15 = row.insertCell(14);
+                                const cell16 = row.insertCell(15);
+                                const cell17 = row.insertCell(16);
+
+                                const cell18 = row.insertCell(17);
+                                const cell19 = row.insertCell(18);
+                                const cell20 = row.insertCell(19);
+                                const cell21 = row.insertCell(20);
+                                const cell22 = row.insertCell(21);
+                                const cell23 = row.insertCell(22);
+                                const cell24 = row.insertCell(23);
+                                const cell25 = row.insertCell(24);
+                                const cell26 = row.insertCell(25);
+                                const cell27 = row.insertCell(26);
+                                const cell28 = row.insertCell(27);
+                                const cell29 = row.insertCell(28);
+                                const cell30 = row.insertCell(29);
+                                const cell31 = row.insertCell(30);
+                                const cell32 = row.insertCell(31);
+
+
+                                const cell33 = row.insertCell(32);
+                                const cell34 = row.insertCell(33);
+                                const cell35 = row.insertCell(34);
+                                const cell36 = row.insertCell(35);
+                                const cell37 = row.insertCell(36);
+                                const cell38 = row.insertCell(37);
+                                const cell39 = row.insertCell(38);
+                                const cell40 = row.insertCell(39);
+                                const cell41 = row.insertCell(40);
+                                const cell42 = row.insertCell(41);
+                                const cell43 = row.insertCell(42);
+                                const cell44 = row.insertCell(43);
+                                const cell45 = row.insertCell(44);
+
+
+                                const cell46 = row.insertCell(45);
+                                const cell47 = row.insertCell(46);
+                                const cell48 = row.insertCell(47);
+                                const cell49 = row.insertCell(48);
+                                const cell50 = row.insertCell(49);
+                                const cell51 = row.insertCell(50);
+                                const cell52 = row.insertCell(51);
+                                const cell53 = row.insertCell(52);
+
+
+                                cell1.textContent = data.solicitante;
+                                cell2.textContent = data.asignacion;
+                                cell3.textContent = data.requerimiento;
+                                cell4.textContent = data.vmo;
+                                cell5.textContent = data.id;
+
+                                cell6.textContent = data.telefono;
+                                cell7.textContent = data.dni;
+                                cell8.textContent = data.nombre;
+                                cell9.textContent = data.fuente;
+
+                                cell10.textContent = data.correo;
+                                // Cambiar el campo "trabajo" a un select
+                                const selectTrabajo = document.createElement('select');
+                                selectTrabajo.innerHTML = '<option selected >'+data.trabajo+'</option><option value="creacion_requerimiento">Creación del requerimiento</option><option value="candidato_identificado">Candidato identificado</option><option value="en_prescreening">En Prescreening</option><option value="no_contactado_no_contesta">✖ No contactado - No contesta</option><option value="no_apto_cv_experiencia">✖ No apto CV - Experiencia</option><option value="no_apto_cv_auditoria">✖ No apto CV - Auditoría</option><option value="no_apto_cv_expectativa_salarial">✖ No apto CV - Expectativasalarial</option><option value="no_apto_cv_requisito_perfil">✖ No Apto CV - Requisito delperfil</option><option value="no_apto_prescreening_black_list">✖ No Apto Prescreening -Black List</option><option value="no_apto_prescreening_offlimits">✖ No Apto Prescreening -Offlimits</option><option value="no_apto_prescreening_expectativas_altas">✖ No AptoPrescreening - Expectativas altas</option><option value="no_apto_prescreening_estudios">✖ No Apto Prescreening -Estudios</option><option value="no_apto_prescreening_comunicacion_no_efectiva">✖ No AptoPrescreening - Comunicación no efectiva</option><option value="desistio_proceso_prescreening">✖ Desistió del proceso enPrescreening</option><option value="apto_en_prescreening">✓ Apto en prescreening</option><option value="en_revision_cv">En revisión de CV</option><option value="multitest_recomendado">✓ Multitest - Recomendado</option><option value="no_apto_multitest">✖ No apto en Multitest</option><option value="apto_en_antecedentes">✓ Apto en Antecedentes</option><option value="no_apto_antecedentes">✖ No apto en Antecedentes</option><option value="apto_todas_las_pruebas">✓ ✓ ✓ Apto en todas las pruebas</option><option value="apto_presentar_cliente">✓ Apto para presentar al Cliente</option><option value="no_apto_entrevista_tecnica">✖ No apto en Entrevista concliente - Ent. Técnica</option><option value="no_fit_hitss">✖ No apto en Entrevista con cliente - No fitHITSS</option><option value="desistio_proceso_entrevista">✖ Desistió del proceso luegoEnt. →</option><option value="backup">╩ Backup</option><option value="seleccionado">✌️ Seleccionado</option><option value="carta_oferta">✓ Carta Oferta</option><option value="desistio_proceso_carta_oferta">✖ Desistió del proceso luegoCarta Oferta →</option><option value="firma_contrato">✓ Firma de contrato</option>';
+                                
+                                // selectTrabajo.value = data.trabajo;
+                                // selectTrabajo.value = data.trabajo.substring(0, 100);
+                                // cell11.appendChild(selectTrabajo);
+
+                                // Verificar si data.trabajo no es null ni vacío antes de aplicar substring
+                                if (data.trabajo != null && data.trabajo.trim() !== '') {
+                                    // Asignar la subcadena a selectTrabajo.value
+                                    selectTrabajo.id = 'selectTrabajo___'; 
+                                    selectTrabajo.value = data.trabajo.substring(0, 100);
+                                } else {
+                                    // En caso de que data.trabajo sea null o vacío, asignar un valor predeterminado o manejar según sea necesario
+                                     selectTrabajo.id = 'selectTrabajo___'; 
+                                    selectTrabajo.value = 'Valor predeterminado'; // Puedes cambiar esto según tus necesidades
+                                }
+
+                                cell11.appendChild(selectTrabajo);
+
+                                // Cambiar el campo "trabajo" a un select
+                                const selectDisponibilidad = document.createElement('select');
+                                selectDisponibilidad.innerHTML = '<option  selected>'+data.disponibilidad+'</option>;<option value="inmediata">Inmediata</option><option value="7_dias">7 días</option><option value="15_dias">15 días</option><option value="30_dias">30 días</option>';
+                                selectDisponibilidad.value = data.disponibilidad;
+                                    selectDisponibilidad.id = 'selectDisponibilidad___'; 
+
+                                cell12.appendChild(selectDisponibilidad);
+
+                                // Cambiar el campo "trabajo" a un select
+                                const antecedentesDisponibilidad = document.createElement('select');
+                                antecedentesDisponibilidad.innerHTML = '<option  selected>'+data.antecedentes+'</option><option value="no_registra">No Registra</option><option value="registra">Registra</option>';
+                                antecedentesDisponibilidad.value = data.antecedentes;
+                                antecedentesDisponibilidad.id = 'antecedentesDisponibilidad___'; 
+
+                                cell13.appendChild(antecedentesDisponibilidad);
+
+
+                                // cell12.textContent = data.disponibilidad;
+                                // cell13.textContent = data.antecedentes;
+
+                                 // Cambiar el campo "trabajo" a un select
+                                const trabajoHitsDisponibilidad = document.createElement('select');
+                                trabajoHitsDisponibilidad.innerHTML = '<option >'+data.trabajoHits+'</option><option value="no">No</option><option value="si">Sí</option>';
+                                trabajoHitsDisponibilidad.value = data.trabajoHits;
+                                trabajoHitsDisponibilidad.id = 'trabajoHitsDisponibilidad____'; 
+                                cell14.appendChild(trabajoHitsDisponibilidad);
+
+                                
+
+                                const familiaresHits = document.createElement('select');
+                                familiaresHits.innerHTML = '<option >'+data.familiaresHits+'</option><option value="no">No</option><option value="si">Sí</option>';
+                                familiaresHits.value = data.familiaresHits;
+                                familiaresHits.id = 'familiaresHits___'; 
+                                cell15.appendChild(familiaresHits);
+
+                                  // cell14.textContent = data.trabajoHits;
+                                // cell15.textContent = data.familiaresHits;
+
+                                const trabajoVinculado = document.createElement('select');
+                                trabajoVinculado.innerHTML = '<option  selected>'+data.trabajoVinculado+'</option><option value="no_registra">No Registra</option><option value="registra">Registra</option>';
+                                trabajoVinculado.value = data.trabajoVinculado;
+                                trabajoVinculado.id = 'trabajoVinculado___'; 
+                                cell16.appendChild(trabajoVinculado);
+                                // cell16.textContent = data.trabajoVinculado;
+
+
+                                cell17.textContent = data.pasoTrabajoVinculado;
+
+                                cell18.textContent = data.fechaNacimiento;
+                                cell19.textContent = data.todosTelefonos;
+                                cell20.textContent = data.puesto;
+                                cell21.textContent = data.empleador_;
+                                cell22.textContent = data.institucion_;
+                                cell23.textContent = data.carreras;
+                                cell24.textContent = data.grados;
+                                cell25.textContent = data.salario;
+                                cell26.textContent = data.espectativa;
+                                cell27.textContent = data.beneficio;
+                                cell28.textContent = data.puestoHits;
+                                cell29.textContent = data.pregunta1;
+                                cell30.textContent = data.pregunta2;
+                                cell31.textContent = data.pregunta3;
+                                cell32.textContent = data.pregunta4;
+
+                                cell33.textContent = data.antecedentesA;
+                                cell34.textContent = data.antecedentesB;
+                                cell35.textContent = data.antecedentePolicial;
+                                cell36.textContent = data.antecedentePenal;
+                                cell37.textContent = data.antecedenteJudicial;
+                                cell38.textContent = data.certiAdulto;
+                                cell39.textContent = data.multiTest;
+                                cell40.textContent = data.informePsicologico;
+                                cell41.textContent = data.fichaDatos;
+                                cell42.textContent = data.fichaMedica;
+                                cell43.textContent = data.fichaRequerimiento;
+                                cell44.textContent = data.fichaAprobacion;
+                                cell45.textContent = data.otrosAdjuntos;
+
+
+
+                                cell46.textContent = data.fechaSolicitud
+                                cell47.textContent = data.tecnologia
+                                cell48.textContent = data.seniority
+                                cell49.textContent = data.cliente
+                                cell50.textContent = data.prioridad
+                                cell51.textContent = data.motivo
+                                cell52.textContent = data.OBS_CANCELADOS
+                                cell53.textContent = data.cv
+                  console.log("finalizó: 1")
+
+            } else {
+                console.error('Los datos recibidos no son una matriz.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+        console.log("finalizó: 2")
+}
+
+
+
+
+
+
+        var idddd = localStorage.getItem('id');
+        console.log(idddd)
+        function guardar() {
+            showLoadingAnimation();
+            // var nuevoRequerimiento = prompt("Ingrese : nuevoRequerimiento");
+            console.log("guardar")
+            var nombre_ = document.getElementById('nombre_');
+            var solicitante_ = document.getElementById('solicitante_');
+            var dni_ = document.getElementById('dni_');
+            var telefono_ = document.getElementById('telefono_');
+            var correo_ = document.getElementById('correo_');
+            var asignacion_ = document.getElementById('asignacion_');
+
+            var trabajoVinculado_ = document.getElementById('trabajoVinculado_');
+            // var pasoTrabajoVinculado_ = document.getElementById('pasoTrabajoVinculado_');
+            var fuente_ = document.getElementById('fuente_');
+            var fechaNacimiento_ = document.getElementById('fechaNacimiento_');
+            var todosTelefonos_ = document.getElementById('todosTelefonos_');
+            var puesto_ = document.getElementById('puesto_');
+            var empleador_ = document.getElementById('empleador_');
+            var institucion_ = document.getElementById('institucion_');
+            var carreras_ = document.getElementById('carreras_');
+            var grados_ = document.getElementById('grados_');
+            var salario_ = document.getElementById('salario_');
+            var espectativa_ = document.getElementById('espectativa_');
+            var beneficio_ = document.getElementById('beneficio_');
+            var puestoHits_ = document.getElementById('puestoHits_');
+            var pregunta1_ = document.getElementById('pregunta1_');
+            var pregunta2_ = document.getElementById('pregunta2_');
+            var pregunta3_ = document.getElementById('pregunta3_');
+            var pregunta4_ = document.getElementById('pregunta4_');
+
+            var select_1 = document.getElementById('select_1');
+            var select_2 = document.getElementById('select_2');
+
+            var dataList = JSON.parse(localStorage.getItem('miData')) || [];
+
+
+              var nombreUsuario = localStorage.getItem('nombreUsuario');
+
+            var objeto = {
+                dni: "",
+                status: "Creado",
+                solicitante: "",
+                asignacion: ""+nombreUsuario,
+                requerimiento: "",
+                cv: "",
+                telefono: "",
+                correo: "",
+                dni: "",
+                nombre: "",
+                trabajo: "",
+                disponibilidad: "",
+                antecedentes: "",
+                trabajoHits: "",
+                familiaresHits: "",
+                trabajoVinculado: "",
+                pasoTrabajoVinculado: "",
+                fuente: "",
+                fechaNacimiento: "",
+                todosTelefonos: "",
+                puesto: "",
+                empleador_: "",
+                institucion_: "",
+                carreras: "",
+                grados: "",
+                salario: "",
+                espectativa: "",
+                beneficio: "",
+                puestoHits: "",
+                pregunta1: "",
+                pregunta2: "",
+                pregunta3: "",
+                pregunta4: "",
+                vmo: "",
+
+            };
+
+            var oka;
+
+            fetch(`https://runnnnnnn.azurewebsites.net/requerimiento/${idddd}`)
+            // fetch("https://runnnnnnn.azurewebsites.net/requerimiento")
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw new Error('Error al obtener la lista de requerimientos.');
+                })
+                .then(data => {
+                    // En lugar de utilizar los datos del 'localStorage', utilizamos los datos recibidos.
+
+                    //objeto = data;
+                    // oka = data.solicitante;
+                    if (true) {
+
+
+
+                        const firebaseConfig = {
+                            // apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
+                            // authDomain: "semilleros-ccb45.firebaseapp.com",
+                            // projectId: "semilleros-ccb45",
+                            // storageBucket: "semilleros-ccb45.appspot.com",
+                            // messagingSenderId: "543478666358",
+                            // appId: "1:543478666358:web:dc0e8cff35c982faab3b57",
+                            // measurementId: "G-WK87KGXSWK"
+                             apiKey: "AIzaSyBwESGsLzqp0TU8RwQw2wJGvotGtloNFWY",
+                             authDomain: "semillero-f14a2.firebaseapp.com",
+                             projectId: "semillero-f14a2",
+                             storageBucket: "semillero-f14a2.appspot.com",
+                             messagingSenderId: "944862888865",
+                             appId: "1:944862888865:web:343e28812cc5e7633841e0",
+                             measurementId: "G-Q1N56FGZC4"
+                        };
+
+
+
+                        // Inicializa Firebase
+                        firebase.initializeApp(firebaseConfig);
+
+                        // Obtiene una referencia al servicio de Storage
+                        const storage = firebase.storage();
+
+
+                        const fileInput = document.getElementById("file-cv");
+
+
+
+                        var nombreUsuario = localStorage.getItem('nombreUsuario');
+
+                        const file = fileInput.files[0];
+                        if (file) {
+                            // Crea una referencia al archivo en Firebase Storage
+                            const storageRef = storage.ref(nombreUsuario + "/" + file.name); // Cambia 'carpeta_subida' a la carpeta deseada
+
+                            // Sube el archivo
+                            storageRef.put(file).then((snapshot) => {
+                                console.log("Archivo subido con éxito");
+
+                                snapshot.ref.getDownloadURL().then((url) => {
+                                    console.log("URL del archivo:", url);
+
+                                    // Actualizar el campo "requerimiento" del objeto
+                                    objeto.solicitante = data.solicitante+"";
+
+                             
+
+                                    objeto.requerimiento = data.requerimiento+"";
+
+                                    objeto.telefono = telefono_.value;
+                                    objeto.correo = correo_.value;
+                                    objeto.dni = dni_.value;
+                                    objeto.nombre = nombre_.value;
+                                    objeto.cv = url;
+                                    objeto.trabajo = select_1.value;
+                                    objeto.disponibilidad = select_2.value;
+                                    objeto.antecedentes = select_3.value;
+                                    objeto.trabajoHits = select_4.value;
+                                    objeto.familiaresHits = select_5.value;
+                                    objeto.trabajoVinculado = trabajoVinculado_.value;
+                                    // objeto.pasoTrabajoVinculado = pasoTrabajoVinculado_.value;
+                                    objeto.fuente = fuente_.value;
+                                    objeto.fechaNacimiento = fechaNacimiento_.value;
+                                    objeto.todosTelefonos = todosTelefonos_.value;
+                                    objeto.puesto = puesto_.value;
+                                    objeto.empleador_ = empleador_.value;
+                                    objeto.institucion_ = institucion_.value;
+                                    objeto.carreras = carreras_.value;
+                                    objeto.grados = grados_.value;
+                                    objeto.salario = salario_.value;
+                                    objeto.espectativa = espectativa_.value;
+                                    objeto.beneficio = beneficio_.value;
+                                    objeto.puestoHits = puestoHits_.value;
+                                    objeto.pregunta1 = pregunta1_.value;
+                                    objeto.pregunta2 = pregunta2_.value;
+                                    objeto.pregunta3 = pregunta3_.value;
+                                    objeto.pregunta4 = pregunta4_.value;
+
+                                    objeto.correo = fuente_.value;
+
+                                    // objeto.estadorequerimiento = nuevoRequerimiento;
+
+                                    console.log("Objeto actualizado1:", objeto);
+
+                                    //
+                                    // fetch(`https://runnnnnnn.azurewebsites.net/requerimiento${idddd}`, {
+                                    fetch("https://runnnnnnn.azurewebsites.net/requerimiento", {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json'
+                                        },
+                                        body: JSON.stringify(objeto)
+                                    })
+                                        .then(response => {
+                                            if (response.ok) {
+                                                alert('Requerimiento actualizado correctamente.');
+                                                $('#misTrabajosModal1').modal('hide');
+
+                                                telefono_.value = ""
+                                                correo_.value = ""
+                                                dni_.value = ""
+                                                nombre_.value = ""
+
+                                                select_1.value = ""
+                                                select_2.value = ""
+                                                select_3.value = ""
+                                                select_4.value = ""
+                                                select_5.value = ""
+                                                trabajoVinculado_.value = ""
+                                                // pasoTrabajoVinculado_.value = ""
+                                                fuente_.value = ""
+                                                fechaNacimiento_.value = ""
+                                                todosTelefonos_.value = ""
+                                                puesto_.value = ""
+                                                empleador_.value = ""
+                                                institucion_.value = ""
+                                                carreras_.value = ""
+                                                grados_.value = ""
+                                                salario_.value = ""
+                                                espectativa_.value = ""
+                                                beneficio_.value = ""
+                                                puestoHits_.value = ""
+                                                pregunta1_.value = ""
+                                                pregunta2_.value = ""
+                                                pregunta3_.value = ""
+                                                pregunta4_.value = ""
+
+                                                objeto.correo = fuente_.value;
+                                                hideLoadingAnimation();
+                                                location.reload();
+                                            } else {
+                                                alert('Error al actualizar el requerimiento. Verifica los datos e intenta nuevamente.');
+                                                hideLoadingAnimation();
+                                            }
+
+                                            console.log('Lista de requerimientosssssss:', response);
+
+                                        })
+                                        .catch(error => {
+                                            hideLoadingAnimation();
+                                            console.error('Hubo un error en la solicitud:', error);
+                                        });
+
+                                    //setear 0
+
+                                });
+
+                            }).catch((error) => {
+                                console.error("Error al subir el archivo:", error);
+                            });
+                        }else{
+                            hideLoadingAnimation();
+                            location.reload();
+                            alert("Es obligatorio adjuntar el CV")
+                        }
+
+
+ 
+
+                    } else {
+                        console.log("No se encontró ningún objeto con el ID proporcionado.");
+                    }
+
+
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+
+
+
+
+
+        }
+
+
+                // Realiza las operaciones necesarias con la lista de requerimientos recibida.
+
+    </script>
+
+
+ 
+
+
+    <script type="text/javascript">
+        // Array para almacenar los objetos con los datos
+        var datos = [{ "id": 1, "dni": "1111" }];
+
+        // Función para guardar los cambios en el array
+        function guardarCambios() {
+            showLoadingAnimation();
+            var filas = document.querySelectorAll('#nuevaTabla tbody tr');
+            datos = [];
+
+            filas.forEach(function (fila) {
+                var cells = fila.querySelectorAll('td');
+                const selectElement = cells[10].querySelector('#selectTrabajo___');    
+                const valorSeleccionado = selectElement.value; 
+
+                const selectElement1 = cells[11].querySelector('#selectDisponibilidad___');  
+                const valorSeleccionado1 = selectElement1.value; 
+
+                const selectElement2 = cells[12].querySelector('#antecedentesDisponibilidad___');  
+                const valorSeleccionado2 = selectElement2.value; 
+
+                const selectElement3 = cells[13].querySelector('#trabajoHitsDisponibilidad____');  
+                const valorSeleccionado3 = selectElement3.value; 
+
+                  const selectElement4 = cells[14].querySelector('#familiaresHits___');  
+                const valorSeleccionado4 = selectElement4.value; 
+                
+                const selectElement5 = cells[15].querySelector('#trabajoVinculado___');  
+                const valorSeleccionado5 = selectElement5.value; 
+                
+                
+                var objeto = {
+                    id: cells[4].textContent,
+                    solicitante: cells[0].textContent,
+                    asignacion: cells[1].textContent,
+                    requerimiento: cells[2].textContent,
+                    vmo: cells[3].textContent,
+                    telefono: cells[5].textContent,
+                    dni: cells[6].textContent,
+                    nombre: cells[7].textContent,
+                    fuente: cells[8].textContent,
+                    correo: cells[9].textContent,
+                    trabajo:  valorSeleccionado,
+                    disponibilidad: valorSeleccionado1,
+                    antecedentes: valorSeleccionado2,
+                    trabajoHits: valorSeleccionado3,
+                    familiaresHits: valorSeleccionado4,
+                    trabajoVinculado: valorSeleccionado5,
+                    pasoTrabajoVinculado: cells[16].textContent,
+                    fechaNacimiento: cells[17].textContent,
+                    todosTelefonos: cells[18].textContent,
+                    puesto: cells[19].textContent,
+                    empleador_: cells[20].textContent,
+                    institucion_: cells[21].textContent,
+                    carreras: cells[22].textContent,
+                    grados: cells[23].textContent,
+                    salario: cells[24].textContent,
+                    espectativa: cells[25].textContent,
+                    beneficio: cells[26].textContent,
+                    puestoHits: cells[27].textContent,
+                    pregunta1: cells[28].textContent,
+                    pregunta2: cells[29].textContent,
+                    pregunta3: cells[30].textContent,
+                    pregunta4: cells[31].textContent,
+
+                    antecedentesA: cells[32].textContent,
+                    antecedentesB: cells[33].textContent,
+                    antecedentePolicial: cells[34].textContent,
+                    antecedentePenal: cells[35].textContent,
+                    antecedenteJudicial: cells[36].textContent,
+                    certiAdulto: cells[37].textContent,
+                    multiTest: cells[38].textContent,
+                    informePsicologico: cells[39].textContent,
+                    fichaDatos: cells[40].textContent,
+                    fichaMedica: cells[41].textContent,
+                    fichaRequerimiento: cells[42].textContent,
+                    fichaAprobacion: cells[43].textContent,
+                    otrosAdjuntos: cells[44].textContent,
+
+
+                    fechaSolicitud: cells[45].textContent,
+                    tecnologia: cells[46].textContent,
+                    seniority: cells[47].textContent,
+                    cliente: cells[48].textContent,
+                    prioridad: cells[49].textContent,
+                    motivo: cells[50].textContent,
+                    OBS_CANCELADOS: cells[51].textContent,
+                    cv: cells[52].textContent,
+                    nombre_puesto: localStorage.getItem('nombre_puesto')
+                     
+                };
+                datos.push(objeto);
+            });
+
+            fetch("https://runnnnnnn.azurewebsites.net/requerimientos", {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(datos)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        const contentType = response.headers.get('content-type');
+                        if (contentType && contentType.includes('application/json')) {
+                            return response.json();
+                        } else {
+                            console.error('La respuesta no es JSON válido' + response.json());
+                        }
+                    } else {
+                        throw new Error('Error en la solicitud PUT');
+                    }
+                })
+                .then(data => {
+                    console.log('Solicitud PUT exitosa', datos);
+                    alert("Los datos fueron actualizados correctamente")
+                    hideLoadingAnimation();
+
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    console.log('Error completo:', error.message);
+                });
+
+
+            console.log(JSON.stringify(datos));
+            console.log(datos);
+
+        }
+
+        // Agrega un evento 'input' a cada campo de entrada para detectar cambios
+        var camposEntrada = document.querySelectorAll('#nuevaTabla tbody td');
+        camposEntrada.forEach(function (campo) {
+            campo.addEventListener('input', function () {
+                guardarCambios();
+            });
+        });
+
+        // Agrega un evento al botón "Guardar Cambios" para guardar los cambios
+        document.getElementById('guardarCambios').addEventListener('click', function () {
+            guardarCambios();
+
+        });
+
+
+        const botonRedireccionar = document.getElementById('cerrar_sesion');
+
+        botonRedireccionar.addEventListener('click', function () {
+            // Aquí especifica la URL de la página a la que deseas redirigir
+            const nuevaPaginaURL = 'https://semilleros-ccb45.web.app/b.html';
+
+            // Redirigir a la nueva página
+            window.location.href = nuevaPaginaURL;
+        });
+
+        function showLoadingAnimation() {
+            $('#loader').addClass('visible');
+        }
+
+        // Función para ocultar la animación de carga
+        function hideLoadingAnimation() {
+            $('#loader').removeClass('visible');
+        }
+
+    </script>
+
+
+    <script type="text/javascript">
+        const idRequerimiento = localStorage.getItem('id');
+        // Verifica si el id está presente antes de realizar la solicitud
+        if (idRequerimiento) {
+          // Construye la URL del servicio con el id
+          const url = `https://runnnnnnn.azurewebsites.net/requerimiento/${idRequerimiento}`;
+
+          // Realiza la solicitud Fetch
+          fetch(url)
+            .then(response => response.json())
+            .then(data => {
+              // Extrae el nombre_puesto de la respuesta
+              const nombre_puesto = data.nombre_puesto;
+              const requerimiento = data.requerimiento;
+              localStorage.setItem("nombre_puesto",nombre_puesto)
+              localStorage.setItem("requerimiento",requerimiento)
+              // Usa la variable nombre_puesto según tus necesidades
+              console.log('Nombre Puesto:', nombre_puesto);
+              console.log('idRequerimiento:', idRequerimiento);
+            })
+            .catch(error => {
+              console.error('Error al obtener datos:', error);
+            });
+        } else {
+          console.error('No se encontró el id en el localStorage');
+        }
+    </script>
+
+
+    <div class="loader " id="loader"></div>
+
+</body>
+
+</html>
