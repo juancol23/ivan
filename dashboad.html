@@ -154,6 +154,8 @@
                         <li class="nav-item">
                             <a class="nav-link" href="aplicar.html">Aplicar como externo</a>
                         </li>
+
+
                         <!-- <button id="exportButton">Reporte Talento</button> -->
                         <button id="cerrar_sesion">Cerrar Sesión</button>
                     </ul>
@@ -168,10 +170,89 @@
             <div class="container">
                 <h1>Bienvenido a Recutamiento</h1>
                 <p>Vista del analista.</p>
+                <input type="file" id="excelInput" accept=".xlsx">
+
             </div>
         </div>
 
     </section>
+
+
+    <script>
+        document.getElementById('excelInput').addEventListener('change', handleFile);
+      
+        function handleFile(event) {
+            const file = event.target.files[0];
+
+            if (file) {
+                showLoadingAnimation();
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, { type: 'array' });
+
+                    // Cambio aquí: solo considera la pestaña llamada "Procesos"
+                    const sheetName = 'Procesos';
+
+                    if (workbook.SheetNames.includes(sheetName)) {
+                        const sheet = workbook.Sheets[sheetName];
+
+                        const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+                        const requerimientos = convertToRequerimientos(jsonData);
+
+                        // Envía la lista de requerimientos al servicio
+                        sendRequerimientos(requerimientos);
+                    } else {
+                        console.error('La pestaña "Procesos" no está presente en el archivo Excel.');
+                    }
+                };
+
+                reader.readAsArrayBuffer(file);
+            }
+        }
+
+
+        function convertToRequerimientos(jsonData) {
+            // La implementación específica depende del formato de tu hoja de cálculo
+            // Aquí se asume que cada fila representa un requerimiento con campos en la primera fila
+            const headers = jsonData[0];
+            const requerimientos = [];
+
+            for (let i = 1; i < jsonData.length; i++) {
+                const requerimiento = {};
+                for (let j = 0; j < headers.length; j++) {
+                    requerimiento[headers[j]] = jsonData[i][j];
+                }
+                requerimientos.push(requerimiento);
+            }
+
+            return requerimientos;
+        }
+
+        function sendRequerimientos(requerimientos) {
+            const url = 'https://runnnnnnn.azurewebsites.net/requerimientos';
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(requerimientos),
+
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Respuesta del servicio:', data);
+                hideLoadingAnimation();
+            })
+            .catch(error => {
+                console.error('Error al enviar los requerimientos:', error);
+                hideLoadingAnimation();
+                
+            });
+        }
+    </script>
 
 
     </section>
@@ -186,6 +267,7 @@
 
         </div>
     </section>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
