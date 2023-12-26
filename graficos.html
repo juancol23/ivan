@@ -358,28 +358,29 @@
             .then(data => {
                 // En lugar de utilizar los datos del 'localStorage', utilizamos los datos recibidos.
                 var dataList = data;
-                 var estadocantidadAisha = data.filter(item => item.status === "En Proceso" && item.asignacion === "Aisha.Abuhadba@runa-it.com");
-                var estadosEnProcesoYAsignacion = data.filter(item => item.status === "En Proceso" && item.asignacion === "Aisha.Abuhadba@runa-it.com");
+               
+                var enproceso = data.filter(item => item.status === "En Proceso" && item.asignacion === "Aisha.Abuhadba@runa-it.com");
 
-                var estadosFinalizadoYAsignacion = data.filter(item => item.status === "Finalizado" && item.asignacion === "Aisha.Abuhadba@runa-it.com");
+                var finalizado = data.filter(item => item.status === "Finalizado" && item.asignacion === "Aisha.Abuhadba@runa-it.com");
 
-                var estadosSeleccionadoYAsignacion = data.filter(item => item.status === "Seleccionado" && item.asignacion === "Aisha.Abuhadba@runa-it.com");
+                var seleccionado = data.filter(item => item.status === "Seleccionado" && item.asignacion === "Aisha.Abuhadba@runa-it.com");
 
+                var cancelado = data.filter(item => item.status === "Cancelado" && item.asignacion === "Aisha.Abuhadba@runa-it.com");
+               
 
-                var estadosEnProcesoYAsignacionFinalizado = data.filter(item => item.asignacion === "Aisha.Abuhadba@runa-it.com");
                // Obtener la cantidad de elementos en procesos
-                var cantidadEnProceso = estadosEnProcesoYAsignacion.length;
-                var cantidadFinalizado = estadosFinalizadoYAsignacion.length;
-                var cantidadAsignado = estadosSeleccionadoYAsignacion.length;
-                var cantidadAisha = estadocantidadAisha.length;
+                var cantidadEnProceso = enproceso.length;
+                var cantidadFinalizado = finalizado.length;
+                var cantidadSeleccionado = seleccionado.length;
+                var cantidadCancelado = cancelado.length;
 
 
                  // Datos para el gráfico de torta
                    var data = {
-                       labels: ['En proceso', 'Finalizado','Seleccionado' ,'TOTAL'],
+                       labels: ['En proceso', 'Finalizado','Seleccionado' ,'Cancelado'],
                        datasets: [{
-                           data: [cantidadEnProceso, cantidadFinalizado, cantidadAsignado ,cantidadAisha], // Ajusta los valores según tus necesidades
-                           backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#FFF']
+                           data: [cantidadEnProceso, cantidadFinalizado, cantidadSeleccionado ,cantidadCancelado], // Ajusta los valores según tus necesidades
+                           backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#ddd']
                        }]
                    };
 
