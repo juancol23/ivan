@@ -518,7 +518,7 @@ function editarValor(parametro) {
                 const nombreUsuario = localStorage.getItem('nombreUsuario');
                 const nombre_puesto = localStorage.getItem('nombre_puesto');
                 const requerimiento = localStorage.getItem('requerimiento');
-                
+
                 const nuevaTabla = document.getElementById('nuevaTabla').querySelector('tbody');
                 nuevaTabla.innerHTML = '';
 
@@ -544,7 +544,7 @@ function editarValor(parametro) {
 
                 data.forEach(item => {
                     if (item.asignacion === nombreUsuario) {
-                        if(item.nombre_puesto === nombre_puesto && item.requerimiento === requerimiento){
+                        if(item.nombre_puesto === nombre_puesto && item.cv != null){
                             const row = nuevaTabla.insertRow();
                             const cell1 = row.insertCell(0);
                             const cell2 = row.insertCell(1);
