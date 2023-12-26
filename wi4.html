@@ -263,6 +263,18 @@
                     <th class="text-center">OBS_CANCELADOS</th>
                     <th class="text-center">CV</th>
 
+                    <th class="text-center">proyectos</th>
+                    <th class="text-center">n_cv_enviados</th>
+                    <th class="text-center">fec_cancelacion</th>
+                    <th class="text-center">canditado_contratado</th>
+                    <th class="text-center">fec_envio_cv</th>
+                    <th class="text-center">fec_envio_canditato</th>
+                    <th class="text-center">fec_aceptacion</th>
+                    <th class="text-center">fec_ing_contratado</th>
+                    <th class="text-center">fec_ing_planilla</th>
+                    <th class="text-center">fuente_reclutamiento</th>
+                    <th class="text-center">cod_sap</th>
+
                   
 
 
@@ -317,7 +329,6 @@
      
 
         function exportarAExcel(data) {
-            alert("as")
             var nombreUsuario = localStorage.getItem('nombreUsuario');
 
             const filteredData = data.filter(item => item.asignacion === nombreUsuario);
@@ -504,7 +515,7 @@ function editarValor(parametro) {
 
 
  var parametroparametro = localStorage.getItem("item")
-    alert("parametroparametro"+parametroparametro)
+    // alert("parametroparametro"+parametroparametro)
 
     fetch(`https://runnnnnnn.azurewebsites.net/requerimiento/${parametroparametro}`)
 
@@ -612,6 +623,18 @@ function editarValor(parametro) {
                                 const cell51 = row.insertCell(50);
                                 const cell52 = row.insertCell(51);
                                 const cell53 = row.insertCell(52);
+
+                                const cell54 = row.insertCell(53);
+                                const cell55 = row.insertCell(54);
+                                const cell56 = row.insertCell(55);
+                                const cell57 = row.insertCell(56);
+                                const cell58 = row.insertCell(57);
+                                const cell59 = row.insertCell(58);
+                                const cell60 = row.insertCell(59);
+                                const cell61 = row.insertCell(60);
+                                const cell62 = row.insertCell(61);
+                                const cell63 = row.insertCell(62);
+                                const cell64 = row.insertCell(63);
 
 
                                 cell1.textContent = data.solicitante;
@@ -725,8 +748,6 @@ function editarValor(parametro) {
                                 cell44.textContent = data.fichaAprobacion;
                                 cell45.textContent = data.otrosAdjuntos;
 
-
-
                                 cell46.textContent = data.fechaSolicitud
                                 cell47.textContent = data.tecnologia
                                 cell48.textContent = data.seniority
@@ -735,6 +756,21 @@ function editarValor(parametro) {
                                 cell51.textContent = data.motivo
                                 cell52.textContent = data.OBS_CANCELADOS
                                 cell53.textContent = data.cv
+
+                                cell54.textContent = data.proyectos
+                                cell55.textContent = data.n_cv_enviados
+                                cell56.textContent = data.fec_cancelacion
+                                cell57.textContent = data.canditado_contratado
+                                cell58.textContent = data.fec_envio_cv
+                                cell59.textContent = data.fec_envio_canditato
+                                cell60.textContent = data.fec_aceptacion
+                                cell61.textContent = data.fec_ing_contratado
+                                cell62.textContent = data.fec_ing_planilla
+                                cell63.textContent = data.fuente_reclutamiento
+                                cell64.textContent = data.cod_sap
+
+
+
                   console.log("finalizó: 1")
 
             } else {
@@ -828,6 +864,17 @@ function editarValor(parametro) {
                 pregunta3: "",
                 pregunta4: "",
                 vmo: "",
+                proyectos: "",
+                n_cv_enviados: "",
+                fec_cancelacion: "",
+                canditado_contratado: "",
+                fec_envio_cv: "",
+                fec_envio_canditato: "",
+                fec_aceptacion: "",
+                fec_ing_contratado: "",
+                fec_ing_planilla: "",
+                fuente_reclutamiento: "",
+                cod_sap: "",
 
             };
 
@@ -1124,8 +1171,21 @@ function editarValor(parametro) {
                     motivo: cells[50].textContent,
                     OBS_CANCELADOS: cells[51].textContent,
                     cv: cells[52].textContent,
+
+                    proyectos: [53].textContent,
+                    n_cv_enviados: [54].textContent,
+                    fec_cancelacion: [55].textContent,
+                    canditado_contratado: [56].textContent,
+                    fec_envio_cv: [57].textContent,
+                    fec_envio_canditato: [58].textContent,
+                    fec_aceptacion: [59].textContent,
+                    fec_ing_contratado: [60].textContent,
+                    fec_ing_planilla: [61].textContent,
+                    fuente_reclutamiento: [62].textContent,
+                    cod_sap: [63].textContent,
                     nombre_puesto: localStorage.getItem('nombre_puesto')
-                     
+
+
                 };
                 datos.push(objeto);
             });
