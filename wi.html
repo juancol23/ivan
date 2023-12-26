@@ -517,6 +517,8 @@ function editarValor(parametro) {
             if (Array.isArray(data)) {
                 const nombreUsuario = localStorage.getItem('nombreUsuario');
                 const nombre_puesto = localStorage.getItem('nombre_puesto');
+                const requerimiento = localStorage.getItem('requerimiento');
+                
                 const nuevaTabla = document.getElementById('nuevaTabla').querySelector('tbody');
                 nuevaTabla.innerHTML = '';
 
@@ -542,7 +544,7 @@ function editarValor(parametro) {
 
                 data.forEach(item => {
                     if (item.asignacion === nombreUsuario) {
-                        if(item.nombre_puesto === nombre_puesto){
+                        if(item.nombre_puesto === nombre_puesto && item.requerimiento === requerimiento){
                             const row = nuevaTabla.insertRow();
                             const cell1 = row.insertCell(0);
                             const cell2 = row.insertCell(1);
@@ -1208,7 +1210,9 @@ function editarValor(parametro) {
             .then(data => {
               // Extrae el nombre_puesto de la respuesta
               const nombre_puesto = data.nombre_puesto;
+              const requerimiento = data.requerimiento;
               localStorage.setItem("nombre_puesto",nombre_puesto)
+              localStorage.setItem("requerimiento",requerimiento)
               // Usa la variable nombre_puesto según tus necesidades
               console.log('Nombre Puesto:', nombre_puesto);
               console.log('idRequerimiento:', idRequerimiento);
