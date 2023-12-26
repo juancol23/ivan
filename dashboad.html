@@ -1039,7 +1039,7 @@ document.getElementById('filtro').addEventListener('change', function () {
             // Filtrar los requerimientos según la opción seleccionada
             const requerimientosFiltrados = opcionSeleccionada === 'listarTodo'
                 ? data
-                : data.filter(requerimiento => requerimiento.asignacion === opcionSeleccionada);
+                : data.filter(requerimiento => requerimiento.asignacion === opcionSeleccionada && requerimiento.status === 'En Proceso');
 
             // Mostrar los resultados en el div con id "resultados"
             mostrarResultados(requerimientosFiltrados);
