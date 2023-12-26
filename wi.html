@@ -544,7 +544,10 @@ function editarValor(parametro) {
 
                 data.forEach(item => {
                     if (item.asignacion === nombreUsuario) {
-                        if(item.nombre_puesto === nombre_puesto && item.cv != null){
+                        if(item.base === "muestrate"){
+                        console.log("item.base === true"+ item.base)
+                        }
+                        if(item.nombre_puesto === nombre_puesto && item.base === "muestrate"){
                             const row = nuevaTabla.insertRow();
                             const cell1 = row.insertCell(0);
                             const cell2 = row.insertCell(1);
@@ -733,6 +736,8 @@ function editarValor(parametro) {
                         
                     }
                 });
+                  console.log("finalizó: 1")
+
             } else {
                 console.error('Los datos recibidos no son una matriz.');
             }
@@ -740,6 +745,8 @@ function editarValor(parametro) {
         .catch(error => {
             console.error('Error:', error);
         });
+
+        console.log("finalizó: 2")
 }
 
 
