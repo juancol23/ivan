@@ -1055,15 +1055,27 @@ function mostrarResultados(resultados) {
     document.getElementById('resultados').innerHTML = '';
 
     // Recorre los resultados y muéstralos en el div
-    resultados.forEach(requerimiento => {
-        document.getElementById('resultados').innerHTML += `<br><a class="btn btn-dark" href="#">${requerimiento.requerimiento}</a> <p></p> `;
+    // resultados.forEach(requerimiento => {
+    //     document.getElementById('resultados').innerHTML += `<br><a onclick="miFuncion(+"${data.requerimiento}+")"class="btn btn-dark" href="#">${requerimiento.requerimiento}</a> <p></p> `;
+    // });
+     resultados.forEach(requerimiento => {
+        document.getElementById('resultados').innerHTML += `<br><a onclick="miFuncion('${requerimiento.id}')" class="btn btn-dark" href="#">${requerimiento.requerimiento}</a> <p></p> `;
     });
 }
 
 // Cuando la página se carga, llama a cargarRequerimientos
 document.addEventListener('DOMContentLoaded', cargarRequerimientos);
 
+   function miFuncion(parametro) {
+          alert('¡Hola! Has hecho clic en el botón.'+parametro);
+          localStorage.setItem("item",parametro)
+          window.location.href = wi4.html;
+          // Puedes agregar más código aquí según lo que desees hacer cuando se hace clic.
+        }
+
     </script>
+
+  
 
 
     <script type="text/javascript">
