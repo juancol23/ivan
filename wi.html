@@ -542,7 +542,7 @@ function editarValor(parametro) {
 
                 data.forEach(item => {
                     if (item.asignacion === nombreUsuario) {
-                        if(item.asignacion === nombre_puesto){
+                        if(item.nombre_puesto === nombre_puesto){
                             const row = nuevaTabla.insertRow();
                             const cell1 = row.insertCell(0);
                             const cell2 = row.insertCell(1);
