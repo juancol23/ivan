@@ -213,25 +213,33 @@
         }
 
 
-        function convertToRequerimientos(jsonData) {
-            // La implementación específica depende del formato de tu hoja de cálculo
-            // Aquí se asume que cada fila representa un requerimiento con campos en la primera fila
-            const headers = jsonData[0];
-            const requerimientos = [];
+      function convertToRequerimientos(jsonData) {
+          // La implementación específica depende del formato de tu hoja de cálculo
+          // Aquí se asume que cada fila representa un requerimiento con campos en la primera fila
+          const headers = jsonData[0];
+          const requerimientos = [];
 
-              const statusIndex = headers.indexOf("STATUS");
+          // Obtén el índice del encabezado que representa el estado (asumiendo que el encabezado es "STATUS")
+          const statusIndex = headers.indexOf("STATUS");
 
-            for (let i = 1; i < jsonData.length; i++) {
-                const requerimiento = {};
-                for (let j = 0; j < headers.length; j++) {
-                 const value = j === statusIndex ? jsonData[i][j].toLowerCase() : jsonData[i][j];
-                  requerimiento[headers[j]] = value;
-                }
-                requerimientos.push(requerimiento);
-            }
+          for (let i = 1; i < jsonData.length; i++) {
+              // Convierte a minúsculas el valor del estado si es el campo "STATUS"
+              const statusValue = jsonData[i][statusIndex].toLowerCase();
 
-            return requerimientos;
-        }
+              // Verifica si el estado es "en proceso" antes de procesar la fila
+              if (statusValue === "en proceso") {
+                  const requerimiento = {};
+                  for (let j = 0; j < headers.length; j++) {
+                      requerimiento[headers[j]] = jsonData[i][j];
+                  }
+
+                  requerimientos.push(requerimiento);
+              }
+          }
+
+          return requerimientos;
+      }
+
 
         function sendRequerimientos(requerimientos) {
             const url = 'https://runnnnnnn.azurewebsites.net/requerimientos';
