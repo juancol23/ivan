@@ -636,6 +636,7 @@ function editarValor(parametro) {
                                 const cell62 = row.insertCell(61);
                                 const cell63 = row.insertCell(62);
                                 const cell64 = row.insertCell(63);
+                                const cell65 = row.insertCell(64);
 
 
                                 cell1.textContent = data.solicitante;
@@ -769,7 +770,17 @@ function editarValor(parametro) {
                                 cell62.textContent = data.fec_ing_planilla
                                 cell63.textContent = data.fuente_reclutamiento
                                 cell64.textContent = data.cod_sap
-                                cell65.textContent = data.status
+
+                                // cell65.textContent = data.status
+
+                                 // Cambiar el campo "trabajo" a un select
+                                const statusss = document.createElement('select');
+                                statusss.innerHTML = '<option  selected>'+data.status+'</option><option value="Finalizado">Finalzado</option><option value="Cancelado">Cancelado</option><option value="En Proceso">Cancelado</option><option value="En Proceso">Seleccionado</option>'
+                                ;
+                                statusss.value = data.antecedentes;
+                                statusss.id = 'statusss____'; 
+
+                                cell65.appendChild(statusss);
 
 
 
@@ -1113,7 +1124,12 @@ function editarValor(parametro) {
                 const valorSeleccionado4 = selectElement4.value; 
                 
                 const selectElement5 = cells[15].querySelector('#trabajoVinculado___');  
-                const valorSeleccionado5 = selectElement5.value; 
+                const valorSeleccionado5 = selectElement5.value;
+
+
+                const selectElement6 = cells[16].querySelector('#statusss____');  
+                const valorSeleccionado6 = selectElement6.value;
+                
                 
                 
                 var objeto = {
@@ -1185,7 +1201,7 @@ function editarValor(parametro) {
                     fec_ing_planilla: [61].textContent,
                     fuente_reclutamiento: [62].textContent,
                     cod_sap: [63].textContent,
-                    status: [64].textContent,
+                    status: valorSeleccionado6,
                     nombre_puesto: localStorage.getItem('nombre_puesto')
 
 
