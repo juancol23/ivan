@@ -206,23 +206,24 @@
 	        class="table table-bordered table-responsive-md table-striped text-center">
 	        <thead>
 	            <tr>
-	                <th class="text-center">fechaSolicitud</th>
-	                <th class="text-center">requerimiento</th>
-	                <th class="text-center">status</th>
-	                <th class="text-center">id</th>
-	                <th class="text-center">asignacion</th>
-	                <th class="text-center">solicitante</th>
-	                <th class="text-center">nombre_puesto</th>
-	                <th class="text-center">seniority</th>
-	                <th class="text-center">proyectos</th>
-	                <th class="text-center">tecnologia</th>
-	                <th class="text-center">cliente</th>
-	                <th class="text-center">cantidad</th>
+	                
 	                <th class="text-center">prioridad</th>
 	                <th class="text-center">motivo</th>
+                    <th class="text-center">fechaSolicitud</th>
+                    <th class="text-center">requerimiento</th>
+                    <th class="text-center">status</th>
+                    <th class="text-center">id</th>
+                    <th class="text-center">asignacion</th>
+                    <th class="text-center">solicitante</th>
+                    <th class="text-center">nombre_puesto</th>
+                    <th class="text-center">seniority</th>
+                    <th class="text-center">proyectos</th>
+                    <th class="text-center">tecnologia</th>
+                    <th class="text-center">cliente</th>
+                    <th class="text-center">cantidad</th>
 	                <th class="text-center">n_cv_enviados</th>
-	                 <th class="text-center">fec_cancelacion</th>     
-	                 <th class="text-center">OBS_CANCELADOS</th>  
+	                <th class="text-center">fec_cancelacion</th>     
+	                <th class="text-center">OBS_CANCELADOS</th>  
 	                <th class="text-center">canditado_contratado</th>
 	                <th class="text-center">fec_envio_cv</th>
 	                <th class="text-center">fec_envio_canditato</th>
@@ -567,7 +568,15 @@ function editarValor(parametro) {
                                 cell6.textContent = data.solicitante;
 
                                 cell7.textContent = data.nombre_puesto;
-                                cell8.textContent = data.seniority;
+
+                                 const seniority = document.createElement('select');
+                                seniority.innerHTML = '<option  selected>'+data.seniority+'</option><option value="S">S</option><option value="JR">JR</option><option value="SS">SS</option>'
+                                ;
+                                seniority.value = data.seniority;
+                                seniority.id = 'cell8'; 
+                                cell8.appendChild(seniority);
+
+
                                 cell9.textContent = data.proyectos;
 
                                 cell10.textContent = data.tecnologia;
@@ -917,26 +926,9 @@ function editarValor(parametro) {
 
             filas.forEach(function (fila) {
                 var cells = fila.querySelectorAll('td');
-                const selectElement = cells[10].querySelector('#selectTrabajo___');    
-                const valorSeleccionado = selectElement.value; 
+               
 
-                const selectElement1 = cells[11].querySelector('#selectDisponibilidad___');  
-                const valorSeleccionado1 = selectElement1.value; 
-
-                const selectElement2 = cells[12].querySelector('#antecedentesDisponibilidad___');  
-                const valorSeleccionado2 = selectElement2.value; 
-
-                const selectElement3 = cells[13].querySelector('#trabajoHitsDisponibilidad____');  
-                const valorSeleccionado3 = selectElement3.value; 
-
-                  const selectElement4 = cells[14].querySelector('#familiaresHits___');  
-                const valorSeleccionado4 = selectElement4.value; 
-                
-                const selectElement5 = cells[15].querySelector('#trabajoVinculado___');  
-                const valorSeleccionado5 = selectElement5.value;
-
-
-                const selectElement6 = cells[16].querySelector('#statusss____');  
+                const selectElement6 = cells[3].querySelector('#statusss____');  
                 const valorSeleccionado6 = selectElement6.value;
                 
                 
