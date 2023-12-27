@@ -211,7 +211,7 @@
 	                <th class="text-center">requerimiento</th>
 	                <th class="text-center">VMO</th>
 	                <th class="text-center">ID</th>
-	                <th class="text-center">telefono</th>
+	                <th class="text-center">status</th>
 	                <th class="text-center">dni</th>
 	                <th class="text-center">nombre</th>
 	                <th class="text-center">fuente</th>
@@ -274,7 +274,7 @@
                     <th class="text-center">fec_ing_planilla</th>
                     <th class="text-center">fuente_reclutamiento</th>
                     <th class="text-center">cod_sap</th>
-                    <th class="text-center">status</th>
+                    <th class="text-center">telefono</th>
 
                   
 
@@ -645,7 +645,18 @@ function editarValor(parametro) {
                                 cell4.textContent = data.vmo;
                                 cell5.textContent = data.id;
 
-                                cell6.textContent = data.telefono;
+                                // cell6.textContent = data.telefono;
+
+                                    // Cambiar el campo "trabajo" a un select
+                                const statusss = document.createElement('select');
+                                statusss.innerHTML = '<option  selected>'+data.status+'</option><option value="Finalizado">Finalzado</option><option value="Cancelado">Cancelado</option><option value="En Proceso">En proceso</option><option value="En Proceso">Seleccionado</option>'
+                                ;
+                                statusss.value = data.antecedentes;
+                                statusss.id = 'statusss____'; 
+
+                                cell6.appendChild(statusss);
+
+
                                 cell7.textContent = data.dni;
                                 cell8.textContent = data.nombre;
                                 cell9.textContent = data.fuente;
@@ -771,16 +782,8 @@ function editarValor(parametro) {
                                 cell63.textContent = data.fuente_reclutamiento
                                 cell64.textContent = data.cod_sap
 
-                                // cell65.textContent = data.status
+                                cell65.textContent = data.telefono
 
-                                 // Cambiar el campo "trabajo" a un select
-                                const statusss = document.createElement('select');
-                                statusss.innerHTML = '<option  selected>'+data.status+'</option><option value="Finalizado">Finalzado</option><option value="Cancelado">Cancelado</option><option value="En Proceso">Cancelado</option><option value="En Proceso">Seleccionado</option>'
-                                ;
-                                statusss.value = data.antecedentes;
-                                statusss.id = 'statusss____'; 
-
-                                cell65.appendChild(statusss);
 
 
 
