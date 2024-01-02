@@ -1043,11 +1043,15 @@
                     return data.asignacion === nombreUsuario;
                 });
 
+                 var solicitantesLeslyEnProceso = dataList.filter(function (data) {
+                    return data.status === "En Proceso";
+                });
+
 
                 // Crear una lista de solicitantes en formato HTML
                 var solicitantesHTML = "";
                 var uniqueRequerimientos = new Set();
-                solicitantesLesly.forEach(function (data) {
+                solicitantesLeslyEnProceso.forEach(function (data) {
 
                      if (!uniqueRequerimientos.has(data.requerimiento)) {
         uniqueRequerimientos.add(data.requerimiento);
