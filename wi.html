@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
+
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.1/xlsx.full.min.js"></script>
@@ -262,6 +264,7 @@
                     <th class="text-center">motivo</th>
                     <th class="text-center">OBS_CANCELADOS</th>
                     <th class="text-center">CV</th>
+                    <th class="text-center">Eliminar</th>
 
                   
 
@@ -615,6 +618,8 @@ function editarValor(parametro) {
                                     const cell51 = row.insertCell(50);
                                     const cell52 = row.insertCell(51);
                                     const cell53 = row.insertCell(52);
+                                    /*Eliminar*/
+                                    const cell54 = row.insertCell(53);
 
 
                                     cell1.textContent = item.solicitante;
@@ -739,6 +744,38 @@ function editarValor(parametro) {
                                     cell51.textContent = item.motivo
                                     cell52.textContent = item.OBS_CANCELADOS
                                     cell53.textContent = item.cv
+
+                                    // cell53.textContent = item.id
+
+                                    const eliminar = document.createElement('button');
+                                       eliminar.innerHTML = `
+                                         <i  onclick="eliminar(${item.id})" class="fa-solid fa-circle-xmark">Eliminar</i>
+                                       `;
+                                     eliminar.value = item.id;
+                                     eliminar.id = 'eliminar___'; 
+                                     cell54.appendChild(eliminar);
+
+                                    // Crea un botón de Bootstrap con un icono de eliminación
+                                      // function crearBotonEliminar(id) {
+                                      //   var botonEliminar = document.createElement('button');
+                                      //   botonEliminar.type = 'button';
+                                      //   botonEliminar.className = 'btn btn-danger btn-sm';  // Clases de Bootstrap para un botón rojo pequeño
+                                      //   botonEliminar.innerHTML = '<i class="fas fa-trash-alt"></i>';  // Icono de papelera de FontAwesome
+
+                                      //   // Asigna el evento de clic al botón y pasa el id como parámetro a la función eliminar
+                                      //   botonEliminar.addEventListener('click', function() {
+                                      //     eliminar(id);
+                                      //   });
+
+                                      //   return botonEliminar;
+                                      // }
+
+                                      // // Obtén la celda donde deseas insertar el botón de eliminar
+                                      // var cell53 = document.getElementById('cell53');
+
+                                      // // Inserta el botón de eliminar en la celda
+                                      // cell53.appendChild(crearBotonEliminar(item.id));
+
                                 }
                             }
                             
@@ -762,6 +799,36 @@ function editarValor(parametro) {
 
 
 
+        function eliminar(id) {
+            // Muestra una alerta para confirmar la eliminación
+            var confirmacion = window.confirm('¿Estás seguro de que quieres eliminar el elemento con ID ' + id + '?');
+
+            // Verifica la respuesta del usuario
+            if (confirmacion) {
+                // El usuario hizo clic en "Aceptar" (true)
+                console.log('Eliminar elemento con id:', id);
+               const url = 'https://runnnnnnn.azurewebsites.net/requerimiento/'+ id;
+
+                 fetch(url, {
+                   method: 'DELETE',
+                   headers: {
+                     'Content-Type': 'application/json'
+                   },
+                   body: JSON.stringify({})  // Puedes dejar el cuerpo vacío o ajustarlo según tus necesidades
+                 })
+                   .then(response => {
+                     if (!response.ok) {
+                       throw new Error(`Error en la solicitud DELETE: ${response.status}`);
+                     }
+                     console.log('Solicitud DELETE exitosa');
+                   })
+                   .catch(error => console.error('Error:', error));
+            } else {
+                // El usuario hizo clic en "Cancelar" (false)
+                console.log('Cancelada la eliminación del elemento con id:', id);
+                // Puedes realizar alguna acción adicional o simplemente no hacer nada
+            }
+        }
 
 
         var idddd = localStorage.getItem('id');
@@ -1245,6 +1312,10 @@ function editarValor(parametro) {
 
 
     <div class="loader " id="loader"></div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js"></script>
+
 
 </body>
 
