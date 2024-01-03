@@ -873,7 +873,7 @@ function editarValor(parametro) {
 
             var objeto = {
                 dni: "",
-                status: "Creado",
+                status: "En Proceso",
                 solicitante: "",
                 asignacion: ""+nombreUsuario,
                 requerimiento: "",
@@ -1203,6 +1203,7 @@ function editarValor(parametro) {
                     OBS_CANCELADOS: cells[51].textContent,
                     base: "muestrate",
                     cv: cells[52].textContent,
+                    status: "En Proceso",
                     nombre_puesto: localStorage.getItem('nombre_puesto')
                      
                 };
