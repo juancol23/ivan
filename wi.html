@@ -357,19 +357,24 @@
             return new Blob([byteArray], { type: mimeType });
         }
 
+         var dataListTmp = [];
+
         function exportToExcel() {
-            fetch('https://runnnnnnn.azurewebsites.net/requerimiento')
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('exportButton').addEventListener('click', () => {
-                        exportarAExcel(data);
-                    });
-                })
-                .catch(error => {
-                    console.error('Error al obtener datos del servicio:', error);
-                });
+            // fetch('https://runnnnnnn.azurewebsites.net/requerimiento')
+            //     .then(response => response.json())
+            //     .then(data => {
+            //         document.getElementById('exportButton').addEventListener('click', () => {
+                        
+            //              exportarAExcel(dataListTmp);
+            //         });
+            //     })
+            //     .catch(error => {
+            //         console.error('Error al obtener datos del servicio:', error);
+            //     });
+            // alert("dataListTmp"+dataListTmp)
+                  exportarAExcel(dataListTmp);
         }
-        exportToExcel();
+        // exportToExcel();
 
 
         // Función para convertir una cadena en una matriz de bytes
@@ -547,6 +552,7 @@ function editarValor(parametro) {
                         
                         if(item.nombre_puesto === nombre_puesto){
                             if(item.base === "muestrate"){
+                                dataListTmp.push(item);
                                 const row = nuevaTabla.insertRow();
                                 const cell1 = row.insertCell(0);
                                 const cell2 = row.insertCell(1);
