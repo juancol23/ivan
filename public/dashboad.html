@@ -242,7 +242,7 @@
 
 
         function sendRequerimientos(requerimientos) {
-            const url = 'https://runnnnnnn.azurewebsites.net/requerimientos';
+            const url = 'https://runainstancia.azurewebsites.net/requerimientos';
 
             fetch(url, {
                 method: 'POST',
@@ -771,7 +771,7 @@
             var obtenerValorBoton = document.getElementById('obtenerValorBoton');
 
 
-            var url = 'https://runnnnnnn.azurewebsites.net/requerimiento';
+            var url = 'https://runainstancia.azurewebsites.net/requerimiento';
 
 
 
@@ -939,7 +939,7 @@
 
 
         // Hacer una solicitud a la API en http://localhost:8080/user
-        fetch('https://runnnnnnn.azurewebsites.net/user')
+        fetch('https://runainstancia.azurewebsites.net/user')
             .then(response => response.json())
             .then(data => {
                 // Obtener el elemento select
@@ -964,7 +964,7 @@
 
     <script type="text/javascript">
       // URL del servicio
-var url = 'https://runnnnnnn.azurewebsites.net/requerimiento';
+var url = 'https://runainstancia.azurewebsites.net/requerimiento';
 
 // Función para cargar los requerimientos desde el servicio
 function cargarRequerimientos() {
@@ -1009,7 +1009,7 @@ function cargarAsignaciones() {
     // y llenarlas dinámicamente en el select con id "filtro"
     // Puedes usar fetch para realizar la llamada al servicio
     // Ejemplo (reemplaza la URL con la correcta):
-    fetch('https://runnnnnnn.azurewebsites.net/requerimiento')
+    fetch('https://runainstancia.azurewebsites.net/requerimiento')
         .then(response => response.json())
         .then(data => {
             // Extraer las asignaciones únicas de los datos
@@ -1033,7 +1033,7 @@ document.getElementById('filtro').addEventListener('change', function () {
     // Aquí debes realizar la llamada al servicio con la opción seleccionada
     // y mostrar los resultados en el div con id "resultados"
     // Ejemplo (reemplaza la URL con la correcta):
-    fetch('https://runnnnnnn.azurewebsites.net/requerimiento')
+    fetch('https://runainstancia.azurewebsites.net/requerimiento')
         .then(response => response.json())
         .then(data => {
             // Filtrar los requerimientos según la opción seleccionada
@@ -1081,7 +1081,7 @@ document.addEventListener('DOMContentLoaded', cargarRequerimientos);
 
             // Cuando la página se carga, obtén los datos y agrega el evento de clic al botón de exportar
             document.addEventListener('DOMContentLoaded', function () {
-                fetch('https://runnnnnnn.azurewebsites.net/requerimiento')
+                fetch('https://runainstancia.azurewebsites.net/requerimiento')
                     .then(response => response.json())
                     .then(data => {
                         document.getElementById('exportButton').addEventListener('click', () => {

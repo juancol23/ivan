@@ -374,7 +374,7 @@
         // var dataList = JSON.parse(localStorage.getItem('miData')) || [];
         var dataList = [];
 
-        var url = 'https://runnnnnnn.azurewebsites.net/requerimiento';
+        var url = 'https://runainstancia.azurewebsites.net/requerimiento';
 
 
         fetch(url)
@@ -529,8 +529,8 @@
             };
 
 
-            fetch(`https://runnnnnnn.azurewebsites.net/requerimiento/${idddd}`)
-            // fetch("https://runnnnnnn.azurewebsites.net/requerimiento")
+            fetch(`https://runainstancia.azurewebsites.net/requerimiento/${idddd}`)
+            // fetch("https://runainstancia.azurewebsites.net/requerimiento")
                 .then(response => {
                     if (response.ok) {
                         return response.json();
@@ -617,8 +617,8 @@
                                     console.log("Objeto actualizado1:", objeto);
 
                                     //
-                                    // fetch(`https://runnnnnnn.azurewebsites.net/requerimiento${idddd}`, {
-                                    fetch("https://runnnnnnn.azurewebsites.net/requerimiento", {
+                                    // fetch(`https://runainstancia.azurewebsites.net/requerimiento${idddd}`, {
+                                    fetch("https://runainstancia.azurewebsites.net/requerimiento", {
                                         method: 'POST',
                                         headers: {
                                             'Content-Type': 'application/json'

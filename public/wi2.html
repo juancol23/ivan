@@ -434,7 +434,7 @@
         }
 
         function exportToExcel() {
-            fetch('https://runnnnnnn.azurewebsites.net/requerimiento')
+            fetch('https://runainstancia.azurewebsites.net/requerimiento')
                 .then(response => response.json())
                 .then(data => {
                     document.getElementById('exportButton').addEventListener('click', () => {
@@ -532,7 +532,7 @@
         // var dataList = JSON.parse(localStorage.getItem('miData')) || [];
         var dataList = [];
 
-        var url = 'https://runnnnnnn.azurewebsites.net/requerimiento';
+        var url = 'https://runainstancia.azurewebsites.net/requerimiento';
 
 
         fetch(url)
@@ -585,7 +585,7 @@
             var valorPersonalizado = miBoton.getAttribute('data-valor');
             localStorage.setItem("id", parametro);
 
-            fetch(`https://runnnnnnn.azurewebsites.net/requerimiento/${parametro}`)
+            fetch(`https://runainstancia.azurewebsites.net/requerimiento/${parametro}`)
                 .then(response => {
                     if (response.ok) {
                         return response.json();
@@ -654,7 +654,7 @@
             // Obtener el valor personalizado del botón
 
 
-            fetch(`https://runnnnnnn.azurewebsites.net/requerimiento`)
+            fetch(`https://runainstancia.azurewebsites.net/requerimiento`)
                 .then(response => {
                     if (response.ok) {
                         return response.json();
@@ -1000,8 +1000,8 @@
 
             var oka;
 
-            fetch(`https://runnnnnnn.azurewebsites.net/requerimiento/${idddd}`)
-                // fetch("https://runnnnnnn.azurewebsites.net/requerimiento")
+            fetch(`https://runainstancia.azurewebsites.net/requerimiento/${idddd}`)
+                // fetch("https://runainstancia.azurewebsites.net/requerimiento")
                 .then(response => {
                     if (response.ok) {
                         return response.json();
@@ -1095,8 +1095,8 @@
                                     console.log("Objeto actualizado1:", objeto);
 
                                     //
-                                    // fetch(`https://runnnnnnn.azurewebsites.net/requerimiento${idddd}`, {
-                                    fetch("https://runnnnnnn.azurewebsites.net/requerimiento", {
+                                    // fetch(`https://runainstancia.azurewebsites.net/requerimiento${idddd}`, {
+                                    fetch("https://runainstancia.azurewebsites.net/requerimiento", {
                                         method: 'POST',
                                         headers: {
                                             'Content-Type': 'application/json'
@@ -1198,7 +1198,7 @@
 
         // function listarrrrr() {
 
-        //     fetch(`https://runnnnnnn.azurewebsites.net/requerimiento`)
+        //     fetch(`https://runainstancia.azurewebsites.net/requerimiento`)
         //         .then(response => {
         //             if (response.ok) {
         //                 return response.json();
@@ -1353,7 +1353,7 @@
         function mostrarAlerta() {
             // Alerta al hacer clic en el botón
             // URL del servicio
-            const url = 'https://runnnnnnn.azurewebsites.net/requerimiento/';
+            const url = 'https://runainstancia.azurewebsites.net/requerimiento/';
 
             // ID del objeto que deseas actualizar
             const id = localStorage.getItem('id');

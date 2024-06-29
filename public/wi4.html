@@ -365,7 +365,7 @@
          var dataListTmp = [];
 
         function exportToExcel() {
-            // fetch('https://runnnnnnn.azurewebsites.net/requerimiento')
+            // fetch('https://runainstancia.azurewebsites.net/requerimiento')
             //     .then(response => response.json())
             //     .then(data => {
             //         document.getElementById('exportButton').addEventListener('click', () => {
@@ -430,7 +430,7 @@
         // var dataList = JSON.parse(localStorage.getItem('miData')) || [];
         var dataList = [];
 
-        var url = 'https://runnnnnnn.azurewebsites.net/requerimiento';
+        var url = 'https://runainstancia.azurewebsites.net/requerimiento';
 
 
          
@@ -443,7 +443,7 @@
             var valorPersonalizado = miBoton.getAttribute('data-valor');
             localStorage.setItem("id", parametro);
 
-            fetch(`https://runnnnnnn.azurewebsites.net/requerimiento/${parametro}`)
+            fetch(`https://runainstancia.azurewebsites.net/requerimiento/${parametro}`)
                 .then(response => {
                     if (response.ok) {
                         return response.json();
@@ -513,7 +513,7 @@ function editarValor(parametro) {
     localStorage.setItem("id", parametro);
    var parametro = localStorage.getItem("item")
 
-    fetch(`https://runnnnnnn.azurewebsites.net/requerimiento/${parametro}`)
+    fetch(`https://runainstancia.azurewebsites.net/requerimiento/${parametro}`)
         .then(response => {
             if (response.ok) {
                 return response.json();
@@ -824,7 +824,7 @@ function editarValor(parametro) {
             if (confirmacion) {
                 // El usuario hizo clic en "Aceptar" (true)
                 console.log('Eliminar elemento con id:', id);
-               const url = 'https://runnnnnnn.azurewebsites.net/requerimiento/'+ id;
+               const url = 'https://runainstancia.azurewebsites.net/requerimiento/'+ id;
 
                  fetch(url, {
                    method: 'DELETE',
@@ -928,8 +928,8 @@ function editarValor(parametro) {
 
             var oka;
 
-            fetch(`https://runnnnnnn.azurewebsites.net/requerimiento/${idddd}`)
-            // fetch("https://runnnnnnn.azurewebsites.net/requerimiento")
+            fetch(`https://runainstancia.azurewebsites.net/requerimiento/${idddd}`)
+            // fetch("https://runainstancia.azurewebsites.net/requerimiento")
                 .then(response => {
                     if (response.ok) {
                         return response.json();
@@ -1033,8 +1033,8 @@ function editarValor(parametro) {
                                     console.log("Objeto actualizado1:", objeto);
 
                                     //
-                                    // fetch(`https://runnnnnnn.azurewebsites.net/requerimiento${idddd}`, {
-                                    fetch("https://runnnnnnn.azurewebsites.net/requerimiento", {
+                                    // fetch(`https://runainstancia.azurewebsites.net/requerimiento${idddd}`, {
+                                    fetch("https://runainstancia.azurewebsites.net/requerimiento", {
                                         method: 'POST',
                                         headers: {
                                             'Content-Type': 'application/json'
@@ -1182,7 +1182,7 @@ function editarValor(parametro) {
                 datos.push(objeto);
             });
 
-            fetch("https://runnnnnnn.azurewebsites.net/requerimientos", {
+            fetch("https://runainstancia.azurewebsites.net/requerimientos", {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -1260,7 +1260,7 @@ function editarValor(parametro) {
         // Verifica si el id está presente antes de realizar la solicitud
         if (idRequerimiento) {
           // Construye la URL del servicio con el id
-          const url = `https://runnnnnnn.azurewebsites.net/requerimiento/${idRequerimiento}`;
+          const url = `https://runainstancia.azurewebsites.net/requerimiento/${idRequerimiento}`;
 
           // Realiza la solicitud Fetch
           fetch(url)
