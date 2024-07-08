@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificado de Curso</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        #certificado {
+            display: none;
+            margin-top: 20px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        button {
+            background-color: #0073b1;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #005582;
+        }
+    </style>
+</head>
+<body>
+    <h1>¡Felicitaciones por Completar el Workshop!</h1>
+    <h2>Tecnología implementada en el sector bancario IBK</h2>
+    <p>Este curso te ha proporcionado habilidades avanzadas PERÚ</p>
+
+    <!-- Botón para mostrar el certificado -->
+    <button onclick="mostrarCertificado()">Ver Certificado</button>
+
+    <!-- Contenedor para la imagen del certificado -->
+    <div id="certificado">
+        <img src="https://via.placeholder.com/800x600.png?text=Certificado+de+Curso" alt="Certificado de Curso">
+    </div>
+
+    <!-- Botón para autenticar en LinkedIn -->
+    <button onclick="autenticarLinkedIn()">Compartir en LinkedIn</button>
+
+    <!-- Contenedor para mostrar el token de acceso -->
+    <div id="token-container" style="margin-top: 20px;">
+        <p id="token"></p>
+    </div>
+
+    <script>
+        const clientId = '78gsxbw2riekst';  // Reemplaza con tu Client ID
+        const redirectUri = 'https://sistema-vopc.web.app/linkedin.html';  // Reemplaza con tu URI de redirección
+
+        function mostrarCertificado() {
+            var certificado = document.getElementById('certificado');
+            if (certificado.style.display === 'none' || certificado.style.display === '') {
+                certificado.style.display = 'block';
+            } else {
+                certificado.style.display = 'none';
+            }
+        }
+
+        function autenticarLinkedIn() {
+            const authUrl = `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${clientId}&redirect_uri=${redirectUri}&scope=w_member_social%20r_liteprofile%20r_emailaddress`;
+            window.location.href = authUrl;
+        }
+
+        // Obtener el código de autorización de la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const authorizationCode = urlParams.get('code');
+
+        if (authorizationCode) {
+            // Intercambiar el código de autorización por un token de acceso
+            const tokenUrl = 'https://www.linkedin.com/oauth/v2/accessToken';
+            const params = new URLSearchParams();
+            params.append('grant_type', 'authorization_code');
+            params.append('code', authorizationCode);
+            params.append('redirect_uri', redirectUri);
+            params.append('client_id', clientId);
+            params.append('client_secret', 'echX2HZMkyBAv4lO');  // Reemplaza con tu Client Secret
+
+            fetch(tokenUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: params.toString()
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.access_token) {
+                    document.getElementById('token').textContent = `Token de Acceso: ${data.access_token}`;
+                    publicarCursoEnLinkedIn(data.access_token);
+                }
+            })
+            .catch(error => console.error('Error al obtener el token de acceso:', error));
+        }
+
+        // Función para publicar un curso en LinkedIn
+        function publicarCursoEnLinkedIn(accessToken) {
+            const apiUrl = 'https://api.linkedin.com/v2/ugcPosts';
+
+            const postData = {
+                "author": `urn:li:person:your_linkedin_profile_id`,  // Reemplaza con tu LinkedIn Profile ID
+                "lifecycleState": "PUBLISHED",
+                "specificContent": {
+                    "com.linkedin.ugc.ShareContent": {
+                        "shareCommentary": {
+                            "text": "He completado el Workshop Tecnología implementada en el sector bancario IBK. ¡Compartir mi certificado!"
+                        },
+                        "shareMediaCategory": "IMAGE",
+                        "media": [{
+                            "status": "READY",
+                            "description": {
+                                "text": "Workshop Tecnología implementada en el sector bancario IBK"
+                            },
+                            "media": "https://via.placeholder.com/800x600.png?text=Certificado+de+Curso",
+                            "title": {
+                                "text": "Certificado de Curso"
+                            }
+                        }]
+                    }
+                },
+                "visibility": {
+                    "com.linkedin.ugc.MemberNetworkVisibility": "PUBLIC"
+                }
+            };
+
+            fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`,
+                    'Content-Type': 'application/json',
+                    'X-Restli-Protocol-Version': '2.0.0'
+                },
+                body: JSON.stringify(postData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Curso publicado en LinkedIn:', data);
+            })
+            .catch(error => console.error('Error al publicar en LinkedIn:', error));
+        }
+    </script>
+</body>
+</html>
