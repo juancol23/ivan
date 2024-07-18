@@ -294,7 +294,15 @@
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script>
+            // Refrescar la página al iniciar
+        if (!localStorage.getItem('pageRefreshed')) {
+            localStorage.setItem('pageRefreshed', 'true');
+            location.reload();
+        } else {
+            localStorage.removeItem('pageRefreshed');
+        }
+    </script>    
 
     <script>
 

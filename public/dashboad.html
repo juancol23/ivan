@@ -989,15 +989,13 @@ function crearBotones(requerimientos) {
 
     // Iterar sobre los requerimientos y crear los botones dinámicamente
     requerimientos.forEach(function (requerimiento) {
-        // Crear un enlace (botón) por cada requerimiento
-        var enlace = document.createElement('a');
-        enlace.href = '#';
-        enlace.className = 'btn btn-primary';
-        enlace.textContent = 'Aquí el requerimiento ' + requerimiento.id;
+        // var enlace = document.createElement('a');
+        // enlace.href = '#';
+        // enlace.className = 'btn btn-primary';
+        // enlace.textContent = 'Aquí el requerimiento ' + requerimiento.id;
 
-        // Agregar un salto de línea entre los botones (opcional)
-        contenedorBotones.appendChild(enlace);
-        contenedorBotones.appendChild(document.createElement('br'));
+        // contenedorBotones.appendChild(enlace);
+        // contenedorBotones.appendChild(document.createElement('br'));
     });
 
     // Cuando la página se carga, obtén las asignaciones y llénalas en el select

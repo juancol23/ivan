@@ -467,14 +467,14 @@
     <script type="text/javascript">
 
 
-        var mostrarBoton = document.getElementById('mostrarBoton');
-        var miDiv = document.getElementById('miDiv');
+        // var mostrarBoton = document.getElementById('mostrarBoton');
+        // var miDiv = document.getElementById('miDiv');
 
-        // Agregar un controlador de evento clic al botón
-        mostrarBoton.addEventListener('click', function () {
-            // Cambiar el estilo de display del div para mostrarlo
-            crearRequerimiento();
-        });
+        // // Agregar un controlador de evento clic al botón
+        // mostrarBoton.addEventListener('click', function () {
+        //     // Cambiar el estilo de display del div para mostrarlo
+        //     crearRequerimiento();
+        // });
 
 
 
@@ -496,7 +496,7 @@
         $('#btnCargar').click(function () {
             showLoadingAnimation();
 
-            Simula una tarea de carga, puedes reemplazar esto con tu propia lógica
+           // Simula una tarea de carga, puedes reemplazar esto con tu propia lógica
             setTimeout(function () {
                 hideLoadingAnimation();
                 $('#misTrabajosModal1').modal('hide');
@@ -511,7 +511,7 @@
         var nombreUsuario = localStorage.getItem('nombreUsuario');
         var splitNombre = nombreUsuario.split('.');
 
-        miH1.textContent = 'Bienvenid@: ' + splitNombre[0];
+        // miH1.textContent = 'Bienvenid@: ' + splitNombre[0];
 
     </script>
 
@@ -568,7 +568,7 @@
 
 
                 // Mostrar la lista de solicitantes en el div "solicitantesLesly"
-                document.getElementById('solicitantesLesly').innerHTML = solicitantesHTML;
+                // document.getElementById('solicitantesLesly').innerHTML = solicitantesHTML;
 
                 // Función para editar el campo "requerimiento" por ID
 
