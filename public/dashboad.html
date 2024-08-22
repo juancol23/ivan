@@ -396,12 +396,13 @@
                                             <option value="En Proceso">Creado</option>
                                             <option value="rachazado">Rechazado</option>
                                             <option value="completado">Completado</option>
+                                            <option value="completado">vacva</option>
                                             <!-- Agrega más opciones según tus necesidades -->
                                         </select>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="email" class="form-label">VMO*</label>
-                                        <input type="email" class="form-control" id="VMO" placeholder="VMO*" required>
+                                        <label for="VMO" class="form-label">VMO*</label>
+                                        <input type="text" class="form-control" id="VMO" placeholder="VMO*" required>
                                     </div>
 
                                     <div class="mb-3">
@@ -766,6 +767,8 @@
 
 
             var vmo = document.getElementById('VMO');
+
+
             var nombre_puesto = document.getElementById('nombre_puesto');
 
             var email = document.getElementById('email');
@@ -783,7 +786,7 @@
             // Crear un nuevo objeto JSON con los nuevos valores
             var newData = {
                 status: miSelect.value,
-                VMO: vmo.value,
+                vmo: vmo.value,
                 solicitante: solicitante.value,
                 asignacion: asignacion.value,
                 requerimiento: requerimiento.value,
@@ -1011,12 +1014,16 @@ function cargarAsignaciones() {
     fetch('https://runainstancia.azurewebsites.net/requerimiento')
         .then(response => response.json())
         .then(data => {
-            // Extraer las asignaciones únicas de los datos
-            const asignacionesUnicas = [...new Set(data.map(requerimiento => requerimiento.asignacion))];
+            // Extraer las asignaciones únicas de los datos, filtrando las que no son nulas o vacías
+            const asignacionesUnicas = [...new Set(
+                data
+                    .map(requerimiento => requerimiento.vmo)
+                    .filter(vmo => vmo !== null && vmo !== '')
+            )];
 
             // Llenar el select con las opciones de asignaciones
-            asignacionesUnicas.forEach(asignacion => {
-                document.getElementById('filtro').options.add(new Option(asignacion, asignacion));
+            asignacionesUnicas.forEach(vmo => {
+                document.getElementById('filtro').options.add(new Option(vmo, vmo));
             });
         })
         .catch(error => {
@@ -1038,7 +1045,7 @@ document.getElementById('filtro').addEventListener('change', function () {
             // Filtrar los requerimientos según la opción seleccionada
             const requerimientosFiltrados = opcionSeleccionada === 'listarTodo'
                 ? data
-                : data.filter(requerimiento => requerimiento.asignacion === opcionSeleccionada && requerimiento.status === 'En Proceso');
+                : data.filter(requerimiento => requerimiento.vmo === opcionSeleccionada && requerimiento.status === 'En Proceso');
 
             // Mostrar los resultados en el div con id "resultados"
             mostrarResultados(requerimientosFiltrados);
