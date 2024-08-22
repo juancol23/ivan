@@ -1035,7 +1035,7 @@ function cargarAsignaciones() {
 document.getElementById('filtro').addEventListener('change', function () {
     var opcionSeleccionada = this.value;
     localStorage.setItem('opcionSeleccionada', opcionSeleccionada);
-
+      showLoadingAnimation();
     // Aquí debes realizar la llamada al servicio con la opción seleccionada
     // y mostrar los resultados en el div con id "resultados"
     // Ejemplo (reemplaza la URL con la correcta):
@@ -1049,6 +1049,7 @@ document.getElementById('filtro').addEventListener('change', function () {
 
             // Mostrar los resultados en el div con id "resultados"
             mostrarResultados(requerimientosFiltrados);
+            hideLoadingAnimation();
         })
         .catch(error => {
             console.error('Error al obtener los requerimientos:', error);
