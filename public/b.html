@@ -58,17 +58,18 @@
         }
     </style>
 
-<style type="text/css">
-    #tablaContenedor {
-      width: 5000px !important; /* Asegura que el contenedor ocupe todo el ancho disponible */
-      overflow-x: auto !important; /* Habilita la barra de desplazamiento horizontal cuando sea necesario */
-    }
+    <style type="text/css">
+        #tablaContenedor {
+            width: 5000px !important;
+            /* Asegura que el contenedor ocupe todo el ancho disponible */
+            overflow-x: auto !important;
+            /* Habilita la barra de desplazamiento horizontal cuando sea necesario */
+        }
 
-    #nuevaTabla {
-      /* Aquí puedes definir estilos para tu tabla si lo deseas */
-    }
-
-</style>
+        #nuevaTabla {
+            /* Aquí puedes definir estilos para tu tabla si lo deseas */
+        }
+    </style>
 
 
 
@@ -252,7 +253,7 @@
                     <p>Por favor, proporciona la información necesaria para tus requerimientos</p>
 
                     <div class="row text-center">
-                       
+
 
                         <div id="solicitantesLesly"></div>
 
@@ -352,9 +353,9 @@
                                         </optgroup>
                                     </select>
 
-                                      <br>
+                                    <br>
 
-        <!--                  Quitado temporal           <div class="mb-3">
+                                    <!--                  Quitado temporal           <div class="mb-3">
                                         <label for="" class="form-label">Fecha Solicitud</label>
                                         <input type="date" class="form-control" id="fechaSolicitud"
                                             placeholder="Fecha Solicitud" - required>
@@ -536,7 +537,7 @@
                                         <input type="email" class="form-control" id="correo_" placeholder="correo" -
                                             required>
                                     </div>
-            <!--  Quitado temporal <div class="form-group">
+                                    <!--  Quitado temporal <div class="form-group">
                                         <label for="solicitante_">Solicitante</label>
                                         <br>
                                         <br>
@@ -938,7 +939,7 @@
             console.log("dataList" + JSON.stringify(dataList))
             // Crear un nuevo objeto JSON con los nuevos valores
             var newData = {
-                id: generarID();
+                id: generarID(),
                 status: miSelect.value,
                 VMO: vmo.value,
                 solicitante: asignacion.value,
@@ -995,7 +996,7 @@
         $('#btnCargar').click(function () {
             showLoadingAnimation();
 
-            Simula una tarea de carga, puedes reemplazar esto con tu propia lógica
+            // Simula una tarea de carga, puedes reemplazar esto con tu propia lógica
             setTimeout(function () {
                 hideLoadingAnimation();
                 $('#misTrabajosModal1').modal('hide');
@@ -1043,7 +1044,7 @@
                     return data.asignacion === nombreUsuario;
                 });
 
-                 var solicitantesLeslyEnProceso = solicitantesLesly.filter(function (data) {
+                var solicitantesLeslyEnProceso = solicitantesLesly.filter(function (data) {
                     return data.status === "En Proceso";
                 });
 
@@ -1053,11 +1054,11 @@
                 var uniqueRequerimientos = new Set();
                 solicitantesLeslyEnProceso.forEach(function (data) {
 
-                     if (!uniqueRequerimientos.has(data.requerimiento)) {
-        uniqueRequerimientos.add(data.requerimiento);
-    
+                    if (!uniqueRequerimientos.has(data.requerimiento)) {
+                        uniqueRequerimientos.add(data.requerimiento);
 
-        solicitantesHTML += `
+
+                        solicitantesHTML += `
           <div class='col-sm-4'>
             <div class='card'>
               <div class='card-body'>
@@ -1080,10 +1081,10 @@
         `;
 
 
-      
 
-        }
-                
+
+                    }
+
 
                 });
 
@@ -1107,7 +1108,7 @@
             localStorage.setItem("id", parametro);
 
             cargarPuesto();
-             var trabajoVinculado_ = document.getElementById('trabajoVinculado_');
+            var trabajoVinculado_ = document.getElementById('trabajoVinculado_');
             trabajoVinculado_.value = parametro;
 
 
@@ -1161,7 +1162,7 @@
             //         // trabajoVinculado_.value = data.requerimiento;
             //         /* NO COMPLETAR
             //          trabajoVinculado_.value = data.requerimiento;
-                    
+
             //          trabajoVinculado_.value = data.trabajoVinculado;
             //          // pasoTrabajoVinculado_.value = data.pasoTrabajoVinculado;
             //          fuente_.value = data.fuente;
@@ -1180,13 +1181,13 @@
             //          pregunta2_.value = data.pregunta2;
             //          pregunta3_.value = data.pregunta3;
             //          pregunta4_.value = data.pregunta4;
- 
+
             //          nombre_.value = data.nombre;
             //          solicitante_.value = data.solicitante;
             //          dni_.value = data.dni;
             //          telefono_.value = data.telefono;
             //          correo_.value = data.correo;
- 
+
             //          NO COMPLETAR */
             //         // asignacion_.value = data.asignacion;
 
@@ -1208,7 +1209,7 @@
             localStorage.setItem("id", parametro);
             // alert(parametro+"parametro")
 
-           const nuevaPaginaURL = 'https://semilleros-ccb45.web.app/wi.html';
+            const nuevaPaginaURL = 'https://semilleros-ccb45.web.app/wi.html';
 
             // Redirigir a la nueva página
             window.location.href = nuevaPaginaURL;
@@ -1217,7 +1218,7 @@
 
 
         var idddd = localStorage.getItem('id');
-        console.log(idddd+"IDDDDD")
+        console.log(idddd + "IDDDDD")
 
         function guardar() {
             showLoadingAnimation();
@@ -1262,13 +1263,13 @@
 
             // });
 
-              var nombreUsuario = localStorage.getItem('nombreUsuario');
+            var nombreUsuario = localStorage.getItem('nombreUsuario');
 
             var objeto = {
                 dni: "",
                 status: "En Proceso",
                 solicitante: "",
-                asignacion: ""+nombreUsuario,
+                asignacion: "" + nombreUsuario,
                 requerimiento: "",
                 cv: "",
                 telefono: "",
@@ -1301,7 +1302,7 @@
                 vmo: "",
                 antecedentesA: "a",
                 antecedentesB: "b",
-                antecedentePolicial : "antecedentePolicial",
+                antecedentePolicial: "antecedentePolicial",
                 antecedentePenal: "antecedentePenal",
                 antecedenteJudicial: "antecedenteJudicial",
                 certiAdulto: "certiAdulto",
@@ -1311,13 +1312,13 @@
                 fichaMedica: "fichaMedica",
                 fichaRequerimiento: "fichaRequerimiento",
                 fichaAprobación: "fichaAprobación",
-                otrosAdjuntos : "otrosAdjuntos",
-                base : "muestrate"
+                otrosAdjuntos: "otrosAdjuntos",
+                base: "muestrate"
             };
 
 
             fetch(`https://runainstancia.azurewebsites.net/requerimiento/${idddd}`)
-            // fetch("https://runainstancia.azurewebsites.net/requerimiento")
+                // fetch("https://runainstancia.azurewebsites.net/requerimiento")
                 .then(response => {
                     if (response.ok) {
                         return response.json();
@@ -1341,13 +1342,13 @@
                             // messagingSenderId: "543478666358",
                             // appId: "1:543478666358:web:dc0e8cff35c982faab3b57",
                             // measurementId: "G-WK87KGXSWK"
-                             apiKey: "AIzaSyAbYXZjaA_bVLeK_rhVNp1Scb8hzDarxsI",
-  authDomain: "sistema-vopc.firebaseapp.com",
-  databaseURL: "https://sistema-vopc-default-rtdb.firebaseio.com",
-  projectId: "sistema-vopc",
-  storageBucket: "sistema-vopc.appspot.com",
-  messagingSenderId: "80387623223",
-  appId: "1:80387623223:web:80726fbadef8cc258272b2"
+                            apiKey: "AIzaSyAbYXZjaA_bVLeK_rhVNp1Scb8hzDarxsI",
+                            authDomain: "sistema-vopc.firebaseapp.com",
+                            databaseURL: "https://sistema-vopc-default-rtdb.firebaseio.com",
+                            projectId: "sistema-vopc",
+                            storageBucket: "sistema-vopc.appspot.com",
+                            messagingSenderId: "80387623223",
+                            appId: "1:80387623223:web:80726fbadef8cc258272b2"
                         };
 
 
@@ -1378,11 +1379,11 @@
                                     console.log("URL del archivo:", url);
 
                                     // Actualizar el campo "requerimiento" del objeto
-                                    objeto.solicitante = data.solicitante+"";
+                                    objeto.solicitante = data.solicitante + "";
 
-                             
 
-                                    objeto.requerimiento = data.requerimiento+"";
+
+                                    objeto.requerimiento = data.requerimiento + "";
 
                                     objeto.telefono = telefono_.value;
                                     objeto.correo = correo_.value;
@@ -1415,19 +1416,19 @@
 
                                     objeto.correo = fuente_.value;
 
-                                    
-                                    objeto.antecedentesA= "a";
-                                    objeto.antecedentesB= "b";
+
+                                    objeto.antecedentesA = "a";
+                                    objeto.antecedentesB = "b";
                                     objeto.antecedentePolicial = "antecedentePolicial";
-                                    objeto.antecedentePenal= "antecedentePenal";
-                                    objeto.antecedenteJudicial= "antecedenteJudicial";
-                                    objeto.certiAdulto= "certiAdulto";
-                                    objeto.multiTest= "multiTest";
-                                    objeto.informePsicologico= "informePsicologico";
-                                    objeto.fichaDatos= "fichaDatos";
-                                    objeto.fichaMedica= "fichaMedica";
-                                    objeto.fichaRequerimiento= "fichaRequerimiento";
-                                    objeto.fichaAprobación= "fichaAprobación";
+                                    objeto.antecedentePenal = "antecedentePenal";
+                                    objeto.antecedenteJudicial = "antecedenteJudicial";
+                                    objeto.certiAdulto = "certiAdulto";
+                                    objeto.multiTest = "multiTest";
+                                    objeto.informePsicologico = "informePsicologico";
+                                    objeto.fichaDatos = "fichaDatos";
+                                    objeto.fichaMedica = "fichaMedica";
+                                    objeto.fichaRequerimiento = "fichaRequerimiento";
+                                    objeto.fichaAprobación = "fichaAprobación";
                                     objeto.otrosAdjuntos = "otrosAdjuntos";
                                     objeto.base = "muestrate";
 
@@ -1518,7 +1519,7 @@
                             }).catch((error) => {
                                 console.error("Error al subir el archivo:", error);
                             });
-                        }else{
+                        } else {
                             hideLoadingAnimation();
                             location.reload();
                             alert("Es obligatorio adjuntar el CV")
@@ -1548,11 +1549,11 @@
         }
 
 
-                // Realiza las operaciones necesarias con la lista de requerimientos recibida.
+        // Realiza las operaciones necesarias con la lista de requerimientos recibida.
 
     </script>
 
-<!-- <style type="text/css">
+    <!-- <style type="text/css">
     #nuevaTablaContainer tbody{
   color:#00467f;
   font-weight:500;
@@ -1617,7 +1618,7 @@
                                                         <th class="text-center">nombre</th>
                                                         <th class="text-center">fuente</th>
 
-                                                    
+
 
 
 
@@ -1819,7 +1820,7 @@
                     telefono: cells[7].textContent,
                     telefono: cells[8].textContent,
 
-                
+
                 };
                 datos.push(objeto);
             });
@@ -1898,34 +1899,34 @@
 
 
     <script type="text/javascript">
-        function cargarPuesto(){
+        function cargarPuesto() {
             const idRequerimiento = localStorage.getItem('id');
             // Verifica si el id está presente antes de realizar la solicitud
             if (idRequerimiento) {
-              // Construye la URL del servicio con el id
-              const url = `https://runainstancia.azurewebsites.net/requerimiento/${idRequerimiento}`;
+                // Construye la URL del servicio con el id
+                const url = `https://runainstancia.azurewebsites.net/requerimiento/${idRequerimiento}`;
 
-              // Realiza la solicitud Fetch
-              fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                  // Extrae el nombre_puesto de la respuesta
-                  const nombre_puesto = data.nombre_puesto;
-                  const requerimiento = data.requerimiento;
-                  localStorage.setItem("nombre_puesto",nombre_puesto)
-                  localStorage.setItem("requerimiento",requerimiento)
-                  // Usa la variable nombre_puesto según tus necesidades
-                  console.log('Nombre Puesto:', nombre_puesto);
-                  console.log('idRequerimiento:', idRequerimiento);
-                })
-                .catch(error => {
-                  console.error('Error al obtener datos:', error);
-                });
+                // Realiza la solicitud Fetch
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        // Extrae el nombre_puesto de la respuesta
+                        const nombre_puesto = data.nombre_puesto;
+                        const requerimiento = data.requerimiento;
+                        localStorage.setItem("nombre_puesto", nombre_puesto)
+                        localStorage.setItem("requerimiento", requerimiento)
+                        // Usa la variable nombre_puesto según tus necesidades
+                        console.log('Nombre Puesto:', nombre_puesto);
+                        console.log('idRequerimiento:', idRequerimiento);
+                    })
+                    .catch(error => {
+                        console.error('Error al obtener datos:', error);
+                    });
             } else {
-              console.error('No se encontró el id en el localStorage');
+                console.error('No se encontró el id en el localStorage');
             }
         }
-        
+
     </script>
 
 

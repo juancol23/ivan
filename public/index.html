@@ -7,7 +7,7 @@
     <title>Página de Inicio de Sesión</title>
     <!-- Incluye Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         /* Personaliza el estilo de la página */
         .divider:after,
@@ -43,29 +43,33 @@
         }
 
         .loader {
-    display: none;
-    border: 5px solid #f3f3f3;
-    border-top: 5px solid #3498db;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    animation: spin 2s linear infinite;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-}
+            display: none;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
 
-.loader.visible {
-    display: block;
-}
+        .loader.visible {
+            display: block;
+        }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
 
+            100% {
+                transform: rotate(360deg);
+            }
+        }
     </style>
 </head>
 
@@ -78,67 +82,66 @@
                         alt="Imagen de muestra">
                 </div>
                 <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                        <div
-                            class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start text-center">
-                            <!-- <p class="lead fw-normal mb-0 me-3">Iniciar sesión con</p> -->
+                    <div
+                        class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start text-center">
+                        <!-- <p class="lead fw-normal mb-0 me-3">Iniciar sesión con</p> -->
 
-                        </div> 
+                    </div>
 
 
-                                <div class="divider d-flex align-items-center my-4">
-                                    <!-- <p class="text-center fw-bold mx-3 mb-0">O</p> -->
-                                    <button type="button" class="btn black btn-floating mx-1">
-                                        <i class="fab fa-facebook-f"></i>
-                                    </button>
+                    <div class="divider d-flex align-items-center my-4">
+                        <!-- <p class="text-center fw-bold mx-3 mb-0">O</p> -->
+                        <button type="button" class="btn black btn-floating mx-1">
+                            <i class="fab fa-facebook-f"></i>
+                        </button>
 
-                                    <button type="button" class="btn black btn-floating mx-1">
-                                        <i class="fab fa-twitter"></i>
-                                    </button>
+                        <button type="button" class="btn black btn-floating mx-1">
+                            <i class="fab fa-twitter"></i>
+                        </button>
 
-                                    <button type="button" class="btn black btn-floating mx-1">
-                                        <i class="fab fa-linkedin-in"></i>
-                                    </button>
-                                </div>
+                        <button type="button" class="btn black btn-floating mx-1">
+                            <i class="fab fa-linkedin-in"></i>
+                        </button>
+                    </div>
 
-                                <!-- Campo de correo electrónico -->
-                                <div class="form-outline mb-4">
-                                    <label class="form-label" for="form3Example3">Dirección IVAN de correo electrónico</label>
+                    <!-- Campo de correo electrónico -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="form3Example3">Dirección de correo electrónico</label>
 
-                                    <input type="email" id="email" class="form-control form-control-lg"
-                                        placeholder="Ingresa tu email" required/>
-                                </div>
+                        <input type="email" id="email" class="form-control form-control-lg"
+                            placeholder="Ingresa tu email" required />
+                    </div>
 
-                                <!-- Campo de contraseña -->
-                                <div class="form-outline mb-3">
-                                    <label class="form-label" for="form3Example4">Contraseña</label>
+                    <!-- Campo de contraseña -->
+                    <div class="form-outline mb-3">
+                        <label class="form-label" for="form3Example4">Contraseña</label>
 
-                                    <input type="password" id="password" class="form-control form-control-lg"
-                                        placeholder="Ingresa tu contraseña" required />
-                                </div>
+                        <input type="password" id="password" class="form-control form-control-lg"
+                            placeholder="Ingresa tu contraseña" required />
+                    </div>
 
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <!-- Casilla de verificación -->
-                                    <div class="form-check mb-0">
-                                        <!--  <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" /> -->
-                                        <label class="form-check-label" for="form2Example3">
-                                            <!-- Recordarme -->
-                                        </label>
-                                    </div>
-                                    <a href="#!" class="text-body">¿Olvidaste tu contraseña?</a>
-                                </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <!-- Casilla de verificación -->
+                        <div class="form-check mb-0">
+                            <!--  <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" /> -->
+                            <label class="form-check-label" for="form2Example3">
+                                <!-- Recordarme -->
+                            </label>
+                        </div>
+                        <a href="#!" class="text-body">¿Olvidaste tu contraseña?</a>
+                    </div>
 
-                                <div class="text-center text-lg-start mt-4 pt-2">
-                                    <button type="submit" class="btn black text-white btn-lg"
-                                        style="padding-left: 2.5rem; padding-right: 2.5rem;"
-                                       id="loadButton" onclick="startttt()">
-                                        Iniciar sesión
-                                    </button>
-                                    <!--    <p class="small fw-bold mt-2 pt-1 mb-0">¿No tienes una cuenta? <a href="#!"
+                    <div class="text-center text-lg-start mt-4 pt-2">
+                        <button type="submit" class="btn black text-white btn-lg"
+                            style="padding-left: 2.5rem; padding-right: 2.5rem;" id="loadButton" onclick="startttt()">
+                            Iniciar sesión
+                        </button>
+                        <!--    <p class="small fw-bold mt-2 pt-1 mb-0">¿No tienes una cuenta? <a href="#!"
                                             class="link-danger">Registrarse</a></p> -->
-                                </div>
- 
+                    </div>
 
-    <div class="loader" id="loader"></div>
+
+                    <div class="loader" id="loader"></div>
                 </div>
             </div>
         </div>
@@ -170,7 +173,7 @@
     <!-- Incluye Bootstrap JS y Popper.js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!--   <script type="text/javascript">
+    <!--   <script type="text/javascript">
           // Función para mostrar la animación de carga
         function showLoadingAnimation() {
             $('#loader').addClass('visible');
@@ -197,73 +200,73 @@
         // document.getElementById('loginForm').addEventListener('submit', function (e) {
         //     e.preventDefault();
 
-          // function startttt(){
-            
-          //       // Obtener los valores del correo y la contraseña
-          //       var email = document.getElementById('email').value;
-          //       var password = document.getElementById('password').value;
+        // function startttt(){
+
+        //       // Obtener los valores del correo y la contraseña
+        //       var email = document.getElementById('email').value;
+        //       var password = document.getElementById('password').value;
 
 
 
-          //       // Definir los usuarios y sus perfiles
-          //       var usuarios = [
-          //           { email: 'ivan.quiroz@runa-it.com', perfil: 'admin', contraseña: '123456' },
-          //           { email: 'lesly.huaman@runa-it.com', perfil: 'analista', contraseña: '123456' },
-          //           { email: 'abel.pineda@runa-it.com', perfil: 'analista', contraseña: '123456' }
-          //       ];
-          //       var pass_="";
-          //       var email_="";
-          //       // Verificar si el usuario existe
-          //       var usuarioEncontrado = usuarios.find(function (usuario) {
-          //           pass_=usuario.contraseña;
-          //           email_=email;
-          //           return usuario.email === email && usuario.contraseña === password;
-          //       });
+        //       // Definir los usuarios y sus perfiles
+        //       var usuarios = [
+        //           { email: 'ivan.quiroz@runa-it.com', perfil: 'admin', contraseña: '123456' },
+        //           { email: 'lesly.huaman@runa-it.com', perfil: 'analista', contraseña: '123456' },
+        //           { email: 'abel.pineda@runa-it.com', perfil: 'analista', contraseña: '123456' }
+        //       ];
+        //       var pass_="";
+        //       var email_="";
+        //       // Verificar si el usuario existe
+        //       var usuarioEncontrado = usuarios.find(function (usuario) {
+        //           pass_=usuario.contraseña;
+        //           email_=email;
+        //           return usuario.email === email && usuario.contraseña === password;
+        //       });
 
-          //       if (usuarioEncontrado) {
-          //           // Guardar el perfil del usuario en localStorage
-          //           localStorage.setItem('perfilUsuario', usuarioEncontrado.perfil);
-          //           localStorage.setItem('nombreUsuario', email_);
-          //           localStorage.setItem('nombreContraseña', pass_);
+        //       if (usuarioEncontrado) {
+        //           // Guardar el perfil del usuario en localStorage
+        //           localStorage.setItem('perfilUsuario', usuarioEncontrado.perfil);
+        //           localStorage.setItem('nombreUsuario', email_);
+        //           localStorage.setItem('nombreContraseña', pass_);
 
-          //           // Redireccionar a la página correspondiente
-          //           if (usuarioEncontrado.perfil === 'admin') {
-          //               window.location.href = 'dashboad.html';
-          //           } else if (usuarioEncontrado.perfil === 'analista') {
-          //               window.location.href = 'b.html';
-          //           }
+        //           // Redireccionar a la página correspondiente
+        //           if (usuarioEncontrado.perfil === 'admin') {
+        //               window.location.href = 'dashboad.html';
+        //           } else if (usuarioEncontrado.perfil === 'analista') {
+        //               window.location.href = 'b.html';
+        //           }
 
-          //       } else {
-          //           alert('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
-          //       }
-          // };
+        //       } else {
+        //           alert('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
+        //       }
+        // };
 
 
-            function startttt(){
-            
-                // Obtener los valores del correo y la contraseña
-                var email = document.getElementById('email').value;
-                var password = document.getElementById('password').value;
+        function startttt() {
 
-                var url = 'https://runainstancia.azurewebsites.net/user';
-                var usuariosM; // Declaramos la variable usuariosM aquí.
+            // Obtener los valores del correo y la contraseña
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
 
-                fetch(url)
-                  .then(response => {
+            var url = 'https://runainstancia.azurewebsites.net/user';
+            var usuariosM; // Declaramos la variable usuariosM aquí.
+
+            fetch(url)
+                .then(response => {
                     if (response.ok) {
-                      return response.json();
+                        return response.json();
                     }
                     throw new Error('Error al obtener los datos del usuario.');
-                  })
-                  .then(data => {
+                })
+                .then(data => {
                     // Los datos del usuario se encuentran en la variable 'data'.
                     console.log(data);
 
                     // Mapear los datos remotos al modelo de usuario
                     var usuarios = data.map(item => ({
-                      email: item.email,
-                      perfil: item.perfil,
-                      contraseña: item.contraseña
+                        email: item.email,
+                        perfil: item.perfil,
+                        contraseña: item.contraseña
                     }));
 
                     // Ahora 'usuarios' contiene los datos en el formato deseado.
@@ -271,52 +274,52 @@
 
                     // Asignamos el valor de 'usuarios' a 'usuariosM'.
                     usuariosM = usuarios;
-                    
 
-                        var pass_="";
-                        var email_="";
-                        // Verificar si el usuario existe
-                        var usuarioEncontrado = usuariosM.find(function (usuario) {
-                            pass_=usuario.contraseña;
-                            email_=email;
-                            console.log("anal:" +usuario.email === email && usuario.contraseña === password)
-                            return usuario.email === email && usuario.contraseña === password;
-                        });
 
-                        if (usuarioEncontrado) {
-                            // Guardar el perfil del usuario en localStorage
-                            localStorage.setItem('perfilUsuario', usuarioEncontrado.perfil);
-                            localStorage.setItem('nombreUsuario', email_);
-                            localStorage.setItem('nombreContraseña', pass_);
+                    var pass_ = "";
+                    var email_ = "";
+                    // Verificar si el usuario existe
+                    var usuarioEncontrado = usuariosM.find(function (usuario) {
+                        pass_ = usuario.contraseña;
+                        email_ = email;
+                        console.log("anal:" + usuario.email === email && usuario.contraseña === password)
+                        return usuario.email === email && usuario.contraseña === password;
+                    });
 
-                            // Redireccionar a la página correspondiente
-                            if (usuarioEncontrado.perfil === 'admin') {
-                                window.location.href = 'dashboad.html';
-                            } else if (usuarioEncontrado.perfil === 'analista') {
-                                window.location.href = 'b.html';
-                            } else if (usuarioEncontrado.perfil === 'backoffice') {
-                                window.location.href = 'backoffice.html';
-                            }
+                    if (usuarioEncontrado) {
+                        // Guardar el perfil del usuario en localStorage
+                        localStorage.setItem('perfilUsuario', usuarioEncontrado.perfil);
+                        localStorage.setItem('nombreUsuario', email_);
+                        localStorage.setItem('nombreContraseña', pass_);
 
-                        } else {
-                            alert('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
+                        // Redireccionar a la página correspondiente
+                        if (usuarioEncontrado.perfil === 'admin') {
+                            window.location.href = 'dashboad.html';
+                        } else if (usuarioEncontrado.perfil === 'analista') {
+                            window.location.href = 'b.html';
+                        } else if (usuarioEncontrado.perfil === 'backoffice') {
+                            window.location.href = 'backoffice.html';
                         }
+
+                    } else {
+                        alert('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
+                    }
 
 
                     // Puedes realizar las operaciones necesarias con los datos mapeados.
-                  })
-                  .catch(error => {
+                })
+                .catch(error => {
                     console.error(error);
-                  });
+                });
 
-                // // Definir los usuarios y sus perfiles
-                // var usuarios = [
-                //     { email: 'ivan.quiroz@runa-it.com', perfil: 'admin', contraseña: '123456' },
-                //     { email: 'lesly.huaman@runa-it.com', perfil: 'analista', contraseña: '123456' },
-                //     { email: 'abel.pineda@runa-it.com', perfil: 'analista', contraseña: '123456' }
-                // ];
-               
-          };
+            // // Definir los usuarios y sus perfiles
+            // var usuarios = [
+            //     { email: 'ivan.quiroz@runa-it.com', perfil: 'admin', contraseña: '123456' },
+            //     { email: 'lesly.huaman@runa-it.com', perfil: 'analista', contraseña: '123456' },
+            //     { email: 'abel.pineda@runa-it.com', perfil: 'analista', contraseña: '123456' }
+            // ];
+
+        };
 
     </script>
 </body>
