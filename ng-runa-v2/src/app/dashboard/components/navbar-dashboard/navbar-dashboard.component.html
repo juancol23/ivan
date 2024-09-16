@@ -1,0 +1,100 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Talento</a>
+        </li>
+        <li class="nav-item">
+          <!-- Button trigger modal -->
+          <button
+            type="button"
+            class="nav-link"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+            Mis Trabajos
+          </button>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Nuevo Candidato</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Visualizar gráficos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Aplicar como externo</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div
+        class="modal-body d-flex flex-column"
+        [ngClass]="{ 'gap-5': codesCompany.length }"
+      >
+        <div class="card w-full">
+          <div class="card-body">
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              (change)="onSelectChange($event)"
+            >
+              <option value="">Listar todos</option>
+              <option *ngFor="let company of companies" [value]="company.vmo">
+                {{ company.vmo }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="d-flex flex-column gap-3">
+          <button
+            type="button"
+            *ngFor="let code of codesCompany"
+            class="btn btn-dark"
+          >
+            {{ code.requerimiento }}
+          </button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
