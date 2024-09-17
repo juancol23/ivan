@@ -1,0 +1,12 @@
+.modal-body .row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.modal-body .col-md-6 {
+  width: 50%;
+}
+
+.modal-body .col-md-12 {
+  width: 100%;
+}

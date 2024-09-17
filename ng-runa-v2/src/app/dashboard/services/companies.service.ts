@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Company } from '../interfaces/company';
-import { catchError, Observable, of } from 'rxjs';
+import {catchError, Observable, of, throwError} from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class CompanyService {
@@ -13,6 +13,12 @@ export class CompanyService {
   getCompanies(): Observable<Company[]> {
     return this.httpClient
       .get<Company[]>(this.url)
-      .pipe(catchError((error) => of([])));
+      .pipe(catchError(() => of([])));
+  }
+
+  createRequerimiento(data: Company): Observable<Company>{
+    return this.httpClient
+      .post<Company>(this.url, data)
+      .pipe(catchError(() =>throwError(()=>new Error('Error al guardar el requerimiento.'))));
   }
 }

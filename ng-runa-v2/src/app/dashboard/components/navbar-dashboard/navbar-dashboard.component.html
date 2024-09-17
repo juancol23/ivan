@@ -43,57 +43,126 @@
 </nav>
 
 <!-- Modal -->
-<div
-  class="modal fade"
-  id="exampleModal"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div
-        class="modal-body d-flex flex-column"
-        [ngClass]="{ 'gap-5': codesCompany.length }"
-      >
-        <div class="card w-full">
-          <div class="card-body">
-            <select
-              class="form-select"
-              aria-label="Default select example"
-              (change)="onSelectChange($event)"
-            >
-              <option value="">Listar todos</option>
-              <option *ngFor="let company of companies" [value]="company.vmo">
-                {{ company.vmo }}
-              </option>
-            </select>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6" *ngIf="!showCreateForm">
+            <button type="button" class="btn btn-primary" (click)="toggleCreateForm()">Crear Requerimiento</button>
           </div>
-        </div>
+          <div class="col-md-6" *ngIf="!showCreateForm">
+            <div class="card w-full">
+              <div class="card-body">
+                <select class="form-select" aria-label="Default select example" (change)="onSelectChange($event)">
+                  <option value="">Listar todos</option>
+                  <option *ngFor="let company of companies" [value]="company.vmo">{{ company.vmo }}</option>
+                </select>
+              </div>
+            </div>
+            <div class="d-flex flex-column gap-3">
+              <button type="button" *ngFor="let code of codesCompany" class="btn btn-dark">
+                {{ code.requerimiento }}
+              </button>
+            </div>
+          </div>
 
-        <div class="d-flex flex-column gap-3">
-          <button
-            type="button"
-            *ngFor="let code of codesCompany"
-            class="btn btn-dark"
-          >
-            {{ code.requerimiento }}
-          </button>
+          <div class="col-md-12" *ngIf="showCreateForm">
+            <form [formGroup]="requerimientoForm" (ngSubmit)="crearRequerimiento()">
+              <div class="mb-3">
+                <label id="status" class="form-label">Status*</label>
+                <select class="form-select" formControlName="status">
+                  <option value="En Proceso">Creado</option>
+                  <option value="rechazado">Rechazado</option>
+                  <option value="completado">Completado</option>
+                  <option value="vacva">vacva</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label id="VMO" class="form-label">VMO*</label>
+                <input type="text" class="form-control" formControlName="vmo" placeholder="VMO*" required>
+              </div>
+              <div class="mb-3">
+                <label id="nombre_puesto" class="form-label">Nombre del puesto*</label>
+                <input type="text" class="form-control" formControlName="nombrePuesto" placeholder="Nombre del puesto*" required>
+              </div>
+              <div class="mb-3">
+                <label id="solicitante" class="form-label">Solicitante</label>
+                <input type="text" class="form-control" formControlName="solicitante" placeholder="Solicitante" required>
+              </div>
+              <div class="mb-3">
+                <label id="requerimiento" class="form-label">Requerimiento</label>
+                <input type="text" class="form-control" formControlName="requerimiento" placeholder="Requerimiento" required>
+              </div>
+              <div class="mb-3">
+                <label id="fechaSolicitud" class="form-label">Fecha Solicitud</label>
+                <input type="date" class="form-control" formControlName="fechaSolicitud" placeholder="Fecha Solicitud" required>
+              </div>
+              <div class="mb-3">
+                <label id="seniority" class="form-label">Seniority</label>
+                <select class="form-select" formControlName="seniority">
+                  <option *ngFor="let seniority of seniorities" [value]="seniority">{{ seniority }}</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label id="cantidad" class="form-label">Cantidad de vacantes</label>
+                <input type="text" class="form-control" formControlName="cantidad" placeholder="Ingresa el número de vacantes" required>
+              </div>
+              <div class="mb-3">
+                <label id="tecnologia" class="form-label">Tecnología</label>
+                <select class="form-select" formControlName="tecnologia">
+                  <option *ngFor="let tech of tecnologias" [value]="tech">{{ tech }}</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label id="cliente" class="form-label">Cliente</label>
+                <select class="form-select" formControlName="cliente">
+                  <option *ngFor="let client of clientes" [value]="client">{{ client }}</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label id="prioridad" class="form-label">Prioridad</label>
+                <select class="form-select" formControlName="prioridad">
+                  <option value="A">A</option>
+                  <option value="M">M</option>
+                  <option value="B">B</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label id="motivo" class="form-label">Motivo</label>
+                <select class="form-select" formControlName="motivo">
+                  <option value="NUEVA">NUEVA</option>
+                  <option value="SUSTITUCION">SUSTITUCIÓN</option>
+                  <option value="PREVENTA">PREVENTA</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label id="OBS_CANCELADOS" class="form-label">OBS_CANCELADOS</label>
+                <select class="form-select" formControlName="obsCancelados">
+                  <option *ngFor="let obs of obsCancelados" [value]="obs">{{ obs }}</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label id="asignacion" class="form-label">Asignación</label>
+                <select class="form-select" formControlName="asignacion">
+                  <option *ngFor="let user of users" [value]="user.email">{{ user.email }}</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label id="adjuntoBase" class="form-label">Adjuntar Archivo</label>
+                <input type="file" class="form-control" formControlName="adjuntoBase" required>
+              </div>
+              <button id="btnCargar" class="btn btn-primary" type="submit">Enviar</button>
+            </form>
+          </div>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Close
-        </button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
