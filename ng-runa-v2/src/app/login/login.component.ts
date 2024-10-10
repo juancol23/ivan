@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -11,23 +12,27 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 })
 export class LoginComponent {
 
-  constructor(private router: Router) { }
+  formLogin: FormGroup;
 
-  formLogin: FormGroup = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl('')
-  });
+  constructor(private router: Router, private userService: UserService) { 
+    this.formLogin = new FormGroup({
+      email:    new FormControl(''),
+      password: new FormControl('')
+    });
+  }
 
   startttt = (form: FormGroup): void => {
 
     // Obtener los valores del correo y la contraseña
-    var email: string = form.controls['email'].value;
-    var password: string = form.controls['password'].value;
+    var email:    string = this.formLogin.value.email;
+    var password: string = this.formLogin.value.password;
+
+    console.log({ email, password })
+    var usuariosM
 
     var url = 'https://runainstancia.azurewebsites.net/user';
-    var usuariosM; // Declaramos la variable usuariosM aquí.
 
-    fetch(url)
+    fetch(url, { mode: 'no-cors' })
       .then(response => {
         if (response.ok) {
           return response.json();
@@ -35,30 +40,27 @@ export class LoginComponent {
         throw new Error('Error al obtener los datos del usuario.');
       })
       .then(data => {
-        // Los datos del usuario se encuentran en la variable 'data'.
-        console.log(data);
 
         // Mapear los datos remotos al modelo de usuario
         var usuarios = data.map((item: { email: string, perfil: string, contraseña: string }) => ({
-          email: item.email,
-          perfil: item.perfil,
+          email:      item.email,
+          perfil:     item.perfil,
           contraseña: item.contraseña
         }));
 
-        // Ahora 'usuarios' contiene los datos en el formato deseado.
-        console.log(usuarios);
+        console.log(usuarios)
 
-        // Asignamos el valor de 'usuarios' a 'usuariosM'.
-        usuariosM = usuarios;
+        usuariosM = usuarios 
 
+        console.log(usuarios)
 
-        var pass_ = "";
-        var email_ = "";
+        var pass_  : string = "";
+        var email_ : string = "";
         // Verificar si el usuario existe
-        var usuarioEncontrado = usuariosM.find(function (usuario: { contraseña: string; email: string; }) {
-          pass_ = usuario.contraseña;
-          email_ = email;
-          console.log("anal:" + usuario.email === email && usuario.contraseña === password)
+        var usuarioEncontrado = usuariosM.find(function (usuario: { email: string, perfil: string, contraseña: string }) {
+          email_ = usuario.email;
+          pass_  = usuario.contraseña;
+          console.log(usuario.email === email && usuario.contraseña === password)
           return usuario.email === email && usuario.contraseña === password;
         });
 
@@ -67,6 +69,9 @@ export class LoginComponent {
           localStorage.setItem('perfilUsuario', usuarioEncontrado.perfil);
           localStorage.setItem('nombreUsuario', email_);
           localStorage.setItem('nombreContraseña', pass_);
+
+          var pruebita = this.userService.logintemp();
+          console.log(pruebita)
 
           // Redireccionar a la página correspondiente
           if (usuarioEncontrado.perfil === 'admin') {
@@ -80,7 +85,6 @@ export class LoginComponent {
         } else {
           alert('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
         }
-
 
         // Puedes realizar las operaciones necesarias con los datos mapeados.
       })

@@ -1,0 +1,534 @@
+<script type="text/javascript">
+    // Recuperar la lista de objetos desde localStorage
+    // var dataList = JSON.parse(localStorage.getItem('miData')) || [];
+    var dataList = [];
+
+    var url = 'https://runainstancia.azurewebsites.net/requerimiento';
+
+
+    fetch(url)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error('Error al obtener la lista de requerimientos.');
+        })
+        .then(data => {
+            // En lugar de utilizar los datos del 'localStorage', utilizamos los datos recibidos.
+            var dataList = data;
+
+            var nombreUsuario = localStorage.getItem('nombreUsuario');
+
+            // Filtrar los objetos con "Analista_Lesly" como solicitante
+            var solicitantesLesly = dataList.filter(function (data) {
+                return data.asignacion === nombreUsuario;
+            });
+
+            var solicitantesLeslyEnProceso = solicitantesLesly.filter(function (data) {
+                return data.status === "En Proceso";
+            });
+
+
+            // Crear una lista de solicitantes en formato HTML
+            var solicitantesHTML = "";
+            var uniqueRequerimientos = new Set();
+            solicitantesLeslyEnProceso.forEach(function (data) {
+
+                if (!uniqueRequerimientos.has(data.requerimiento)) {
+                    uniqueRequerimientos.add(data.requerimiento);
+
+
+                    solicitantesHTML += `
+      <div class='col-sm-4'>
+        <div class='card'>
+          <div class='card-body'>
+            <h4 class='card-text'>
+              <div class='card-body'>
+                <div class='card'>${data.requerimiento}</div>
+              </div>
+            </h4>
+            <h4 class='card-text'>
+              <div class='card-body'>
+                <div class='card'>${data.nombre_puesto}</div>
+              </div>
+            </h4>
+            <div> Cantidad de vacantes: <b>1</b></div>
+          </div>
+          <button id='miBoton' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#misTrabajosModal1' data-valor='${data.id}' onClick='obtenerValor(${data.id})'>Completar</button>
+          <button id='miBoton2' class='btn btn-dark' data-valor='${data.id}' onClick='editarValor(${data.id})'>Editar</button>
+        </div>
+      </div>
+    `;
+
+
+
+
+                }
+
+
+            });
+
+
+            // Mostrar la lista de solicitantes en el div "solicitantesLesly"
+            document.getElementById('solicitantesLesly').innerHTML = solicitantesHTML;
+
+            // Función para editar el campo "requerimiento" por ID
+
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+
+    function obtenerValor(parametro) {
+        // alert(parametro+"asd")
+        // var miBoton = document.getElementById('miBoton');
+        // Obtener el valor personalizado del botón
+        // var valorPersonalizado = miBoton.getAttribute('data-valor');
+        localStorage.setItem("id", parametro);
+
+        cargarPuesto();
+        var trabajoVinculado_ = document.getElementById('trabajoVinculado_');
+        trabajoVinculado_.value = parametro;
+
+
+        // fetch(`https://runainstancia.azurewebsites.net/requerimiento/${parametro}`)
+        //     .then(response => {
+        //         if (response.ok) {
+        //             return response.json();
+        //         }
+        //         throw new Error('Error al obtener la lista de requerimientos.');
+        //     })
+        //     .then(data => {
+        //         // En lugar de utilizar los datos del 'localStorage', utilizamos los datos recibidos.
+        //         var dataList = data;
+
+        //         var dni = data.dni
+        //         // alert("data: " + JSON.stringify(data));
+
+        //         // var asd = JSON.stringify(data);
+        //         console.log(dataList)
+        //         console.log(data.dni)
+        //         console.log(dataList.dni)
+        //         // alert("asd.trabajoVinculado: " + asd.trabajoVinculado)
+        //         var solicitante_ = document.getElementById('solicitante_');
+
+        //         var trabajoVinculado_ = document.getElementById('trabajoVinculado_');
+        //         // var pasoTrabajoVinculado_ = document.getElementById('pasoTrabajoVinculado_');
+        //         var fuente_ = document.getElementById('fuente_');
+        //         var fechaNacimiento_ = document.getElementById('fechaNacimiento_');
+        //         var todosTelefonos_ = document.getElementById('todosTelefonos_');
+        //         var puesto_ = document.getElementById('puesto_');
+        //         var empleador_ = document.getElementById('empleador_');
+        //         var institucion_ = document.getElementById('institucion_');
+        //         var carreras_ = document.getElementById('carreras_');
+        //         var grados_ = document.getElementById('grados_');
+        //         var salario_ = document.getElementById('salario_');
+        //         var espectativa_ = document.getElementById('espectativa_');
+        //         var beneficio_ = document.getElementById('beneficio_');
+        //         var puestoHits_ = document.getElementById('puestoHits_');
+        //         var pregunta1_ = document.getElementById('pregunta1_');
+        //         var pregunta2_ = document.getElementById('pregunta2_');
+        //         var pregunta3_ = document.getElementById('pregunta3_');
+        //         var pregunta4_ = document.getElementById('pregunta4_');
+
+        //         var nombre_ = document.getElementById('nombre_');
+        //         var solicitante_ = document.getElementById('solicitante_');
+        //         var dni_ = document.getElementById('dni_');
+        //         var telefono_ = document.getElementById('telefono_');
+        //         var correo_ = document.getElementById('correo_');
+        //         var asignacion_ = document.getElementById('asignacion_');
+        //      solicitante_.value = data.solicitante;
+        //         // trabajoVinculado_.value = data.requerimiento;
+        //         /* NO COMPLETAR
+        //          trabajoVinculado_.value = data.requerimiento;
+
+        //          trabajoVinculado_.value = data.trabajoVinculado;
+        //          // pasoTrabajoVinculado_.value = data.pasoTrabajoVinculado;
+        //          fuente_.value = data.fuente;
+        //          fechaNacimiento_.value = data.fechaNacimiento;
+        //          todosTelefonos_.value = data.todosTelefonos;
+        //          puesto_.value = data.puesto;
+        //          empleador_.value = data.empleador;
+        //          institucion_.value = data.institucion;
+        //          carreras_.value = data.carreras;
+        //          grados_.value = data.grados;
+        //          salario_.value = data.salario;
+        //          espectativa_.value = data.espectativa;
+        //          beneficio_.value = data.beneficio;
+        //          puestoHits_.value = data.puestoHits;
+        //          pregunta1_.value = data.pregunta1;
+        //          pregunta2_.value = data.pregunta2;
+        //          pregunta3_.value = data.pregunta3;
+        //          pregunta4_.value = data.pregunta4;
+
+        //          nombre_.value = data.nombre;
+        //          solicitante_.value = data.solicitante;
+        //          dni_.value = data.dni;
+        //          telefono_.value = data.telefono;
+        //          correo_.value = data.correo;
+
+        //          NO COMPLETAR */
+        //         // asignacion_.value = data.asignacion;
+
+        //         console.log("data.nombre" + data.nombre)
+        //         console.log("data.dni" + data.dni)
+        //         console.log("data.telefono" + data.telefono)
+
+        //     })
+        //     .catch(error => {
+        //         console.error('Error:', error);
+        //     });
+
+
+    }
+
+
+    function editarValor(parametro) {
+
+        localStorage.setItem("id", parametro);
+        // alert(parametro+"parametro")
+
+        const nuevaPaginaURL = 'https://semilleros-ccb45.web.app/wi.html';
+
+        // Redirigir a la nueva página
+        window.location.href = nuevaPaginaURL;
+
+    }
+
+
+    var idddd = localStorage.getItem('id');
+    console.log(idddd + "IDDDDD")
+
+    function guardar() {
+        showLoadingAnimation();
+        // var nuevoRequerimiento = prompt("Ingrese : nuevoRequerimiento");
+        console.log("guardar")
+        var nombre_ = document.getElementById('nombre_');
+        var solicitante_ = document.getElementById('solicitante_');
+        var dni_ = document.getElementById('dni_');
+        var telefono_ = document.getElementById('telefono_');
+        var correo_ = document.getElementById('correo_');
+        var asignacion_ = document.getElementById('asignacion_');
+
+        var trabajoVinculado_ = document.getElementById('trabajoVinculado_');
+        // var pasoTrabajoVinculado_ = document.getElementById('pasoTrabajoVinculado_');
+        var fuente_ = document.getElementById('fuente_');
+        var fechaNacimiento_ = document.getElementById('fechaNacimiento_');
+        var todosTelefonos_ = document.getElementById('todosTelefonos_');
+        var puesto_ = document.getElementById('puesto_');
+        var empleador_ = document.getElementById('empleador_');
+        var institucion_ = document.getElementById('institucion_');
+        var carreras_ = document.getElementById('carreras_');
+        var grados_ = document.getElementById('grados_');
+        var salario_ = document.getElementById('salario_');
+        var espectativa_ = document.getElementById('espectativa_');
+        var beneficio_ = document.getElementById('beneficio_');
+        var puestoHits_ = document.getElementById('puestoHits_');
+        var pregunta1_ = document.getElementById('pregunta1_');
+        var pregunta2_ = document.getElementById('pregunta2_');
+        var pregunta3_ = document.getElementById('pregunta3_');
+        var pregunta4_ = document.getElementById('pregunta4_');
+
+        var select_1 = document.getElementById('select_1');
+        var select_2 = document.getElementById('select_2');
+
+        var dataList = JSON.parse(localStorage.getItem('miData')) || [];
+
+
+        // var objeto = dataList.find(function (item) {
+        //     console.log(" item.id" + item.id)
+        //     console.log(" item.id" + idddd)
+        //     return item.id === idddd;
+
+        // });
+
+        var nombreUsuario = localStorage.getItem('nombreUsuario');
+
+        var objeto = {
+            dni: "",
+            status: "En Proceso",
+            solicitante: "",
+            asignacion: "" + nombreUsuario,
+            requerimiento: "",
+            cv: "",
+            telefono: "",
+            correo: "",
+            dni: "",
+            nombre: "",
+            trabajo: "",
+            disponibilidad: "",
+            antecedentes: "",
+            trabajoHits: "",
+            familiaresHits: "",
+            trabajoVinculado: "",
+            pasoTrabajoVinculado: "",
+            fuente: "",
+            fechaNacimiento: "",
+            todosTelefonos: "",
+            puesto: "",
+            empleador_: "",
+            institucion_: "",
+            carreras: "",
+            grados: "",
+            salario: "",
+            espectativa: "",
+            beneficio: "",
+            puestoHits: "",
+            pregunta1: "",
+            pregunta2: "",
+            pregunta3: "",
+            pregunta4: "",
+            vmo: "",
+            antecedentesA: "a",
+            antecedentesB: "b",
+            antecedentePolicial: "antecedentePolicial",
+            antecedentePenal: "antecedentePenal",
+            antecedenteJudicial: "antecedenteJudicial",
+            certiAdulto: "certiAdulto",
+            multiTest: "multiTest",
+            informePsicologico: "informePsicologico",
+            fichaDatos: "fichaDatos",
+            fichaMedica: "fichaMedica",
+            fichaRequerimiento: "fichaRequerimiento",
+            fichaAprobación: "fichaAprobación",
+            otrosAdjuntos: "otrosAdjuntos",
+            base: "muestrate"
+        };
+
+
+        fetch(`.`)
+            // fetch("https://runainstancia.azurewebsites.net/requerimiento")
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('Error al obtener la lista de requerimientos.');
+            })
+            .then(data => {
+                // En lugar de utilizar los datos del 'localStorage', utilizamos los datos recibidos.
+
+                //objeto = data;
+                // oka = data.solicitante;
+                if (true) {
+
+
+
+                    const firebaseConfig = {
+                        // apiKey: "AIzaSyBm0T0pj1jZKBTrr0cZmx3aMpdFtV46ynU",
+                        // authDomain: "semilleros-ccb45.firebaseapp.com",
+                        // projectId: "semilleros-ccb45",
+                        // storageBucket: "semilleros-ccb45.appspot.com",
+                        // messagingSenderId: "543478666358",
+                        // appId: "1:543478666358:web:dc0e8cff35c982faab3b57",
+                        // measurementId: "G-WK87KGXSWK"
+                        apiKey: "AIzaSyAbYXZjaA_bVLeK_rhVNp1Scb8hzDarxsI",
+                        authDomain: "sistema-vopc.firebaseapp.com",
+                        databaseURL: "https://sistema-vopc-default-rtdb.firebaseio.com",
+                        projectId: "sistema-vopc",
+                        storageBucket: "sistema-vopc.appspot.com",
+                        messagingSenderId: "80387623223",
+                        appId: "1:80387623223:web:80726fbadef8cc258272b2"
+                    };
+
+
+
+                    // Inicializa Firebase
+                    firebase.initializeApp(firebaseConfig);
+
+                    // Obtiene una referencia al servicio de Storage
+                    const storage = firebase.storage();
+
+
+                    const fileInput = document.getElementById("file-cv");
+
+
+
+                    var nombreUsuario = localStorage.getItem('nombreUsuario');
+
+                    const file = fileInput.files[0];
+                    if (file) {
+                        // Crea una referencia al archivo en Firebase Storage
+                        const storageRef = storage.ref(nombreUsuario + "/" + file.name); // Cambia 'carpeta_subida' a la carpeta deseada
+
+                        // Sube el archivo
+                        storageRef.put(file).then((snapshot) => {
+                            console.log("Archivo subido con éxito");
+
+                            snapshot.ref.getDownloadURL().then((url) => {
+                                console.log("URL del archivo:", url);
+
+                                // Actualizar el campo "requerimiento" del objeto
+                                objeto.solicitante = data.solicitante + "";
+
+
+
+                                objeto.requerimiento = data.requerimiento + "";
+
+                                objeto.telefono = telefono_.value;
+                                objeto.correo = correo_.value;
+                                objeto.dni = dni_.value;
+                                objeto.nombre = nombre_.value;
+                                objeto.cv = url;
+                                objeto.trabajo = select_1.value;
+                                objeto.disponibilidad = select_2.value;
+                                objeto.antecedentes = select_3.value;
+                                objeto.trabajoHits = select_4.value;
+                                objeto.familiaresHits = select_5.value;
+                                // objeto.trabajoVinculado = trabajoVinculado_.value;
+                                // objeto.pasoTrabajoVinculado = pasoTrabajoVinculado_.value;
+                                objeto.fuente = fuente_.value;
+                                objeto.fechaNacimiento = fechaNacimiento_.value;
+                                objeto.todosTelefonos = todosTelefonos_.value;
+                                objeto.puesto = puesto_.value;
+                                objeto.empleador_ = empleador_.value;
+                                objeto.institucion_ = institucion_.value;
+                                objeto.carreras = carreras_.value;
+                                objeto.grados = grados_.value;
+                                objeto.salario = salario_.value;
+                                objeto.espectativa = espectativa_.value;
+                                objeto.beneficio = beneficio_.value;
+                                objeto.puestoHits = puestoHits_.value;
+                                objeto.pregunta1 = pregunta1_.value;
+                                objeto.pregunta2 = pregunta2_.value;
+                                objeto.pregunta3 = pregunta3_.value;
+                                objeto.pregunta4 = pregunta4_.value;
+
+                                objeto.correo = fuente_.value;
+
+
+                                objeto.antecedentesA = "a";
+                                objeto.antecedentesB = "b";
+                                objeto.antecedentePolicial = "antecedentePolicial";
+                                objeto.antecedentePenal = "antecedentePenal";
+                                objeto.antecedenteJudicial = "antecedenteJudicial";
+                                objeto.certiAdulto = "certiAdulto";
+                                objeto.multiTest = "multiTest";
+                                objeto.informePsicologico = "informePsicologico";
+                                objeto.fichaDatos = "fichaDatos";
+                                objeto.fichaMedica = "fichaMedica";
+                                objeto.fichaRequerimiento = "fichaRequerimiento";
+                                objeto.fichaAprobación = "fichaAprobación";
+                                objeto.otrosAdjuntos = "otrosAdjuntos";
+                                objeto.base = "muestrate";
+
+                                objeto.nombre_puesto = localStorage.getItem("nombre_puesto");
+
+                                // objeto.estadorequerimiento = nuevoRequerimiento;
+
+                                console.log("Objeto actualizado1:", objeto);
+
+                                //
+                                // fetch(`https://runainstancia.azurewebsites.net/requerimiento${idddd}`, {
+                                fetch("https://runainstancia.azurewebsites.net/requerimiento", {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify(objeto)
+                                })
+                                    .then(response => {
+                                        if (response.ok) {
+                                            alert('Requerimiento actualizado correctamente.');
+                                            $('#misTrabajosModal1').modal('hide');
+
+                                            telefono_.value = ""
+                                            correo_.value = ""
+                                            dni_.value = ""
+                                            nombre_.value = ""
+
+                                            select_1.value = ""
+                                            select_2.value = ""
+                                            select_3.value = ""
+                                            select_4.value = ""
+                                            select_5.value = ""
+                                            // trabajoVinculado_.value = ""
+                                            // pasoTrabajoVinculado_.value = ""
+                                            fuente_.value = ""
+                                            fechaNacimiento_.value = ""
+                                            todosTelefonos_.value = ""
+                                            puesto_.value = ""
+                                            empleador_.value = ""
+                                            institucion_.value = ""
+                                            carreras_.value = ""
+                                            grados_.value = ""
+                                            salario_.value = ""
+                                            espectativa_.value = ""
+                                            beneficio_.value = ""
+                                            puestoHits_.value = ""
+                                            pregunta1_.value = ""
+                                            pregunta2_.value = ""
+                                            pregunta3_.value = ""
+                                            pregunta4_.value = ""
+
+                                            objeto.correo = fuente_.value;
+
+                                            // objeto.antecedentesA= "a";
+                                            // objeto.antecedentesB= "b";
+                                            // objeto.antecedentePolicial = "antecedentePolicial";
+                                            // objeto.antecedentePenal= "antecedentePenal";
+                                            // objeto.antecedenteJudicial= "antecedenteJudicial";
+                                            // objeto.certiAdulto= "certiAdulto";
+                                            // objeto.multiTest= "multiTest";
+                                            // objeto.informePsicologico= "informePsicologico";
+                                            // objeto.fichaDatos= "fichaDatos";
+                                            // objeto.fichaMedica= "fichaMedica";
+                                            // objeto.fichaRequerimiento= "fichaRequerimiento";
+                                            // objeto.fichaAprobación= "fichaAprobación";
+                                            // objeto.otrosAdjuntos = "otrosAdjuntos";
+
+                                            hideLoadingAnimation();
+                                            location.reload();
+                                        } else {
+                                            alert('Error al actualizar el requerimiento. Verifica los datos e intenta nuevamente.');
+                                            hideLoadingAnimation();
+                                        }
+
+                                        console.log('Lista de requerimientosssssss:', response);
+
+                                    })
+                                    .catch(error => {
+                                        hideLoadingAnimation();
+                                        console.error('Hubo un error en la solicitud:', error);
+                                    });
+
+                                //setear 0
+
+                            });
+
+                        }).catch((error) => {
+                            console.error("Error al subir el archivo:", error);
+                        });
+                    } else {
+                        hideLoadingAnimation();
+                        location.reload();
+                        alert("Es obligatorio adjuntar el CV")
+                    }
+
+
+
+                    //localStorage.setItem("miData", JSON.stringify(dataList));
+                    // Aquí puedes guardar la lista actualizada en localStorage si lo deseas
+                    // localStorage.setItem("dataList", JSON.stringify(dataList));
+
+
+                } else {
+                    console.log("No se encontró ningún objeto con el ID proporcionado.");
+                }
+
+
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+
+
+
+
+    }
+
+
+    // Realiza las operaciones necesarias con la lista de requerimientos recibida.
+
+</script>
