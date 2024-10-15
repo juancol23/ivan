@@ -17,7 +17,7 @@ export class UserService {
     return signInWithEmailAndPassword(this.auth, email, password);
   }
 
-  async logintemp() {
+  async loginAnonymous() {
     try {
       const userCredential = await signInAnonymously(this.auth);
       return userCredential.user;

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -9,13 +10,15 @@ import { Router } from '@angular/router';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  constructor(private router: Router) { }
-
-  @Input() pruebita!: string;
+  constructor(private router: Router, private userService: UserService) { }
 
   logOut = (): void => {
     localStorage.clear();
     sessionStorage.clear();
-    this.router.navigate(['/']);
+    this.userService.logout()
+      .then(() => {
+        this.router.navigate(['/']);
+      })
+      .catch(error => { console.log(error) });
   };
 }

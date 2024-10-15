@@ -21,6 +21,22 @@ export class LoginComponent {
     });
   }
 
+  onSubmit = () : void => {
+    
+    this.userService.login(this.formLogin.value)
+      .then(response => {
+        console.log(response);
+        // localStorage.setItem('perfilUsuario', );
+        localStorage.setItem('nombreUsuario', this.formLogin.value.email);
+        localStorage.setItem('nombreContraseña', this.formLogin.value.password);
+        this.router.navigate(['/analyst']);
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  } 
+ 
+  /*
   startttt = (form: FormGroup): void => {
 
     // Obtener los valores del correo y la contraseña
@@ -70,7 +86,7 @@ export class LoginComponent {
           localStorage.setItem('nombreUsuario', email_);
           localStorage.setItem('nombreContraseña', pass_);
 
-          var pruebita = this.userService.logintemp();
+          var pruebita = this.userService.loginAnonymous();
           console.log(pruebita)
 
           // Redireccionar a la página correspondiente
@@ -100,5 +116,6 @@ export class LoginComponent {
     // ];
 
   };
+  */
 
 }
