@@ -17,14 +17,8 @@ export class UserService {
     return signInWithEmailAndPassword(this.auth, email, password);
   }
 
-  async loginAnonymous() {
-    try {
-      const userCredential = await signInAnonymously(this.auth);
-      return userCredential.user;
-    } catch (error) {
-      console.error("Error en la aplicación anónima", error);
-      throw error;
-    }
+  loginAnonymous() {
+    return signInAnonymously(this.auth);
   }
 
   async logout() {
